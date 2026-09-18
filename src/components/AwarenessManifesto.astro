@@ -2,47 +2,47 @@
 // Linux and FOSS Awareness & Digital Sovereignty Section
 const freedoms = [
   {
-    num: "00",
-    title: "Freedom to Run",
-    desc: "The freedom to run the program as you wish, for any purpose, on any machine without proprietary licensing limits or user telemetry."
+    num: "0",
+    title: "Freedom to run it",
+    desc: "Run the program as you wish, for any purpose, on any machine — no proprietary licensing limits, no telemetry watching over your shoulder."
   },
   {
-    num: "01",
-    title: "Freedom to Study",
-    desc: "The freedom to inspect how the program works and adapt it to your exact needs. Transparent source code is a fundamental prerequisite."
+    num: "1",
+    title: "Freedom to study it",
+    desc: "Inspect how the program actually works and adapt it to your needs. Transparent source code isn't a nice-to-have, it's the whole point."
   },
   {
-    num: "02",
-    title: "Freedom to Share",
-    desc: "The freedom to redistribute copies so you can help your neighbour, your university peers, and your community without artificial scarcity."
+    num: "2",
+    title: "Freedom to share it",
+    desc: "Redistribute copies so you can help a neighbour, a classmate, or your whole community — without artificial scarcity getting in the way."
   },
   {
-    num: "03",
-    title: "Freedom to Improve",
-    desc: "The freedom to distribute copies of your modified versions to others, giving the entire open source community a chance to benefit from your work."
+    num: "3",
+    title: "Freedom to improve it",
+    desc: "Share your modified versions with others, so the whole community gets a chance to benefit from what you built."
   }
 ];
 
 const pillars = [
   {
     icon: "🛡️",
-    title: "Data Sovereignty",
-    summary: "Your computer should belong to you. No background telemetry, no forced cloud accounts, and no monetization of your personal data."
+    title: "Data sovereignty",
+    summary: "Your computer should belong to you. No background telemetry, no forced cloud accounts, no quietly monetized personal data."
   },
   {
     icon: "⚡",
-    title: "Hardware Longevity",
-    summary: "Linux runs effortlessly on lightweight hardware. By refusing planned obsolescence, we save millions of computers from e-waste."
+    title: "Hardware longevity",
+    summary: "Linux runs happily on lightweight hardware. Refusing planned obsolescence saves millions of computers from the landfill."
   },
   {
     icon: "🔍",
-    title: "Auditable Transparency",
-    summary: "When software is open source, cryptographic signatures and reproducible builds ensure that what runs is exactly what was verified."
+    title: "Auditable transparency",
+    summary: "When software is open, anyone can check that what's running is exactly what was promised — no trust required, just verification."
   },
   {
     icon: "🌱",
-    title: "Collaborative Commons",
-    summary: "The greatest engineering feats in modern computing—the Linux kernel, Git, the World Wide Web—thrived as shared public commons."
+    title: "Collaborative commons",
+    summary: "Some of the best engineering in modern computing — the Linux kernel, Git, the Web itself — grew as a shared public commons."
   }
 ];
 ---
@@ -52,10 +52,10 @@ const pillars = [
     <div class="manifesto-grid">
       <!-- Left side: Awareness & Mission -->
       <div class="manifesto-text-col">
-        <div class="section-tag">Linux &amp; FOSS Awareness</div>
-        <h2 class="section-title">Software Freedom Is a Human Right</h2>
+        <div class="section-tag">Why we do this</div>
+        <h2 class="section-title">Software freedom is a human right</h2>
         <p class="section-desc">
-          In an era dominated by walled gardens, pervasive tracking, and remote kill-switches, The Penguins Club champions computing sovereignty. We educate students, developers, and everyday citizens on the power of GNU/Linux and Free Software.
+          In a world of walled gardens, quiet tracking, and remote kill-switches, we think computing should belong to the person using it. That's why we spend our free time helping people — students, career-switchers, curious neighbours — get comfortable with GNU/Linux and Free Software.
         </p>
 
         <!-- Pillars grid -->
@@ -75,27 +75,16 @@ const pillars = [
       <!-- Right side: The 4 Freedoms Card -->
       <div class="freedoms-wrapper">
         <div class="freedoms-card glass-card">
-          <div class="card-terminal-header">
-            <div class="dots">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-            </div>
-            <span class="term-file">gnu-philosophy.c</span>
-            <span class="term-flag">[FOSS-CANON]</span>
+          <div class="freedoms-header">
+            <span class="freedoms-eyebrow">The four freedoms</span>
+            <span class="freedoms-source">as defined by the Free Software Foundation</span>
           </div>
 
           <div class="freedoms-body">
-            <div class="freedoms-intro">
-              <span class="code-comment">/* The Four Essential Freedoms defined by Richard M. Stallman &amp; the FSF */</span>
-            </div>
-
             <div class="freedoms-list">
               {freedoms.map((f) => (
                 <div class="freedom-row">
-                  <div class="freedom-num-badge">
-                    <code>freedom[{f.num}]</code>
-                  </div>
+                  <div class="freedom-num-badge">{f.num}</div>
                   <div class="freedom-details">
                     <h4 class="freedom-title">{f.title}</h4>
                     <p class="freedom-desc">{f.desc}</p>
@@ -106,9 +95,9 @@ const pillars = [
 
             <div class="quote-box">
               <p class="quote-text">
-                &ldquo;If you want to go fast, go alone. If you want to build durable digital infrastructure for humankind, go Open Source.&rdquo;
+                &ldquo;If you want to go fast, go alone. If you want to build durable digital infrastructure for humankind, go open source.&rdquo;
               </p>
-              <span class="quote-author">&mdash; The Penguins Club Manifesto</span>
+              <span class="quote-author">&mdash; a Penguins Club regular</span>
             </div>
           </div>
         </div>
@@ -182,122 +171,94 @@ const pillars = [
 
   /* Freedoms Card */
   .freedoms-card {
-    background: var(--bg-terminal);
-    border: 1px solid var(--border-card);
-    border-radius: var(--radius-lg);
+    padding: 0;
     overflow: hidden;
-    box-shadow: var(--shadow-md), 0 0 35px -8px rgba(52, 211, 153, 0.2);
   }
 
-  .card-terminal-header {
-    background: #111827;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.65rem 1rem;
+  .freedoms-header {
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1.1rem 1.75rem;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+    flex-direction: column;
+    gap: 0.15rem;
   }
 
-  .dots {
-    display: flex;
-    gap: 5px;
+  .freedoms-eyebrow {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-primary);
   }
 
-  .dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-  }
-
-  .dot.red { background: #ef4444; }
-  .dot.yellow { background: #f59e0b; }
-  .dot.green { background: #10b981; }
-
-  .term-file {
-    color: #94a3b8;
-  }
-
-  .term-flag {
-    color: #34d399;
-    font-size: 0.7rem;
+  .freedoms-source {
+    font-size: 0.775rem;
+    color: var(--text-muted);
   }
 
   .freedoms-body {
     padding: 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    background: #090d12;
-  }
-
-  .code-comment {
-    font-family: var(--font-mono);
-    font-size: 0.775rem;
-    color: #64748b;
+    gap: 1.5rem;
   }
 
   .freedoms-list {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.35rem;
   }
 
   .freedom-row {
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
-  @media (min-width: 480px) {
-    .freedom-row {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-  }
-
-  .freedom-num-badge code {
-    font-size: 0.75rem;
-    color: var(--accent-cyan);
-    background: rgba(56, 189, 248, 0.1);
-    border: 1px solid rgba(56, 189, 248, 0.25);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    white-space: nowrap;
+  .freedom-num-badge {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-accent);
+    background: var(--badge-bg);
+    border: 1px solid var(--badge-border);
   }
 
   .freedom-title {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #f1f5f9;
+    color: var(--text-primary);
   }
 
   .freedom-desc {
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: var(--text-secondary);
     line-height: 1.5;
   }
 
   .quote-box {
-    margin-top: 0.5rem;
-    padding-top: 1rem;
-    border-top: 1px dashed rgba(255, 255, 255, 0.1);
-    font-style: italic;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--border-subtle);
   }
 
   .quote-text {
-    font-size: 0.85rem;
-    color: #e2e8f0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-primary);
     line-height: 1.5;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
   }
 
   .quote-author {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--accent-yellow);
-    font-style: normal;
+    font-size: 0.8125rem;
+    color: var(--text-accent-warn);
+    font-weight: 600;
   }
 </style>

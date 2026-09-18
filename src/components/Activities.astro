@@ -3,58 +3,48 @@
 const activities = [
   {
     id: "act-awareness",
-    tag: "AWARENESS & EDUCATION",
-    code: "01",
+    tag: "Awareness & Education",
     title: "Linux & FOSS Awareness",
-    description: "Demystifying GNU/Linux distributions, open standards, software licensing, and digital sovereignty. We conduct university workshops, installation fests, and privacy empowerment campaigns for newcomers and seasoned pros alike.",
-    highlights: ["Distro Installation Fests", "Open Standards & Privacy", "Digital Sovereignty Seminars", "Campus Outreach"],
+    description: "Demystifying GNU/Linux distributions, open standards, software licensing, and digital sovereignty. We run installation fests and friendly explainer sessions for total newcomers and seasoned pros alike.",
+    highlights: ["Distro Installation Fests", "Open Standards & Privacy", "Digital Sovereignty Talks", "Campus Outreach"],
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
-    color: "cyan",
-    accentGlow: "rgba(56, 189, 248, 0.15)"
+    color: "coral"
   },
   {
     id: "act-meetups",
-    tag: "COMMUNITY & TALKS",
-    code: "02",
+    tag: "Community & Talks",
     title: "In-Person & Virtual Meetups",
-    description: "Monthly gatherings featuring lightning talks, architecture deep-dives, live coding, and Birds-of-a-Feather (BoF) sessions. Whether in a local hacker space or over high-bitrate WebRTC streams, we share knowledge freely.",
-    highlights: ["Monthly Keynotes", "Lightning Talks (5-10m)", "Kernel & Sysadmin BoFs", "Live Distributed Streams"],
+    description: "Monthly gatherings featuring lightning talks, live coding, and casual hallway-track chats. Whether in a local hacker space or over a stream, we share what we know, freely and without gatekeeping.",
+    highlights: ["Monthly Keynotes", "5-Minute Lightning Talks", "Kernel & Sysadmin Chats", "Live Streams"],
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
-    color: "emerald",
-    accentGlow: "rgba(16, 185, 129, 0.15)"
+    color: "teal"
   },
   {
     id: "act-hackathons",
-    tag: "SPRINTS & HACKING",
-    code: "03",
+    tag: "Sprints & Hacking",
     title: "Open Source Hackathons",
-    description: "Fast-paced 48-hour sprints focused on shipping usable Free Software. From building system daemons, desktop utilities, and web apps to squashing long-standing upstream Linux bugs and improving documentation.",
-    highlights: ["48h Sprint Hackathons", "Upstream Linux Bug Hunts", "Zero-to-One FOSS Projects", "Prizes & Hardware Grants"],
+    description: "Fast-paced 48-hour sprints focused on shipping usable Free Software — desktop tools, web apps, and squashing long-standing upstream bugs. Mentors around the clock, snacks included.",
+    highlights: ["48h Sprint Hackathons", "Upstream Bug Hunts", "Zero-to-One Projects", "Prizes & Hardware Grants"],
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><circle cx="12" cy="12" r="2"></circle></svg>`,
-    color: "yellow",
-    accentGlow: "rgba(245, 158, 11, 0.15)"
+    color: "amber"
   },
   {
     id: "act-discussions",
-    tag: "COLLABORATION & FORUMS",
-    code: "04",
+    tag: "Collaboration & Forums",
     title: "Online Discussions & Forums",
-    description: "24/7 collaborative spaces connected across Matrix, Discord, Discourse, and IRC. Discuss everything from kernel optimizations and Wayland compositors to ethical AI, self-hosting, and hardware tinkering.",
-    highlights: ["Bridged Matrix & IRC Rooms", "Discourse Discussion Hub", "Asynchronous RFCs", "Peer-to-Peer Help Desks"],
+    description: "Always-on spaces across Matrix, Discord, Discourse, and IRC. Talk kernels and Wayland, or just ask a beginner question — someone friendly is almost always around.",
+    highlights: ["Matrix & IRC, Bridged", "Discourse Forum", "Async RFCs", "Peer Help Desks"],
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`,
-    color: "purple",
-    accentGlow: "rgba(168, 85, 247, 0.15)"
+    color: "berry"
   },
   {
     id: "act-projects",
-    tag: "INCUBATION & CODE",
-    code: "05",
+    tag: "Incubation & Code",
     title: "Fostering Open Source Projects",
-    description: "We don't just talk about FOSS—we write code. We mentor first-time contributors, sponsor project infrastructure, assist with CI/CD & licensing, and incubate community tools until they achieve upstream adoption.",
-    highlights: ["Maintainer Pairing & Mentorship", "Infrastructure Sponsorship", "CI/CD & Packaging Support", "Project Showcase Stage"],
+    description: "We don't just talk about FOSS, we write code. We pair first-time contributors with mentors, sponsor infrastructure, help with packaging, and cheer projects on until they find their own community.",
+    highlights: ["Maintainer Pairing", "Infrastructure Sponsorship", "CI/CD & Packaging Help", "Project Showcase Stage"],
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
-    color: "cyan",
-    accentGlow: "rgba(56, 189, 248, 0.15)"
+    color: "coral"
   }
 ];
 ---
@@ -62,23 +52,20 @@ const activities = [
 <section id="activities" class="activities-section">
   <div class="container">
     <div class="section-header">
-      <div class="section-tag">Pillars of the Club</div>
-      <h2 class="section-title">What We Do at The Penguins Club</h2>
+      <div class="section-tag">What we get up to</div>
+      <h2 class="section-title">Five ways to get involved</h2>
       <p class="section-desc">
-        Our ecosystem is built on five core disciplines dedicated to advancing software freedom, cultivating collaborative learning, and turning enthusiasts into productive open source maintainers.
+        No single "right" way to join in. Come to learn, come to teach, come to build something — our five pillars all lead to the same place: a community that actually shows up for each other.
       </p>
     </div>
 
     <!-- Activities Bento Grid -->
     <div class="bento-grid">
       {activities.map((act, index) => (
-        <div class={`bento-card glass-card card-${act.code}`} style={`--card-glow: ${act.accentGlow};`}>
+        <div class={`bento-card glass-card card-${index + 1}`}>
           <div class="card-top">
-            <div class="card-badge">
-              <span class="card-num">{act.code}</span>
-              <span class="card-tag-text">{act.tag}</span>
-            </div>
             <div class={`card-icon-wrap icon-${act.color}`} set:html={act.icon} />
+            <span class="card-tag-text">{act.tag}</span>
           </div>
 
           <h3 class="card-title">{act.title}</h3>
@@ -94,7 +81,7 @@ const activities = [
           </div>
 
           <div class="card-footer-link">
-            <span class="mono-accent learn-more">Explore pillar <span class="arrow">&rarr;</span></span>
+            <span class="mono-accent learn-more">Explore this pillar <span class="arrow">&rarr;</span></span>
           </div>
         </div>
       ))}
@@ -125,7 +112,7 @@ const activities = [
     .bento-grid {
       grid-template-columns: repeat(2, 1fr);
     }
-    .card-05 {
+    .card-5 {
       grid-column: span 2;
     }
   }
@@ -134,19 +121,10 @@ const activities = [
     .bento-grid {
       grid-template-columns: repeat(3, 1fr);
     }
-    .card-01 {
+    .card-1 {
       grid-column: span 2;
     }
-    .card-02 {
-      grid-column: span 1;
-    }
-    .card-03 {
-      grid-column: span 1;
-    }
-    .card-04 {
-      grid-column: span 1;
-    }
-    .card-05 {
+    .card-5 {
       grid-column: span 1;
     }
   }
@@ -155,72 +133,42 @@ const activities = [
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .bento-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle at top right, var(--card-glow, transparent) 0%, transparent 70%);
-    pointer-events: none;
   }
 
   .card-top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.75rem;
     margin-bottom: 1.25rem;
   }
 
-  .card-badge {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-mono);
-  }
-
-  .card-num {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--text-accent);
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-card);
-    padding: 0.15rem 0.45rem;
-    border-radius: var(--radius-sm);
-  }
-
   .card-tag-text {
-    font-size: 0.725rem;
-    letter-spacing: 0.06em;
+    font-size: 0.775rem;
+    letter-spacing: 0.03em;
     color: var(--text-muted);
     font-weight: 600;
   }
 
   .card-icon-wrap {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-card);
+    flex-shrink: 0;
   }
 
-  .icon-cyan { color: var(--accent-cyan); }
-  .icon-emerald { color: var(--accent-emerald); }
-  .icon-yellow { color: var(--accent-yellow); }
-  .icon-purple { color: var(--accent-purple); }
+  .icon-coral { background: rgba(242, 100, 60, 0.14); color: var(--accent-coral); }
+  .icon-teal { background: rgba(31, 156, 130, 0.14); color: var(--accent-teal); }
+  .icon-amber { background: rgba(244, 185, 66, 0.18); color: var(--accent-amber); }
+  .icon-berry { background: rgba(157, 111, 224, 0.14); color: var(--accent-berry); }
 
   .card-title {
-    font-size: 1.35rem;
-    font-weight: 700;
-    letter-spacing: -0.015em;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     color: var(--text-primary);
     margin-bottom: 0.75rem;
   }
@@ -246,7 +194,7 @@ const activities = [
     gap: 0.45rem;
     background: var(--bg-subtle);
     border: 1px solid var(--border-subtle);
-    padding: 0.25rem 0.65rem;
+    padding: 0.3rem 0.7rem;
     border-radius: 9999px;
     font-size: 0.775rem;
     color: var(--text-secondary);
@@ -266,17 +214,17 @@ const activities = [
 
   .learn-more {
     font-size: 0.8125rem;
+    font-weight: 700;
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
+  }
+
+  .arrow {
     transition: transform 0.2s ease;
   }
 
   .bento-card:hover .arrow {
     transform: translateX(4px);
-  }
-
-  .arrow {
-    transition: transform 0.2s ease;
   }
 </style>

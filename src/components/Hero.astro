@@ -1,5 +1,5 @@
 ---
-// Hero Section with Interactive Terminal & Community Stats
+// Warm, human-first hero: friendly headline, real-feeling stats, illustrated mascot card.
 ---
 
 <section class="hero-section">
@@ -7,282 +7,64 @@
     <div class="hero-content">
       <div class="hero-pill-badge">
         <span class="pulse-dot"></span>
-        <span class="pill-label">Open Source &bull; Free Software &bull; Digital Sovereignty</span>
+        <span class="pill-label">Open source &bull; Free software &bull; Real people</span>
       </div>
 
       <h1 class="hero-title">
-        The Penguins Club
-        <span class="hero-gradient-text">Linux &amp; FOSS Community</span>
+        Linux &amp; open source, <span class="hero-highlight">minus the intimidation.</span>
       </h1>
 
       <p class="hero-description">
-        We are a decentralized, community-driven sanctuary for Linux tinkerers, open source builders, and curious explorers. Together, we spread Linux awareness, host in-person meetups &amp; global hackathons, cultivate online discussions, and incubate groundbreaking open source projects.
+        The Penguins Club is a friendly, community-run home for anyone curious about Linux and Free/Open Source Software — from your first terminal command to your first pull request. We host meetups, hackathons, and honest conversations, and nobody here will make you feel dumb for asking.
       </p>
 
       <div class="hero-cta-group">
         <a href="#events" class="btn-primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-          Upcoming Events
+          See what's coming up
+          <span aria-hidden="true">&rarr;</span>
         </a>
-        <a href="#activities" class="btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-            <polyline points="2 17 12 22 22 17"></polyline>
-            <polyline points="2 12 12 17 22 12"></polyline>
-          </svg>
-          Our Activities
-        </a>
-        <a href="#community" class="btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-          </svg>
-          Join Chat
-        </a>
+        <a href="#community" class="btn-secondary">Say hello in chat</a>
       </div>
 
-      <!-- Quick community stats counter -->
-      <div class="hero-metrics">
-        <div class="metric-item">
-          <span class="metric-val">1,800+</span>
-          <span class="metric-label">Linux Enthusiasts</span>
+      <div class="hero-avatars">
+        <div class="avatar-stack" aria-hidden="true">
+          <span class="avatar-chip" style="background:var(--accent-coral)">🐧</span>
+          <span class="avatar-chip" style="background:var(--accent-teal)">🐧</span>
+          <span class="avatar-chip" style="background:var(--accent-amber)">🐧</span>
+          <span class="avatar-chip" style="background:var(--accent-berry)">🐧</span>
+          <span class="avatar-chip avatar-more">+1.8k</span>
         </div>
-        <div class="metric-divider">/</div>
-        <div class="metric-item">
-          <span class="metric-val">32+</span>
-          <span class="metric-label">FOSS Projects Incubated</span>
-        </div>
-        <div class="metric-divider">/</div>
-        <div class="metric-item">
-          <span class="metric-val">45+</span>
-          <span class="metric-label">Meetups &amp; Sprints</span>
-        </div>
-        <div class="metric-divider">/</div>
-        <div class="metric-item">
-          <span class="metric-val">100%</span>
-          <span class="metric-label">Free Software</span>
-        </div>
+        <p class="avatar-caption">people who started out exactly where you are right now</p>
       </div>
     </div>
 
-    <!-- Interactive Web Terminal Widget -->
-    <div class="hero-terminal-wrap">
-      <div class="terminal-window">
-        <div class="terminal-bar">
-          <div class="terminal-dots">
-            <span class="t-dot close"></span>
-            <span class="t-dot minimize"></span>
-            <span class="t-dot maximize"></span>
-          </div>
-          <div class="terminal-title">tpc-sh &mdash; bash &mdash; 80x24</div>
-          <div class="terminal-badge">FOSS-LIVE</div>
+    <!-- Illustrated welcome card, replaces the old terminal window -->
+    <div class="hero-visual">
+      <div class="hero-blob">
+        <div class="speech-bubble">
+          First time here? We saved you a seat. 👋
         </div>
 
-        <div class="terminal-body" id="terminal-body">
-          <div class="terminal-logs" id="terminal-logs">
-            <div class="log-line text-muted">// Welcome to The Penguins Club interactive shell.</div>
-            <div class="log-line text-muted">// Type commands or click the chips below to explore.</div>
-            <div class="log-line prompt-line">
-              <span class="t-user">guest@tpc</span>:<span class="t-path">~</span>$ <span class="t-cmd">neofetch</span>
-            </div>
-            
-            <!-- Default neofetch display -->
-            <div class="neofetch-output">
-              <div class="ascii-art">
-{`   .-.
-  c(\`_\`)o
-  .-*""*-._
- /\`       \`\\
- |  _   _  |
- \` (o) (o) /
-  /       \\
-  \\_._.-._/
-   ||   ||
-  (_(   )_)`}
-              </div>
-              <div class="neofetch-specs">
-                <div class="spec-row"><span class="spec-k">OS</span>: The Penguins Club (Linux &amp; FOSS)</div>
-                <div class="spec-row"><span class="spec-k">Kernel</span>: 6.12.0-freedom-hardened</div>
-                <div class="spec-row"><span class="spec-k">Uptime</span>: Since GNU/Linux Genesis</div>
-                <div class="spec-row"><span class="spec-k">Focus</span>: Awareness, Meetups, Hackathons</div>
-                <div class="spec-row"><span class="spec-k">Projects</span>: 32 Incubated Repos</div>
-                <div class="spec-row"><span class="spec-k">License</span>: Copyleft &amp; MIT Compatible</div>
-                <div class="color-palette">
-                  <span class="c-box" style="background:#090d12"></span>
-                  <span class="c-box" style="background:#ef4444"></span>
-                  <span class="c-box" style="background:#10b981"></span>
-                  <span class="c-box" style="background:#f59e0b"></span>
-                  <span class="c-box" style="background:#38bdf8"></span>
-                  <span class="c-box" style="background:#8b5cf6"></span>
-                  <span class="c-box" style="background:#f1f5f9"></span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <svg class="mascot" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M24 4C17.37 4 13 9.37 13 16C13 19.5 14.5 23 12 28C9.5 33 10 39 12 41C14 43 18 43 20 42C21.5 43.5 23.5 44 26 44C30 44 34 42 36 39C38 36 38 31 35 27C33.5 24.5 35 20.5 35 16C35 9.37 30.63 4 24 4Z" fill="var(--bg-card)" stroke="var(--text-primary)" stroke-width="2"/>
+          <ellipse cx="24" cy="30" rx="8" ry="10" fill="var(--accent-teal)" fill-opacity="0.25"/>
+          <circle cx="19" cy="15" r="2" fill="var(--text-primary)"/>
+          <circle cx="29" cy="15" r="2" fill="var(--text-primary)"/>
+          <path d="M20 18H28L24 23L20 18Z" fill="var(--accent-amber)"/>
+          <path d="M16 41C13 41 12 43 14 44C16 45 19 44 21 42" stroke="var(--accent-coral)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M32 41C35 41 36 43 34 44C32 45 29 44 27 42" stroke="var(--accent-coral)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
 
-          <!-- Active command input line -->
-          <form id="terminal-form" class="terminal-input-row" autocomplete="off">
-            <span class="t-user">guest@tpc</span>:<span class="t-path">~</span>$
-            <input 
-              type="text" 
-              id="terminal-input" 
-              class="terminal-input" 
-              placeholder="type 'help', 'events', 'activities'..."
-              aria-label="Terminal command prompt"
-            />
-          </form>
-        </div>
-
-        <!-- Terminal Quick Action Chips -->
-        <div class="terminal-quick-chips">
-          <span class="chip-label">Quick run:</span>
-          <button type="button" class="term-chip" data-cmd="events">events</button>
-          <button type="button" class="term-chip" data-cmd="activities">activities</button>
-          <button type="button" class="term-chip" data-cmd="projects">projects</button>
-          <button type="button" class="term-chip" data-cmd="join">join</button>
-          <button type="button" class="term-chip" data-cmd="clear">clear</button>
-        </div>
+        <div class="floating-chip chip-a">🚀 32+ projects incubated</div>
+        <div class="floating-chip chip-b">☕ 45+ meetups &amp; sprints</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Terminal JavaScript micro-interaction -->
-<script>
-  const termForm = document.getElementById('terminal-form');
-  const termInput = document.getElementById('terminal-input') as HTMLInputElement | null;
-  const termLogs = document.getElementById('terminal-logs');
-  const termBody = document.getElementById('terminal-body');
-  const chips = document.querySelectorAll('.term-chip');
-
-  const commandResponses: Record<string, string> = {
-    help: `<div class="log-line">Available commands:</div>
-<div class="log-line">  <span class="mono-accent">events</span>       - List upcoming meetups, hackathons & workshops</div>
-<div class="log-line">  <span class="mono-accent">activities</span>   - Display our 5 core community pillars</div>
-<div class="log-line">  <span class="mono-accent">projects</span>     - Explore fostered open source projects</div>
-<div class="log-line">  <span class="mono-accent">join</span>         - Get links for Matrix, Discord, and GitHub</div>
-<div class="log-line">  <span class="mono-accent">neofetch</span>     - Show club system architecture and specs</div>
-<div class="log-line">  <span class="mono-accent">whoami</span>       - Freedom-respecting software builder</div>
-<div class="log-line">  <span class="mono-accent">clear</span>        - Clean terminal screen</div>`,
-    
-    events: `<div class="log-line"><span class="t-accent">Upcoming Events on Schedule:</span></div>
-<div class="log-line">1. <b>Oct 03</b> - FOSS Hackathon 2026 (48h Global Sprint)</div>
-<div class="log-line">2. <b>Oct 17</b> - Linux Kernel & eBPF Deep Dive (In-Person & Stream)</div>
-<div class="log-line">3. <b>Nov 05</b> - Digital Sovereignty & Privacy Workshop (Online)</div>
-<div class="log-line text-muted">> Scroll down to the Upcoming Events section for RSVP & .ics export!</div>`,
-
-    activities: `<div class="log-line"><span class="t-accent">TPC Core Activities:</span></div>
-<div class="log-line">  [1] <b>Linux & FOSS Awareness</b> - Seminars, distro installs & public advocacy</div>
-<div class="log-line">  [2] <b>Community Meetups</b> - Monthly talks, hacking sessions & keynotes</div>
-<div class="log-line">  [3] <b>Hackathons</b> - 48h open sprint challenges & bug-bounty drives</div>
-<div class="log-line">  [4] <b>Online Discussion</b> - 24/7 Matrix, Discord, IRC & Discourse forums</div>
-<div class="log-line">  [5] <b>Fostering Projects</b> - Incubation, code reviews & developer mentorship</div>`,
-
-    projects: `<div class="log-line"><span class="t-accent">Featured Community Projects:</span></div>
-<div class="log-line">&bull; <b>pingu-pkg</b>: Lightweight declarative dotfiles & package manager (Rust)</div>
-<div class="log-line">&bull; <b>foss-shield</b>: Zero-telemetry DNS & privacy auditing daemon (Go)</div>
-<div class="log-line">&bull; <b>kernel-craft</b>: Interactive interactive Linux kernel learning lab (C / WebAssembly)</div>
-<div class="log-line text-muted">> Discover more in the Fostered Projects section below!</div>`,
-
-    join: `<div class="log-line"><span class="t-accent">Join The Community:</span></div>
-<div class="log-line">&bull; Matrix: <a href="https://matrix.org" target="_blank" class="t-link">#thepenguinsclub:matrix.org</a></div>
-<div class="log-line">&bull; Discord: <a href="https://discord.com" target="_blank" class="t-link">discord.gg/thepenguinsclub</a></div>
-<div class="log-line">&bull; GitHub: <a href="https://github.com" target="_blank" class="t-link">github.com/thepenguinsclub</a></div>
-<div class="log-line">&bull; IRC: #thepenguinsclub on Libera.Chat</div>`,
-
-    whoami: `<div class="log-line">You are a passionate FOSS advocate and friend of Tux! 🐧</div>`,
-
-    sudo: `<div class="log-line" style="color: #ef4444;">sudo: With great power comes great responsibility. No root required here!</div>`,
-
-    neofetch: `<div class="neofetch-output">
-  <div class="ascii-art">
-   .-.
-  c(\`_\`)o
-  .-*""*-._
- /\`       \`\\
- |  _   _  |
- \` (o) (o) /
-  /       \\
-  \\_._.-._/
-   ||   ||
-  (_(   )_)
-  </div>
-  <div class="neofetch-specs">
-    <div class="spec-row"><span class="spec-k">OS</span>: The Penguins Club (Linux & FOSS)</div>
-    <div class="spec-row"><span class="spec-k">Kernel</span>: 6.12.0-freedom-hardened</div>
-    <div class="spec-row"><span class="spec-k">Uptime</span>: Since GNU/Linux Genesis</div>
-    <div class="spec-row"><span class="spec-k">Focus</span>: Awareness, Meetups, Hackathons</div>
-    <div class="spec-row"><span class="spec-k">Projects</span>: 32 Incubated Repos</div>
-    <div class="spec-row"><span class="spec-k">License</span>: Copyleft & MIT Compatible</div>
-  </div>
-</div>`
-  };
-
-  function executeCmd(cmd: string) {
-    const cleanCmd = cmd.trim().toLowerCase();
-    if (!termLogs) return;
-
-    if (cleanCmd === 'clear') {
-      termLogs.innerHTML = '';
-      return;
-    }
-
-    // Append prompt line
-    const promptEl = document.createElement('div');
-    promptEl.className = 'log-line prompt-line';
-    promptEl.innerHTML = `<span class="t-user">guest@tpc</span>:<span class="t-path">~</span>$ <span class="t-cmd">${escapeHtml(cmd)}</span>`;
-    termLogs.appendChild(promptEl);
-
-    // Look up response
-    const outputEl = document.createElement('div');
-    outputEl.className = 'term-result';
-
-    if (commandResponses[cleanCmd]) {
-      outputEl.innerHTML = commandResponses[cleanCmd];
-    } else if (cleanCmd === '') {
-      // Empty input
-    } else {
-      outputEl.innerHTML = `<div class="log-line text-err">command not found: ${escapeHtml(cleanCmd)}. Type <span class="mono-accent">help</span> for commands.</div>`;
-    }
-
-    termLogs.appendChild(outputEl);
-
-    // Scroll to bottom
-    if (termBody) {
-      termBody.scrollTop = termBody.scrollHeight;
-    }
-  }
-
-  function escapeHtml(str: string): string {
-    return str
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-  }
-
-  termForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!termInput) return;
-    const cmd = termInput.value;
-    termInput.value = '';
-    executeCmd(cmd);
-  });
-
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const cmd = chip.getAttribute('data-cmd') || '';
-      executeCmd(cmd);
-    });
-  });
-</script>
-
 <style>
   .hero-section {
-    padding-top: clamp(3rem, 6vw, 5.5rem);
+    padding-top: clamp(2.5rem, 6vw, 5rem);
     padding-bottom: clamp(3.5rem, 7vw, 6rem);
     position: relative;
     overflow: hidden;
@@ -291,15 +73,15 @@
   .hero-container {
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 3rem;
   }
 
   @media (min-width: 1024px) {
     .hero-container {
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
+      grid-template-columns: 1.1fr 1fr;
       align-items: center;
-      gap: 3.5rem;
+      gap: 3rem;
     }
   }
 
@@ -314,30 +96,28 @@
     align-items: center;
     gap: 0.6rem;
     background: var(--bg-card);
-    border: 1px solid var(--border-glow);
-    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--border-card);
+    padding: 0.45rem 1rem;
     border-radius: 9999px;
-    font-family: var(--font-mono);
-    font-size: 0.775rem;
-    color: var(--text-accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
     margin-bottom: 1.5rem;
     box-shadow: var(--shadow-sm);
   }
 
   .hero-title {
-    font-size: clamp(2.35rem, 4.8vw, 3.85rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.035em;
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
     color: var(--text-primary);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.4rem;
   }
 
-  .hero-gradient-text {
-    display: block;
-    background: linear-gradient(135deg, var(--accent-cyan) 0%, #38bdf8 30%, var(--accent-emerald) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  .hero-highlight {
+    color: var(--text-accent);
   }
 
   .hero-description {
@@ -352,220 +132,112 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.85rem;
-    margin-bottom: 2.75rem;
+    margin-bottom: 2.5rem;
   }
 
-  /* Metrics counter */
-  .hero-metrics {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1.25rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--border-subtle);
-    width: 100%;
-  }
-
-  .metric-item {
+  /* Avatar stack */
+  .hero-avatars {
     display: flex;
     flex-direction: column;
+    gap: 0.6rem;
   }
 
-  .metric-val {
-    font-family: var(--font-mono);
-    font-size: 1.4rem;
-    font-weight: 700;
+  .avatar-stack {
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar-chip {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    border: 2px solid var(--bg-canvas);
+    margin-left: -10px;
+  }
+
+  .avatar-chip:first-child {
+    margin-left: 0;
+  }
+
+  .avatar-more {
+    background: var(--bg-elevated);
     color: var(--text-primary);
-    line-height: 1.1;
+    font-size: 0.75rem;
+    font-weight: 700;
   }
 
-  .metric-label {
-    font-size: 0.775rem;
+  .avatar-caption {
+    font-size: 0.85rem;
     color: var(--text-muted);
   }
 
-  .metric-divider {
-    font-family: var(--font-mono);
-    color: var(--border-card);
-    user-select: none;
-  }
-
-  /* Terminal Window */
-  .hero-terminal-wrap {
+  /* Illustrated welcome card */
+  .hero-visual {
     width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
-  .terminal-window {
-    background: var(--bg-terminal);
+  .hero-blob {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, var(--bg-elevated) 0%, var(--bg-card) 100%);
+    border: 1px solid var(--border-card);
+    border-radius: 45% 55% 60% 40% / 55% 45% 55% 45%;
+    box-shadow: var(--shadow-md);
+  }
+
+  .mascot {
+    width: 45%;
+    height: 45%;
+  }
+
+  .speech-bubble {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 78%;
+    background: var(--bg-card);
     border: 1px solid var(--border-card);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md), 0 0 35px -8px rgba(56, 189, 248, 0.2);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 440px;
-    font-family: var(--font-mono);
-    font-size: 0.84rem;
-    color: #f1f5f9;
-  }
-
-  .terminal-bar {
-    background: #111827;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.65rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    user-select: none;
-  }
-
-  .terminal-dots {
-    display: flex;
-    gap: 6px;
-  }
-
-  .t-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-  }
-
-  .t-dot.close { background: #ef4444; }
-  .t-dot.minimize { background: #f59e0b; }
-  .t-dot.maximize { background: #10b981; }
-
-  .terminal-title {
-    font-size: 0.75rem;
-    color: #9ca3af;
-  }
-
-  .terminal-badge {
-    font-size: 0.65rem;
-    color: #34d399;
-    background: rgba(16, 185, 129, 0.15);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
-  }
-
-  .terminal-body {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    background: #090d12;
-  }
-
-  .log-line {
-    line-height: 1.45;
-    word-break: break-word;
-  }
-
-  .text-muted { color: #64748b; }
-  .text-err { color: #f87171; }
-  .t-user { color: #38bdf8; font-weight: 600; }
-  .t-path { color: #f59e0b; }
-  .t-cmd { color: #f8fafc; font-weight: 500; }
-  .t-accent { color: #34d399; font-weight: 600; }
-  .t-link { color: #38bdf8; text-decoration: underline; }
-
-  .neofetch-output {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 0.5rem 0;
-    padding: 0.6rem 0.8rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius-sm);
-  }
-
-  @media (min-width: 480px) {
-    .neofetch-output {
-      flex-direction: row;
-      align-items: center;
-      gap: 1.25rem;
-    }
-  }
-
-  .ascii-art {
-    white-space: pre;
-    color: #38bdf8;
-    line-height: 1.15;
-    font-size: 0.725rem;
-  }
-
-  .neofetch-specs {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    font-size: 0.78rem;
-  }
-
-  .spec-k {
-    color: #f59e0b;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.85rem;
     font-weight: 600;
+    text-align: center;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
   }
 
-  .color-palette {
-    display: flex;
-    gap: 4px;
-    margin-top: 0.4rem;
+  .floating-chip {
+    position: absolute;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 9999px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.775rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+    white-space: nowrap;
   }
 
-  .c-box {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
+  .chip-a {
+    bottom: 14%;
+    left: -4%;
   }
 
-  .terminal-input-row {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: auto;
-    padding-top: 0.5rem;
-  }
-
-  .terminal-input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: #f8fafc;
-    font-family: var(--font-mono);
-    font-size: 0.84rem;
-    outline: none;
-  }
-
-  .terminal-quick-chips {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    padding: 0.5rem 0.8rem;
-    background: #111827;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .chip-label {
-    font-size: 0.7rem;
-    color: #94a3b8;
-  }
-
-  .term-chip {
-    font-size: 0.72rem;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #7dd3fc;
-    padding: 0.18rem 0.55rem;
-    border-radius: 4px;
-    transition: all 0.15s ease;
-  }
-
-  .term-chip:hover {
-    background: rgba(56, 189, 248, 0.2);
-    border-color: #38bdf8;
-    color: #ffffff;
+  .chip-b {
+    bottom: -2%;
+    right: -2%;
   }
 </style>

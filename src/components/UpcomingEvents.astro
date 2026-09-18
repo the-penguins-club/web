@@ -42,7 +42,7 @@ const events: EventItem[] = [
     location: "Hybrid: Open Space Center & Matrix / Discord Bridge",
     isVirtual: true,
     speaker: "Mentors from Debian, Arch & Fedora communities",
-    description: "48 hours of intense open source hacking! Build new FOSS tools, resolve upstream kernel/desktop issues, or package open software for distribution. Cash prizes, cloud compute credits, and hardware grants for top submissions.",
+    description: "48 hours of hacking, snacks, and shipping. Build new FOSS tools, fix long-standing upstream bugs, or package software for distribution — mentors around the clock so nobody's stuck for long.",
     spotsLeft: 42,
     tags: ["Hackathon", "Rust/C/Go", "FOSS Sprint", "Mentorship"]
   },
@@ -61,10 +61,10 @@ const events: EventItem[] = [
       iso: "2026-10-17T15:00:00Z"
     },
     time: "15:00 - 18:30 UTC",
-    location: "TPC Hacker Lounge & Live WebRTC Stream",
+    location: "TPC Hacker Lounge & Live Stream",
     isVirtual: true,
     speaker: "Aria Thorne (Linux Kernel Contributor) + Lightning Talks",
-    description: "An architectural exploration into latest kernel scheduler improvements, real-time Linux capabilities, and how eBPF is revolutionizing system tracing and network monitoring without writing kernel modules.",
+    description: "A friendly, jargon-explained tour of the latest scheduler improvements and how eBPF is changing system tracing — plus a few open-mic lightning talks from the community.",
     spotsLeft: 18,
     tags: ["Kernel", "eBPF", "Performance", "Lightning Talks"]
   },
@@ -86,7 +86,7 @@ const events: EventItem[] = [
     location: "Online (Jitsi Meet / Federated Stream)",
     isVirtual: true,
     speaker: "Devin Vance (Privacy & Free Software Activist)",
-    description: "Hands-on beginner to intermediate workshop configuring your own self-hosted cloud, encrypted Matrix homeserver, Pi-hole DNS sinkhole, and transitioning to privacy-respecting GNU/Linux desktop setups.",
+    description: "A hands-on, no-prior-experience-needed workshop on setting up your own self-hosted cloud, an encrypted Matrix homeserver, and a calmer, more private GNU/Linux desktop.",
     spotsLeft: 75,
     tags: ["Privacy", "Self-Hosting", "GNU/Linux", "Awareness"]
   },
@@ -108,7 +108,7 @@ const events: EventItem[] = [
     location: "Matrix Space Voice Channel & Discord Stage",
     isVirtual: true,
     speaker: "Panel of Fedora Silverblue, NixOS, and Arch Maintainers",
-    description: "An open, respectful debate examining atomic updates, declarative system configurations, Flatpaks, and the future evolution of personal computing environments.",
+    description: "An open, no-flame-wars debate on atomic updates, declarative configs, Flatpaks, and where personal computing is headed. Bring your strongest opinion and your best manners.",
     spotsLeft: 150,
     tags: ["Immutable Linux", "NixOS", "Flatpak", "Live AMA"]
   }
@@ -119,10 +119,10 @@ const events: EventItem[] = [
   <div class="container">
     <div class="events-header">
       <div class="header-left">
-        <div class="section-tag">Calendar &amp; Sprints</div>
-        <h2 class="section-title">Upcoming Events</h2>
+        <div class="section-tag">Calendar &amp; sprints</div>
+        <h2 class="section-title">Come hang out with us</h2>
         <p class="section-desc">
-          Join our collaborative meetups, global sprint hackathons, workshops, and weekly online roundtables. All events are 100% free, community-organized, and adhere to open culture.
+          Meetups, sprint hackathons, workshops, and weekly roundtables — all free, all community-organized, all genuinely welcoming to first-timers.
         </p>
       </div>
 
@@ -130,7 +130,7 @@ const events: EventItem[] = [
       <div class="countdown-card glass-card">
         <div class="countdown-top">
           <span class="pulse-dot"></span>
-          <span class="countdown-title">Next Major Sprint: FOSS Hackathon</span>
+          <span class="countdown-title">Next up: the FOSS Hackathon</span>
         </div>
         <div class="countdown-timer" id="sprint-countdown">
           <div class="time-block">
@@ -154,7 +154,7 @@ const events: EventItem[] = [
           </div>
         </div>
         <div class="countdown-footer">
-          <a href="#event-hack-2026" class="countdown-btn">Register Team &rarr;</a>
+          <a href="#event-hack-2026" class="countdown-btn">Count me in &rarr;</a>
         </div>
       </div>
     </div>
@@ -174,7 +174,7 @@ const events: EventItem[] = [
         Workshops <span class="tab-badge">{events.filter(e => e.category === 'workshop').length}</span>
       </button>
       <button class="filter-tab" data-category="discussion">
-        Online Discussions <span class="tab-badge">{events.filter(e => e.category === 'discussion').length}</span>
+        Discussions <span class="tab-badge">{events.filter(e => e.category === 'discussion').length}</span>
       </button>
     </div>
 
@@ -217,34 +217,34 @@ const events: EventItem[] = [
             <p class="event-description">{evt.description}</p>
 
             <div class="event-speaker">
-              <span class="speaker-icon">👤</span>
-              <span class="speaker-text"><b>Host/Speaker:</b> {evt.speaker}</span>
+              <span class="speaker-avatar">👤</span>
+              <span class="speaker-text"><b>Hosted by</b> {evt.speaker}</span>
             </div>
 
             <div class="event-tags-row">
               {evt.tags.map(t => (
-                <span class="event-tag-item">#{t}</span>
+                <span class="event-tag-item">{t}</span>
               ))}
               {evt.spotsLeft && (
-                <span class="spots-chip">🔥 {evt.spotsLeft} spots available</span>
+                <span class="spots-chip">🔥 {evt.spotsLeft} spots left</span>
               )}
             </div>
           </div>
 
           <div class="event-actions-column">
-            <button 
-              type="button" 
-              class="btn-primary rsvp-trigger" 
-              data-event-id={evt.id} 
+            <button
+              type="button"
+              class="btn-primary rsvp-trigger"
+              data-event-id={evt.id}
               data-event-title={evt.title}
               data-event-date={`${evt.date.month} ${evt.date.day}, ${evt.date.year}`}
             >
-              RSVP Free
+              I'm in
             </button>
 
-            <button 
-              type="button" 
-              class="btn-secondary cal-export-trigger" 
+            <button
+              type="button"
+              class="btn-secondary cal-export-trigger"
               data-title={evt.title}
               data-desc={evt.description}
               data-loc={evt.location}
@@ -257,7 +257,7 @@ const events: EventItem[] = [
                 <line x1="8" y1="2" x2="8" y2="6"></line>
                 <line x1="3" y1="10" x2="21" y2="10"></line>
               </svg>
-              .ics Export
+              Add to calendar
             </button>
           </div>
         </article>
@@ -271,7 +271,7 @@ const events: EventItem[] = [
       <div class="modal-header">
         <div class="modal-pill">
           <span class="pulse-dot"></span>
-          <span>Community Event Registration</span>
+          <span>You're almost in</span>
         </div>
         <button id="modal-close" class="modal-close-btn" aria-label="Close dialog">&times;</button>
       </div>
@@ -280,25 +280,25 @@ const events: EventItem[] = [
         <h3 id="modal-title" class="modal-event-title">Event Title</h3>
         <p class="modal-event-date" id="modal-event-date">Oct 03, 2026</p>
         <p class="modal-note">
-          Join free of charge. We respect your digital rights: zero ads, no trackers, no email spam.
+          It's free, and we mean it — no ads, no trackers, no surprise emails.
         </p>
 
         <form id="rsvp-form" class="modal-form">
           <div class="form-group">
-            <label for="rsvp-name">Your Name / Handle</label>
+            <label for="rsvp-name">Your name or handle</label>
             <input type="text" id="rsvp-name" placeholder="e.g. Linus / tuxlover" required class="modal-input" />
           </div>
 
           <div class="form-group">
-            <label for="rsvp-contact">Matrix handle or Email</label>
+            <label for="rsvp-contact">Matrix handle or email</label>
             <input type="text" id="rsvp-contact" placeholder="e.g. @user:matrix.org or you@foss.org" required class="modal-input" />
           </div>
 
           <div class="form-group">
-            <label for="rsvp-attendance">Attendance Mode</label>
+            <label for="rsvp-attendance">How are you joining?</label>
             <select id="rsvp-attendance" class="modal-input">
-              <option value="virtual">Virtual (Matrix stream / Jitsi)</option>
-              <option value="in-person">In-Person (if venue permits)</option>
+              <option value="virtual">Virtual (stream / Jitsi)</option>
+              <option value="in-person">In-person (if venue permits)</option>
             </select>
           </div>
 
@@ -310,8 +310,8 @@ const events: EventItem[] = [
 
         <div id="rsvp-success" class="rsvp-success-state" style="display: none;">
           <div class="success-icon">🎉</div>
-          <h4>You're Registered!</h4>
-          <p>We've reserved your spot. Check your Matrix client / inbox for the calendar invite and stream link.</p>
+          <h4>You're on the list!</h4>
+          <p>We've saved your spot. Check your Matrix client or inbox for the invite and stream link — see you there.</p>
           <button type="button" id="rsvp-done-btn" class="btn-primary" style="margin-top: 1rem;">Done</button>
         </div>
       </div>
@@ -490,7 +490,6 @@ const events: EventItem[] = [
   /* Countdown Card */
   .countdown-card {
     padding: 1.5rem 1.75rem;
-    border: 1px solid var(--border-glow);
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -504,10 +503,9 @@ const events: EventItem[] = [
   }
 
   .countdown-title {
-    font-family: var(--font-mono);
-    font-size: 0.775rem;
-    color: var(--text-accent);
-    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 700;
   }
 
   .countdown-timer {
@@ -529,7 +527,7 @@ const events: EventItem[] = [
   }
 
   .time-val {
-    font-family: var(--font-mono);
+    font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -545,7 +543,6 @@ const events: EventItem[] = [
   }
 
   .time-sep {
-    font-family: var(--font-mono);
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-muted);
@@ -557,9 +554,8 @@ const events: EventItem[] = [
   }
 
   .countdown-btn {
-    font-family: var(--font-mono);
     font-size: 0.8125rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-accent-secondary);
     display: inline-flex;
     align-items: center;
@@ -586,14 +582,13 @@ const events: EventItem[] = [
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    padding: 0.55rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.6rem 1.1rem;
     border-radius: 9999px;
-    background: var(--bg-subtle);
+    background: var(--bg-card);
     color: var(--text-secondary);
-    border: 1px solid var(--border-subtle);
+    border: 1px solid var(--border-card);
     white-space: nowrap;
     transition: all 0.15s ease;
   }
@@ -605,14 +600,13 @@ const events: EventItem[] = [
 
   .filter-tab.active {
     background: var(--badge-bg);
-    color: var(--text-accent);
-    border-color: var(--text-accent);
-    font-weight: 600;
+    color: var(--badge-text);
+    border-color: var(--badge-border);
   }
 
   .tab-badge {
     font-size: 0.7rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(43, 35, 30, 0.08);
     padding: 0.1rem 0.4rem;
     border-radius: 9999px;
   }
@@ -629,7 +623,6 @@ const events: EventItem[] = [
     flex-direction: column;
     padding: 1.75rem;
     gap: 1.75rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
   }
 
   @media (min-width: 860px) {
@@ -662,23 +655,22 @@ const events: EventItem[] = [
   }
 
   .date-month {
-    font-family: var(--font-mono);
     font-size: 0.8125rem;
     font-weight: 700;
     color: var(--text-accent);
     letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   .date-day {
-    font-family: var(--font-mono);
-    font-size: 2rem;
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    font-weight: 700;
     line-height: 1;
     color: var(--text-primary);
   }
 
   .date-year {
-    font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--text-muted);
   }
@@ -690,12 +682,12 @@ const events: EventItem[] = [
   }
 
   .event-type-label {
-    font-family: var(--font-mono);
     font-size: 0.75rem;
+    font-weight: 600;
     color: var(--text-accent-secondary);
     background: var(--bg-subtle);
     padding: 0.2rem 0.6rem;
-    border-radius: var(--radius-sm);
+    border-radius: 9999px;
     border: 1px solid var(--border-subtle);
   }
 
@@ -716,29 +708,28 @@ const events: EventItem[] = [
   }
 
   .event-badge {
-    font-family: var(--font-mono);
     font-size: 0.725rem;
-    font-weight: 600;
-    padding: 0.2rem 0.55rem;
-    border-radius: 4px;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
   }
 
   .badge-hot {
-    background: rgba(239, 68, 68, 0.15);
-    border: 1px solid rgba(239, 68, 68, 0.35);
-    color: #f87171;
+    background: rgba(242, 100, 60, 0.14);
+    border: 1px solid rgba(242, 100, 60, 0.3);
+    color: var(--text-accent);
   }
 
   .badge-live {
-    background: rgba(16, 185, 129, 0.15);
-    border: 1px solid rgba(16, 185, 129, 0.35);
-    color: #34d399;
+    background: rgba(31, 156, 130, 0.14);
+    border: 1px solid rgba(31, 156, 130, 0.3);
+    color: var(--text-accent-secondary);
   }
 
   .badge-open {
-    background: rgba(56, 189, 248, 0.15);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    color: #7dd3fc;
+    background: rgba(244, 185, 66, 0.18);
+    border: 1px solid rgba(244, 185, 66, 0.35);
+    color: var(--text-accent-warn);
   }
 
   .event-time-meta, .event-location-meta {
@@ -748,10 +739,11 @@ const events: EventItem[] = [
   }
 
   .event-title {
-    font-size: 1.35rem;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
     color: var(--text-primary);
-    letter-spacing: -0.015em;
+    letter-spacing: -0.01em;
   }
 
   .event-description {
@@ -763,9 +755,20 @@ const events: EventItem[] = [
   .event-speaker {
     display: flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.5rem;
     font-size: 0.85rem;
     color: var(--text-secondary);
+  }
+
+  .speaker-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--bg-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
   }
 
   .speaker-text b {
@@ -781,17 +784,21 @@ const events: EventItem[] = [
   }
 
   .event-tag-item {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.775rem;
+    font-weight: 600;
     color: var(--text-muted);
+    background: var(--bg-subtle);
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
   }
 
   .spots-chip {
-    font-size: 0.75rem;
-    color: var(--accent-yellow);
-    background: rgba(245, 158, 11, 0.1);
-    border: 1px solid rgba(245, 158, 11, 0.2);
-    padding: 0.15rem 0.5rem;
+    font-size: 0.775rem;
+    font-weight: 600;
+    color: var(--text-accent-warn);
+    background: rgba(244, 185, 66, 0.14);
+    border: 1px solid rgba(244, 185, 66, 0.3);
+    padding: 0.2rem 0.6rem;
     border-radius: 9999px;
   }
 
@@ -799,7 +806,7 @@ const events: EventItem[] = [
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
-    min-width: 145px;
+    min-width: 160px;
   }
 
   @media (min-width: 860px) {
@@ -816,8 +823,8 @@ const events: EventItem[] = [
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(8px);
+    background: rgba(43, 35, 30, 0.55);
+    backdrop-filter: blur(6px);
     display: none;
     align-items: center;
     justify-content: center;
@@ -831,11 +838,9 @@ const events: EventItem[] = [
 
   .modal-container {
     background: var(--bg-canvas);
-    border: 1px solid var(--border-glow);
     max-width: 480px;
     width: 100%;
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md), 0 0 35px rgba(56, 189, 248, 0.2);
     overflow: hidden;
   }
 
@@ -851,9 +856,9 @@ const events: EventItem[] = [
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
   }
 
   .modal-close-btn {
@@ -872,16 +877,17 @@ const events: EventItem[] = [
   }
 
   .modal-event-title {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.25rem;
   }
 
   .modal-event-date {
-    font-family: var(--font-mono);
     font-size: 0.85rem;
     color: var(--text-accent-secondary);
+    font-weight: 600;
     margin-bottom: 1rem;
   }
 
@@ -908,12 +914,12 @@ const events: EventItem[] = [
 
   .form-group label {
     font-size: 0.8125rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-primary);
   }
 
   .modal-input {
-    background: var(--bg-subtle);
+    background: var(--bg-card);
     border: 1px solid var(--border-card);
     color: var(--text-primary);
     font-family: inherit;
@@ -946,7 +952,9 @@ const events: EventItem[] = [
   }
 
   .rsvp-success-state h4 {
+    font-family: var(--font-display);
     font-size: 1.35rem;
+    font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
   }
