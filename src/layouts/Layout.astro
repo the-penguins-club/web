@@ -24,7 +24,7 @@ const {
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#fbf5ec" />
+    <meta name="theme-color" content="#eff4f8" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -264,15 +264,11 @@ const {
         top: 0;
         z-index: 50;
         width: 100%;
-        background: rgba(251, 245, 236, 0.82);
+        background: color-mix(in srgb, var(--bg-canvas) 82%, transparent);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border-subtle);
         transition: background-color 0.25s ease, border-color 0.25s ease;
-      }
-
-      [data-theme="dark"] .site-header {
-        background: rgba(34, 29, 24, 0.82);
       }
 
       .header-inner {

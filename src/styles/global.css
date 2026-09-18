@@ -4,40 +4,40 @@
   --font-display: 'Fraunces', 'Iowan Old Style', 'Georgia', serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Color Palette - warm & light by default */
+  /* Color Palette - arctic blues, light by default */
   --color-scheme: light;
-  --bg-canvas: #fbf5ec;
-  --bg-subtle: #f4e9d8;
+  --bg-canvas: #eff4f8;
+  --bg-subtle: #e1eaf2;
   --bg-card: #ffffff;
-  --bg-card-hover: #fffcf7;
-  --bg-elevated: #fff2df;
-  --bg-terminal: #2b2320;
+  --bg-card-hover: #f7fafd;
+  --bg-elevated: #dde8f3;
+  --bg-terminal: #1b2430;
 
-  --border-subtle: rgba(43, 35, 30, 0.08);
-  --border-glow: rgba(242, 100, 60, 0.35);
-  --border-card: rgba(43, 35, 30, 0.12);
-  --border-active: rgba(242, 100, 60, 0.55);
+  --border-subtle: rgba(32, 43, 54, 0.08);
+  --border-card: rgba(32, 43, 54, 0.12);
+  --border-glow: color-mix(in srgb, var(--accent-coral) 35%, transparent);
+  --border-active: color-mix(in srgb, var(--accent-coral) 55%, transparent);
 
-  --text-primary: #2b2320;
-  --text-secondary: #6b5d4f;
-  --text-muted: #9c8d7c;
-  --text-accent: #e0532e;
-  --text-accent-secondary: #158f76;
-  --text-accent-warn: #c97a0b;
+  --text-primary: #202b36;
+  --text-secondary: #55677a;
+  --text-muted: #8a9aab;
+  --text-accent: #2f57c7;
+  --text-accent-secondary: #12857f;
+  --text-accent-warn: #b9791f;
 
-  --accent-coral: #f2643c;
-  --accent-teal: #1f9c82;
-  --accent-amber: #f4b942;
-  --accent-berry: #9d6fe0;
-  --accent-yellow: #f4b942;
+  --accent-coral: #3b6fe0;
+  --accent-teal: #17a2a0;
+  --accent-amber: #f2a93b;
+  --accent-berry: #7c5cbf;
+  --accent-yellow: #f2a93b;
 
-  --badge-bg: rgba(242, 100, 60, 0.1);
-  --badge-border: rgba(242, 100, 60, 0.22);
-  --badge-text: #d1481f;
+  --badge-bg: color-mix(in srgb, var(--accent-coral) 10%, transparent);
+  --badge-border: color-mix(in srgb, var(--accent-coral) 22%, transparent);
+  --badge-text: var(--text-accent);
 
-  --shadow-sm: 0 1px 3px rgba(43, 35, 30, 0.07), 0 1px 2px rgba(43, 35, 30, 0.04);
-  --shadow-md: 0 14px 30px -10px rgba(43, 35, 30, 0.16);
-  --shadow-glow: 0 18px 38px -14px rgba(242, 100, 60, 0.32);
+  --shadow-sm: 0 1px 3px rgba(32, 43, 54, 0.07), 0 1px 2px rgba(32, 43, 54, 0.04);
+  --shadow-md: 0 14px 30px -10px rgba(32, 43, 54, 0.16);
+  --shadow-glow: 0 18px 38px -14px color-mix(in srgb, var(--accent-coral) 32%, transparent);
 
   --radius-sm: 10px;
   --radius-md: 14px;
@@ -47,38 +47,38 @@
 
 [data-theme="dark"] {
   --color-scheme: dark;
-  --bg-canvas: #221d18;
-  --bg-subtle: #2a241d;
-  --bg-card: #2e2721;
-  --bg-card-hover: #362d25;
-  --bg-elevated: #3a3128;
-  --bg-terminal: #191410;
+  --bg-canvas: #131a22;
+  --bg-subtle: #171f28;
+  --bg-card: #1b242e;
+  --bg-card-hover: #212c37;
+  --bg-elevated: #26323f;
+  --bg-terminal: #0e141b;
 
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(255, 122, 87, 0.35);
   --border-card: rgba(255, 255, 255, 0.1);
-  --border-active: rgba(255, 122, 87, 0.55);
+  --border-glow: color-mix(in srgb, var(--accent-coral) 35%, transparent);
+  --border-active: color-mix(in srgb, var(--accent-coral) 55%, transparent);
 
-  --text-primary: #f5ece0;
-  --text-secondary: #c9b8a4;
-  --text-muted: #8e7c68;
-  --text-accent: #ff8a63;
-  --text-accent-secondary: #34d8ae;
+  --text-primary: #eaf1f8;
+  --text-secondary: #b7c4d1;
+  --text-muted: #7c8a99;
+  --text-accent: #7c9bff;
+  --text-accent-secondary: #3fe0db;
   --text-accent-warn: #ffcb61;
 
-  --accent-coral: #ff7a57;
-  --accent-teal: #34d8ae;
-  --accent-amber: #ffcb61;
-  --accent-berry: #b794f6;
-  --accent-yellow: #ffcb61;
+  --accent-coral: #6c8cf5;
+  --accent-teal: #2fd1ce;
+  --accent-amber: #ffc85c;
+  --accent-berry: #a98ae0;
+  --accent-yellow: #ffc85c;
 
-  --badge-bg: rgba(255, 122, 87, 0.14);
-  --badge-border: rgba(255, 122, 87, 0.3);
-  --badge-text: #ffab8c;
+  --badge-bg: color-mix(in srgb, var(--accent-coral) 16%, transparent);
+  --badge-border: color-mix(in srgb, var(--accent-coral) 32%, transparent);
+  --badge-text: var(--text-accent);
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 14px 30px -10px rgba(0, 0, 0, 0.45);
-  --shadow-glow: 0 18px 38px -14px rgba(255, 122, 87, 0.28);
+  --shadow-glow: 0 18px 38px -14px color-mix(in srgb, var(--accent-coral) 28%, transparent);
 }
 
 /* Base resets & typography */

@@ -606,7 +606,7 @@ const events: EventItem[] = [
 
   .tab-badge {
     font-size: 0.7rem;
-    background: rgba(43, 35, 30, 0.08);
+    background: color-mix(in srgb, var(--text-primary) 8%, transparent);
     padding: 0.1rem 0.4rem;
     border-radius: 9999px;
   }
@@ -715,20 +715,20 @@ const events: EventItem[] = [
   }
 
   .badge-hot {
-    background: rgba(242, 100, 60, 0.14);
-    border: 1px solid rgba(242, 100, 60, 0.3);
+    background: color-mix(in srgb, var(--accent-coral) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-coral) 30%, transparent);
     color: var(--text-accent);
   }
 
   .badge-live {
-    background: rgba(31, 156, 130, 0.14);
-    border: 1px solid rgba(31, 156, 130, 0.3);
+    background: color-mix(in srgb, var(--accent-teal) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-teal) 30%, transparent);
     color: var(--text-accent-secondary);
   }
 
   .badge-open {
-    background: rgba(244, 185, 66, 0.18);
-    border: 1px solid rgba(244, 185, 66, 0.35);
+    background: color-mix(in srgb, var(--accent-amber) 18%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-amber) 35%, transparent);
     color: var(--text-accent-warn);
   }
 
@@ -796,8 +796,8 @@ const events: EventItem[] = [
     font-size: 0.775rem;
     font-weight: 600;
     color: var(--text-accent-warn);
-    background: rgba(244, 185, 66, 0.14);
-    border: 1px solid rgba(244, 185, 66, 0.3);
+    background: color-mix(in srgb, var(--accent-amber) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-amber) 30%, transparent);
     padding: 0.2rem 0.6rem;
     border-radius: 9999px;
   }
@@ -823,7 +823,7 @@ const events: EventItem[] = [
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(43, 35, 30, 0.55);
+    background: color-mix(in srgb, var(--text-primary) 55%, transparent);
     backdrop-filter: blur(6px);
     display: none;
     align-items: center;
