@@ -85,13 +85,58 @@ const {
 
         <!-- Desktop Navigation -->
         <nav class="site-nav" aria-label="Main Navigation">
-          <a href="#gallery" class="nav-link">Gallery</a>
           <a href="#programs" class="nav-link">Programs</a>
           <a href="#events" class="nav-link">Meetups</a>
           <a href="#get-involved" class="nav-link">Get Involved</a>
-          <a href="#projects" class="nav-link">Repositories</a>
-          <a href="#community" class="nav-link">Community</a>
-          <a href="#manifesto" class="nav-link">Principles</a>
+
+          <!-- Explore Dropdown -->
+          <div class="nav-dropdown" id="nav-dropdown-explore">
+            <button
+              type="button"
+              class="nav-dropdown-trigger"
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              <span>Explore</span>
+              <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+
+            <div class="nav-dropdown-menu" role="menu">
+              <a href="#gallery" class="dropdown-item" role="menuitem">
+                <span class="dropdown-item-icon">📸</span>
+                <div class="dropdown-item-text">
+                  <span class="dropdown-item-title">Meetup Gallery</span>
+                  <span class="dropdown-item-desc">Photos from campus floors &amp; labs</span>
+                </div>
+              </a>
+
+              <a href="#projects" class="dropdown-item" role="menuitem">
+                <span class="dropdown-item-icon">📦</span>
+                <div class="dropdown-item-text">
+                  <span class="dropdown-item-title">Public Repositories</span>
+                  <span class="dropdown-item-desc">Open source tools &amp; guides on GitHub</span>
+                </div>
+              </a>
+
+              <a href="#community" class="dropdown-item" role="menuitem">
+                <span class="dropdown-item-icon">💬</span>
+                <div class="dropdown-item-text">
+                  <span class="dropdown-item-title">Community Channels</span>
+                  <span class="dropdown-item-desc">Telegram, Matrix &amp; discussion hubs</span>
+                </div>
+              </a>
+
+              <a href="#manifesto" class="dropdown-item" role="menuitem">
+                <span class="dropdown-item-icon">📜</span>
+                <div class="dropdown-item-text">
+                  <span class="dropdown-item-title">The Four Freedoms</span>
+                  <span class="dropdown-item-desc">FSF open source charter &amp; pledge</span>
+                </div>
+              </a>
+            </div>
+          </div>
         </nav>
 
         <!-- Right actions -->
@@ -161,13 +206,30 @@ const {
       <!-- Mobile dropdown panel -->
       <div id="mobile-menu" class="mobile-menu">
         <div class="container">
-          <a href="#gallery" class="mobile-nav-link">Meetup Gallery</a>
-          <a href="#programs" class="mobile-nav-link">Core Programs</a>
-          <a href="#events" class="mobile-nav-link">Monthly Meetups</a>
-          <a href="#get-involved" class="mobile-nav-link">Get Involved</a>
-          <a href="#projects" class="mobile-nav-link">Repositories</a>
-          <a href="#community" class="mobile-nav-link">Community Channels</a>
-          <a href="#manifesto" class="mobile-nav-link">Principles &amp; Mission</a>
+          <div class="mobile-nav-section">
+            <span class="mobile-section-heading">MAIN</span>
+            <a href="#programs" class="mobile-nav-link">Core Programs</a>
+            <a href="#events" class="mobile-nav-link">Upcoming Meetups</a>
+            <a href="#get-involved" class="mobile-nav-link">Get Involved</a>
+          </div>
+
+          <div class="mobile-nav-section">
+            <span class="mobile-section-heading">EXPLORE &amp; COMMUNITY</span>
+            <a href="#gallery" class="mobile-nav-link">
+              <span>Meetup Gallery</span>
+              <span class="mobile-link-badge">Photos</span>
+            </a>
+            <a href="#projects" class="mobile-nav-link">
+              <span>Public Repositories</span>
+              <span class="mobile-link-badge">GitHub</span>
+            </a>
+            <a href="#community" class="mobile-nav-link">
+              <span>Community Channels</span>
+              <span class="mobile-link-badge">Telegram</span>
+            </a>
+            <a href="#manifesto" class="mobile-nav-link">The Four Freedoms</a>
+          </div>
+
           <div class="mobile-menu-footer">
             <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;">
               Join Telegram Community &rarr;
@@ -299,6 +361,41 @@ const {
           });
         });
       }
+
+      // Dropdown interaction (click/touch + Escape key)
+      const dropdown = document.getElementById('nav-dropdown-explore');
+      const trigger = dropdown?.querySelector('.nav-dropdown-trigger') as HTMLButtonElement | null;
+      if (dropdown && trigger) {
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = dropdown.classList.toggle('is-open');
+          trigger.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!dropdown.contains(e.target as Node)) {
+            dropdown.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            dropdown.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Close when a link inside is clicked
+        dropdown.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            dropdown.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
     </script>
 
     <style>
@@ -378,17 +475,17 @@ const {
         gap: clamp(0.75rem, 1.4vw, 1.35rem);
       }
 
-      @media (min-width: 1024px) {
+      @media (min-width: 860px) {
         .site-nav {
           display: flex;
         }
       }
 
       .nav-link {
-        font-size: 0.85rem;
+        font-size: 0.875rem;
         font-weight: 500;
         color: var(--text-secondary);
-        padding: 0.35rem 0.25rem;
+        padding: 0.4rem 0.35rem;
         border-bottom: 2px solid transparent;
         transition: color 0.15s ease, border-color 0.15s ease;
       }
@@ -396,6 +493,131 @@ const {
       .nav-link:hover {
         color: var(--text-primary);
         border-color: var(--accent-primary);
+      }
+
+      /* Navigation Dropdown */
+      .nav-dropdown {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      /* Hover bridge to keep dropdown open during mouse travel */
+      .nav-dropdown::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 12px;
+      }
+
+      .nav-dropdown-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        padding: 0.4rem 0.65rem;
+        border-radius: var(--radius-sm);
+        background: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+      }
+
+      .nav-dropdown-trigger:hover,
+      .nav-dropdown:focus-within .nav-dropdown-trigger,
+      .nav-dropdown.is-open .nav-dropdown-trigger {
+        color: var(--text-primary);
+        background: var(--bg-subtle);
+        border-color: var(--border-card);
+      }
+
+      .dropdown-chevron {
+        transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+        color: var(--text-muted);
+      }
+
+      .nav-dropdown:hover .dropdown-chevron,
+      .nav-dropdown:focus-within .dropdown-chevron,
+      .nav-dropdown.is-open .dropdown-chevron {
+        transform: rotate(180deg);
+        color: var(--text-primary);
+      }
+
+      .nav-dropdown-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%) translateY(4px);
+        min-width: 290px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-md);
+        box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 0.45rem;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.18s;
+        z-index: 100;
+      }
+
+      .nav-dropdown:hover .nav-dropdown-menu,
+      .nav-dropdown:focus-within .nav-dropdown-menu,
+      .nav-dropdown.is-open .nav-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.6rem 0.75rem;
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+        transition: background-color 0.12s ease;
+      }
+
+      .dropdown-item:hover {
+        background: var(--bg-subtle);
+      }
+
+      .dropdown-item-icon {
+        font-size: 1.15rem;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .dropdown-item-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+      }
+
+      .dropdown-item-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        line-height: 1.25;
+        transition: color 0.12s ease;
+      }
+
+      .dropdown-item:hover .dropdown-item-title {
+        color: var(--accent-primary);
+      }
+
+      .dropdown-item-desc {
+        font-size: 0.725rem;
+        color: var(--text-muted);
+        line-height: 1.35;
       }
 
       .nav-actions {
@@ -461,7 +683,7 @@ const {
         display: flex;
       }
 
-      @media (min-width: 1024px) {
+      @media (min-width: 860px) {
         .mobile-toggle {
           display: none;
         }
@@ -472,24 +694,55 @@ const {
         display: none;
         background: var(--bg-canvas);
         border-bottom: 1px solid var(--border-card);
-        padding: 1rem 0 1.5rem;
+        padding: 1.25rem 0 1.75rem;
       }
 
       .mobile-menu.is-open {
         display: block;
       }
 
-      .mobile-nav-link {
+      .mobile-nav-section {
+        margin-bottom: 1.25rem;
+      }
+
+      .mobile-section-heading {
         display: block;
-        padding: 0.75rem 0;
+        font-family: var(--font-mono);
+        font-size: 0.675rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+        margin-bottom: 0.45rem;
+      }
+
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.65rem 0;
         font-size: 0.95rem;
         font-weight: 600;
         color: var(--text-primary);
         border-bottom: 1px solid var(--border-subtle);
       }
 
+      .mobile-nav-link:hover {
+        color: var(--accent-primary);
+      }
+
+      .mobile-link-badge {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: var(--accent-primary);
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-card);
+        padding: 0.15rem 0.45rem;
+        border-radius: var(--radius-xs);
+      }
+
       .mobile-menu-footer {
-        margin-top: 1.25rem;
+        margin-top: 1.5rem;
       }
 
       /* Footer */
