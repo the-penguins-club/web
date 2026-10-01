@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0f172a"/>
+  <defs>
+    <linearGradient id="secGrad" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#secGrad)"/>
+  <g transform="translate(100, 70)">
+    <rect width="600" height="360" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <rect width="600" height="42" rx="16" fill="#0f172a"/>
+    <circle cx="28" cy="21" r="6" fill="#ef4444"/>
+    <circle cx="48" cy="21" r="6" fill="#f59e0b"/>
+    <circle cx="68" cy="21" r="6" fill="#10b981"/>
+    <text x="300" y="26" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">thepenguinsclub@security: ~/defense-lab</text>
+    
+    <text x="36" y="86" fill="#f87171" font-family="monospace" font-size="16" font-weight="bold">$ audit-linux-security --strict</text>
+    <text x="36" y="122" fill="#94a3b8" font-family="monospace" font-size="14">[+] Topic: Linux Security, Hardening &amp; Threat Defense</text>
+    <text x="36" y="152" fill="#fbbf24" font-family="monospace" font-size="14">[✓] SSH keys, firewalls (ufw/iptables), SELinux &amp; safe computing</text>
+    <text x="36" y="182" fill="#cbd5e1" font-family="monospace" font-size="14">Inspired by our Awesome-Cybersecurity-Bangladesh project</text>
+    <text x="36" y="222" fill="#f87171" font-family="monospace" font-size="15">[SEC-STATUS] 0 Vulnerabilities Detected • Hardened System</text>
+    <text x="36" y="262" fill="#94a3b8" font-family="monospace" font-size="14">Community monthly meetup presentation &amp; Q&amp;A</text>
+    <text x="36" y="322" fill="#f87171" font-family="monospace" font-size="16">_</text>
+  </g>
+</svg>

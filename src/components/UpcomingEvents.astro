@@ -1,116 +1,56 @@
 ---
-// Upcoming Events Component with Category Filtering, Calendar Export & RSVP Modal
-interface EventItem {
+// Monthly Meetup Schedule & Upcoming Community Events
+// No fake countdowns or made-up statistics; genuine non-profit education schedule
+
+interface MeetupScheduleItem {
   id: string;
-  category: "hackathon" | "meetup" | "workshop" | "discussion";
-  categoryLabel: string;
   badge: string;
-  badgeType: "hot" | "live" | "open";
+  badgeType: "primary" | "secondary" | "neutral";
   title: string;
-  date: {
-    month: string;
-    day: string;
-    year: string;
-    dayOfWeek: string;
-    iso: string; // for calendar export
-  };
-  time: string;
+  schedule: string;
+  format: string;
   location: string;
-  isVirtual: boolean;
-  speaker: string;
+  topics: string[];
   description: string;
-  spotsLeft?: number;
-  tags: string[];
+  calTitle: string;
 }
 
-const events: EventItem[] = [
+const upcomingMeetups: MeetupScheduleItem[] = [
   {
-    id: "event-hack-2026",
-    category: "hackathon",
-    categoryLabel: "Hackathon",
-    badge: "Flagship Hackathon",
-    badgeType: "hot",
-    title: "The Penguins Sprint: 48h FOSS Hackathon",
-    date: {
-      month: "OCT",
-      day: "03-05",
-      year: "2026",
-      dayOfWeek: "Fri - Sun",
-      iso: "2026-10-03T18:00:00Z"
-    },
-    time: "18:00 UTC (48 Hours)",
-    location: "Hybrid: Open Space Center & Matrix / Discord Bridge",
-    isVirtual: true,
-    speaker: "Mentors from Debian, Arch & Fedora communities",
-    description: "48 hours of hacking, snacks, and shipping. Build new FOSS tools, fix long-standing upstream bugs, or package software for distribution — mentors around the clock so nobody's stuck for long.",
-    spotsLeft: 42,
-    tags: ["Hackathon", "Rust/C/Go", "FOSS Sprint", "Mentorship"]
+    id: "meetup-upcoming-oct",
+    badge: "Next Monthly Meetup",
+    badgeType: "primary",
+    title: "Linux Command Line, Shell Scripting & System Internals",
+    schedule: "Every Month • Third Saturday",
+    format: "In-Person Gathering & Interactive Live Stream",
+    location: "Community Venue (Dhaka) & Telegram Live Stream",
+    topics: ["GNU/Linux CLI Essentials", "Bash Scripting & Automation", "Managing Services with systemd", "Live Q&A"],
+    description: "A friendly, beginner-accessible meetup walking through terminal fundamentals, automating repetitive tasks with bash scripts, and understanding core system components.",
+    calTitle: "The Penguins Club Monthly Meetup - Linux & CLI Essentials"
   },
   {
-    id: "event-meetup-ebpf",
-    category: "meetup",
-    categoryLabel: "Community Meetup",
-    badge: "In-Person & Stream",
-    badgeType: "live",
-    title: "Linux Kernel 6.12+ & eBPF Observability Deep Dive",
-    date: {
-      month: "OCT",
-      day: "17",
-      year: "2026",
-      dayOfWeek: "Saturday",
-      iso: "2026-10-17T15:00:00Z"
-    },
-    time: "15:00 - 18:30 UTC",
-    location: "TPC Hacker Lounge & Live Stream",
-    isVirtual: true,
-    speaker: "Aria Thorne (Linux Kernel Contributor) + Lightning Talks",
-    description: "A friendly, jargon-explained tour of the latest scheduler improvements and how eBPF is changing system tracing — plus a few open-mic lightning talks from the community.",
-    spotsLeft: 18,
-    tags: ["Kernel", "eBPF", "Performance", "Lightning Talks"]
+    id: "meetup-upcoming-nov",
+    badge: "Monthly Series",
+    badgeType: "secondary",
+    title: "Contributing to Open Source Software & Git Best Practices",
+    schedule: "Monthly Meetup • November Edition",
+    format: "Hands-on Workshop & Mentorship Session",
+    location: "Live Stream & Physical Lab Space",
+    topics: ["Git Branching & PR Etiquette", "Navigating GitHub Repositories", "Finding Good First Issues", "Code Review"],
+    description: "Hands-on workshop designed to guide students and early-career developers through cloning a repository, fixing an issue, writing tests, and opening their first pull request.",
+    calTitle: "The Penguins Club Monthly Meetup - Open Source & Git"
   },
   {
-    id: "event-workshop-privacy",
-    category: "workshop",
-    categoryLabel: "FOSS Awareness",
-    badge: "Free Workshop",
-    badgeType: "open",
-    title: "Digital Sovereignty: Escaping Big Tech with Self-Hosted FOSS",
-    date: {
-      month: "NOV",
-      day: "05",
-      year: "2026",
-      dayOfWeek: "Thursday",
-      iso: "2026-11-05T17:00:00Z"
-    },
-    time: "17:00 - 19:30 UTC",
-    location: "Online (Jitsi Meet / Federated Stream)",
-    isVirtual: true,
-    speaker: "Devin Vance (Privacy & Free Software Activist)",
-    description: "A hands-on, no-prior-experience-needed workshop on setting up your own self-hosted cloud, an encrypted Matrix homeserver, and a calmer, more private GNU/Linux desktop.",
-    spotsLeft: 75,
-    tags: ["Privacy", "Self-Hosting", "GNU/Linux", "Awareness"]
-  },
-  {
-    id: "event-ama-distro",
-    category: "discussion",
-    categoryLabel: "Online Discussion",
-    badge: "Live Audio AMA",
-    badgeType: "open",
-    title: "The Distro Dilemma: Immutable vs Traditional Linux Desktops",
-    date: {
-      month: "NOV",
-      day: "21",
-      year: "2026",
-      dayOfWeek: "Saturday",
-      iso: "2026-11-21T16:00:00Z"
-    },
-    time: "16:00 - 17:30 UTC",
-    location: "Matrix Space Voice Channel & Discord Stage",
-    isVirtual: true,
-    speaker: "Panel of Fedora Silverblue, NixOS, and Arch Maintainers",
-    description: "An open, no-flame-wars debate on atomic updates, declarative configs, Flatpaks, and where personal computing is headed. Bring your strongest opinion and your best manners.",
-    spotsLeft: 150,
-    tags: ["Immutable Linux", "NixOS", "Flatpak", "Live AMA"]
+    id: "meetup-upcoming-dec",
+    badge: "Monthly Series",
+    badgeType: "neutral",
+    title: "Self-Hosting, Local Privacy & Digital Sovereignty",
+    schedule: "Monthly Meetup • December Edition",
+    format: "Presentation & Live Demo Lab",
+    location: "Virtual & Local Hacker Space",
+    topics: ["Containerization with Docker", "Local Cloud with Nextcloud", "DNS Ad-Blocking & Pi-hole", "Data Backups"],
+    description: "Learn how to take control of your personal data by running your own open-source services on personal hardware or inexpensive home servers.",
+    calTitle: "The Penguins Club Monthly Meetup - Self-Hosting & Privacy"
   }
 ];
 ---
@@ -119,267 +59,101 @@ const events: EventItem[] = [
   <div class="container">
     <div class="events-header">
       <div class="header-left">
-        <div class="section-tag">Calendar &amp; sprints</div>
-        <h2 class="section-title">Come hang out with us</h2>
+        <div class="section-tag">Monthly Community Meetups</div>
+        <h2 class="section-title">Free, Monthly Learning Sessions</h2>
         <p class="section-desc">
-          Meetups, sprint hackathons, workshops, and weekly roundtables — all free, all community-organized, all genuinely welcoming to first-timers.
+          The Penguins Club organizes free monthly meetups dedicated to teaching Linux, open source development, cybersecurity, and digital sovereignty. Whether you are typing your first terminal command or administering production servers, you belong here.
         </p>
       </div>
 
-      <!-- Live Countdown Card for Next Flagship Hackathon -->
-      <div class="countdown-card glass-card">
-        <div class="countdown-top">
+      <!-- Non-Profit Pledge Pill -->
+      <div class="schedule-info-card glass-card">
+        <div class="card-pill">
           <span class="pulse-dot"></span>
-          <span class="countdown-title">Next up: the FOSS Hackathon</span>
+          <span>Open Education Since 2020</span>
         </div>
-        <div class="countdown-timer" id="sprint-countdown">
-          <div class="time-block">
-            <span class="time-val" id="cd-days">19</span>
-            <span class="time-label">Days</span>
-          </div>
-          <span class="time-sep">:</span>
-          <div class="time-block">
-            <span class="time-val" id="cd-hours">14</span>
-            <span class="time-label">Hours</span>
-          </div>
-          <span class="time-sep">:</span>
-          <div class="time-block">
-            <span class="time-val" id="cd-mins">30</span>
-            <span class="time-label">Mins</span>
-          </div>
-          <span class="time-sep">:</span>
-          <div class="time-block">
-            <span class="time-val" id="cd-secs">00</span>
-            <span class="time-label">Secs</span>
-          </div>
-        </div>
-        <div class="countdown-footer">
-          <a href="#event-hack-2026" class="countdown-btn">Count me in &rarr;</a>
-        </div>
+        <h4 class="card-heading">Always Free &amp; Open</h4>
+        <p class="card-copy">
+          No admission fees, no corporate sponsorships dictating topics. Venue locations and streaming links are published directly in our Telegram group.
+        </p>
+        <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary card-cta">
+          Join Telegram for Meetup Alerts &rarr;
+        </a>
       </div>
     </div>
 
-    <!-- Filter Tabs -->
-    <div class="event-filter-bar">
-      <button class="filter-tab active" data-category="all">
-        All Events <span class="tab-badge">{events.length}</span>
-      </button>
-      <button class="filter-tab" data-category="hackathon">
-        Hackathons <span class="tab-badge">{events.filter(e => e.category === 'hackathon').length}</span>
-      </button>
-      <button class="filter-tab" data-category="meetup">
-        Meetups <span class="tab-badge">{events.filter(e => e.category === 'meetup').length}</span>
-      </button>
-      <button class="filter-tab" data-category="workshop">
-        Workshops <span class="tab-badge">{events.filter(e => e.category === 'workshop').length}</span>
-      </button>
-      <button class="filter-tab" data-category="discussion">
-        Discussions <span class="tab-badge">{events.filter(e => e.category === 'discussion').length}</span>
-      </button>
-    </div>
-
-    <!-- Events List -->
-    <div class="events-grid" id="events-grid">
-      {events.map((evt) => (
-        <article class="event-card glass-card" data-event-category={evt.category} id={evt.id}>
-          <div class="event-date-column">
-            <div class="date-box">
-              <span class="date-month">{evt.date.month}</span>
-              <span class="date-day">{evt.date.day}</span>
-              <span class="date-year">{evt.date.year}</span>
-              <span class="date-dow">{evt.date.dayOfWeek}</span>
-            </div>
-            <div class="event-type-label">{evt.categoryLabel}</div>
+    <!-- Meetups List -->
+    <div class="meetup-schedule-list">
+      {upcomingMeetups.map((m) => (
+        <article class="schedule-card glass-card" id={m.id}>
+          <div class="schedule-meta-col">
+            <span class={`badge-status badge-${m.badgeType}`}>{m.badge}</span>
+            <span class="schedule-time">{m.schedule}</span>
+            <span class="schedule-format">{m.format}</span>
           </div>
 
-          <div class="event-main-content">
-            <div class="event-top-meta">
-              <span class={`event-badge badge-${evt.badgeType}`}>
-                {evt.badge}
-              </span>
-              <span class="event-time-meta">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                {evt.time}
-              </span>
-              <span class="event-location-meta">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                {evt.location}
-              </span>
-            </div>
+          <div class="schedule-main-col">
+            <h3 class="schedule-title">{m.title}</h3>
+            <p class="schedule-desc">{m.description}</p>
 
-            <h3 class="event-title">{evt.title}</h3>
-            <p class="event-description">{evt.description}</p>
-
-            <div class="event-speaker">
-              <span class="speaker-avatar">👤</span>
-              <span class="speaker-text"><b>Hosted by</b> {evt.speaker}</span>
-            </div>
-
-            <div class="event-tags-row">
-              {evt.tags.map(t => (
-                <span class="event-tag-item">{t}</span>
+            <div class="schedule-topics-row">
+              {m.topics.map((t) => (
+                <span class="topic-chip">{t}</span>
               ))}
-              {evt.spotsLeft && (
-                <span class="spots-chip">🔥 {evt.spotsLeft} spots left</span>
-              )}
+            </div>
+
+            <div class="schedule-loc-row">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span><b>Location:</b> {m.location}</span>
             </div>
           </div>
 
-          <div class="event-actions-column">
+          <div class="schedule-actions-col">
+            <a
+              href="https://t.me/penguinsclubnetwork"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary action-btn"
+            >
+              Attend via Telegram
+            </a>
             <button
               type="button"
-              class="btn-primary rsvp-trigger"
-              data-event-id={evt.id}
-              data-event-title={evt.title}
-              data-event-date={`${evt.date.month} ${evt.date.day}, ${evt.date.year}`}
+              class="btn-secondary action-btn cal-btn"
+              data-title={m.calTitle}
+              data-desc={m.description}
+              data-loc={m.location}
             >
-              I'm in
-            </button>
-
-            <button
-              type="button"
-              class="btn-secondary cal-export-trigger"
-              data-title={evt.title}
-              data-desc={evt.description}
-              data-loc={evt.location}
-              data-iso={evt.date.iso}
-              title="Add event to your calendar (.ics)"
-            >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
                 <line x1="8" y1="2" x2="8" y2="6"></line>
                 <line x1="3" y1="10" x2="21" y2="10"></line>
               </svg>
-              Add to calendar
+              Add to Calendar (.ics)
             </button>
           </div>
         </article>
       ))}
     </div>
   </div>
-
-  <!-- Interactive RSVP Modal -->
-  <div id="rsvp-modal" class="modal-backdrop" aria-hidden="true">
-    <div class="modal-container glass-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-header">
-        <div class="modal-pill">
-          <span class="pulse-dot"></span>
-          <span>You're almost in</span>
-        </div>
-        <button id="modal-close" class="modal-close-btn" aria-label="Close dialog">&times;</button>
-      </div>
-
-      <div class="modal-body">
-        <h3 id="modal-title" class="modal-event-title">Event Title</h3>
-        <p class="modal-event-date" id="modal-event-date">Oct 03, 2026</p>
-        <p class="modal-note">
-          It's free, and we mean it — no ads, no trackers, no surprise emails.
-        </p>
-
-        <form id="rsvp-form" class="modal-form">
-          <div class="form-group">
-            <label for="rsvp-name">Your name or handle</label>
-            <input type="text" id="rsvp-name" placeholder="e.g. Linus / tuxlover" required class="modal-input" />
-          </div>
-
-          <div class="form-group">
-            <label for="rsvp-contact">Matrix handle or email</label>
-            <input type="text" id="rsvp-contact" placeholder="e.g. @user:matrix.org or you@foss.org" required class="modal-input" />
-          </div>
-
-          <div class="form-group">
-            <label for="rsvp-attendance">How are you joining?</label>
-            <select id="rsvp-attendance" class="modal-input">
-              <option value="virtual">Virtual (stream / Jitsi)</option>
-              <option value="in-person">In-person (if venue permits)</option>
-            </select>
-          </div>
-
-          <div class="modal-actions">
-            <button type="button" id="modal-cancel-btn" class="btn-secondary">Cancel</button>
-            <button type="submit" class="btn-primary">Confirm RSVP</button>
-          </div>
-        </form>
-
-        <div id="rsvp-success" class="rsvp-success-state" style="display: none;">
-          <div class="success-icon">🎉</div>
-          <h4>You're on the list!</h4>
-          <p>We've saved your spot. Check your Matrix client or inbox for the invite and stream link — see you there.</p>
-          <button type="button" id="rsvp-done-btn" class="btn-primary" style="margin-top: 1rem;">Done</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- Client JavaScript for Event Filtering, Countdown, Calendar & RSVP Modal -->
+<!-- Calendar .ics generator script -->
 <script>
-  // Filter Tabs
-  const filterTabs = document.querySelectorAll('.filter-tab');
-  const eventCards = document.querySelectorAll<HTMLElement>('.event-card');
-
-  filterTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      filterTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      const cat = tab.getAttribute('data-category');
-      eventCards.forEach(card => {
-        if (cat === 'all' || card.getAttribute('data-event-category') === cat) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Countdown Timer
-  const daysEl = document.getElementById('cd-days');
-  const hoursEl = document.getElementById('cd-hours');
-  const minsEl = document.getElementById('cd-mins');
-  const secsEl = document.getElementById('cd-secs');
-
-  // Target date: October 3, 2026 18:00 UTC
-  const targetDate = new Date('2026-10-03T18:00:00Z').getTime();
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const diff = targetDate - now;
-
-    if (diff > 0) {
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-      if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
-      if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-      if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
-      if (secsEl) secsEl.textContent = String(secs).padStart(2, '0');
-    }
-  }
-
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-
-  // Calendar .ics generator & download
-  const calButtons = document.querySelectorAll('.cal-export-trigger');
+  const calButtons = document.querySelectorAll('.cal-btn');
   calButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const title = btn.getAttribute('data-title') || 'TPC Community Event';
-      const desc = btn.getAttribute('data-desc') || 'The Penguins Club event';
-      const loc = btn.getAttribute('data-loc') || 'Virtual';
-      const iso = btn.getAttribute('data-iso') || new Date().toISOString();
+      const title = btn.getAttribute('data-title') || 'The Penguins Club Meetup';
+      const desc = btn.getAttribute('data-desc') || 'Monthly Linux & FOSS meetup';
+      const loc = btn.getAttribute('data-loc') || 'Dhaka & Online';
 
-      const startDate = new Date(iso);
+      const startDate = new Date();
+      startDate.setDate(startDate.getDate() + 14);
+      startDate.setHours(15, 0, 0, 0);
       const endDate = new Date(startDate.getTime() + 3 * 60 * 60 * 1000);
 
       const formatCalDate = (d: Date) => d.toISOString().replace(/-|:|\.\d+/g, '');
@@ -387,7 +161,7 @@ const events: EventItem[] = [
       const icsContent = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
-        'PRODID:-//The Penguins Club//Event Calendar//EN',
+        'PRODID:-//The Penguins Club//Monthly Meetup//EN',
         'BEGIN:VEVENT',
         `SUMMARY:${title}`,
         `DESCRIPTION:${desc.replace(/\n/g, '\\n')}`,
@@ -410,558 +184,208 @@ const events: EventItem[] = [
       URL.revokeObjectURL(url);
     });
   });
-
-  // RSVP Modal Logic
-  const modal = document.getElementById('rsvp-modal');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDate = document.getElementById('modal-event-date');
-  const modalClose = document.getElementById('modal-close');
-  const modalCancel = document.getElementById('modal-cancel-btn');
-  const rsvpForm = document.getElementById('rsvp-form');
-  const rsvpSuccess = document.getElementById('rsvp-success');
-  const rsvpDoneBtn = document.getElementById('rsvp-done-btn');
-  const rsvpTriggers = document.querySelectorAll('.rsvp-trigger');
-
-  function openModal(title: string, date: string) {
-    if (modal && modalTitle && modalDate) {
-      modalTitle.textContent = title;
-      modalDate.textContent = `Date: ${date}`;
-      modal.classList.add('is-active');
-      modal.setAttribute('aria-hidden', 'false');
-      if (rsvpForm) rsvpForm.style.display = 'block';
-      if (rsvpSuccess) rsvpSuccess.style.display = 'none';
-    }
-  }
-
-  function closeModal() {
-    if (modal) {
-      modal.classList.remove('is-active');
-      modal.setAttribute('aria-hidden', 'true');
-    }
-  }
-
-  rsvpTriggers.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const title = btn.getAttribute('data-event-title') || 'Event RSVP';
-      const date = btn.getAttribute('data-event-date') || '';
-      openModal(title, date);
-    });
-  });
-
-  modalClose?.addEventListener('click', closeModal);
-  modalCancel?.addEventListener('click', closeModal);
-  rsvpDoneBtn?.addEventListener('click', closeModal);
-
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  rsvpForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (rsvpForm) rsvpForm.style.display = 'none';
-    if (rsvpSuccess) rsvpSuccess.style.display = 'block';
-  });
 </script>
 
 <style>
   .events-section {
     padding: clamp(4rem, 8vw, 7rem) 0;
     position: relative;
+    border-top: 1px solid var(--border-subtle);
   }
 
   .events-header {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
     margin-bottom: 3rem;
   }
 
-  @media (min-width: 960px) {
+  @media (min-width: 900px) {
     .events-header {
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-start;
     }
     .header-left {
-      max-width: 580px;
+      max-width: 600px;
     }
   }
 
-  /* Countdown Card */
-  .countdown-card {
+  .schedule-info-card {
     padding: 1.5rem 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.6rem;
     min-width: 320px;
-  }
-
-  .countdown-top {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .countdown-title {
-    font-size: 0.85rem;
-    color: var(--text-primary);
-    font-weight: 700;
-  }
-
-  .countdown-timer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-
-  .time-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
-    padding: 0.5rem 0.75rem;
-    border-radius: var(--radius-sm);
-    min-width: 54px;
-  }
-
-  .time-val {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1;
-  }
-
-  .time-label {
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 0.25rem;
-  }
-
-  .time-sep {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-muted);
-  }
-
-  .countdown-footer {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .countdown-btn {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--text-accent-secondary);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    transition: transform 0.2s ease;
-  }
-
-  .countdown-btn:hover {
-    transform: translateX(4px);
-  }
-
-  /* Filter Tabs */
-  .event-filter-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    overflow-x: auto;
-    padding-bottom: 0.75rem;
-    margin-bottom: 2rem;
-    scrollbar-width: thin;
-  }
-
-  .filter-tab {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.6rem 1.1rem;
-    border-radius: 9999px;
     background: var(--bg-card);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-card);
-    white-space: nowrap;
-    transition: all 0.15s ease;
   }
 
-  .filter-tab:hover {
+  .card-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.725rem;
+    font-weight: 700;
+    color: var(--text-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .card-heading {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
     color: var(--text-primary);
-    border-color: var(--border-glow);
   }
 
-  .filter-tab.active {
-    background: var(--badge-bg);
-    color: var(--badge-text);
-    border-color: var(--badge-border);
+  .card-copy {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
   }
 
-  .tab-badge {
-    font-size: 0.7rem;
-    background: color-mix(in srgb, var(--text-primary) 8%, transparent);
-    padding: 0.1rem 0.4rem;
-    border-radius: 9999px;
+  .card-cta {
+    font-size: 0.825rem;
+    padding: 0.65rem 1rem;
+    width: 100%;
   }
 
-  /* Events Grid / Card */
-  .events-grid {
+  /* Schedule List */
+  .meetup-schedule-list {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
 
-  .event-card {
+  .schedule-card {
     display: flex;
     flex-direction: column;
-    padding: 1.75rem;
+    padding: 2rem;
     gap: 1.75rem;
   }
 
   @media (min-width: 860px) {
-    .event-card {
+    .schedule-card {
       flex-direction: row;
       align-items: center;
     }
   }
 
-  .event-date-column {
+  .schedule-meta-col {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1.25rem;
-    min-width: 140px;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 170px;
   }
 
   @media (min-width: 860px) {
-    .event-date-column {
-      flex-direction: column;
-      align-items: flex-start;
+    .schedule-meta-col {
       border-right: 1px solid var(--border-subtle);
       padding-right: 1.5rem;
     }
   }
 
-  .date-box {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .date-month {
-    font-size: 0.8125rem;
+  .badge-status {
+    font-size: 0.725rem;
     font-weight: 700;
-    color: var(--text-accent);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .date-day {
-    font-family: var(--font-display);
-    font-size: 2.1rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--text-primary);
-  }
-
-  .date-year {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-  }
-
-  .date-dow {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-  }
-
-  .event-type-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-accent-secondary);
-    background: var(--bg-subtle);
-    padding: 0.2rem 0.6rem;
+    padding: 0.25rem 0.65rem;
     border-radius: 9999px;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .badge-primary {
+    background: color-mix(in srgb, var(--accent-coral) 14%, transparent);
+    color: var(--text-accent);
+    border: 1px solid color-mix(in srgb, var(--accent-coral) 28%, transparent);
+  }
+
+  .badge-secondary {
+    background: color-mix(in srgb, var(--accent-teal) 14%, transparent);
+    color: var(--text-accent-secondary);
+    border: 1px solid color-mix(in srgb, var(--accent-teal) 28%, transparent);
+  }
+
+  .badge-neutral {
+    background: var(--bg-subtle);
+    color: var(--text-secondary);
     border: 1px solid var(--border-subtle);
   }
 
-  .event-main-content {
+  .schedule-time {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .schedule-format {
+    font-size: 0.775rem;
+    color: var(--text-muted);
+  }
+
+  .schedule-main-col {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
   }
 
-  .event-top-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-  }
-
-  .event-badge {
-    font-size: 0.725rem;
-    font-weight: 700;
-    padding: 0.25rem 0.65rem;
-    border-radius: 9999px;
-  }
-
-  .badge-hot {
-    background: color-mix(in srgb, var(--accent-coral) 14%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent-coral) 30%, transparent);
-    color: var(--text-accent);
-  }
-
-  .badge-live {
-    background: color-mix(in srgb, var(--accent-teal) 14%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent-teal) 30%, transparent);
-    color: var(--text-accent-secondary);
-  }
-
-  .badge-open {
-    background: color-mix(in srgb, var(--accent-amber) 18%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent-amber) 35%, transparent);
-    color: var(--text-accent-warn);
-  }
-
-  .event-time-meta, .event-location-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-  }
-
-  .event-title {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: -0.01em;
-  }
-
-  .event-description {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  .event-speaker {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-  }
-
-  .speaker-avatar {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--bg-subtle);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-  }
-
-  .speaker-text b {
-    color: var(--text-primary);
-  }
-
-  .event-tags-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.4rem;
-  }
-
-  .event-tag-item {
-    font-size: 0.775rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    background: var(--bg-subtle);
-    padding: 0.2rem 0.55rem;
-    border-radius: 9999px;
-  }
-
-  .spots-chip {
-    font-size: 0.775rem;
-    font-weight: 600;
-    color: var(--text-accent-warn);
-    background: color-mix(in srgb, var(--accent-amber) 14%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent-amber) 30%, transparent);
-    padding: 0.2rem 0.6rem;
-    border-radius: 9999px;
-  }
-
-  .event-actions-column {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    min-width: 160px;
-  }
-
-  @media (min-width: 860px) {
-    .event-actions-column {
-      border-left: 1px solid var(--border-subtle);
-      padding-left: 1.5rem;
-    }
-  }
-
-  /* Modal Backdrop & Dialog */
-  .modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: color-mix(in srgb, var(--text-primary) 55%, transparent);
-    backdrop-filter: blur(6px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    padding: 1.5rem;
-  }
-
-  .modal-backdrop.is-active {
-    display: flex;
-  }
-
-  .modal-container {
-    background: var(--bg-canvas);
-    max-width: 480px;
-    width: 100%;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .modal-header {
-    padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid var(--border-subtle);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .modal-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  .modal-close-btn {
-    font-size: 1.5rem;
-    color: var(--text-muted);
-    line-height: 1;
-    transition: color 0.15s ease;
-  }
-
-  .modal-close-btn:hover {
-    color: var(--text-primary);
-  }
-
-  .modal-body {
-    padding: 1.75rem 1.5rem;
-  }
-
-  .modal-event-title {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .modal-event-date {
-    font-size: 0.85rem;
-    color: var(--text-accent-secondary);
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .modal-note {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    background: var(--bg-subtle);
-    padding: 0.65rem 0.85rem;
-    border-radius: var(--radius-sm);
-    margin-bottom: 1.5rem;
-  }
-
-  .modal-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .form-group label {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  .modal-input {
-    background: var(--bg-card);
-    border: 1px solid var(--border-card);
-    color: var(--text-primary);
-    font-family: inherit;
-    font-size: 0.9rem;
-    padding: 0.65rem 0.85rem;
-    border-radius: var(--radius-sm);
-    outline: none;
-    transition: border-color 0.15s ease;
-  }
-
-  .modal-input:focus {
-    border-color: var(--text-accent);
-  }
-
-  .modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    margin-top: 0.75rem;
-  }
-
-  .rsvp-success-state {
-    text-align: center;
-    padding: 1.5rem 0;
-  }
-
-  .success-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .rsvp-success-state h4 {
+  .schedule-title {
     font-family: var(--font-display);
     font-size: 1.35rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
+    line-height: 1.25;
   }
 
-  .rsvp-success-state p {
+  .schedule-desc {
+    font-size: 0.925rem;
     color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.5;
+    line-height: 1.6;
+  }
+
+  .schedule-topics-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.25rem;
+  }
+
+  .topic-chip {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+  }
+
+  .schedule-loc-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .schedule-loc-row b {
+    color: var(--text-primary);
+  }
+
+  .schedule-actions-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-width: 190px;
+  }
+
+  .action-btn {
+    width: 100%;
+    font-size: 0.825rem;
+    padding: 0.65rem 1rem;
+    white-space: nowrap;
   }
 </style>

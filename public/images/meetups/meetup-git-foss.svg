@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0f172a"/>
+  <defs>
+    <linearGradient id="gitGrad" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#gitGrad)"/>
+  <g transform="translate(100, 70)">
+    <rect width="600" height="360" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <rect width="600" height="42" rx="16" fill="#0f172a"/>
+    <circle cx="28" cy="21" r="6" fill="#ef4444"/>
+    <circle cx="48" cy="21" r="6" fill="#f59e0b"/>
+    <circle cx="68" cy="21" r="6" fill="#10b981"/>
+    <text x="300" y="26" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">thepenguinsclub@workshop: ~/git-first-pr</text>
+    
+    <text x="36" y="86" fill="#34d399" font-family="monospace" font-size="16" font-weight="bold">$ git clone https://github.com/the-penguins-club</text>
+    <text x="36" y="122" fill="#94a3b8" font-family="monospace" font-size="14">[+] Topic: Making Your First Open Source Pull Request</text>
+    <text x="36" y="152" fill="#38bdf8" font-family="monospace" font-size="14">[✓] Git branches, rebasing, commit conventions &amp; code review</text>
+    <text x="36" y="182" fill="#cbd5e1" font-family="monospace" font-size="14">Step-by-step guidance for students to contribute to real FOSS repos</text>
+    <text x="36" y="222" fill="#facc15" font-family="monospace" font-size="15">$ git push origin feat/community-learning</text>
+    <text x="36" y="252" fill="#a7f3d0" font-family="monospace" font-size="14">Pull Request successfully opened! Mentors reviewing live.</text>
+    <text x="36" y="292" fill="#94a3b8" font-family="monospace" font-size="14">Organized by The Penguins Club • Monthly Educational Series</text>
+    <text x="36" y="322" fill="#34d399" font-family="monospace" font-size="16">_</text>
+  </g>
+</svg>

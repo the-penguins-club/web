@@ -1,53 +1,86 @@
 ---
-// Projects Showcase - Fostering Open Source Projects & Incubation
-const projects = [
+// Projects Showcase - Real Repositories & Initiatives from The Penguins Club GitHub
+// Real data sourced from https://github.com/the-penguins-club
+
+interface ProjectItem {
+  id: string;
+  name: string;
+  repoUrl: string;
+  description: string;
+  stars: number;
+  forks: number;
+  lang: string;
+  langColor: string;
+  tag: string;
+  isCommunityDirectory?: boolean;
+}
+
+const realProjects: ProjectItem[] = [
   {
-    id: "proj-pingu",
-    name: "pingu-pkg",
-    description: "A blazingly fast, declarative dotfiles & system package orchestrator built for modern Linux distros with atomic rollbacks.",
-    stars: "1.4k",
-    forks: "180",
-    lang: "Rust",
+    id: "proj-bd-startups",
+    name: "bd-startups",
+    repoUrl: "https://github.com/the-penguins-club/bd-startups",
+    description: "A curated open directory of tech startups in Bangladesh, inspired by k-startups. Helping local tech innovators gain global visibility and discover collaboration opportunities.",
+    stars: 21,
+    forks: 6,
+    lang: "Markdown / Docs",
     langColor: "var(--accent-coral)",
-    license: "GPL-3.0",
-    stage: "Active Maintainer",
-    repoUrl: "https://github.com/the-penguins-club"
+    tag: "Open Data & Directory"
   },
   {
-    id: "proj-kernelcraft",
-    name: "kernel-craft",
-    description: "An interactive, browser-based lab visualizing Linux kernel memory management, the CFS scheduler, and system call execution — built for learning, not just reading docs.",
-    stars: "2.8k",
-    forks: "310",
-    lang: "C / Wasm",
+    id: "proj-cybersec",
+    name: "Awesome-Cybersecurity-Bangladesh",
+    repoUrl: "https://github.com/the-penguins-club/Awesome-Cybersecurity-Bangladesh",
+    description: "Curated collection of outstanding cybersecurity resources, learning labs, security groups, and research initiatives focused on Bangladesh.",
+    stars: 6,
+    forks: 2,
+    lang: "Awesome List",
     langColor: "var(--accent-teal)",
-    license: "MIT",
-    stage: "Graduated Project",
-    repoUrl: "https://github.com/the-penguins-club"
+    tag: "Security Education"
   },
   {
-    id: "proj-fossshield",
-    name: "foss-shield",
-    description: "A zero-telemetry local DNS blocker and privacy daemon that audits background tracker traffic across your Linux workstation.",
-    stars: "940",
-    forks: "84",
-    lang: "Go",
-    langColor: "var(--accent-berry)",
-    license: "AGPL-3.0",
-    stage: "Incubating",
-    repoUrl: "https://github.com/the-penguins-club"
-  },
-  {
-    id: "proj-term",
-    name: "peng-terminal",
-    description: "An ultra-lean, Wayland-native GPU terminal emulator focused on minimal latency, ligatures, and zero bloat.",
-    stars: "1.1k",
-    forks: "112",
-    lang: "Zig",
+    id: "proj-tuxtalk",
+    name: "TuxTalk",
+    repoUrl: "https://github.com/the-penguins-club/TuxTalk",
+    description: "Slide decks, talk transcripts, lecture notes, and resources presented at The Penguins Club monthly meetups covering Linux systems, tools, and open source.",
+    stars: 5,
+    forks: 0,
+    lang: "Community Talks",
     langColor: "var(--accent-amber)",
-    license: "Apache-2.0",
-    stage: "Incubating",
-    repoUrl: "https://github.com/the-penguins-club"
+    tag: "Meetup Lectures"
+  },
+  {
+    id: "proj-uradhura",
+    name: "uradhura",
+    repoUrl: "https://github.com/the-penguins-club/uradhura",
+    description: "A high-performance Telegram bot written in Rust powering community group automations, media delivery, and community utility features.",
+    stars: 5,
+    forks: 0,
+    lang: "Rust",
+    langColor: "#f97316",
+    tag: "Telegram Automation"
+  },
+  {
+    id: "proj-tux-career",
+    name: "tux-career",
+    repoUrl: "https://github.com/the-penguins-club/tux-career",
+    description: "Curated open-source career guidance, Linux skills roadmap, and job references for aspiring systems engineers and developers.",
+    stars: 3,
+    forks: 2,
+    lang: "JavaScript",
+    langColor: "#facc15",
+    tag: "Career Roadmap"
+  },
+  {
+    id: "proj-internetting",
+    name: "internetting",
+    repoUrl: "https://github.com/the-penguins-club/internetting",
+    description: "Essential internet etiquettes, digital ethics, and communication norms compiled in one place for students and tech community participants.",
+    stars: 0,
+    forks: 1,
+    lang: "Astro",
+    langColor: "#ff5d01",
+    tag: "Digital Literacy"
   }
 ];
 ---
@@ -55,24 +88,37 @@ const projects = [
 <section id="projects" class="projects-section">
   <div class="container">
     <div class="section-header">
-      <div class="section-tag">Fostering open source</div>
-      <h2 class="section-title">Projects we're proud of</h2>
-      <p class="section-desc">
-        We turn weekend ideas into durable, production-ready software. Through code review, infrastructure grants, and maintainer pairing, here's what a few of our community members have shipped.
-      </p>
+      <div class="header-content">
+        <div class="section-tag">Open Source Ecosystem</div>
+        <h2 class="section-title">Open Repositories &amp; Initiatives</h2>
+        <p class="section-desc">
+          As a non-profit organization, all our code and learning materials are published under open source licenses on GitHub. We encourage community members and students to study, fork, and contribute.
+        </p>
+      </div>
+
+      <a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer" class="btn-secondary gh-all-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+        View all 30 repos on GitHub &rarr;
+      </a>
     </div>
 
     <div class="projects-grid">
-      {projects.map((proj) => (
-        <div class="project-card glass-card">
+      {realProjects.map((proj) => (
+        <article class="project-card glass-card">
           <div class="proj-header">
             <div class="proj-title-wrap">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="folder-icon">
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
               </svg>
-              <h3 class="proj-name">{proj.name}</h3>
+              <h3 class="proj-name">
+                <a href={proj.repoUrl} target="_blank" rel="noopener noreferrer">
+                  {proj.name}
+                </a>
+              </h3>
             </div>
-            <span class="proj-stage-badge">{proj.stage}</span>
+            <span class="proj-stage-badge">{proj.tag}</span>
           </div>
 
           <p class="proj-desc">{proj.description}</p>
@@ -84,7 +130,7 @@ const projects = [
             </div>
 
             <div class="proj-stats">
-              <span class="stat-item" title="GitHub Stars">
+              <span class="stat-item" title="Stars on GitHub">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                 </svg>
@@ -100,35 +146,33 @@ const projects = [
                 </svg>
                 {proj.forks}
               </span>
-              <span class="license-pill">{proj.license}</span>
             </div>
           </div>
 
           <div class="proj-footer">
-            <a href={proj.repoUrl} target="_blank" rel="noopener" class="btn-secondary proj-btn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <a href={proj.repoUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary proj-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
               </svg>
-              Poke around the code
+              View Repository &amp; Code
             </a>
           </div>
-        </div>
+        </article>
       ))}
     </div>
 
-    <!-- Incubator CTA Banner -->
-    <div class="incubator-banner glass-card">
-      <div class="banner-left">
-        <span class="mono-accent">Got an idea?</span>
-        <h3 class="banner-title">We'll help you build it</h3>
-        <p class="banner-desc">
-          Free CI/CD runners, real code review from people who've shipped before, packaging help for Arch AUR / Debian / Nix, and a community of 1,800+ ready to try what you make.
+    <!-- Community Contribution Box -->
+    <div class="contrib-box glass-card">
+      <div class="contrib-content">
+        <div class="pill-mini">Open Source Collaboration</div>
+        <h3 class="contrib-title">Want to contribute or start a new project under the club?</h3>
+        <p class="contrib-desc">
+          Whether you want to contribute documentation to <code>bd-startups</code>, write a security guide for <code>Awesome-Cybersecurity-Bangladesh</code>, or incubate your own open source tool, our community is open for collaboration.
         </p>
       </div>
-      <div class="banner-right">
-        <a href="#community" class="btn-primary">
-          Tell us about it
-          <span class="arrow">&rarr;</span>
+      <div class="contrib-actions">
+        <a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Explore on GitHub &rarr;
         </a>
       </div>
     </div>
@@ -139,6 +183,33 @@ const projects = [
   .projects-section {
     padding: clamp(4rem, 8vw, 7rem) 0;
     position: relative;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 860px) {
+    .section-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-content {
+      max-width: 620px;
+    }
+    .header-content .section-desc {
+      margin-bottom: 0;
+    }
+  }
+
+  .gh-all-btn {
+    white-space: nowrap;
+    align-self: flex-start;
   }
 
   .projects-grid {
@@ -154,6 +225,12 @@ const projects = [
     }
   }
 
+  @media (min-width: 1080px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
   .project-card {
     padding: 1.75rem;
     display: flex;
@@ -164,8 +241,9 @@ const projects = [
 
   .proj-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+    gap: 0.5rem;
   }
 
   .proj-title-wrap {
@@ -176,29 +254,36 @@ const projects = [
 
   .folder-icon {
     color: var(--text-accent);
+    flex-shrink: 0;
   }
 
   .proj-name {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
     font-weight: 600;
     color: var(--text-primary);
   }
 
+  .proj-name a:hover {
+    color: var(--text-accent);
+  }
+
   .proj-stage-badge {
-    font-size: 0.725rem;
+    font-size: 0.7rem;
     font-weight: 600;
     color: var(--badge-text);
     background: var(--badge-bg);
     border: 1px solid var(--badge-border);
-    padding: 0.2rem 0.6rem;
+    padding: 0.2rem 0.55rem;
     border-radius: 9999px;
+    white-space: nowrap;
   }
 
   .proj-desc {
-    font-size: 0.9375rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
     line-height: 1.6;
+    margin-bottom: auto;
   }
 
   .proj-meta {
@@ -213,9 +298,9 @@ const projects = [
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-secondary);
   }
 
   .lang-dot {
@@ -227,7 +312,7 @@ const projects = [
   .proj-stats {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.75rem;
     font-size: 0.8rem;
     color: var(--text-secondary);
   }
@@ -243,64 +328,68 @@ const projects = [
     color: var(--accent-amber);
   }
 
-  .license-pill {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    background: var(--bg-subtle);
-    padding: 0.15rem 0.5rem;
-    border-radius: 9999px;
-    border: 1px solid var(--border-subtle);
-  }
-
   .proj-footer {
     padding-top: 0.25rem;
   }
 
   .proj-btn {
     width: 100%;
-    font-size: 0.85rem;
+    font-size: 0.825rem;
     padding: 0.65rem 1rem;
   }
 
-  /* Banner */
-  .incubator-banner {
+  /* Contribution Box */
+  .contrib-box {
     padding: 2.25rem 2.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
-    background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-card) 100%);
+    gap: 1.5rem;
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-subtle) 100%);
   }
 
   @media (min-width: 860px) {
-    .incubator-banner {
+    .contrib-box {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
     }
-    .banner-left {
-      max-width: 620px;
+    .contrib-content {
+      max-width: 680px;
     }
   }
 
-  .banner-title {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0.35rem 0 0.6rem;
+  .pill-mini {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
   }
 
-  .banner-desc {
+  .contrib-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .contrib-desc {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.925rem;
     line-height: 1.6;
   }
 
-  .arrow {
-    transition: transform 0.2s ease;
+  .contrib-desc code {
+    background: var(--bg-subtle);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: var(--text-accent);
   }
 
-  .incubator-banner:hover .arrow {
-    transform: translateX(4px);
+  .contrib-actions {
+    white-space: nowrap;
   }
 </style>

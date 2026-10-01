@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "The Penguins Club - Linux & FOSS Community",
-  description = "A warm, welcoming home for Linux enthusiasts, open source builders, and curious hackers. Join meetups, hackathons, discussions, and build open projects together."
+  title = "The Penguins Club - Non-Profit Linux & Open Source Community",
+  description = "A non-profit community initiative running since 2020. Free monthly meetups, hands-on Linux workshops, open source mentoring, and public projects."
 } = Astro.props;
 ---
 
@@ -28,8 +28,10 @@ const {
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://thepenguins.club/" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="The Penguins Club" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -73,31 +75,56 @@ const {
           </div>
           <div class="brand-info">
             <span class="brand-name">The Penguins Club</span>
-            <span class="brand-badge">Linux &amp; FOSS, made friendly</span>
+            <span class="brand-badge">Non-Profit • Est. 2020</span>
           </div>
         </a>
 
         <!-- Desktop Navigation -->
         <nav class="site-nav" aria-label="Main Navigation">
-          <a href="#activities" class="nav-link">Activities</a>
-          <a href="#events" class="nav-link">
-            Events
-            <span class="nav-count-badge">3</span>
+          <a href="#activities" class="nav-link">What We Teach</a>
+          <a href="#events" class="nav-link">Monthly Meetups</a>
+          <a href="#gallery" class="nav-link">
+            Meetup Gallery
+            <span class="nav-badge-new">Archive</span>
           </a>
-          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#projects" class="nav-link">Repositories</a>
           <a href="#community" class="nav-link">Community</a>
-          <a href="#manifesto" class="nav-link">Why We Do This</a>
+          <a href="#manifesto" class="nav-link">Our Purpose</a>
         </nav>
 
-        <!-- Right action icons -->
+        <!-- Right actions -->
         <div class="nav-actions">
-          <div class="status-pill" title="People online in our chat right now">
-            <span class="pulse-dot"></span>
-            <span class="status-text">142 online now</span>
-          </div>
+          <!-- Active Telegram button -->
+          <a
+            href="https://t.me/penguinsclubnetwork"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="header-tg-btn"
+            title="Join The Penguins Club on Telegram"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            <span class="tg-label">Telegram</span>
+          </a>
 
-          <!-- Theme toggle button -->
-          <button id="theme-toggle" class="icon-button" aria-label="Toggle dark/light mode" title="Toggle Theme">
+          <!-- GitHub link -->
+          <a
+            href="https://github.com/the-penguins-club"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="icon-button"
+            aria-label="The Penguins Club on GitHub"
+            title="GitHub Organization"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </a>
+
+          <!-- Theme toggle -->
+          <button id="theme-toggle" class="icon-button" aria-label="Toggle dark or light mode" title="Toggle Theme">
             <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -114,14 +141,7 @@ const {
             </svg>
           </button>
 
-          <!-- GitHub link -->
-          <a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer" class="icon-button" aria-label="TPC GitHub Organization" title="GitHub Repository">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-            </svg>
-          </a>
-
-          <!-- Mobile Hamburger Menu Button -->
+          <!-- Mobile Hamburger -->
           <button id="mobile-nav-toggle" class="mobile-toggle icon-button" aria-label="Toggle navigation menu">
             <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -139,78 +159,85 @@ const {
       <!-- Mobile dropdown panel -->
       <div id="mobile-menu" class="mobile-menu">
         <div class="container">
-          <a href="#activities" class="mobile-nav-link">Activities</a>
-          <a href="#events" class="mobile-nav-link">Upcoming Events</a>
-          <a href="#projects" class="mobile-nav-link">Fostered Projects</a>
-          <a href="#community" class="mobile-nav-link">Community &amp; Chat</a>
-          <a href="#manifesto" class="mobile-nav-link">Why We Do This</a>
+          <a href="#activities" class="mobile-nav-link">What We Teach</a>
+          <a href="#events" class="mobile-nav-link">Monthly Meetups</a>
+          <a href="#gallery" class="mobile-nav-link">Meetup Gallery</a>
+          <a href="#projects" class="mobile-nav-link">Repositories</a>
+          <a href="#community" class="mobile-nav-link">Community</a>
+          <a href="#manifesto" class="mobile-nav-link">Our Purpose</a>
           <div class="mobile-menu-footer">
-            <a href="#events" class="btn-primary" style="width:100%;">See What's Coming Up</a>
+            <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;">
+              Join on Telegram &rarr;
+            </a>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Main Content Slot -->
+    <!-- Main Slot -->
     <main id="main-content">
       <slot />
     </main>
 
-    <!-- Warm, human footer -->
+    <!-- Professional Non-Profit Footer -->
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="footer-logo">
-              <span class="footer-tux-text">🐧 The Penguins Club</span>
+              <span>🐧 The Penguins Club</span>
             </div>
             <p class="footer-motto">
-              A friendly corner of the internet for anyone curious about Linux, digital freedom, and building things in the open — beginners very welcome.
+              A registered non-profit educational community running since 2020. Dedicated to GNU/Linux literacy, Free Software ethics, digital sovereignty, and collaborative open source projects.
             </p>
-            <div class="footer-four-freedoms">
-              run it &bull; study it &bull; share it &bull; improve it
+            <div class="footer-nonprofit-badge">
+              Non-Profit &bull; Volunteer-Operated &bull; Founded 2020
             </div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-col-title">Get Involved</h4>
+            <h4 class="footer-col-title">Education &amp; Meetups</h4>
             <ul class="footer-links">
-              <li><a href="#activities">Linux Awareness</a></li>
-              <li><a href="#activities">Community Meetups</a></li>
-              <li><a href="#activities">Open Hackathons</a></li>
-              <li><a href="#projects">Project Incubation</a></li>
+              <li><a href="#activities">Linux Operating Systems</a></li>
+              <li><a href="#activities">Open Source Tooling</a></li>
+              <li><a href="#events">Monthly Meetup Schedule</a></li>
+              <li><a href="#gallery">Meetup Photo Gallery</a></li>
+              <li><a href="#manifesto">The Four Freedoms</a></li>
             </ul>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-col-title">Say Hi</h4>
+            <h4 class="footer-col-title">Community Channels</h4>
             <ul class="footer-links">
-              <li><a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener">Telegram</a></li>
-              <li><a href="https://matrix.org" target="_blank" rel="noopener">Matrix chat</a></li>
-              <li><a href="https://discord.com" target="_blank" rel="noopener">Discord server</a></li>
-              <li><a href="#community">Forum</a></li>
+              <li>
+                <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="active-channel-link">
+                  Telegram Group
+                  <span class="active-badge">Active</span>
+                </a>
+              </li>
+              <li><span class="dimmed-link">Matrix Space <small>(Coming Soon)</small></span></li>
+              <li><span class="dimmed-link">Discord Server <small>(Coming Soon)</small></span></li>
+              <li><span class="dimmed-link">Discourse Forum <small>(Coming Soon)</small></span></li>
             </ul>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-col-title">Resources</h4>
+            <h4 class="footer-col-title">Organization &amp; Contact</h4>
             <ul class="footer-links">
-              <li><a href="#events">Events calendar</a></li>
-              <li><a href="#manifesto">Why we do this</a></li>
-              <li><a href="https://github.com/the-penguins-club" target="_blank" rel="noopener">GitHub</a></li>
-              <li><a href="#code-of-conduct">Code of Conduct</a></li>
+              <li><a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer">GitHub Organization</a></li>
+              <li><a href="mailto:mail@thepenguins.club">mail@thepenguins.club</a></li>
+              <li><a href="https://thepenguins.club/">thepenguins.club</a></li>
+              <li><a href="#manifesto">Non-Profit Code &amp; Ethics</a></li>
             </ul>
           </div>
         </div>
 
         <div class="footer-bottom">
           <div class="footer-copy">
-            <span>&copy; {new Date().getFullYear()} The Penguins Club. Built with </span>
-            <a href="https://astro.build" target="_blank" rel="noopener" class="footer-astro-link">Astro</a>
-            <span>, with love and copyleft.</span>
+            <span>&copy; 2020 &ndash; {new Date().getFullYear()} The Penguins Club. All educational material published under free and open copyleft terms.</span>
           </div>
           <div class="footer-stats">
-            <span class="mono-dim">No trackers. No ads. Just people.</span>
+            <span class="mono-dim">Zero trackers. Zero ads. 100% community-driven.</span>
           </div>
         </div>
       </div>
@@ -218,7 +245,6 @@ const {
 
     <!-- Client-side script for Theme Toggle & Mobile Menu -->
     <script>
-      // Theme toggling
       const themeToggle = document.getElementById('theme-toggle');
       if (themeToggle) {
         themeToggle.addEventListener('click', () => {
@@ -229,7 +255,6 @@ const {
         });
       }
 
-      // Mobile Menu toggling
       const mobileNavToggle = document.getElementById('mobile-nav-toggle');
       const mobileMenu = document.getElementById('mobile-menu');
       const menuIcon = mobileNavToggle?.querySelector('.menu-icon') as HTMLElement | null;
@@ -244,7 +269,6 @@ const {
           }
         });
 
-        // Close menu on link click
         mobileMenu.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             mobileMenu.classList.remove('is-open');
@@ -258,13 +282,12 @@ const {
     </script>
 
     <style>
-      /* Layout & Header Styling */
       .site-header {
         position: sticky;
         top: 0;
         z-index: 50;
         width: 100%;
-        background: color-mix(in srgb, var(--bg-canvas) 82%, transparent);
+        background: color-mix(in srgb, var(--bg-canvas) 85%, transparent);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border-subtle);
@@ -324,17 +347,17 @@ const {
       .site-nav {
         display: none;
         align-items: center;
-        gap: 1.75rem;
+        gap: 1.5rem;
       }
 
-      @media (min-width: 860px) {
+      @media (min-width: 940px) {
         .site-nav {
           display: flex;
         }
       }
 
       .nav-link {
-        font-size: 0.9rem;
+        font-size: 0.875rem;
         font-weight: 600;
         color: var(--text-secondary);
         display: flex;
@@ -347,12 +370,12 @@ const {
         color: var(--text-accent);
       }
 
-      .nav-count-badge {
-        font-size: 0.6875rem;
+      .nav-badge-new {
+        font-size: 0.65rem;
         font-weight: 700;
         color: #ffffff;
-        background: var(--accent-teal);
-        padding: 0.1rem 0.4rem;
+        background: var(--accent-coral);
+        padding: 0.1rem 0.45rem;
         border-radius: 9999px;
       }
 
@@ -362,22 +385,28 @@ const {
         gap: 0.6rem;
       }
 
-      .status-pill {
+      .header-tg-btn {
         display: none;
         align-items: center;
-        gap: 0.5rem;
-        background: var(--bg-subtle);
-        border: 1px solid var(--border-subtle);
-        padding: 0.4rem 0.85rem;
+        gap: 0.45rem;
+        background: color-mix(in srgb, var(--accent-coral) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--accent-coral) 25%, transparent);
+        color: var(--text-accent);
+        padding: 0.45rem 0.95rem;
         border-radius: 9999px;
         font-size: 0.8125rem;
-        font-weight: 500;
-        color: var(--text-secondary);
+        font-weight: 600;
+        transition: all 0.15s ease;
+      }
+
+      .header-tg-btn:hover {
+        background: var(--accent-coral);
+        color: #ffffff;
       }
 
       @media (min-width: 680px) {
-        .status-pill {
-          display: flex;
+        .header-tg-btn {
+          display: inline-flex;
         }
       }
 
@@ -401,24 +430,16 @@ const {
       }
 
       /* Theme icon toggling */
-      :root[data-theme="dark"] .sun-icon {
-        display: block;
-      }
-      :root[data-theme="dark"] .moon-icon {
-        display: none;
-      }
-      :root[data-theme="light"] .sun-icon {
-        display: none;
-      }
-      :root[data-theme="light"] .moon-icon {
-        display: block;
-      }
+      :root[data-theme="dark"] .sun-icon { display: block; }
+      :root[data-theme="dark"] .moon-icon { display: none; }
+      :root[data-theme="light"] .sun-icon { display: none; }
+      :root[data-theme="light"] .moon-icon { display: block; }
 
       .mobile-toggle {
         display: flex;
       }
 
-      @media (min-width: 860px) {
+      @media (min-width: 940px) {
         .mobile-toggle {
           display: none;
         }
@@ -439,7 +460,7 @@ const {
       .mobile-nav-link {
         display: block;
         padding: 0.85rem 0;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         font-weight: 600;
         color: var(--text-primary);
         border-bottom: 1px solid var(--border-subtle);
@@ -455,7 +476,7 @@ const {
         background: var(--bg-subtle);
         padding-top: 4.5rem;
         padding-bottom: 3rem;
-        margin-top: 6rem;
+        margin-top: 4rem;
         position: relative;
         z-index: 2;
       }
@@ -488,20 +509,21 @@ const {
 
       .footer-motto {
         color: var(--text-secondary);
-        font-size: 0.9375rem;
+        font-size: 0.9rem;
         line-height: 1.6;
-        max-width: 340px;
+        max-width: 360px;
       }
 
-      .footer-four-freedoms {
-        font-size: 0.8125rem;
+      .footer-nonprofit-badge {
+        font-size: 0.775rem;
         font-weight: 600;
         color: var(--badge-text);
         background: var(--badge-bg);
         border: 1px solid var(--badge-border);
-        padding: 0.5rem 0.85rem;
+        padding: 0.45rem 0.85rem;
         border-radius: 9999px;
         display: inline-block;
+        width: fit-content;
       }
 
       .footer-col-title {
@@ -522,12 +544,38 @@ const {
 
       .footer-links a {
         color: var(--text-secondary);
-        font-size: 0.9rem;
+        font-size: 0.875rem;
         transition: color 0.15s ease;
       }
 
       .footer-links a:hover {
         color: var(--text-accent);
+      }
+
+      .active-channel-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-weight: 600;
+        color: var(--text-primary) !important;
+      }
+
+      .active-badge {
+        font-size: 0.65rem;
+        background: color-mix(in srgb, var(--accent-teal) 20%, transparent);
+        color: var(--text-accent-secondary);
+        padding: 0.1rem 0.45rem;
+        border-radius: 9999px;
+      }
+
+      .dimmed-link {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+      }
+
+      .dimmed-link small {
+        font-size: 0.75rem;
+        opacity: 0.8;
       }
 
       .footer-bottom {
@@ -536,7 +584,7 @@ const {
         gap: 1rem;
         padding-top: 2rem;
         border-top: 1px solid var(--border-subtle);
-        font-size: 0.85rem;
+        font-size: 0.825rem;
         color: var(--text-muted);
       }
 
@@ -548,13 +596,8 @@ const {
         }
       }
 
-      .footer-astro-link {
-        color: var(--text-accent);
-        font-weight: 600;
-      }
-
       .mono-dim {
-        font-size: 0.85rem;
+        font-size: 0.825rem;
         opacity: 0.8;
       }
     </style>

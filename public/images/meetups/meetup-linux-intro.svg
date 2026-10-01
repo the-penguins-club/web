@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0f172a"/>
+  <!-- Decorative Grid -->
+  <defs>
+    <pattern id="grid1" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="glow1" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#grid1)"/>
+  <rect width="800" height="500" fill="url(#glow1)"/>
+  
+  <!-- Terminal Window Graphic -->
+  <g transform="translate(100, 70)">
+    <rect width="600" height="360" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <!-- Top bar -->
+    <rect width="600" height="42" rx="16" fill="#0f172a"/>
+    <circle cx="28" cy="21" r="6" fill="#ef4444"/>
+    <circle cx="48" cy="21" r="6" fill="#f59e0b"/>
+    <circle cx="68" cy="21" r="6" fill="#10b981"/>
+    <text x="300" y="26" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">thepenguinsclub@meetup: ~</text>
+    
+    <!-- Code Content -->
+    <text x="36" y="86" fill="#38bdf8" font-family="monospace" font-size="16" font-weight="bold">$ tpc-session --topic="Linux CLI &amp; System Administration"</text>
+    <text x="36" y="122" fill="#94a3b8" font-family="monospace" font-size="14">[+] Host: The Penguins Club Monthly Meetup</text>
+    <text x="36" y="152" fill="#10b981" font-family="monospace" font-size="14">[✓] Topic: Bash fundamentals, piping, permissions &amp; shell scripting</text>
+    <text x="36" y="182" fill="#94a3b8" font-family="monospace" font-size="14">[+] Target Audience: Beginners &amp; University Students</text>
+    <text x="36" y="212" fill="#cbd5e1" font-family="monospace" font-size="14">Hands-on live session with interactive terminal practice</text>
+    <text x="36" y="252" fill="#facc15" font-family="monospace" font-size="15">$ whoami &amp;&amp; uptime</text>
+    <text x="36" y="282" fill="#f1f5f9" font-family="monospace" font-size="14">tpc-attendee | 100% open source • active community since 2020</text>
+    <text x="36" y="322" fill="#38bdf8" font-family="monospace" font-size="16">_</text>
+  </g>
+</svg>

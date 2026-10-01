@@ -1,0 +1,882 @@
+---
+// Monthly Meetup Photo Archive & Gallery Component
+// The Penguins Club has been running monthly meetups continuously since 2020.
+// Teaching Linux, Open Source tools, Cybersecurity, System Administration, and Tech Careers.
+
+interface MeetupRecord {
+  id: string;
+  edition: string;
+  title: string;
+  date: string;
+  category: "linux" | "opensource" | "security" | "community";
+  categoryLabel: string;
+  location: string;
+  format: string;
+  topics: string[];
+  description: string;
+  image: string;
+  fallbackImage: string;
+}
+
+const meetups: MeetupRecord[] = [
+  {
+    id: "meetup-34",
+    edition: "Meetup #34",
+    title: "Linux Command Line Mastery & Shell Automation",
+    date: "Monthly Meetup • September 2026",
+    category: "linux",
+    categoryLabel: "Linux & Systems",
+    location: "Dhaka & Interactive Live Stream",
+    format: "Hybrid Session",
+    topics: ["Bash Shell Fundamentals", "Piping & Redirection", "Cron Automation", "User Permissions"],
+    description: "A comprehensive hands-on workshop focused on practical terminal workflows, shell scripting for automation, and core GNU/Linux system concepts for students and developers.",
+    image: "/images/meetups/meetup-linux-intro.svg",
+    fallbackImage: "/images/meetups/meetup-linux-intro.svg"
+  },
+  {
+    id: "meetup-33",
+    edition: "Meetup #33",
+    title: "Git Workflows & Making Your First Open Source Contribution",
+    date: "Monthly Meetup • August 2026",
+    category: "opensource",
+    categoryLabel: "Open Source & Tools",
+    location: "Live Stream & Community Hall",
+    format: "Hands-on Workshop",
+    topics: ["Git Branching & Rebasing", "Pull Request Etiquette", "Upstream Issues", "Code Review"],
+    description: "Demystifying open source contribution. Members learned how to find beginner-friendly issues on GitHub, set up local development environments, and submit clean, well-documented pull requests.",
+    image: "/images/meetups/meetup-git-foss.svg",
+    fallbackImage: "/images/meetups/meetup-git-foss.svg"
+  },
+  {
+    id: "meetup-32",
+    edition: "Meetup #32",
+    title: "Linux Hardening, Practical Security & Privacy Defense",
+    date: "Monthly Meetup • July 2026",
+    category: "security",
+    categoryLabel: "Security & Privacy",
+    location: "Virtual & Hacker Space",
+    format: "Technical Deep-Dive",
+    topics: ["SSH Key Architecture", "UFW & Iptables", "SELinux Basics", "Safe Computing"],
+    description: "An educational deep-dive into securing workstations and servers. Covered passwordless authentication, defense-in-depth, and lessons from our community project Awesome-Cybersecurity-Bangladesh.",
+    image: "/images/meetups/meetup-cybersecurity.svg",
+    fallbackImage: "/images/meetups/meetup-cybersecurity.svg"
+  },
+  {
+    id: "meetup-31",
+    edition: "Meetup #31",
+    title: "Self-Hosting Essentials: Reclaiming Your Data Sovereignty",
+    date: "Monthly Meetup • June 2026",
+    category: "opensource",
+    categoryLabel: "Open Source & Tools",
+    location: "Community Center & Stream",
+    format: "Lab & Discussion",
+    topics: ["Docker & Containers", "Pi-hole Local DNS", "Nextcloud Storage", "Private VPNs"],
+    description: "Explored how to replace proprietary cloud subscriptions with sovereign, self-hosted alternatives using open-source tools running on lightweight hardware.",
+    image: "/images/meetups/meetup-self-hosting.svg",
+    fallbackImage: "/images/meetups/meetup-self-hosting.svg"
+  },
+  {
+    id: "meetup-30",
+    edition: "Meetup #30",
+    title: "Navigating Careers in Linux, DevOps & Open Source",
+    date: "Monthly Meetup • May 2026",
+    category: "community",
+    categoryLabel: "Community & Career",
+    location: "Dhaka & Discord/Telegram Stream",
+    format: "Panel & Mentorship",
+    topics: ["FOSS Portfolio Building", "Sysadmin & SRE Paths", "Interview Prep", "Mentorship"],
+    description: "An open roundtable with senior Linux administrators and software engineers sharing honest advice on entering the tech industry through open source experience.",
+    image: "/images/meetups/meetup-networking-career.svg",
+    fallbackImage: "/images/meetups/meetup-networking-career.svg"
+  },
+  {
+    id: "meetup-29",
+    edition: "Meetup #29",
+    title: "Linux Kernel Fundamentals & System Architecture",
+    date: "Monthly Meetup • April 2026",
+    category: "linux",
+    categoryLabel: "Linux & Systems",
+    location: "Auditorium & Live Stream",
+    format: "Architecture Talk",
+    topics: ["Kernel Space vs User Space", "System Calls", "Process Scheduling", "Filesystem Internals"],
+    description: "Peeling back the layers of the Linux kernel to understand how hardware interacts with processes, memory allocation, and virtual filesystems like /proc and /sys.",
+    image: "/images/meetups/meetup-linux-intro.svg",
+    fallbackImage: "/images/meetups/meetup-linux-intro.svg"
+  }
+];
+---
+
+<section id="gallery" class="gallery-section">
+  <div class="container">
+    <div class="gallery-header">
+      <div class="header-content">
+        <div class="section-tag">Archive &amp; Community History</div>
+        <h2 class="section-title">Monthly Meetups Gallery</h2>
+        <p class="section-desc">
+          Since 2020, The Penguins Club has been organizing regular monthly meetups to teach Linux, open source tools, system administration, and software freedom. Here is a look back at our past sessions and workshops.
+        </p>
+      </div>
+
+      <!-- Quick Meetup Summary Stat Card -->
+      <div class="gallery-summary-card glass-card">
+        <div class="summary-item">
+          <span class="summary-num">2020</span>
+          <span class="summary-label">First Meetup Hosted</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-item">
+          <span class="summary-num">Monthly</span>
+          <span class="summary-label">Cadence Maintained</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-item">
+          <span class="summary-num">100% Free</span>
+          <span class="summary-label">Non-Profit &amp; Open</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="gallery-filter-bar">
+      <button class="gallery-tab active" data-filter="all">
+        All Meetups <span class="tab-count">{meetups.length}</span>
+      </button>
+      <button class="gallery-tab" data-filter="linux">
+        Linux &amp; Systems <span class="tab-count">{meetups.filter(m => m.category === 'linux').length}</span>
+      </button>
+      <button class="gallery-tab" data-filter="opensource">
+        Open Source &amp; Tools <span class="tab-count">{meetups.filter(m => m.category === 'opensource').length}</span>
+      </button>
+      <button class="gallery-tab" data-filter="security">
+        Security &amp; Privacy <span class="tab-count">{meetups.filter(m => m.category === 'security').length}</span>
+      </button>
+      <button class="gallery-tab" data-filter="community">
+        Community &amp; Career <span class="tab-count">{meetups.filter(m => m.category === 'community').length}</span>
+      </button>
+    </div>
+
+    <!-- Meetup Grid -->
+    <div class="meetups-grid" id="meetups-grid">
+      {meetups.map((m) => (
+        <article
+          class="meetup-card glass-card"
+          data-category={m.category}
+          data-title={m.title}
+          data-edition={m.edition}
+          data-date={m.date}
+          data-location={m.location}
+          data-format={m.format}
+          data-desc={m.description}
+          data-img={m.image}
+          data-topics={JSON.stringify(m.topics)}
+        >
+          <div class="meetup-img-wrap">
+            <img
+              src={m.image}
+              alt={`${m.edition}: ${m.title}`}
+              class="meetup-img"
+              loading="lazy"
+              onerror={`this.onerror=null; this.src='${m.fallbackImage}';`}
+            />
+            <div class="meetup-badges-overlay">
+              <span class="badge-edition">{m.edition}</span>
+              <span class="badge-format">{m.format}</span>
+            </div>
+          </div>
+
+          <div class="meetup-card-body">
+            <div class="meetup-meta-row">
+              <span class="meetup-date-text">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                {m.date}
+              </span>
+              <span class="meetup-cat-pill">{m.categoryLabel}</span>
+            </div>
+
+            <h3 class="meetup-card-title">{m.title}</h3>
+            <p class="meetup-card-desc">{m.description}</p>
+
+            <div class="meetup-topics">
+              {m.topics.map((top) => (
+                <span class="topic-tag">{top}</span>
+              ))}
+            </div>
+
+            <div class="meetup-card-footer">
+              <span class="meetup-loc-text">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                {m.location}
+              </span>
+              <button type="button" class="btn-preview view-meetup-btn" aria-label={`View details for ${m.edition}`}>
+                View Details &rarr;
+              </button>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Meetup Speaker Callout -->
+    <div class="meetup-propose-card glass-card">
+      <div class="propose-left">
+        <div class="pill-mini">Propose a Talk or Volunteer</div>
+        <h3 class="propose-title">Want to speak or share your project at our next monthly meetup?</h3>
+        <p class="propose-desc">
+          We welcome beginner-friendly walkthroughs, kernel explorations, self-hosting showcases, and open source demonstrations. No prior speaking experience required — we are here to support you.
+        </p>
+      </div>
+      <div class="propose-right">
+        <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Reach out on Telegram
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="mailto:mail@thepenguins.club" class="btn-secondary">
+          Email Organizers
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Meetup Photo / Detail Lightbox Modal -->
+  <div id="meetup-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-dialog glass-card" role="dialog" aria-modal="true" aria-labelledby="modal-meetup-title">
+      <div class="modal-header-bar">
+        <div class="modal-badges">
+          <span id="modal-meetup-edition" class="badge-edition">Meetup</span>
+          <span id="modal-meetup-format" class="badge-format">Session</span>
+        </div>
+        <button id="modal-gallery-close" class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="modal-dialog-body">
+        <div class="modal-image-container">
+          <img id="modal-meetup-image" src="" alt="Meetup preview" class="modal-main-img" />
+        </div>
+
+        <div class="modal-text-content">
+          <h3 id="modal-meetup-title" class="modal-title-text">Meetup Title</h3>
+          
+          <div class="modal-meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">Date &amp; Schedule</span>
+              <span id="modal-meetup-date" class="meta-val">Date</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Location / Format</span>
+              <span id="modal-meetup-location" class="meta-val">Location</span>
+            </div>
+          </div>
+
+          <div class="modal-desc-box">
+            <h4 class="box-heading">Session Overview</h4>
+            <p id="modal-meetup-desc" class="modal-desc-text">Description</p>
+          </div>
+
+          <div class="modal-topics-box">
+            <h4 class="box-heading">Key Topics Covered</h4>
+            <div id="modal-meetup-topics" class="topics-wrap"></div>
+          </div>
+
+          <div class="modal-footer-action">
+            <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;">
+              Join Next Meetup on Telegram &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Client Script for Filter & Modal Lightbox -->
+<script>
+  // Filter tabs logic
+  const tabs = document.querySelectorAll('.gallery-tab');
+  const cards = document.querySelectorAll<HTMLElement>('.meetup-card');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filter = tab.getAttribute('data-filter');
+      cards.forEach(card => {
+        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Modal / Lightbox Logic
+  const modal = document.getElementById('meetup-modal');
+  const modalClose = document.getElementById('modal-gallery-close');
+  const modalImg = document.getElementById('modal-meetup-image') as HTMLImageElement | null;
+  const modalTitle = document.getElementById('modal-meetup-title');
+  const modalEdition = document.getElementById('modal-meetup-edition');
+  const modalFormat = document.getElementById('modal-meetup-format');
+  const modalDate = document.getElementById('modal-meetup-date');
+  const modalLoc = document.getElementById('modal-meetup-location');
+  const modalDesc = document.getElementById('modal-meetup-desc');
+  const modalTopics = document.getElementById('modal-meetup-topics');
+
+  function openMeetupModal(card: HTMLElement) {
+    if (!modal) return;
+    const title = card.getAttribute('data-title') || '';
+    const edition = card.getAttribute('data-edition') || '';
+    const format = card.getAttribute('data-format') || '';
+    const date = card.getAttribute('data-date') || '';
+    const loc = card.getAttribute('data-location') || '';
+    const desc = card.getAttribute('data-desc') || '';
+    const img = card.getAttribute('data-img') || '';
+    const topicsRaw = card.getAttribute('data-topics') || '[]';
+
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalEdition) modalEdition.textContent = edition;
+    if (modalFormat) modalFormat.textContent = format;
+    if (modalDate) modalDate.textContent = date;
+    if (modalLoc) modalLoc.textContent = loc;
+    if (modalDesc) modalDesc.textContent = desc;
+    if (modalImg) {
+      modalImg.src = img;
+      modalImg.alt = `${edition}: ${title}`;
+    }
+
+    if (modalTopics) {
+      try {
+        const topics = JSON.parse(topicsRaw) as string[];
+        modalTopics.innerHTML = topics.map(t => `<span class="topic-tag">${t}</span>`).join('');
+      } catch {
+        modalTopics.innerHTML = '';
+      }
+    }
+
+    modal.classList.add('is-active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMeetupModal() {
+    if (modal) {
+      modal.classList.remove('is-active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  cards.forEach(card => {
+    const btn = card.querySelector('.view-meetup-btn');
+    btn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openMeetupModal(card);
+    });
+
+    card.addEventListener('click', () => {
+      openMeetupModal(card);
+    });
+  });
+
+  modalClose?.addEventListener('click', closeMeetupModal);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeMeetupModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('is-active')) {
+      closeMeetupModal();
+    }
+  });
+</script>
+
+<style>
+  .gallery-section {
+    padding: clamp(4rem, 8vw, 7rem) 0;
+    position: relative;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .gallery-header {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .gallery-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .header-content {
+      max-width: 620px;
+    }
+  }
+
+  .gallery-summary-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1.25rem 1.75rem;
+    gap: 1.25rem;
+    background: var(--bg-card);
+  }
+
+  .summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .summary-num {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-accent);
+    line-height: 1.1;
+  }
+
+  .summary-label {
+    font-size: 0.725rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .summary-divider {
+    width: 1px;
+    height: 34px;
+    background: var(--border-subtle);
+  }
+
+  /* Filter bar */
+  .gallery-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    overflow-x: auto;
+    padding-bottom: 0.75rem;
+    margin-bottom: 2.25rem;
+    scrollbar-width: thin;
+  }
+
+  .gallery-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.6rem 1.15rem;
+    border-radius: 9999px;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-card);
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .gallery-tab:hover {
+    color: var(--text-primary);
+    border-color: var(--border-glow);
+  }
+
+  .gallery-tab.active {
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    border-color: var(--badge-border);
+  }
+
+  .tab-count {
+    font-size: 0.7rem;
+    background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+    padding: 0.1rem 0.45rem;
+    border-radius: 9999px;
+  }
+
+  /* Grid layout */
+  .meetups-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .meetups-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1080px) {
+    .meetups-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .meetup-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+  }
+
+  .meetup-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--bg-subtle);
+    overflow: hidden;
+  }
+
+  .meetup-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .meetup-card:hover .meetup-img {
+    transform: scale(1.03);
+  }
+
+  .meetup-badges-overlay {
+    position: absolute;
+    top: 0.85rem;
+    left: 0.85rem;
+    right: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .badge-edition {
+    background: rgba(15, 23, 42, 0.85);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    font-size: 0.725rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    letter-spacing: 0.03em;
+  }
+
+  .badge-format {
+    background: color-mix(in srgb, var(--accent-coral) 20%, rgba(15, 23, 42, 0.85));
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+  }
+
+  .meetup-card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.75rem;
+  }
+
+  .meetup-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.775rem;
+  }
+
+  .meetup-date-text {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-accent);
+    font-weight: 600;
+  }
+
+  .meetup-cat-pill {
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: var(--bg-subtle);
+    color: var(--text-secondary);
+    padding: 0.15rem 0.5rem;
+    border-radius: 9999px;
+  }
+
+  .meetup-card-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--text-primary);
+  }
+
+  .meetup-card-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+  }
+
+  .meetup-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+    margin-bottom: 0.75rem;
+  }
+
+  .topic-tag {
+    font-size: 0.725rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+  }
+
+  .meetup-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.775rem;
+  }
+
+  .meetup-loc-text {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-muted);
+  }
+
+  .btn-preview {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: transform 0.2s ease;
+  }
+
+  .meetup-card:hover .btn-preview {
+    transform: translateX(3px);
+  }
+
+  /* Propose Card */
+  .meetup-propose-card {
+    padding: 2.25rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-subtle) 100%);
+  }
+
+  @media (min-width: 860px) {
+    .meetup-propose-card {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .propose-left {
+      max-width: 620px;
+    }
+    .propose-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 220px;
+    }
+  }
+
+  .pill-mini {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+
+  .propose-title {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin-bottom: 0.6rem;
+  }
+
+  .propose-desc {
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Modal Lightbox */
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 15, 23, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .modal-backdrop.is-active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .modal-dialog {
+    width: 100%;
+    max-width: 760px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    box-shadow: var(--shadow-glow);
+    padding: 0;
+  }
+
+  .modal-header-bar {
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .modal-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .modal-close-btn {
+    font-size: 1.75rem;
+    line-height: 1;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .modal-close-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .modal-dialog-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-image-container {
+    width: 100%;
+    max-height: 360px;
+    background: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .modal-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .modal-text-content {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .modal-title-text {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.25;
+  }
+
+  .modal-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-subtle);
+    border-radius: var(--radius-sm);
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .meta-label {
+    font-size: 0.725rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .meta-val {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .box-heading {
+    font-size: 0.825rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .modal-desc-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .topics-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .modal-footer-action {
+    padding-top: 0.5rem;
+  }
+</style>

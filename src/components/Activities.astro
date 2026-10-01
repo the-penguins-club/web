@@ -1,48 +1,50 @@
 ---
-// Activities Bento Grid Component covering the 5 core activities
-const activities = [
+// What We Teach & Core Educational Focus
+// The Penguins Club teaches Linux, open source technologies, security, and digital literacy.
+
+const educationalTracks = [
   {
-    id: "act-awareness",
-    tag: "Awareness & Education",
-    title: "Linux & FOSS Awareness",
-    description: "Demystifying GNU/Linux distributions, open standards, software licensing, and digital sovereignty. We run installation fests and friendly explainer sessions for total newcomers and seasoned pros alike.",
-    highlights: ["Distro Installation Fests", "Open Standards & Privacy", "Digital Sovereignty Talks", "Campus Outreach"],
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+    id: "track-linux",
+    tag: "Core Focus",
+    title: "GNU/Linux & Operating Systems",
+    description: "From desktop installations (Debian, Fedora, Arch, Ubuntu) to headless server administration, shell scripting, package managers, and understanding kernel internals.",
+    highlights: ["Installation Fests & Guidance", "Command Line & Shell Scripting", "Systemd, Services & Storage", "Kernel Concepts & Architecture"],
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`,
     color: "coral"
   },
   {
-    id: "act-meetups",
-    tag: "Community & Talks",
-    title: "In-Person & Virtual Meetups",
-    description: "Monthly gatherings featuring lightning talks, live coding, and casual hallway-track chats. Whether in a local hacker space or over a stream, we share what we know, freely and without gatekeeping.",
-    highlights: ["Monthly Keynotes", "5-Minute Lightning Talks", "Kernel & Sysadmin Chats", "Live Streams"],
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+    id: "track-opensource",
+    tag: "Hands-on Skills",
+    title: "Open Source Software & Tools",
+    description: "Mastering the toolchain that powers modern software engineering: Git version control, collaborative code reviews, public repositories, and upstream bug hunting.",
+    highlights: ["Git Workflows & Collaboration", "Writing Open Source Code", "Licensing (GPL, MIT, Apache)", "Packaging & Distribution"],
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><circle cx="12" cy="12" r="2"></circle></svg>`,
     color: "teal"
   },
   {
-    id: "act-hackathons",
-    tag: "Sprints & Hacking",
-    title: "Open Source Hackathons",
-    description: "Fast-paced 48-hour sprints focused on shipping usable Free Software — desktop tools, web apps, and squashing long-standing upstream bugs. Mentors around the clock, snacks included.",
-    highlights: ["48h Sprint Hackathons", "Upstream Bug Hunts", "Zero-to-One Projects", "Prizes & Hardware Grants"],
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><circle cx="12" cy="12" r="2"></circle></svg>`,
+    id: "track-security",
+    tag: "Defense & Privacy",
+    title: "Cybersecurity & Digital Privacy",
+    description: "Teaching safe computing practices, network defense, disk encryption, personal firewall setup, and auditable open-source security tools (e.g. our Awesome-Cybersecurity project).",
+    highlights: ["Server Hardening & SSH Keys", "Firewalls & Packet Filtering", "Self-Hosted Private Services", "Encryption & Privacy Tools"],
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
     color: "amber"
   },
   {
-    id: "act-discussions",
-    tag: "Collaboration & Forums",
-    title: "Online Discussions & Forums",
-    description: "Always-on spaces across Matrix, Discord, Discourse, and IRC. Talk kernels and Wayland, or just ask a beginner question — someone friendly is almost always around.",
-    highlights: ["Matrix & IRC, Bridged", "Discourse Forum", "Async RFCs", "Peer Help Desks"],
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`,
+    id: "track-meetups",
+    tag: "Monthly Cadence",
+    title: "Monthly Meetups & Study Groups",
+    description: "Consistent monthly gatherings since 2020 where community members deliver technical presentations, demonstrate real setups, share career advice, and network.",
+    highlights: ["In-Person Workshops in Dhaka", "Interactive Live Streams", "Peer Review & Problem Solving", "Free Mentorship"],
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
     color: "berry"
   },
   {
-    id: "act-projects",
-    tag: "Incubation & Code",
-    title: "Fostering Open Source Projects",
-    description: "We don't just talk about FOSS, we write code. We pair first-time contributors with mentors, sponsor infrastructure, help with packaging, and cheer projects on until they find their own community.",
-    highlights: ["Maintainer Pairing", "Infrastructure Sponsorship", "CI/CD & Packaging Help", "Project Showcase Stage"],
+    id: "track-public-data",
+    tag: "Community Initiatives",
+    title: "Open Data & Community Utilities",
+    description: "Building and maintaining crowdsourced public data projects such as Bangladesh startup directories, blockade awareness trackers, and community bot infrastructure.",
+    highlights: ["Startup & Tech Directories", "Civic Tech Experiments", "Telegram Community Bots", "Open Documentation"],
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
     color: "coral"
   }
@@ -52,27 +54,27 @@ const activities = [
 <section id="activities" class="activities-section">
   <div class="container">
     <div class="section-header">
-      <div class="section-tag">What we get up to</div>
-      <h2 class="section-title">Five ways to get involved</h2>
+      <div class="section-tag">Educational Curriculum</div>
+      <h2 class="section-title">What We Teach &amp; Build</h2>
       <p class="section-desc">
-        No single "right" way to join in. Come to learn, come to teach, come to build something — our five pillars all lead to the same place: a community that actually shows up for each other.
+        Since our founding in 2020, our mission has been practical, hands-on learning. We help participants move from consumers of closed software to confident practitioners and contributors in open technology.
       </p>
     </div>
 
-    <!-- Activities Bento Grid -->
+    <!-- Bento Grid -->
     <div class="bento-grid">
-      {activities.map((act, index) => (
-        <div class={`bento-card glass-card card-${index + 1}`}>
+      {educationalTracks.map((track, index) => (
+        <article class={`bento-card glass-card card-${index + 1}`}>
           <div class="card-top">
-            <div class={`card-icon-wrap icon-${act.color}`} set:html={act.icon} />
-            <span class="card-tag-text">{act.tag}</span>
+            <div class={`card-icon-wrap icon-${track.color}`} set:html={track.icon} />
+            <span class="card-tag-text">{track.tag}</span>
           </div>
 
-          <h3 class="card-title">{act.title}</h3>
-          <p class="card-desc">{act.description}</p>
+          <h3 class="card-title">{track.title}</h3>
+          <p class="card-desc">{track.description}</p>
 
           <div class="card-highlights">
-            {act.highlights.map(item => (
+            {track.highlights.map((item) => (
               <span class="highlight-chip">
                 <span class="chip-dot"></span>
                 {item}
@@ -81,9 +83,11 @@ const activities = [
           </div>
 
           <div class="card-footer-link">
-            <span class="mono-accent learn-more">Explore this pillar <span class="arrow">&rarr;</span></span>
+            <a href="#gallery" class="learn-more">
+              See related meetup sessions <span class="arrow">&rarr;</span>
+            </a>
           </div>
-        </div>
+        </article>
       ))}
     </div>
   </div>
@@ -93,6 +97,7 @@ const activities = [
   .activities-section {
     padding: clamp(4rem, 8vw, 7rem) 0;
     position: relative;
+    border-top: 1px solid var(--border-subtle);
   }
 
   .section-header {
@@ -101,7 +106,7 @@ const activities = [
     align-items: flex-start;
   }
 
-  /* Bento Grid Layout */
+  /* Bento Grid */
   .bento-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -166,7 +171,7 @@ const activities = [
 
   .card-title {
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--text-primary);
@@ -175,7 +180,7 @@ const activities = [
 
   .card-desc {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.925rem;
     line-height: 1.6;
     margin-bottom: 1.75rem;
   }
@@ -196,7 +201,7 @@ const activities = [
     border: 1px solid var(--border-subtle);
     padding: 0.3rem 0.7rem;
     border-radius: 9999px;
-    font-size: 0.775rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
   }
 
@@ -215,6 +220,7 @@ const activities = [
   .learn-more {
     font-size: 0.8125rem;
     font-weight: 700;
+    color: var(--text-accent);
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
