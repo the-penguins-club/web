@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "The Penguins Club - Non-Profit Linux & Open Source Community",
-  description = "A non-profit community initiative running since 2020. Free monthly meetups, hands-on Linux workshops, open source mentoring, and public projects."
+  title = "The Penguins Club - Linux & Open Source Community",
+  description = "A community initiative running from 2020. Free monthly meetups, hands-on Linux workshops, open source mentoring, and public projects."
 } = Astro.props;
 ---
 
@@ -75,21 +75,21 @@ const {
           </div>
           <div class="brand-info">
             <span class="brand-name">The Penguins Club</span>
-            <span class="brand-badge">Non-Profit • Est. 2020</span>
+            <span class="brand-badge">Linux &amp; FOSS &bull; Est. 2020</span>
           </div>
         </a>
 
         <!-- Desktop Navigation -->
         <nav class="site-nav" aria-label="Main Navigation">
-          <a href="#activities" class="nav-link">What We Teach</a>
-          <a href="#events" class="nav-link">Monthly Meetups</a>
+          <a href="#activities" class="nav-link">Learn</a>
+          <a href="#events" class="nav-link">Meetups</a>
           <a href="#gallery" class="nav-link">
-            Meetup Gallery
+            Gallery
             <span class="nav-badge-new">Archive</span>
           </a>
-          <a href="#projects" class="nav-link">Repositories</a>
+          <a href="#projects" class="nav-link">Projects</a>
           <a href="#community" class="nav-link">Community</a>
-          <a href="#manifesto" class="nav-link">Our Purpose</a>
+          <a href="#manifesto" class="nav-link">About</a>
         </nav>
 
         <!-- Right actions -->
@@ -179,7 +179,7 @@ const {
       <slot />
     </main>
 
-    <!-- Professional Non-Profit Footer -->
+    <!-- Community Footer -->
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid">
@@ -188,10 +188,10 @@ const {
               <span>🐧 The Penguins Club</span>
             </div>
             <p class="footer-motto">
-              A registered non-profit educational community running since 2020. Dedicated to GNU/Linux literacy, Free Software ethics, digital sovereignty, and collaborative open source projects.
+              A volunteer-driven community running from 2020. Dedicated to GNU/Linux literacy, Free Software ethics, digital sovereignty, and collaborative open source projects.
             </p>
             <div class="footer-nonprofit-badge">
-              Non-Profit &bull; Volunteer-Operated &bull; Founded 2020
+              Community-Run &bull; Volunteer-Driven &bull; Founded 2020
             </div>
           </div>
 
@@ -227,7 +227,7 @@ const {
               <li><a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer">GitHub Organization</a></li>
               <li><a href="mailto:mail@thepenguins.club">mail@thepenguins.club</a></li>
               <li><a href="https://thepenguins.club/">thepenguins.club</a></li>
-              <li><a href="#manifesto">Non-Profit Code &amp; Ethics</a></li>
+              <li><a href="#manifesto">Community Principles</a></li>
             </ul>
           </div>
         </div>
@@ -347,10 +347,10 @@ const {
       .site-nav {
         display: none;
         align-items: center;
-        gap: 1.5rem;
+        gap: clamp(0.75rem, 1.4vw, 1.35rem);
       }
 
-      @media (min-width: 940px) {
+      @media (min-width: 1024px) {
         .site-nav {
           display: flex;
         }
@@ -360,9 +360,10 @@ const {
         font-size: 0.875rem;
         font-weight: 600;
         color: var(--text-secondary);
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: 0.4rem;
+        white-space: nowrap;
         transition: color 0.15s ease;
       }
 
@@ -373,16 +374,19 @@ const {
       .nav-badge-new {
         font-size: 0.65rem;
         font-weight: 700;
+        line-height: 1;
         color: #ffffff;
         background: var(--accent-coral);
-        padding: 0.1rem 0.45rem;
+        padding: 0.2rem 0.45rem;
         border-radius: 9999px;
+        white-space: nowrap;
       }
 
       .nav-actions {
         display: flex;
         align-items: center;
         gap: 0.6rem;
+        flex-shrink: 0;
       }
 
       .header-tg-btn {
@@ -396,6 +400,7 @@ const {
         border-radius: 9999px;
         font-size: 0.8125rem;
         font-weight: 600;
+        white-space: nowrap;
         transition: all 0.15s ease;
       }
 
@@ -420,6 +425,7 @@ const {
         border: 1px solid var(--border-card);
         background: var(--bg-card);
         color: var(--text-secondary);
+        flex-shrink: 0;
         transition: all 0.15s ease;
       }
 
@@ -439,7 +445,7 @@ const {
         display: flex;
       }
 
-      @media (min-width: 940px) {
+      @media (min-width: 1024px) {
         .mobile-toggle {
           display: none;
         }

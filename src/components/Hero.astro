@@ -1,6 +1,6 @@
 ---
-// Hero Component - Non-Profit Linux & Open Source Community
-// Running continuously since 2020 • Perfectly proportioned, responsive layout
+// Hero Component - Linux & Open Source Community
+// Running continuously from 2020 • Real data, zero fluff
 ---
 
 <section class="hero-section">
@@ -9,7 +9,7 @@
     <div class="hero-content">
       <div class="hero-pill-badge">
         <span class="pulse-dot"></span>
-        <span class="pill-label">Non-Profit Organization • Running Since 2020</span>
+        <span class="pill-label">Linux &amp; Open Source Community &bull; Running from 2020</span>
       </div>
 
       <h1 class="hero-title">
@@ -17,7 +17,7 @@
       </h1>
 
       <p class="hero-description">
-        The Penguins Club is a non-profit community initiative established in 2020. We empower students, engineers, and everyday computer users through free monthly meetups, hands-on Linux workshops, open source mentoring, and public data initiatives — free from commercial gatekeeping.
+        The Penguins Club is a community initiative running from 2020. We empower students, engineers, and everyday computer users through free monthly meetups, hands-on Linux workshops, open source mentoring, and public projects.
       </p>
 
       <div class="hero-cta-group">
@@ -39,16 +39,16 @@
         </a>
       </div>
 
-      <!-- Real Non-Profit Impact Metrics -->
+      <!-- Real Impact Metrics -->
       <div class="hero-stats-strip glass-card">
         <div class="stat-col">
           <span class="stat-val">2020</span>
-          <span class="stat-text">Active Since</span>
+          <span class="stat-text">Running From</span>
         </div>
         <div class="stat-sep"></div>
         <div class="stat-col">
           <span class="stat-val">Monthly</span>
-          <span class="stat-text">Regular Meetups</span>
+          <span class="stat-text">Meetups</span>
         </div>
         <div class="stat-sep"></div>
         <div class="stat-col">
@@ -57,79 +57,82 @@
         </div>
         <div class="stat-sep"></div>
         <div class="stat-col">
-          <span class="stat-val">100% Free</span>
-          <span class="stat-text">Volunteer-Driven</span>
+          <span class="stat-val">Open</span>
+          <span class="stat-text">Volunteer-Run</span>
         </div>
       </div>
     </div>
 
-    <!-- Right Column: Clean Non-Profit Terminal / Identity Card -->
+    <!-- Right Column: Sleek Linux Terminal Card -->
     <div class="hero-visual">
-      <div class="hero-org-card glass-card">
-        <!-- Top window chrome -->
-        <div class="card-terminal-bar">
-          <div class="terminal-dots">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
+      <div class="terminal-window">
+        <!-- Terminal Titlebar -->
+        <div class="terminal-header">
+          <div class="term-dots">
+            <span class="tdot tdot-red"></span>
+            <span class="tdot tdot-yellow"></span>
+            <span class="tdot tdot-green"></span>
           </div>
-          <span class="terminal-title">thepenguins.club — non-profit organization</span>
+          <div class="term-title">tux@thepenguins.club: ~</div>
+          <div class="term-lang">bash</div>
         </div>
 
-        <div class="card-inner">
-          <!-- Org Identity Row -->
-          <div class="org-identity-row">
-            <div class="mascot-circle-wrap">
-              <svg class="mascot-svg" width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24 4C17.37 4 13 9.37 13 16C13 19.5 14.5 23 12 28C9.5 33 10 39 12 41C14 43 18 43 20 42C21.5 43.5 23.5 44 26 44C30 44 34 42 36 39C38 36 38 31 35 27C33.5 24.5 35 20.5 35 16C35 9.37 30.63 4 24 4Z" fill="var(--bg-canvas)" stroke="currentColor" stroke-width="2.5"/>
-                <ellipse cx="24" cy="30" rx="8" ry="10" fill="currentColor" fill-opacity="0.15"/>
-                <circle cx="19" cy="15" r="2" fill="currentColor"/>
-                <circle cx="29" cy="15" r="2" fill="currentColor"/>
-                <path d="M20 18H28L24 23L20 18Z" fill="var(--accent-amber)"/>
-                <path d="M16 41C13 41 12 43 14 44C16 45 19 44 21 42" stroke="var(--accent-amber)" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M32 41C35 41 36 43 34 44C32 45 29 44 27 42" stroke="var(--accent-amber)" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Terminal Content -->
+        <div class="terminal-content">
+          <div class="term-line">
+            <span class="t-prompt">$</span>
+            <span class="t-cmd">tpc status</span>
+          </div>
+
+          <div class="term-output-grid">
+            <div class="out-row">
+              <span class="out-key">Club</span>
+              <span class="out-val highlight-val">The Penguins Club (TPC)</span>
+            </div>
+            <div class="out-row">
+              <span class="out-key">Active</span>
+              <span class="out-val">Running from 2020</span>
+            </div>
+            <div class="out-row">
+              <span class="out-key">Teaches</span>
+              <span class="out-val">Linux, FOSS, Security &amp; Tools</span>
+            </div>
+            <div class="out-row">
+              <span class="out-key">Cadence</span>
+              <span class="out-val">Monthly Community Meetups</span>
+            </div>
+            <div class="out-row">
+              <span class="out-key">Location</span>
+              <span class="out-val">Bangladesh &bull; Global Community</span>
+            </div>
+          </div>
+
+          <div class="term-line" style="margin-top: 0.75rem;">
+            <span class="t-prompt">$</span>
+            <span class="t-cmd">tpc connect --chat</span>
+          </div>
+
+          <div class="term-badges-row">
+            <span class="t-badge t-badge-green">
+              <span class="t-pulse"></span>
+              t.me/penguinsclubnetwork
+            </span>
+            <span class="t-badge t-badge-blue">30+ Repos on GitHub</span>
+          </div>
+
+          <!-- Bottom Action inside Terminal -->
+          <div class="term-action-row">
+            <a
+              href="https://t.me/penguinsclubnetwork"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="terminal-join-btn"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
               </svg>
-            </div>
-            <div class="org-headings">
-              <h2 class="org-name">The Penguins Club</h2>
-              <span class="org-meta-line">Established 2020 &bull; Bangladesh &amp; Global</span>
-            </div>
-          </div>
-
-          <!-- Non-Profit Terminal Snippet -->
-          <div class="terminal-body">
-            <div class="cli-row">
-              <span class="cli-prompt">$</span>
-              <span class="cli-cmd">cat /etc/tpc/mission.txt</span>
-            </div>
-            <p class="cli-text">
-              "We provide free education on GNU/Linux systems, open source tooling, privacy defense, and digital sovereignty. Open to all without commercial paywalls."
-            </p>
-
-            <div class="cli-row">
-              <span class="cli-prompt">$</span>
-              <span class="cli-cmd">status --organization</span>
-            </div>
-            <div class="status-tags-row">
-              <span class="status-badge green-badge">
-                <span class="badge-dot"></span>
-                Non-Profit Community
-              </span>
-              <span class="status-badge blue-badge">Monthly Meetups</span>
-              <span class="status-badge teal-badge">Active on Telegram</span>
-            </div>
-          </div>
-
-          <!-- Quick Action Footer inside Card -->
-          <div class="card-footer-box">
-            <div class="footer-channel-info">
-              <span class="channel-label">Official Community Group:</span>
-              <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="channel-link">
-                t.me/penguinsclubnetwork
-              </a>
-            </div>
-            <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary card-join-btn">
-              Join Group &rarr;
+              Open Telegram Community &rarr;
             </a>
           </div>
         </div>
@@ -140,8 +143,8 @@
 
 <style>
   .hero-section {
-    padding-top: clamp(2.5rem, 5vw, 4.25rem);
-    padding-bottom: clamp(3rem, 5vw, 4.75rem);
+    padding-top: clamp(2rem, 4.5vw, 3.75rem);
+    padding-bottom: clamp(2.5rem, 4.5vw, 4.25rem);
     position: relative;
     overflow: hidden;
   }
@@ -149,7 +152,7 @@
   .hero-container {
     display: flex;
     flex-direction: column;
-    gap: 2.75rem;
+    gap: 2.5rem;
   }
 
   @media (min-width: 1024px) {
@@ -178,18 +181,18 @@
     font-size: 0.8125rem;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 1.35rem;
+    margin-bottom: 1.25rem;
     box-shadow: var(--shadow-sm);
   }
 
   .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+    font-size: clamp(2.1rem, 4.2vw, 3.3rem);
     font-weight: 600;
     line-height: 1.15;
     letter-spacing: -0.015em;
     color: var(--text-primary);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.15rem;
   }
 
   .hero-highlight {
@@ -197,7 +200,7 @@
   }
 
   .hero-description {
-    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    font-size: clamp(0.975rem, 1.25vw, 1.1rem);
     line-height: 1.65;
     color: var(--text-secondary);
     margin-bottom: 1.75rem;
@@ -223,7 +226,7 @@
     justify-content: space-between;
     width: 100%;
     max-width: 560px;
-    padding: 1.1rem 1.4rem;
+    padding: 1rem 1.4rem;
     background: var(--bg-card);
     border: 1px solid var(--border-card);
   }
@@ -255,227 +258,178 @@
 
   .stat-sep {
     width: 1px;
-    height: 32px;
+    height: 30px;
     background: var(--border-subtle);
     flex-shrink: 0;
   }
 
-  /* Right Visual Card */
+  /* Right Terminal Window */
   .hero-visual {
     width: 100%;
     display: flex;
     justify-content: center;
   }
 
-  .hero-org-card {
+  .terminal-window {
     width: 100%;
-    max-width: 460px;
-    padding: 0;
-    overflow: hidden;
-    background: var(--bg-card);
-    border: 1px solid var(--border-glow);
-    box-shadow: var(--shadow-glow);
+    max-width: 480px;
+    background: #0f172a;
+    border: 1px solid #1e293b;
     border-radius: var(--radius-lg);
-  }
-
-  .card-terminal-bar {
-    background: var(--bg-subtle);
-    padding: 0.75rem 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .terminal-dots {
-    display: flex;
-    gap: 6px;
-    flex-shrink: 0;
-  }
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-  }
-
-  .dot-red { background: #ef4444; }
-  .dot-yellow { background: #f59e0b; }
-  .dot-green { background: #10b981; }
-
-  .terminal-title {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-    white-space: nowrap;
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
     overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  .card-inner {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .org-identity-row {
+  .terminal-header {
+    background: #1e293b;
+    padding: 0.75rem 1.15rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding-bottom: 1.1rem;
-    border-bottom: 1px solid var(--border-subtle);
+    justify-content: space-between;
+    border-bottom: 1px solid #334155;
   }
 
-  .mascot-circle-wrap {
-    width: 52px;
-    height: 52px;
+  .term-dots {
+    display: flex;
+    gap: 7px;
+  }
+
+  .tdot {
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
-    background: var(--badge-bg);
-    border: 1px solid var(--border-glow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: var(--text-accent);
   }
 
-  .mascot-svg {
-    width: 32px;
-    height: 32px;
-    display: block;
-  }
+  .tdot-red { background: #ef4444; }
+  .tdot-yellow { background: #f59e0b; }
+  .tdot-green { background: #10b981; }
 
-  .org-headings {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .org-name {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin: 0;
-  }
-
-  .org-meta-line {
-    font-size: 0.775rem;
-    color: var(--text-muted);
-    display: block;
-  }
-
-  /* Terminal Snippet */
-  .terminal-body {
-    background: var(--bg-terminal);
-    color: #e2e8f0;
-    padding: 1.25rem;
-    border-radius: var(--radius-sm);
+  .term-title {
     font-family: var(--font-mono);
-    font-size: 0.825rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
+    font-size: 0.75rem;
+    color: #94a3b8;
   }
 
-  .cli-row {
+  .term-lang {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #64748b;
+    text-transform: uppercase;
+  }
+
+  .terminal-content {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+
+  .term-line {
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
 
-  .cli-prompt {
-    color: #64748b;
+  .t-prompt {
+    color: #10b981;
+    font-weight: 700;
   }
 
-  .cli-cmd {
+  .t-cmd {
     color: #38bdf8;
+    font-weight: 600;
   }
 
-  .cli-text {
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    color: #94a3b8;
-    line-height: 1.55;
-    margin: 0;
+  .term-output-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.65rem 0.85rem;
+    background: #141e2e;
+    border: 1px solid #1e293b;
+    border-radius: var(--radius-sm);
   }
 
-  .status-tags-row {
+  .out-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .out-key {
+    color: #64748b;
+    min-width: 70px;
+    flex-shrink: 0;
+  }
+
+  .out-val {
+    color: #cbd5e1;
+  }
+
+  .highlight-val {
+    color: #f8fafc;
+    font-weight: 600;
+  }
+
+  .term-badges-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-top: 0.2rem;
+    gap: 0.5rem;
   }
 
-  .status-badge {
+  .t-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    font-size: 0.725rem;
-    padding: 0.2rem 0.55rem;
+    gap: 0.4rem;
+    padding: 0.3rem 0.65rem;
     border-radius: 9999px;
+    font-size: 0.75rem;
   }
 
-  .green-badge {
+  .t-badge-green {
     background: rgba(16, 185, 129, 0.15);
-    color: #34d399;
     border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #34d399;
   }
 
-  .blue-badge {
+  .t-badge-blue {
     background: rgba(56, 189, 248, 0.15);
-    color: #38bdf8;
     border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
   }
 
-  .teal-badge {
-    background: rgba(20, 184, 166, 0.15);
-    color: #2dd4bf;
-    border: 1px solid rgba(20, 184, 166, 0.3);
-  }
-
-  .badge-dot {
+  .t-pulse {
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background: #10b981;
   }
 
-  /* Card Footer Box */
-  .card-footer-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+  .term-action-row {
     padding-top: 0.5rem;
   }
 
-  .footer-channel-info {
+  .terminal-join-btn {
     display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-
-  .channel-label {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .channel-link {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: #2563eb;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
     font-weight: 600;
-    color: var(--text-accent);
+    font-size: 0.85rem;
+    transition: background 0.15s ease, transform 0.15s ease;
   }
 
-  .card-join-btn {
-    padding: 0.55rem 0.95rem;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    flex-shrink: 0;
+  .terminal-join-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    color: #ffffff;
   }
 </style>
