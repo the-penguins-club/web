@@ -59,31 +59,41 @@ const educationalTracks = [
   }
 ];
 
-const nonprofitUseCases = [
+const communityUseCases = [
   {
-    title: "Program design and evaluation",
-    desc: "Define measurable milestones, educational workshops, and community outcomes to evaluate real-world impact over time.",
+    category: "Program Design & Evaluation",
+    title: "Linux Bootcamps & Monthly Workshop Tracks",
+    desc: "Structuring sequential monthly workshop curriculums from command-line literacy to headless server setup. We evaluate attendee skill growth via hands-on lab challenges and post-session peer reviews.",
+    deliverable: "Standardized lab manuals & skill progression rubrics",
     icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`
   },
   {
-    title: "AI policy templates for your organization",
-    desc: "Establish responsible, ethical, and privacy-conscious AI guidelines tailored for mission-driven teams and community initiatives.",
+    category: "AI Policy Templates & Ethics",
+    title: "Local Open-Source AI & Privacy Guidelines",
+    desc: "Establishing community guidelines for using private open-weights models (Ollama, llama.cpp on GNU/Linux). We teach developers and volunteers how to run AI locally without telemetry or commercial data harvesting.",
+    deliverable: "Local LLM deployment playbooks & volunteer ethical AI guidelines",
     icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`
   },
   {
-    title: "Data visualization and reporting",
-    desc: "Create transparent dashboards, metric charts, and visual storytelling to keep community members and stakeholders informed.",
+    category: "Data Visualization & Reporting",
+    title: "Civic Tech Maps & 'bd-startups' Dashboards",
+    desc: "Curating Bangladesh's open tech ecosystem through transparent public datasets. Projects like 'bd-startups' and 'internetting' provide visual directories and connectivity status reports for students and engineers.",
+    deliverable: "Open JSON datasets, interactive tech maps & network uptime logs",
     icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`
   },
   {
-    title: "Grant writing and donor communications",
-    desc: "Draft clear, compelling proposals, financial accountability updates, and transparent donor communications.",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>`
+    category: "Grant Writing & Donor Communications",
+    title: "Hardware Grants & Linux Mirror Sponsorships",
+    desc: "Drafting clear, transparent funding proposals to acquire refurbished hardware for student labs, maintain high-bandwidth Linux mirror servers, and distribute free educational booklets, leaflets, and stickers.",
+    deliverable: "Transparent hardware allocation logs & community donor updates",
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>`
   },
   {
-    title: "Research and landscape analysis",
-    desc: "Analyze open source tech landscapes, gather community needs assessments, and identify ecosystem opportunities.",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`
+    category: "Research & Landscape Analysis",
+    title: "National Cybersecurity & FOSS Landscape Mapping",
+    desc: "Publishing community-driven technical research like our 'Awesome-Cybersecurity-Bangladesh' repository. We benchmark computer defense practices, open-source adoption, and Linux software availability across local universities.",
+    deliverable: "Curated research directories, tooling audits & university benchmarks",
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><path d="M11 8v6"></path><path d="M8 11h6"></path></svg>`
   }
 ];
 ---
@@ -128,47 +138,53 @@ const nonprofitUseCases = [
       ))}
     </div>
 
-    <!-- Common Nonprofit Use Cases & Library Card -->
-    <div id="nonprofit-use-cases" class="use-cases-box glass-card">
+    <!-- Community Use Cases Section -->
+    <div id="community-use-cases" class="use-cases-box glass-card">
       <div class="use-cases-header">
         <div class="use-cases-badge">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
           </svg>
-          Resource &amp; Knowledge Base
+          Community Operational Framework
         </div>
-        <h3 class="use-cases-title">Common Nonprofit Use Cases</h3>
+        <h3 class="use-cases-title">How Our Community Applies Non-Profit Methodologies</h3>
         <p class="use-cases-desc">
-          Explore the <a href="https://academy.claude.com/all?kind=use-case" target="_blank" rel="noopener noreferrer" class="library-link">use case library</a> for inspiration, including:
+          Structured operational use cases driving The Penguins Club initiatives — from technical program evaluations to ethical AI policies, civic datasets, and ecosystem research:
         </p>
       </div>
 
       <div class="use-cases-grid">
-        {nonprofitUseCases.map((uc) => (
+        {communityUseCases.map((uc) => (
           <div class="use-case-card">
+            <span class="use-case-category-tag">{uc.category}</span>
             <div class="use-case-top">
               <span class="use-case-icon" set:html={uc.icon} />
               <h4 class="use-case-name">{uc.title}</h4>
             </div>
             <p class="use-case-text">{uc.desc}</p>
+            <div class="use-case-deliverable">
+              <span class="deliv-badge">Deliverable</span>
+              <span class="deliv-text">{uc.deliverable}</span>
+            </div>
           </div>
         ))}
       </div>
 
-      <div class="use-cases-cta-wrap">
+      <div class="use-cases-footer-row">
+        <div class="use-cases-note">
+          <span class="pulse-chip-dot"></span>
+          <span>100% open-source &amp; community-driven &bull; Zero proprietary lock-in</span>
+        </div>
         <a
-          href="https://academy.claude.com/all?kind=use-case"
+          href="https://github.com/the-penguins-club"
           target="_blank"
           rel="noopener noreferrer"
           class="btn-primary use-cases-btn"
         >
-          Explore the Use Case Library
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
+          Explore Our Public Repositories
+          <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
     </div>
@@ -393,10 +409,10 @@ const nonprofitUseCases = [
     background: var(--bg-canvas);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 1.4rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.75rem;
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
@@ -404,6 +420,15 @@ const nonprofitUseCases = [
     transform: translateY(-2px);
     border-color: var(--border-glow);
     box-shadow: var(--shadow-sm);
+  }
+
+  .use-case-category-tag {
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-accent);
+    margin-bottom: -0.25rem;
   }
 
   .use-case-top {
@@ -436,19 +461,67 @@ const nonprofitUseCases = [
     font-size: 0.85rem;
     color: var(--text-secondary);
     line-height: 1.55;
+    flex-grow: 1;
   }
 
-  .use-cases-cta-wrap {
+  .use-case-deliverable {
     display: flex;
-    justify-content: flex-start;
-    padding-top: 0.5rem;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border-subtle);
+    margin-top: 0.5rem;
+    font-size: 0.775rem;
+    line-height: 1.45;
+  }
+
+  .deliv-badge {
+    font-size: 0.675rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: color-mix(in srgb, var(--accent-teal) 15%, transparent);
+    color: var(--text-accent-secondary);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .deliv-text {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+  }
+
+  .use-cases-footer-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 768px) {
+    .use-cases-footer-row {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .use-cases-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.825rem;
+    color: var(--text-muted);
   }
 
   .use-cases-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 1.75rem;
-    font-size: 0.95rem;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
   }
 </style>
