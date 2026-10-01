@@ -1,882 +1,332 @@
 ---
-// Monthly Meetup Photo Archive & Gallery Component
-// The Penguins Club has been running monthly meetups continuously since 2020.
-// Teaching Linux, Open Source tools, Cybersecurity, System Administration, and Tech Careers.
+// Real Rooms & Meetup Gallery Component
+// Directly matching ML Bangladesh Screenshot 2: "FROM CAMPUS FLOORS / Real rooms. Real builds."
+// Featuring continuous photo rows of real workshops, sticker tables, laptops, and university halls.
 
-interface MeetupRecord {
-  id: string;
-  edition: string;
-  title: string;
-  date: string;
-  category: "linux" | "opensource" | "security" | "community";
-  categoryLabel: string;
-  location: string;
-  format: string;
-  topics: string[];
-  description: string;
-  image: string;
-  fallbackImage: string;
-}
-
-const meetups: MeetupRecord[] = [
+const rowOnePhotos = [
   {
-    id: "meetup-sfd-gathering",
-    edition: "Meetup #34",
-    title: "Software Freedom Day & Community Gathering",
-    date: "Monthly Meetup • Dhaka",
-    category: "community",
-    categoryLabel: "Community & Talks",
-    location: "Dhaka, Bangladesh",
-    format: "In-Person Gathering",
-    topics: ["Software Freedom Day", "GNU/Linux Literacy", "Community Networking", "Open Source Projects"],
-    description: "Community gathering celebrating software freedom and digital sovereignty. Members gathered in Dhaka to discuss open-source tools, system privacy, and upcoming collaborative sprints.",
     image: "/images/meetups/software-freedom.png",
-    fallbackImage: "/images/meetups/meetup-linux-intro.svg"
+    alt: "Software Freedom Day members meetup in Dhaka",
+    title: "Software Freedom Day Gathering"
   },
   {
-    id: "meetup-diu-dev",
-    edition: "Meetup #33",
-    title: "DIU Dev Meet Up: Code, Connect & Create",
-    date: "Campus Meetup • Session 3",
-    category: "opensource",
-    categoryLabel: "Open Source & Tools",
-    location: "Daffodil International University, Dhaka",
-    format: "Workshop & Panel Session",
-    topics: ["Campus Outreach", "Student Developers", "Git & Upstream PRs", "Career Mentorship"],
-    description: "Hands-on campus session and speaker panel at Daffodil International University. Introducing students to open-source contribution, Linux environments, and collaborative development practices.",
     image: "/images/meetups/meetup-workshop-daffodil.png",
-    fallbackImage: "/images/meetups/meetup-git-foss.svg"
+    alt: "Campus Workshop at Daffodil International University",
+    title: "DIU Campus Workshop"
   },
   {
-    id: "meetup-sfd-roundtable",
-    edition: "Meetup #32",
-    title: "Software Freedom Roundtable & Tech Discussions",
-    date: "Monthly Meetup • Dhaka",
-    category: "linux",
-    categoryLabel: "Linux & Systems",
-    location: "Dhaka Community Space",
-    format: "Roundtable & Discussion",
-    topics: ["Linux Systems", "Privacy Defense", "FOSS Tools", "Digital Literacy"],
-    description: "An open roundtable discussion on desktop distributions, self-hosting alternatives to proprietary cloud services, and community-driven open-source tooling.",
     image: "/images/meetups/software-freedom-day.png",
-    fallbackImage: "/images/meetups/meetup-self-hosting.svg"
+    alt: "Open Systems Roundtable with laptops in Dhaka",
+    title: "Open Systems Roundtable"
   },
   {
-    id: "meetup-tuxforge-hangout",
-    edition: "Meetup #31",
-    title: "Community Hangout & Penguinify Showcase",
-    date: "Monthly Meetup • Dhaka",
-    category: "community",
-    categoryLabel: "Community & Career",
-    location: "Dhaka, Bangladesh",
-    format: "Community Meetup",
-    topics: ["Community Repos", "Penguinify Demo", "Telegram Bots", "Open Collaboration"],
-    description: "Casual community meetup where members gathered to discuss ongoing open repositories, automation tools, and upcoming monthly learning modules.",
     image: "/images/meetups/meetup-tuxforge.png",
-    fallbackImage: "/images/meetups/meetup-networking-career.svg"
+    alt: "Community hangout and Linux Demos at Tuxforge Lab",
+    title: "Tuxforge Lab Demos"
   },
   {
-    id: "meetup-linux-cli",
-    edition: "Meetup #30",
-    title: "Linux Command Line Essentials & Shell Automation",
-    date: "Monthly Meetup • Hands-on",
-    category: "linux",
-    categoryLabel: "Linux & Systems",
-    location: "Interactive Stream & Venue",
-    format: "Hands-on Workshop",
-    topics: ["Bash Fundamentals", "Piping & Redirection", "Systemd Services", "User Permissions"],
-    description: "Hands-on workshop teaching terminal navigation, shell scripting automation, and foundational system administration concepts for beginners and students.",
-    image: "/images/meetups/meetup-linux-intro.svg",
-    fallbackImage: "/images/meetups/meetup-linux-intro.svg"
+    image: "/images/meetups/meetup-workshop-daffodil.png",
+    alt: "Students learning Linux commands in university lab",
+    title: "University Systems Lab"
   },
   {
-    id: "meetup-security-defense",
-    edition: "Meetup #29",
-    title: "Linux Hardening, Security & Threat Defense",
-    date: "Monthly Meetup • Technical Lab",
-    category: "security",
-    categoryLabel: "Security & Privacy",
-    location: "Virtual & Hacker Space",
-    format: "Security Deep-Dive",
-    topics: ["SSH Hardening", "Firewalls (UFW)", "Awesome-Cybersecurity", "Network Auditing"],
-    description: "Practical guide to securing Linux systems and workstations. Drawing insights from our community project Awesome-Cybersecurity-Bangladesh.",
-    image: "/images/meetups/meetup-cybersecurity.svg",
-    fallbackImage: "/images/meetups/meetup-cybersecurity.svg"
+    image: "/images/meetups/software-freedom.png",
+    alt: "Community developers and mentors collaborating",
+    title: "FOSS Mentoring Sprints"
   }
+];
+
+const rowTwoPhotos = [
+  {
+    image: "/images/meetups/meetup-tuxforge.png",
+    alt: "Stickers, Tux penguins, and open source materials",
+    title: "Stickers & Linux Kits"
+  },
+  {
+    image: "/images/meetups/software-freedom-day.png",
+    alt: "Peer code review and Bash terminal automation",
+    title: "Hands-on Terminal Practice"
+  },
+  {
+    image: "/images/meetups/software-freedom.png",
+    alt: "Annual Linux community conference Dhaka",
+    title: "Community Conference"
+  },
+  {
+    image: "/images/meetups/meetup-workshop-daffodil.png",
+    alt: "Auditorium workshop and Linux installation fest",
+    title: "Campus Install-Fest"
+  },
+  {
+    image: "/images/meetups/meetup-tuxforge.png",
+    alt: "Live demo of Telegram bot automation on Linux server",
+    title: "Telegram Bots & Server Demos"
+  },
+  {
+    image: "/images/meetups/software-freedom-day.png",
+    alt: "Open discussions on self-hosting and digital privacy",
+    title: "Self-Hosting Lab"
+  }
+];
+
+const partners = [
+  "Daffodil International University",
+  "Campus Linux Clubs",
+  "Tuxforge Lab",
+  "Debian & Arch Mirror Mirrors",
+  "100% Volunteer Backed"
 ];
 ---
 
-<section id="gallery" class="gallery-section">
+<section id="gallery" class="campus-floors-section">
   <div class="container">
-    <div class="gallery-header">
-      <div class="header-content">
-        <div class="section-tag">Archive &amp; Community History</div>
-        <h2 class="section-title">Monthly Meetups Gallery</h2>
-        <p class="section-desc">
-          Since 2020, The Penguins Club has been organizing regular monthly meetups to teach Linux, open source tools, system administration, and software freedom. Here is a look back at our past sessions and workshops.
-        </p>
+    <!-- Header (Screenshot 2: FROM CAMPUS FLOORS / Real rooms. Real builds.) -->
+    <div class="floors-header">
+      <div class="header-titles">
+        <span class="floors-eyebrow">FROM CAMPUS FLOORS</span>
+        <h2 class="floors-title">Real rooms. Real builds.</h2>
       </div>
 
-      <!-- Quick Meetup Summary Stat Card -->
-      <div class="gallery-summary-card glass-card">
-        <div class="summary-item">
-          <span class="summary-num">2020</span>
-          <span class="summary-label">First Meetup Hosted</span>
-        </div>
-        <div class="summary-divider"></div>
-        <div class="summary-item">
-          <span class="summary-num">Monthly</span>
-          <span class="summary-label">Cadence Maintained</span>
-        </div>
-        <div class="summary-divider"></div>
-        <div class="summary-item">
-          <span class="summary-num">100% Free</span>
-          <span class="summary-label">Open to Everyone</span>
-        </div>
-      </div>
+      <a href="#events" class="floors-action-link">
+        See meetups <span aria-hidden="true">&rarr;</span>
+      </a>
     </div>
+  </div>
 
-    <!-- Category Filter Tabs -->
-    <div class="gallery-filter-bar">
-      <button class="gallery-tab active" data-filter="all">
-        All Meetups <span class="tab-count">{meetups.length}</span>
-      </button>
-      <button class="gallery-tab" data-filter="linux">
-        Linux &amp; Systems <span class="tab-count">{meetups.filter(m => m.category === 'linux').length}</span>
-      </button>
-      <button class="gallery-tab" data-filter="opensource">
-        Open Source &amp; Tools <span class="tab-count">{meetups.filter(m => m.category === 'opensource').length}</span>
-      </button>
-      <button class="gallery-tab" data-filter="security">
-        Security &amp; Privacy <span class="tab-count">{meetups.filter(m => m.category === 'security').length}</span>
-      </button>
-      <button class="gallery-tab" data-filter="community">
-        Community &amp; Career <span class="tab-count">{meetups.filter(m => m.category === 'community').length}</span>
-      </button>
-    </div>
-
-    <!-- Meetup Grid -->
-    <div class="meetups-grid" id="meetups-grid">
-      {meetups.map((m) => (
-        <article
-          class="meetup-card glass-card"
-          data-category={m.category}
-          data-title={m.title}
-          data-edition={m.edition}
-          data-date={m.date}
-          data-location={m.location}
-          data-format={m.format}
-          data-desc={m.description}
-          data-img={m.image}
-          data-topics={JSON.stringify(m.topics)}
-        >
-          <div class="meetup-img-wrap">
+  <!-- 2 Scrolling Photo Rows (Full width edge-to-edge reel) -->
+  <div class="marquee-wrapper" aria-label="Campus photo strip">
+    <!-- Row 1 -->
+    <div class="marquee-track track-left">
+      <div class="marquee-content">
+        {rowOnePhotos.map((photo) => (
+          <div class="photo-thumb-card" title={photo.title}>
             <img
-              src={m.image}
-              alt={`${m.edition}: ${m.title}`}
-              class="meetup-img"
+              src={photo.image}
+              alt={photo.alt}
+              class="thumb-img"
               loading="lazy"
-              onerror={`this.onerror=null; this.src='${m.fallbackImage}';`}
             />
-            <div class="meetup-badges-overlay">
-              <span class="badge-edition">{m.edition}</span>
-              <span class="badge-format">{m.format}</span>
-            </div>
           </div>
-
-          <div class="meetup-card-body">
-            <div class="meetup-meta-row">
-              <span class="meetup-date-text">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                {m.date}
-              </span>
-              <span class="meetup-cat-pill">{m.categoryLabel}</span>
-            </div>
-
-            <h3 class="meetup-card-title">{m.title}</h3>
-            <p class="meetup-card-desc">{m.description}</p>
-
-            <div class="meetup-topics">
-              {m.topics.map((top) => (
-                <span class="topic-tag">{top}</span>
-              ))}
-            </div>
-
-            <div class="meetup-card-footer">
-              <span class="meetup-loc-text">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                {m.location}
-              </span>
-              <button type="button" class="btn-preview view-meetup-btn" aria-label={`View details for ${m.edition}`}>
-                View Details &rarr;
-              </button>
-            </div>
+        ))}
+      </div>
+      <!-- Duplicate for seamless infinite loop -->
+      <div class="marquee-content" aria-hidden="true">
+        {rowOnePhotos.map((photo) => (
+          <div class="photo-thumb-card" title={photo.title}>
+            <img
+              src={photo.image}
+              alt={photo.alt}
+              class="thumb-img"
+              loading="lazy"
+            />
           </div>
-        </article>
-      ))}
+        ))}
+      </div>
     </div>
 
-    <!-- Meetup Speaker Callout -->
-    <div class="meetup-propose-card glass-card">
-      <div class="propose-left">
-        <div class="pill-mini">Propose a Talk or Volunteer</div>
-        <h3 class="propose-title">Want to speak or share your project at our next monthly meetup?</h3>
-        <p class="propose-desc">
-          We welcome beginner-friendly walkthroughs, kernel explorations, self-hosting showcases, and open source demonstrations. No prior speaking experience required — we are here to support you.
-        </p>
+    <!-- Row 2 -->
+    <div class="marquee-track track-right">
+      <div class="marquee-content">
+        {rowTwoPhotos.map((photo) => (
+          <div class="photo-thumb-card" title={photo.title}>
+            <img
+              src={photo.image}
+              alt={photo.alt}
+              class="thumb-img"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
-      <div class="propose-right">
-        <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary">
-          Reach out on Telegram
-          <span aria-hidden="true">&rarr;</span>
-        </a>
-        <a href="mailto:mail@thepenguins.club" class="btn-secondary">
-          Email Organizers
-        </a>
+      <!-- Duplicate for seamless infinite loop -->
+      <div class="marquee-content" aria-hidden="true">
+        {rowTwoPhotos.map((photo) => (
+          <div class="photo-thumb-card" title={photo.title}>
+            <img
+              src={photo.image}
+              alt={photo.alt}
+              class="thumb-img"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
     </div>
   </div>
 
-  <!-- Interactive Meetup Photo / Detail Lightbox Modal -->
-  <div id="meetup-modal" class="modal-backdrop" aria-hidden="true">
-    <div class="modal-dialog glass-card" role="dialog" aria-modal="true" aria-labelledby="modal-meetup-title">
-      <div class="modal-header-bar">
-        <div class="modal-badges">
-          <span id="modal-meetup-edition" class="badge-edition">Meetup</span>
-          <span id="modal-meetup-format" class="badge-format">Session</span>
-        </div>
-        <button id="modal-gallery-close" class="modal-close-btn" aria-label="Close dialog">&times;</button>
-      </div>
-
-      <div class="modal-dialog-body">
-        <div class="modal-image-container">
-          <img id="modal-meetup-image" src="" alt="Meetup preview" class="modal-main-img" />
-        </div>
-
-        <div class="modal-text-content">
-          <h3 id="modal-meetup-title" class="modal-title-text">Meetup Title</h3>
-          
-          <div class="modal-meta-grid">
-            <div class="meta-item">
-              <span class="meta-label">Date &amp; Schedule</span>
-              <span id="modal-meetup-date" class="meta-val">Date</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Location / Format</span>
-              <span id="modal-meetup-location" class="meta-val">Location</span>
-            </div>
-          </div>
-
-          <div class="modal-desc-box">
-            <h4 class="box-heading">Session Overview</h4>
-            <p id="modal-meetup-desc" class="modal-desc-text">Description</p>
-          </div>
-
-          <div class="modal-topics-box">
-            <h4 class="box-heading">Key Topics Covered</h4>
-            <div id="modal-meetup-topics" class="topics-wrap"></div>
-          </div>
-
-          <div class="modal-footer-action">
-            <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;">
-              Join Next Meetup on Telegram &rarr;
-            </a>
-          </div>
-        </div>
+  <!-- Supporters Row (Screenshot 2 bottom) -->
+  <div class="container">
+    <div class="supporters-row">
+      <span class="supporters-label">Supporters &amp; Academic Hosts:</span>
+      <div class="supporters-list">
+        {partners.map((partner) => (
+          <span class="supporter-badge">{partner}</span>
+        ))}
       </div>
     </div>
   </div>
 </section>
 
-<!-- Gallery Client Script for Filter & Modal Lightbox -->
-<script>
-  // Filter tabs logic
-  const tabs = document.querySelectorAll('.gallery-tab');
-  const cards = document.querySelectorAll<HTMLElement>('.meetup-card');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      const filter = tab.getAttribute('data-filter');
-      cards.forEach(card => {
-        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Modal / Lightbox Logic
-  const modal = document.getElementById('meetup-modal');
-  const modalClose = document.getElementById('modal-gallery-close');
-  const modalImg = document.getElementById('modal-meetup-image') as HTMLImageElement | null;
-  const modalTitle = document.getElementById('modal-meetup-title');
-  const modalEdition = document.getElementById('modal-meetup-edition');
-  const modalFormat = document.getElementById('modal-meetup-format');
-  const modalDate = document.getElementById('modal-meetup-date');
-  const modalLoc = document.getElementById('modal-meetup-location');
-  const modalDesc = document.getElementById('modal-meetup-desc');
-  const modalTopics = document.getElementById('modal-meetup-topics');
-
-  function openMeetupModal(card: HTMLElement) {
-    if (!modal) return;
-    const title = card.getAttribute('data-title') || '';
-    const edition = card.getAttribute('data-edition') || '';
-    const format = card.getAttribute('data-format') || '';
-    const date = card.getAttribute('data-date') || '';
-    const loc = card.getAttribute('data-location') || '';
-    const desc = card.getAttribute('data-desc') || '';
-    const img = card.getAttribute('data-img') || '';
-    const topicsRaw = card.getAttribute('data-topics') || '[]';
-
-    if (modalTitle) modalTitle.textContent = title;
-    if (modalEdition) modalEdition.textContent = edition;
-    if (modalFormat) modalFormat.textContent = format;
-    if (modalDate) modalDate.textContent = date;
-    if (modalLoc) modalLoc.textContent = loc;
-    if (modalDesc) modalDesc.textContent = desc;
-    if (modalImg) {
-      modalImg.src = img;
-      modalImg.alt = `${edition}: ${title}`;
-    }
-
-    if (modalTopics) {
-      try {
-        const topics = JSON.parse(topicsRaw) as string[];
-        modalTopics.innerHTML = topics.map(t => `<span class="topic-tag">${t}</span>`).join('');
-      } catch {
-        modalTopics.innerHTML = '';
-      }
-    }
-
-    modal.classList.add('is-active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMeetupModal() {
-    if (modal) {
-      modal.classList.remove('is-active');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  }
-
-  cards.forEach(card => {
-    const btn = card.querySelector('.view-meetup-btn');
-    btn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openMeetupModal(card);
-    });
-
-    card.addEventListener('click', () => {
-      openMeetupModal(card);
-    });
-  });
-
-  modalClose?.addEventListener('click', closeMeetupModal);
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeMeetupModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal?.classList.contains('is-active')) {
-      closeMeetupModal();
-    }
-  });
-</script>
-
 <style>
-  .gallery-section {
-    padding: clamp(4rem, 8vw, 7rem) 0;
+  .campus-floors-section {
+    padding: clamp(3.5rem, 6vw, 5rem) 0 clamp(2.5rem, 5vw, 4rem);
     position: relative;
-    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    background-color: var(--bg-canvas);
+    overflow: hidden;
   }
 
-  .gallery-header {
+  .floors-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+  }
+
+  .header-titles {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
+    gap: 0.35rem;
   }
 
-  @media (min-width: 900px) {
-    .gallery-header {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-    .header-content {
-      max-width: 620px;
-    }
-  }
-
-  .gallery-summary-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 1.25rem 1.75rem;
-    gap: 1.25rem;
-    background: var(--bg-card);
-  }
-
-  .summary-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .summary-num {
-    font-family: var(--font-display);
-    font-size: 1.45rem;
+  .floors-eyebrow {
+    font-size: 0.775rem;
     font-weight: 700;
-    color: var(--text-accent);
-    line-height: 1.1;
-  }
-
-  .summary-label {
-    font-size: 0.725rem;
-    color: var(--text-muted);
-    font-weight: 600;
-    margin-top: 0.25rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
   }
 
-  .summary-divider {
-    width: 1px;
-    height: 34px;
-    background: var(--border-subtle);
+  .floors-title {
+    font-size: clamp(1.85rem, 3.2vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    line-height: 1.2;
   }
 
-  /* Filter bar */
-  .gallery-filter-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    overflow-x: auto;
-    padding-bottom: 0.75rem;
-    margin-bottom: 2.25rem;
-    scrollbar-width: thin;
-  }
-
-  .gallery-tab {
+  .floors-action-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--accent-primary);
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.6rem 1.15rem;
-    border-radius: 9999px;
-    background: var(--bg-card);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-card);
+    gap: 0.35rem;
+    transition: gap 0.15s ease, color 0.15s ease;
     white-space: nowrap;
-    transition: all 0.15s ease;
   }
 
-  .gallery-tab:hover {
-    color: var(--text-primary);
-    border-color: var(--border-glow);
+  .floors-action-link:hover {
+    gap: 0.55rem;
+    color: var(--accent-primary-hover);
   }
 
-  .gallery-tab.active {
-    background: var(--badge-bg);
-    color: var(--badge-text);
-    border-color: var(--badge-border);
-  }
-
-  .tab-count {
-    font-size: 0.7rem;
-    background: color-mix(in srgb, var(--text-primary) 8%, transparent);
-    padding: 0.1rem 0.45rem;
-    border-radius: 9999px;
-  }
-
-  /* Grid layout */
-  .meetups-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-    margin-bottom: 3.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .meetups-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1080px) {
-    .meetups-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .meetup-card {
+  /* Marquee Track */
+  .marquee-wrapper {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    cursor: pointer;
-    border-radius: var(--radius-lg);
-  }
-
-  .meetup-img-wrap {
+    gap: 0.85rem;
+    width: 100vw;
     position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    background: var(--bg-subtle);
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     overflow: hidden;
+    user-select: none;
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
   }
 
-  .meetup-img {
+  .marquee-track {
+    display: flex;
+    width: max-content;
+  }
+
+  .track-left {
+    animation: scrollLeft 45s linear infinite;
+  }
+
+  .track-right {
+    animation: scrollRight 48s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .marquee-content {
+    display: flex;
+    gap: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .photo-thumb-card {
+    flex-shrink: 0;
+    width: clamp(190px, 18vw, 250px);
+    height: clamp(115px, 12vw, 150px);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #0f172a;
+    border: 1px solid var(--border-card);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease;
+  }
+
+  .photo-thumb-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+  }
+
+  .thumb-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.35s ease;
+    display: block;
   }
 
-  .meetup-card:hover .meetup-img {
-    transform: scale(1.03);
+  @keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
-  .meetup-badges-overlay {
-    position: absolute;
-    top: 0.85rem;
-    left: 0.85rem;
-    right: 0.85rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    pointer-events: none;
+  @keyframes scrollRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
   }
 
-  .badge-edition {
-    background: rgba(15, 23, 42, 0.85);
-    color: #ffffff;
-    backdrop-filter: blur(8px);
-    font-size: 0.725rem;
-    font-weight: 700;
-    padding: 0.25rem 0.65rem;
-    border-radius: 9999px;
-    letter-spacing: 0.03em;
-  }
-
-  .badge-format {
-    background: color-mix(in srgb, var(--accent-coral) 20%, rgba(15, 23, 42, 0.85));
-    color: #ffffff;
-    backdrop-filter: blur(8px);
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 0.25rem 0.65rem;
-    border-radius: 9999px;
-  }
-
-  .meetup-card-body {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 0.75rem;
-  }
-
-  .meetup-meta-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.775rem;
-  }
-
-  .meetup-date-text {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    color: var(--text-accent);
-    font-weight: 600;
-  }
-
-  .meetup-cat-pill {
-    font-size: 0.7rem;
-    font-weight: 600;
-    background: var(--bg-subtle);
-    color: var(--text-secondary);
-    padding: 0.15rem 0.5rem;
-    border-radius: 9999px;
-  }
-
-  .meetup-card-title {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 600;
-    line-height: 1.25;
-    color: var(--text-primary);
-  }
-
-  .meetup-card-desc {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    margin-bottom: 0.5rem;
-  }
-
-  .meetup-topics {
+  /* Supporters Row */
+  .supporters-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: auto;
-    margin-bottom: 0.75rem;
-  }
-
-  .topic-tag {
-    font-size: 0.725rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
-    padding: 0.2rem 0.55rem;
-    border-radius: 9999px;
-  }
-
-  .meetup-card-footer {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-top: 0.85rem;
+    justify-content: center;
+    gap: 0.75rem 1.25rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border-subtle);
-    font-size: 0.775rem;
   }
 
-  .meetup-loc-text {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
+  .supporters-label {
+    font-size: 0.85rem;
+    font-weight: 600;
     color: var(--text-muted);
   }
 
-  .btn-preview {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text-accent);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    transition: transform 0.2s ease;
-  }
-
-  .meetup-card:hover .btn-preview {
-    transform: translateX(3px);
-  }
-
-  /* Propose Card */
-  .meetup-propose-card {
-    padding: 2.25rem 2.5rem;
+  .supporters-list {
     display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
-    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-subtle) 100%);
-  }
-
-  @media (min-width: 860px) {
-    .meetup-propose-card {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .propose-left {
-      max-width: 620px;
-    }
-    .propose-right {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      min-width: 220px;
-    }
-  }
-
-  .pill-mini {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.4rem;
-  }
-
-  .propose-title {
-    font-family: var(--font-display);
-    font-size: 1.45rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.25;
-    margin-bottom: 0.6rem;
-  }
-
-  .propose-desc {
-    font-size: 0.925rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  /* Modal Lightbox */
-  .modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(10, 15, 23, 0.75);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 100;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-
-  .modal-backdrop.is-active {
-    display: flex;
-    opacity: 1;
-  }
-
-  .modal-dialog {
-    width: 100%;
-    max-width: 760px;
-    max-height: 90vh;
-    overflow-y: auto;
-    background: var(--bg-card);
-    border: 1px solid var(--border-glow);
-    box-shadow: var(--shadow-glow);
-    padding: 0;
-  }
-
-  .modal-header-bar {
-    padding: 1.25rem 1.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .modal-badges {
-    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.6rem;
   }
 
-  .modal-close-btn {
-    font-size: 1.75rem;
-    line-height: 1;
-    color: var(--text-muted);
-    transition: color 0.15s ease;
-  }
-
-  .modal-close-btn:hover {
-    color: var(--text-primary);
-  }
-
-  .modal-dialog-body {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .modal-image-container {
-    width: 100%;
-    max-height: 360px;
-    background: #0f172a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .modal-main-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .modal-text-content {
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .modal-title-text {
-    font-family: var(--font-display);
-    font-size: 1.55rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.25;
-  }
-
-  .modal-meta-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--bg-subtle);
-    border-radius: var(--radius-sm);
-  }
-
-  .meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .meta-label {
-    font-size: 0.725rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--text-muted);
-    font-weight: 600;
-  }
-
-  .meta-val {
-    font-size: 0.875rem;
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
-  .box-heading {
-    font-size: 0.825rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    font-weight: 700;
-    margin-bottom: 0.4rem;
-  }
-
-  .modal-desc-text {
-    font-size: 0.95rem;
+  .supporter-badge {
+    font-size: 0.8rem;
+    font-weight: 500;
     color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  .topics-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-  }
-
-  .modal-footer-action {
-    padding-top: 0.5rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-card);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
   }
 </style>

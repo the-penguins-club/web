@@ -1,0 +1,250 @@
+---
+// Get Involved / Take Part Component
+// Modeled directly on mlbangladesh.org's "Take part" & "Partners" sections
+
+const participationWays = [
+  {
+    tag: "HOST ON CAMPUS",
+    title: "Host a campus workshop",
+    description: "Bring a Linux install-fest or workshop to your university. You bring the lab room and students; we bring the bootable USBs, printed booklets, stickers, and experienced mentors.",
+    actionText: "Request a Campus Stop",
+    actionUrl: "https://t.me/penguinsclubnetwork",
+    note: "Free for students & universities"
+  },
+  {
+    tag: "SPEAK OR DEMO",
+    title: "Speak or demo a tool",
+    description: "Teach the tool or workflow you wish someone had shown you. Whether you built a Rust CLI, configured a home server, or mastered Vim, our meetup stage is open to you.",
+    actionText: "Offer a Session",
+    actionUrl: "mailto:mail@thepenguins.club?subject=Proposing%20a%20Talk%20at%20TPC",
+    note: "First-time speakers welcomed & mentored"
+  },
+  {
+    tag: "CONTRIBUTE CODE",
+    title: "Contribute to open repositories",
+    description: "Submit pull requests to bd-startups, Awesome-Cybersecurity, or uradhura. Help translate documentation, fix issues, and improve community infrastructure.",
+    actionText: "Explore GitHub Repos",
+    actionUrl: "https://github.com/the-penguins-club",
+    note: "All code copyleft & open source"
+  },
+  {
+    tag: "SUPPORT LOGISTICS",
+    title: "Support mirrors & hardware",
+    description: "Fund high-bandwidth Linux mirror servers, provide refurbished laptops for student labs, or support printing free booklets and stickers — never a paywall.",
+    actionText: "Support The Initiative",
+    actionUrl: "mailto:mail@thepenguins.club?subject=Supporting%20TPC%20Logistics",
+    note: "100% transparent non-profit allocation"
+  }
+];
+---
+
+<section id="get-involved" class="involved-section">
+  <div class="container">
+    <div class="involved-header">
+      <div class="header-content">
+        <div class="section-tag">[ TAKE PART &bull; GET INVOLVED ]</div>
+        <h2 class="section-title">Four ways to take part</h2>
+        <p class="section-desc">
+          Speak, host a campus stop, contribute code, or support the logistics that keep workshops and educational materials free for every student in Bangladesh.
+        </p>
+      </div>
+
+      <div class="header-action">
+        <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Join Telegram Community &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- 4 Ways Grid -->
+    <div class="involved-grid">
+      {participationWays.map((item) => (
+        <article class="involved-card glass-card">
+          <div class="card-head">
+            <span class="card-badge">{item.tag}</span>
+            <span class="card-note">{item.note}</span>
+          </div>
+
+          <h3 class="card-title">{item.title}</h3>
+          <p class="card-desc">{item.description}</p>
+
+          <div class="card-action">
+            <a href={item.actionUrl} target="_blank" rel="noopener noreferrer" class="involved-link">
+              <span>{item.actionText}</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Partner / Sponsor Banner (like mlbangladesh's "Put your brand in rooms that are already building") -->
+    <div class="partner-callout glass-card">
+      <div class="partner-text">
+        <div class="partner-tag">[ PARTNERS &amp; SUPPORTERS ]</div>
+        <h3 class="partner-title">Support rooms that are already hacking &amp; building</h3>
+        <p class="partner-desc">
+          Supporters help cover physical meetup spaces, high-bandwidth mirror servers, travel to universities across Bangladesh, and printing free booklets &amp; stickers — never a registration fee. You get direct connection to passionate systems engineers, student builders, and a community that remembers who made the workshops possible.
+        </p>
+      </div>
+
+      <div class="partner-actions">
+        <a href="mailto:mail@thepenguins.club?subject=Partnership%20Inquiry%20with%20The%20Penguins%20Club" class="btn-secondary">
+          Talk Collaboration / Support &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .involved-section {
+    padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+    position: relative;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-subtle);
+  }
+
+  .involved-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.75rem;
+  }
+
+  @media (min-width: 860px) {
+    .involved-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-content {
+      max-width: 640px;
+    }
+    .header-content .section-desc {
+      margin-bottom: 0;
+    }
+  }
+
+  /* 4 Ways Grid */
+  .involved-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 680px) {
+    .involved-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .involved-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background: var(--bg-card);
+  }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+  }
+
+  .card-badge {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    letter-spacing: 0.05em;
+  }
+
+  .card-note {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    color: var(--text-muted);
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+  }
+
+  .card-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .card-action {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: 0.5rem;
+  }
+
+  .involved-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: gap 0.15s ease;
+  }
+
+  .involved-link:hover {
+    gap: 0.55rem;
+  }
+
+  /* Partner Banner */
+  .partner-callout {
+    padding: 2.25rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    background: var(--bg-card);
+  }
+
+  @media (min-width: 860px) {
+    .partner-callout {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .partner-text {
+      max-width: 680px;
+    }
+    .partner-actions {
+      flex-shrink: 0;
+    }
+  }
+
+  .partner-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .partner-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .partner-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+</style>

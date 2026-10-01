@@ -6,50 +6,50 @@ const freedoms = [
   {
     num: "0",
     title: "Freedom to run the program",
-    desc: "To run the program as you wish, for any purpose, on any machine — without arbitrary restrictions or corporate surveillance."
+    desc: "To run the program as you wish, for any purpose, on any machine — without artificial licensing barriers or corporate surveillance."
   },
   {
     num: "1",
     title: "Freedom to study the source code",
-    desc: "To inspect how the program works and modify it to suit your needs. Transparent source code is foundational to computing education."
+    desc: "To inspect how the software executes and modify it to suit your needs. Transparent source code is fundamental to computer science education."
   },
   {
     num: "2",
     title: "Freedom to redistribute copies",
-    desc: "To share copies with your peers, students, and community so everyone has access to technology tools."
+    desc: "To share copies with peers, students, and institutions so everyone has access to modern software tools."
   },
   {
     num: "3",
-    title: "Freedom to distribute modifications",
-    desc: "To release your improvements to the public, allowing the entire community to learn and benefit collectively."
+    title: "Freedom to distribute improvements",
+    desc: "To release modifications to the public, allowing the global community to learn and benefit collectively."
   }
 ];
 
 const organizationValues = [
   {
-    icon: "🛡️",
+    code: "SOVEREIGNTY",
     title: "Digital Sovereignty",
-    summary: "Personal computers should be under the full control of their owners — free from involuntary data collection, mandatory telemetry, and artificial lock-ins."
+    summary: "Personal workstations and servers should be under the full control of their owners — free from involuntary data extraction, mandatory telemetry, and artificial lock-ins."
   },
   {
-    icon: "♻️",
-    title: "Hardware Sustainability",
-    summary: "GNU/Linux breathes decades of life into older hardware, combating planned obsolescence and reducing electronic waste across universities and homes."
+    code: "SUSTAINABILITY",
+    title: "Hardware Longevity",
+    summary: "GNU/Linux breathes decades of useful life into older computers, actively combating planned obsolescence and reducing electronic waste in universities and homes."
   },
   {
-    icon: "🔍",
+    code: "AUDITABILITY",
     title: "Verifiable Security",
-    summary: "Open-source software permits independent peer audits. Security should be rooted in transparent architecture, never obscurity."
+    summary: "Open source software enables independent peer audits and threat modeling. Security must be rooted in transparent architectural design, never secrecy."
   },
   {
-    icon: "🤝",
-    title: "Community Commons",
-    summary: "The greatest technological breakthroughs — from the Internet to the Linux kernel — were built as shared public commons. We protect and nurture that legacy."
+    code: "COMMONS",
+    title: "Digital Public Commons",
+    summary: "Foundational software technologies — from the Internet to the Linux kernel — were built as shared public commons. We defend and expand that heritage."
   },
   {
-    icon: "🎁",
-    title: "Charity Resources & Lessons",
-    summary: "As an open charity initiative, we host community Linux mirrors, publish educational content, distribute leaflets, booklets & stickers, and provide valuable hands-on lessons."
+    code: "CHARITY",
+    title: "Free Educational Resources",
+    summary: "As an open charity initiative, we host community Linux mirrors, publish guides, distribute free booklets & leaflets, and deliver practical lessons."
   }
 ];
 ---
@@ -59,17 +59,17 @@ const organizationValues = [
     <div class="manifesto-grid">
       <!-- Mission Column -->
       <div class="manifesto-text-col">
-        <div class="section-tag">Community Mission</div>
+        <div class="section-tag">[ CHARTER &amp; PRINCIPLES ]</div>
         <h2 class="section-title">Why Software Freedom Matters</h2>
         <p class="section-desc">
-          Founded in 2020, The Penguins Club operates on the conviction that computing knowledge should not be hoarded behind paywalls or proprietary lock-ins. By teaching GNU/Linux and open source, we help individuals take full ownership of their digital lives.
+          Founded in 2020, The Penguins Club operates on the conviction that computing knowledge should never be hoarded behind paywalls or proprietary lock-ins. By teaching GNU/Linux and open tools, we help individuals take ownership of their technology.
         </p>
 
         <!-- Values Grid -->
         <div class="values-grid">
           {organizationValues.map((item) => (
             <div class="value-item glass-card">
-              <span class="value-icon">{item.icon}</span>
+              <span class="value-code">{item.code}</span>
               <div class="value-content">
                 <h4 class="value-title">{item.title}</h4>
                 <p class="value-summary">{item.summary}</p>
@@ -84,14 +84,14 @@ const organizationValues = [
         <div class="freedoms-card glass-card">
           <div class="freedoms-header">
             <span class="freedoms-eyebrow">The Four Essential Software Freedoms</span>
-            <span class="freedoms-source">Formulated by the Free Software Foundation</span>
+            <span class="freedoms-source">Formulated by the Free Software Foundation (FSF)</span>
           </div>
 
           <div class="freedoms-body">
             <div class="freedoms-list">
               {freedoms.map((f) => (
                 <div class="freedom-row">
-                  <div class="freedom-num-badge">{f.num}</div>
+                  <div class="freedom-num-badge">[{f.num}]</div>
                   <div class="freedom-details">
                     <h4 class="freedom-title">{f.title}</h4>
                     <p class="freedom-desc">{f.desc}</p>
@@ -101,9 +101,9 @@ const organizationValues = [
             </div>
 
             <div class="nonprofit-pledge-box">
-              <h4 class="pledge-heading">Our Charity &amp; Community Commitment</h4>
+              <h4 class="pledge-heading">Community Non-Profit Commitment</h4>
               <p class="pledge-text">
-                100% volunteer-operated charity. We host public Linux mirrors, distribute free educational booklets, leaflets &amp; stickers, and provide valuable hands-on lessons that remain permanently free and open to all.
+                100% volunteer-run charity initiative. We host public Linux mirrors, distribute free educational booklets &amp; stickers, and provide hands-on workshops that remain permanently free and open to everyone.
               </p>
             </div>
           </div>
@@ -115,21 +115,21 @@ const organizationValues = [
 
 <style>
   .manifesto-section {
-    padding: clamp(4rem, 8vw, 7rem) 0;
+    padding: clamp(3.5rem, 6vw, 5.5rem) 0;
     position: relative;
-    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
   }
 
   .manifesto-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3.5rem;
-    align-items: center;
+    gap: 3rem;
+    align-items: start;
   }
 
   @media (min-width: 1024px) {
     .manifesto-grid {
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: 1.1fr 0.9fr;
     }
   }
 
@@ -153,15 +153,18 @@ const organizationValues = [
   }
 
   .value-item {
-    padding: 1.25rem;
+    padding: 1.15rem;
     display: flex;
-    align-items: flex-start;
-    gap: 0.85rem;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .value-icon {
-    font-size: 1.4rem;
-    line-height: 1;
+  .value-code {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    letter-spacing: 0.06em;
   }
 
   .value-title {
@@ -172,7 +175,7 @@ const organizationValues = [
   }
 
   .value-summary {
-    font-size: 0.85rem;
+    font-size: 0.825rem;
     color: var(--text-secondary);
     line-height: 1.5;
   }
@@ -184,90 +187,87 @@ const organizationValues = [
   }
 
   .freedoms-header {
-    background: var(--bg-elevated);
+    background: var(--bg-subtle);
     border-bottom: 1px solid var(--border-subtle);
-    padding: 1.25rem 1.75rem;
+    padding: 1.15rem 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.15rem;
   }
 
   .freedoms-eyebrow {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.1rem;
+    font-weight: 700;
+    font-size: 1.05rem;
     color: var(--text-primary);
+    letter-spacing: -0.01em;
   }
 
   .freedoms-source {
-    font-size: 0.775rem;
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
     color: var(--text-muted);
   }
 
   .freedoms-body {
-    padding: 1.75rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.35rem;
   }
 
   .freedoms-list {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.15rem;
   }
 
   .freedom-row {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0.85rem;
   }
 
   .freedom-num-badge {
     flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--text-accent);
-    background: var(--badge-bg);
-    border: 1px solid var(--badge-border);
+    font-size: 0.85rem;
+    color: var(--accent-primary);
+    line-height: 1.4;
   }
 
   .freedom-title {
     font-size: 0.925rem;
     font-weight: 700;
     color: var(--text-primary);
+    margin-bottom: 0.15rem;
   }
 
   .freedom-desc {
-    font-size: 0.85rem;
+    font-size: 0.825rem;
     color: var(--text-secondary);
     line-height: 1.5;
   }
 
   .nonprofit-pledge-box {
-    padding: 1rem 1.25rem;
-    border-radius: var(--radius-sm);
+    padding: 1rem 1.15rem;
     background: var(--bg-subtle);
+    border-radius: var(--radius-xs);
     border: 1px solid var(--border-subtle);
   }
 
   .pledge-heading {
-    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--text-accent);
+    color: var(--text-primary);
     margin-bottom: 0.35rem;
   }
 
   .pledge-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
     line-height: 1.5;
   }

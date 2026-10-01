@@ -1,140 +1,146 @@
 ---
 // Monthly Meetup Schedule & Upcoming Community Events
-// No fake countdowns or made-up statistics; genuine non-profit education schedule
+// Directly matching ML Bangladesh Screenshot 3: "Upcoming events / Live and upcoming events on the platform."
+// Featuring event cards with banner graphics, floating date badges, track subtitles, and location pins.
 
-interface MeetupScheduleItem {
+interface UpcomingEvent {
   id: string;
-  badge: string;
-  badgeType: "primary" | "secondary" | "neutral";
+  image: string;
+  dateBadge: string;
   title: string;
-  schedule: string;
-  format: string;
+  trackTag: string;
   location: string;
-  topics: string[];
+  timeString: string;
   description: string;
   calTitle: string;
+  calStart: string;
+  calEnd: string;
 }
 
-const upcomingMeetups: MeetupScheduleItem[] = [
+const upcomingEvents: UpcomingEvent[] = [
   {
-    id: "meetup-upcoming-oct",
-    badge: "Next Monthly Meetup",
-    badgeType: "primary",
-    title: "Linux Command Line, Shell Scripting & System Internals",
-    schedule: "Every Month • Third Saturday",
-    format: "In-Person Gathering & Interactive Live Stream",
-    location: "Community Venue (Dhaka) & Telegram Live Stream",
-    topics: ["GNU/Linux CLI Essentials", "Bash Scripting & Automation", "Managing Services with systemd", "Live Q&A"],
-    description: "A friendly, beginner-accessible meetup walking through terminal fundamentals, automating repetitive tasks with bash scripts, and understanding core system components.",
-    calTitle: "The Penguins Club Monthly Meetup - Linux & CLI Essentials"
+    id: "event-oct-linux",
+    image: "/images/meetups/meetup-linux-intro.svg",
+    dateBadge: "17 October 2026 • 15:00 BST",
+    title: "Linux Command Line, Shell Automation & System Internals",
+    trackTag: "SYSTEMS ARCHITECTURE & BASH WORKSHOP",
+    location: "26/18 Gulshan Badda Link Road, Dhaka 1212 & Telegram Stream",
+    timeString: "Third Saturday • 15:00 - 18:00 BST",
+    description: "Hands-on lab walking through terminal navigation, automation pipelines with bash, systemd services, and Linux kernel fundamentals.",
+    calTitle: "The Penguins Club - Linux Command Line & System Internals",
+    calStart: "20261017T090000Z",
+    calEnd: "20261017T120000Z"
   },
   {
-    id: "meetup-upcoming-nov",
-    badge: "Monthly Series",
-    badgeType: "secondary",
+    id: "event-nov-git",
+    image: "/images/meetups/meetup-git-foss.svg",
+    dateBadge: "21 November 2026 • 15:00 BST",
     title: "Contributing to Open Source Software & Git Best Practices",
-    schedule: "Monthly Meetup • November Edition",
-    format: "Hands-on Workshop & Mentorship Session",
-    location: "Live Stream & Physical Lab Space",
-    topics: ["Git Branching & PR Etiquette", "Navigating GitHub Repositories", "Finding Good First Issues", "Code Review"],
-    description: "Hands-on workshop designed to guide students and early-career developers through cloning a repository, fixing an issue, writing tests, and opening their first pull request.",
-    calTitle: "The Penguins Club Monthly Meetup - Open Source & Git"
+    trackTag: "UPSTREAM COLLABORATION & PR SPRINT",
+    location: "Campus Lab Space & Online Live Stream",
+    timeString: "Third Saturday • 15:00 - 18:00 BST",
+    description: "Hands-on guidance through cloning repositories, fixing good first issues, writing tests, and opening upstream pull requests.",
+    calTitle: "The Penguins Club - Contributing to Open Source & Git",
+    calStart: "20261121T090000Z",
+    calEnd: "20261121T120000Z"
   },
   {
-    id: "meetup-upcoming-dec",
-    badge: "Monthly Series",
-    badgeType: "neutral",
+    id: "event-dec-selfhost",
+    image: "/images/meetups/meetup-self-hosting.svg",
+    dateBadge: "19 December 2026 • 15:00 BST",
     title: "Self-Hosting, Local Privacy & Digital Sovereignty",
-    schedule: "Monthly Meetup • December Edition",
-    format: "Presentation & Live Demo Lab",
-    location: "Virtual & Local Hacker Space",
-    topics: ["Containerization with Docker", "Local Cloud with Nextcloud", "DNS Ad-Blocking & Pi-hole", "Data Backups"],
-    description: "Learn how to take control of your personal data by running your own open-source services on personal hardware or inexpensive home servers.",
-    calTitle: "The Penguins Club Monthly Meetup - Self-Hosting & Privacy"
+    trackTag: "HOMELAB, CONTAINERIZATION & NEXTCLOUD",
+    location: "Hacker Space, Dhaka & Virtual Stream",
+    timeString: "Third Saturday • 15:00 - 18:00 BST",
+    description: "Learn how to take control of personal data by hosting your own open-source services on refurbished hardware or inexpensive home servers.",
+    calTitle: "The Penguins Club - Self-Hosting & Digital Sovereignty",
+    calStart: "20261219T090000Z",
+    calEnd: "20261219T120000Z"
   }
 ];
 ---
 
-<section id="events" class="events-section">
+<section id="events" class="upcoming-events-section">
   <div class="container">
-    <div class="events-header">
-      <div class="header-left">
-        <div class="section-tag">Monthly Community Meetups</div>
-        <h2 class="section-title">Free, Monthly Learning Sessions</h2>
-        <p class="section-desc">
-          The Penguins Club organizes free monthly meetups dedicated to teaching Linux, open source development, cybersecurity, and digital sovereignty. Whether you are typing your first terminal command or administering production servers, you belong here.
-        </p>
+    <!-- Header (Screenshot 3 style) -->
+    <div class="events-top-bar">
+      <div class="events-heading-block">
+        <h2 class="events-main-title">Upcoming events</h2>
+        <p class="events-sub-title">Live and upcoming events on the platform.</p>
       </div>
 
-      <!-- Non-Profit Pledge Pill -->
-      <div class="schedule-info-card glass-card">
-        <div class="card-pill">
-          <span class="pulse-dot"></span>
-          <span>Open Education Since 2020</span>
-        </div>
-        <h4 class="card-heading">Always Free &amp; Open</h4>
-        <p class="card-copy">
-          No admission fees, no corporate sponsorships dictating topics. Venue locations and streaming links are published directly in our Telegram group.
-        </p>
-        <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary card-cta">
-          Join Telegram for Meetup Alerts &rarr;
-        </a>
-      </div>
+      <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="events-view-all">
+        View all <span aria-hidden="true">&rarr;</span>
+      </a>
     </div>
 
-    <!-- Meetups List -->
-    <div class="meetup-schedule-list">
-      {upcomingMeetups.map((m) => (
-        <article class="schedule-card glass-card" id={m.id}>
-          <div class="schedule-meta-col">
-            <span class={`badge-status badge-${m.badgeType}`}>{m.badge}</span>
-            <span class="schedule-time">{m.schedule}</span>
-            <span class="schedule-format">{m.format}</span>
-          </div>
-
-          <div class="schedule-main-col">
-            <h3 class="schedule-title">{m.title}</h3>
-            <p class="schedule-desc">{m.description}</p>
-
-            <div class="schedule-topics-row">
-              {m.topics.map((t) => (
-                <span class="topic-chip">{t}</span>
-              ))}
-            </div>
-
-            <div class="schedule-loc-row">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              <span><b>Location:</b> {m.location}</span>
-            </div>
-          </div>
-
-          <div class="schedule-actions-col">
-            <a
-              href="https://t.me/penguinsclubnetwork"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-primary action-btn"
-            >
-              Attend via Telegram
-            </a>
-            <button
-              type="button"
-              class="btn-secondary action-btn cal-btn"
-              data-title={m.calTitle}
-              data-desc={m.description}
-              data-loc={m.location}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- Events Grid (Screenshot 3 style) -->
+    <div class="events-card-grid">
+      {upcomingEvents.map((evt) => (
+        <article class="event-card" id={evt.id}>
+          <!-- Event Image Banner with Floating Date Pill -->
+          <div class="event-banner-wrap">
+            <img
+              src={evt.image}
+              alt={evt.title}
+              class="event-banner-img"
+              loading="lazy"
+            />
+            <div class="event-date-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
                 <line x1="8" y1="2" x2="8" y2="6"></line>
                 <line x1="3" y1="10" x2="21" y2="10"></line>
               </svg>
-              Add to Calendar (.ics)
-            </button>
+              <span>{evt.dateBadge}</span>
+            </div>
+          </div>
+
+          <!-- Event Card Body -->
+          <div class="event-body">
+            <h3 class="event-title">{evt.title}</h3>
+            <div class="event-track-tag">{evt.trackTag}</div>
+
+            <div class="event-location-row">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>{evt.location}</span>
+            </div>
+
+            <p class="event-description">{evt.description}</p>
+
+            <!-- Card Actions -->
+            <div class="event-actions-row">
+              <a
+                href="https://t.me/penguinsclubnetwork"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary event-rsvp-btn"
+              >
+                Attend via Telegram &rarr;
+              </a>
+
+              <button
+                type="button"
+                class="btn-cal-download"
+                data-cal-title={evt.calTitle}
+                data-cal-desc={evt.description}
+                data-cal-loc={evt.location}
+                data-cal-start={evt.calStart}
+                data-cal-end={evt.calEnd}
+                title="Download .ics calendar event"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Add to Calendar (.ics)</span>
+              </button>
+            </div>
           </div>
         </article>
       ))}
@@ -142,250 +148,273 @@ const upcomingMeetups: MeetupScheduleItem[] = [
   </div>
 </section>
 
-<!-- Calendar .ics generator script -->
+<!-- Calendar Download Script -->
 <script>
-  const calButtons = document.querySelectorAll('.cal-btn');
-  calButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const title = btn.getAttribute('data-title') || 'The Penguins Club Meetup';
-      const desc = btn.getAttribute('data-desc') || 'Monthly Linux & FOSS meetup';
-      const loc = btn.getAttribute('data-loc') || 'Dhaka & Online';
+  function initCalendarButtons() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.btn-cal-download');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const title = btn.getAttribute('data-cal-title') || 'The Penguins Club Meetup';
+        const desc = btn.getAttribute('data-cal-desc') || 'Monthly Linux Meetup';
+        const loc = btn.getAttribute('data-cal-loc') || '26/18 Gulshan Badda Link Road, Dhaka 1212';
+        const start = btn.getAttribute('data-cal-start') || '20261017T090000Z';
+        const end = btn.getAttribute('data-cal-end') || '20261017T120000Z';
 
-      const startDate = new Date();
-      startDate.setDate(startDate.getDate() + 14);
-      startDate.setHours(15, 0, 0, 0);
-      const endDate = new Date(startDate.getTime() + 3 * 60 * 60 * 1000);
+        const icsContent = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//The Penguins Club//Meetups//EN',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH',
+          'BEGIN:VEVENT',
+          `UID:${Date.now()}@thepenguins.club`,
+          `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
+          `DTSTART:${start}`,
+          `DTEND:${end}`,
+          `SUMMARY:${title}`,
+          `DESCRIPTION:${desc.replace(/\n/g, '\\n')}`,
+          `LOCATION:${loc}`,
+          'STATUS:CONFIRMED',
+          'END:VEVENT',
+          'END:VCALENDAR'
+        ].join('\r\n');
 
-      const formatCalDate = (d: Date) => d.toISOString().replace(/-|:|\.\d+/g, '');
-
-      const icsContent = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//The Penguins Club//Monthly Meetup//EN',
-        'BEGIN:VEVENT',
-        `SUMMARY:${title}`,
-        `DESCRIPTION:${desc.replace(/\n/g, '\\n')}`,
-        `LOCATION:${loc}`,
-        `DTSTART:${formatCalDate(startDate)}`,
-        `DTEND:${formatCalDate(endDate)}`,
-        'STATUS:CONFIRMED',
-        'END:VEVENT',
-        'END:VCALENDAR'
-      ].join('\r\n');
-
-      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `${title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.ics`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.ics`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
     });
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCalendarButtons);
+  } else {
+    initCalendarButtons();
+  }
 </script>
 
 <style>
-  .events-section {
-    padding: clamp(4rem, 8vw, 7rem) 0;
+  .upcoming-events-section {
+    padding: clamp(3.5rem, 6vw, 5.5rem) 0;
     position: relative;
-    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    background-color: var(--bg-canvas);
   }
 
-  .events-header {
+  /* Top Bar */
+  .events-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+  }
+
+  .events-heading-block {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 3rem;
+    gap: 0.35rem;
   }
 
-  @media (min-width: 900px) {
-    .events-header {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-    .header-left {
-      max-width: 600px;
-    }
+  .events-main-title {
+    font-size: clamp(2rem, 3.2vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    line-height: 1.2;
   }
 
-  .schedule-info-card {
-    padding: 1.5rem 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    min-width: 320px;
-    background: var(--bg-card);
+  .events-sub-title {
+    font-size: 1rem;
+    color: var(--text-secondary);
   }
 
-  .card-pill {
+  .events-view-all {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--accent-primary);
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.725rem;
-    font-weight: 700;
-    color: var(--text-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    gap: 0.35rem;
+    transition: gap 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
   }
 
-  .card-heading {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--text-primary);
+  .events-view-all:hover {
+    gap: 0.55rem;
+    color: var(--accent-primary-hover);
   }
 
-  .card-copy {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-cta {
-    font-size: 0.825rem;
-    padding: 0.65rem 1rem;
-    width: 100%;
-  }
-
-  /* Schedule List */
-  .meetup-schedule-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .schedule-card {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
+  /* Grid (Screenshot 3) */
+  .events-card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 1.75rem;
   }
 
-  @media (min-width: 860px) {
-    .schedule-card {
-      flex-direction: row;
-      align-items: center;
+  @media (min-width: 768px) {
+    .events-card-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  .schedule-meta-col {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    min-width: 170px;
-  }
-
-  @media (min-width: 860px) {
-    .schedule-meta-col {
-      border-right: 1px solid var(--border-subtle);
-      padding-right: 1.5rem;
+  @media (min-width: 1100px) {
+    .events-card-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  .badge-status {
-    font-size: 0.725rem;
-    font-weight: 700;
-    padding: 0.25rem 0.65rem;
-    border-radius: 9999px;
-    display: inline-block;
-    width: fit-content;
-  }
-
-  .badge-primary {
-    background: color-mix(in srgb, var(--accent-coral) 14%, transparent);
-    color: var(--text-accent);
-    border: 1px solid color-mix(in srgb, var(--accent-coral) 28%, transparent);
-  }
-
-  .badge-secondary {
-    background: color-mix(in srgb, var(--accent-teal) 14%, transparent);
-    color: var(--text-accent-secondary);
-    border: 1px solid color-mix(in srgb, var(--accent-teal) 28%, transparent);
-  }
-
-  .badge-neutral {
-    background: var(--bg-subtle);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-subtle);
-  }
-
-  .schedule-time {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  .schedule-format {
-    font-size: 0.775rem;
-    color: var(--text-muted);
-  }
-
-  .schedule-main-col {
-    flex: 1;
+  /* Event Card */
+  .event-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    box-shadow: var(--shadow-xs);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
-  .schedule-title {
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.25;
+  .event-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-card-hover);
   }
 
-  .schedule-desc {
-    font-size: 0.925rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
+  /* Banner Wrap */
+  .event-banner-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0f172a;
+    overflow: hidden;
   }
 
-  .schedule-topics-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-top: 0.25rem;
+  .event-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
   }
 
-  .topic-chip {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
-    padding: 0.2rem 0.6rem;
-    border-radius: 9999px;
+  .event-card:hover .event-banner-img {
+    transform: scale(1.03);
   }
 
-  .schedule-loc-row {
-    display: flex;
+  /* Floating Date Pill on Image */
+  .event-date-pill {
+    position: absolute;
+    top: 0.85rem;
+    left: 0.85rem;
+    display: inline-flex;
     align-items: center;
     gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #0f172a;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .event-date-pill svg {
+    color: var(--accent-primary);
+  }
+
+  /* Card Body */
+  .event-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.65rem;
+  }
+
+  .event-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+  }
+
+  .event-track-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .event-location-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
     font-size: 0.825rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
+    line-height: 1.4;
     margin-top: 0.25rem;
   }
 
-  .schedule-loc-row b {
-    color: var(--text-primary);
+  .event-location-row svg {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-top: 2px;
   }
 
-  .schedule-actions-col {
+  .event-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-top: 0.35rem;
+    flex: 1;
+  }
+
+  /* Actions */
+  .event-actions-row {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    min-width: 190px;
+    gap: 0.5rem;
+    padding-top: 1.15rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--border-subtle);
   }
 
-  .action-btn {
+  .event-rsvp-btn {
     width: 100%;
-    font-size: 0.825rem;
-    padding: 0.65rem 1rem;
-    white-space: nowrap;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .btn-cal-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background: none;
+    border: none;
+    font-size: 0.775rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 0.35rem;
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+
+  .btn-cal-download:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
   }
 </style>

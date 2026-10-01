@@ -1,463 +1,370 @@
 ---
 // Hero Component - Linux & Open Source Community
-// Running continuously from 2020 • Real data, zero fluff
+// Directly matching the modern non-profit design style of ML Bangladesh (Screenshot 1)
+const heroSlides = [
+  {
+    image: "/images/meetups/software-freedom.png",
+    caption: "Software Freedom Day Gathering, Dhaka",
+    alt: "The Penguins Club members gathered in Dhaka for Software Freedom Day",
+  },
+  {
+    image: "/images/meetups/meetup-workshop-daffodil.png",
+    caption:
+      "Campus Workshop & Speaker Panel, Daffodil International University",
+    alt: "University workshop introducing students to GNU/Linux and terminal commands",
+  },
+  {
+    image: "/images/meetups/software-freedom-day.png",
+    caption: "Open Systems Roundtable & Community Lab, Dhaka",
+    alt: "Hands-on laptops and open source roundtable discussion",
+  },
+  {
+    image: "/images/meetups/meetup-tuxforge.png",
+    caption: "Community Hangout & FOSS Demos, Tuxforge Lab",
+    alt: "Community members with Tux penguins and open source projects",
+  },
+];
 ---
 
 <section class="hero-section">
   <div class="container hero-container">
-    <!-- Left Column: Copy & Actions -->
+    <!-- Left Column: Copy & Actions (ML Bangladesh Screenshot 1 style) -->
     <div class="hero-content">
-      <div class="hero-pill-badge">
-        <span class="pulse-dot"></span>
-        <span class="pill-label">Non-Profit Linux &amp; Open Source Community &bull; Running from 2020</span>
-      </div>
-
       <h1 class="hero-title">
-        Democratizing <span class="hero-highlight">Linux</span> &amp; Open Source Education.
+        Democratizing Linux &amp; Open Source Education.
       </h1>
 
       <p class="hero-description">
-        The Penguins Club is a charity and non-profit community initiative running from 2020. We host community Linux mirrors, distribute free educational booklets, leaflets &amp; stickers, and deliver valuable practical lessons and monthly workshops.
+        The Penguins Club is a charity and non-profit community initiative
+        running from 2020. We host community Linux mirrors, distribute free
+        educational booklets, leaflets &amp; stickers, and deliver valuable
+        practical lessons and monthly workshops.
       </p>
 
-      <div class="hero-cta-group">
-        <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary hero-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-          </svg>
-          Join Telegram Community
-          <span aria-hidden="true">&rarr;</span>
+      <div class="hero-cta-row">
+        <a
+          href="https://t.me/penguinsclubnetwork"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-pill-primary"
+        >
+          Join
         </a>
-        <a href="#gallery" class="btn-secondary hero-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <circle cx="8.5" cy="8.5" r="1.5"></circle>
-            <polyline points="21 15 16 10 5 21"></polyline>
-          </svg>
-          Monthly Meetups Gallery
+        <a href="#programs" class="hero-text-link btn-pill-secondary">
+          See our programs
         </a>
       </div>
 
-      <!-- Real Impact Metrics -->
-      <div class="hero-stats-strip glass-card">
-        <div class="stat-col">
-          <span class="stat-val">2020</span>
-          <span class="stat-text">Running From</span>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat-col">
-          <span class="stat-val">Monthly</span>
-          <span class="stat-text">Meetups</span>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat-col">
-          <span class="stat-val">30+</span>
-          <span class="stat-text">GitHub Repos</span>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat-col">
-          <span class="stat-val">Charity</span>
-          <span class="stat-text">Volunteer-Run</span>
-        </div>
+      <!-- Metadata Line (separated by slashes, exactly as in Screenshot 1) -->
+      <div class="hero-meta-row">
+        <span>Non-Profit Charity Network</span>
+        <span class="meta-slash">/</span>
+        <span>Run entirely by volunteers</span>
+        <span class="meta-slash">/</span>
+        <span>Free for every student</span>
+        <span class="meta-slash">/</span>
+        <span>26/18 Gulshan Badda Link Road</span>
       </div>
     </div>
 
-    <!-- Right Column: Sleek Linux Terminal Card -->
+    <!-- Right Column: Community Photo Carousel (Screenshot 1 style) -->
     <div class="hero-visual">
-      <div class="terminal-card">
-        <!-- Terminal Titlebar -->
-        <div class="term-bar">
-          <div class="term-dots-group">
-            <span class="dot-red"></span>
-            <span class="dot-yellow"></span>
-            <span class="dot-green"></span>
-          </div>
-          <div class="term-title-text">tux@thepenguins.club: ~</div>
-          <div class="term-tag-text">bash</div>
+      <div
+        class="hero-carousel-card"
+        id="hero-carousel"
+        aria-label="Community Meetups Carousel"
+      >
+        <div class="carousel-slides-wrap">
+          {
+            heroSlides.map((slide, index) => (
+              <div
+                class={`carousel-slide ${index === 0 ? "is-active" : ""}`}
+                data-index={index}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.alt}
+                  class="slide-img"
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+                <div class="slide-overlay">
+                  <p class="slide-caption">{slide.caption}</p>
+                </div>
+              </div>
+            ))
+          }
         </div>
 
-        <!-- Terminal Content -->
-        <div class="term-body">
-          <div class="cmd-row">
-            <span class="prompt-sym">$</span>
-            <span class="cmd-text">tpc status</span>
-          </div>
-
-          <div class="output-panel">
-            <div class="kv-line">
-              <span class="kv-k">Club</span>
-              <span class="kv-v bold-v">The Penguins Club (TPC)</span>
-            </div>
-            <div class="kv-line">
-              <span class="kv-k">Type</span>
-              <span class="kv-v">Non-Profit Charity Initiative</span>
-            </div>
-            <div class="kv-line">
-              <span class="kv-k">Services</span>
-              <span class="kv-v">Linux Mirror &bull; Booklets &bull; Stickers</span>
-            </div>
-            <div class="kv-line">
-              <span class="kv-k">Active</span>
-              <span class="kv-v">Running from 2020</span>
-            </div>
-            <div class="kv-line">
-              <span class="kv-k">Teaches</span>
-              <span class="kv-v">Valuable Lessons in Linux &amp; Tools</span>
-            </div>
-            <div class="kv-line">
-              <span class="kv-k">Cadence</span>
-              <span class="kv-v">Monthly Community Meetups</span>
-            </div>
-            <div class="kv-line">
-              <span class="kv-k">Location</span>
-              <span class="kv-v">Bangladesh &bull; Global Community</span>
-            </div>
-          </div>
-
-          <div class="cmd-row" style="margin-top: 0.25rem;">
-            <span class="prompt-sym">$</span>
-            <span class="cmd-text">tpc connect --chat</span>
-          </div>
-
-          <div class="tags-group">
-            <span class="pill-chip chip-green">
-              <span class="pulse-chip-dot"></span>
-              t.me/penguinsclubnetwork
-            </span>
-            <span class="pill-chip chip-blue">Linux Mirror</span>
-            <span class="pill-chip chip-amber">Free Booklets &amp; Stickers</span>
-          </div>
-
-          <!-- Bottom Action inside Terminal -->
-          <a
-            href="https://t.me/penguinsclubnetwork"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="terminal-action-btn"
-          >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="22" y1="2" x2="11" y2="13"></line>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-            </svg>
-            Open Telegram Community &rarr;
-          </a>
+        <!-- Carousel Indicators (Pill + Dots at bottom center) -->
+        <div class="carousel-indicators" role="tablist" aria-label="Slide dots">
+          {
+            heroSlides.map((_, index) => (
+              <button
+                class={`indicator-dot ${index === 0 ? "is-active" : ""}`}
+                data-target={index}
+                aria-label={`Go to slide ${index + 1}`}
+                role="tab"
+              />
+            ))
+          }
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Client script for smooth auto-rotation and interactive dots -->
+<script>
+  function initHeroCarousel() {
+    const carousel = document.getElementById("hero-carousel");
+    if (!carousel) return;
+
+    const slides = carousel.querySelectorAll<HTMLElement>(".carousel-slide");
+    const dots = carousel.querySelectorAll<HTMLElement>(".indicator-dot");
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let timer: number | undefined;
+
+    function goToSlide(index: number) {
+      slides[currentIndex]?.classList.remove("is-active");
+      dots[currentIndex]?.classList.remove("is-active");
+
+      currentIndex = (index + slides.length) % slides.length;
+
+      slides[currentIndex]?.classList.add("is-active");
+      dots[currentIndex]?.classList.add("is-active");
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      timer = window.setInterval(() => {
+        goToSlide(currentIndex + 1);
+      }, 5000);
+    }
+
+    function stopAutoPlay() {
+      if (timer) clearInterval(timer);
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener("click", () => {
+        goToSlide(idx);
+        startAutoPlay();
+      });
+    });
+
+    carousel.addEventListener("mouseenter", stopAutoPlay);
+    carousel.addEventListener("mouseleave", startAutoPlay);
+
+    startAutoPlay();
+  }
+
+  // Initialize on load and Astro page transitions
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHeroCarousel);
+  } else {
+    initHeroCarousel();
+  }
+</script>
+
 <style>
   .hero-section {
-    padding-top: clamp(2rem, 4.5vw, 3.75rem);
-    padding-bottom: clamp(2.5rem, 4.5vw, 4.25rem);
+    padding-top: clamp(3rem, 6vw, 5.5rem);
+    padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
     position: relative;
-    overflow: hidden;
+    border-bottom: 1px solid var(--border-subtle);
+    background-color: var(--bg-canvas);
   }
 
   .hero-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     .hero-container {
-      display: grid;
-      grid-template-columns: 1.15fr 0.95fr;
-      align-items: center;
+      grid-template-columns: 1.05fr 1fr;
       gap: 3.5rem;
     }
   }
 
+  /* Left Column */
   .hero-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .hero-pill-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-card);
-    padding: 0.45rem 1rem;
-    border-radius: 9999px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    margin-bottom: 1.25rem;
-    box-shadow: var(--shadow-sm);
+    max-width: 620px;
   }
 
   .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.1rem, 4.2vw, 3.3rem);
-    font-weight: 600;
+    font-size: clamp(2.2rem, 3.8vw, 3.15rem);
+    font-weight: 800;
     line-height: 1.15;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.03em;
     color: var(--text-primary);
-    margin-bottom: 1.15rem;
-  }
-
-  .hero-highlight {
-    color: var(--text-accent);
+    margin-bottom: 1.35rem;
   }
 
   .hero-description {
-    font-size: clamp(0.975rem, 1.25vw, 1.1rem);
-    line-height: 1.65;
+    font-size: clamp(1rem, 1.25vw, 1.15rem);
     color: var(--text-secondary);
-    margin-bottom: 1.75rem;
-    max-width: 580px;
-  }
-
-  .hero-cta-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.85rem;
+    line-height: 1.6;
     margin-bottom: 2rem;
   }
 
-  .hero-btn {
-    padding: 0.75rem 1.4rem;
-    font-size: 0.9rem;
-  }
-
-  /* Stats Strip */
-  .hero-stats-strip {
+  /* Actions Row */
+  .hero-cta-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 560px;
-    padding: 1rem 1.4rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-card);
+    gap: 1.25rem;
+    margin-bottom: 2.75rem;
   }
 
-  .stat-col {
+  .hero-text-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.15s ease;
+  }
+
+  .hero-text-link:hover {
+    color: var(--accent-primary);
+    text-decoration: underline;
+  }
+
+  /* Metadata Line with slashes (Screenshot 1) */
+  .hero-meta-row {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    text-align: center;
-    gap: 0.25rem;
-  }
-
-  .stat-val {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-accent);
-    line-height: 1;
-  }
-
-  .stat-text {
-    font-size: 0.725rem;
+    gap: 0.5rem 0.65rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
+    line-height: 1.5;
   }
 
-  .stat-sep {
-    width: 1px;
-    height: 30px;
-    background: var(--border-subtle);
-    flex-shrink: 0;
+  .meta-slash {
+    color: var(--border-card-hover);
+    font-weight: 300;
+    user-select: none;
   }
 
-  /* Right Terminal Window */
+  /* Right Column: Hero Photo Carousel Card */
   .hero-visual {
     width: 100%;
     display: flex;
     justify-content: center;
   }
 
-  .terminal-card,
-  .terminal-window {
+  .hero-carousel-card {
+    position: relative;
     width: 100%;
-    max-width: 480px;
-    background: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    max-width: 580px;
+    aspect-ratio: 16 / 11;
+    border-radius: 20px;
     overflow: hidden;
-    font-family: var(--font-mono), monospace;
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.16);
+    background: #0f172a;
+    border: 1px solid var(--border-card);
   }
 
-  .term-bar,
-  .terminal-header {
-    background: #1e293b;
-    padding: 0.75rem 1.15rem;
+  .carousel-slides-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 0.6s ease;
+  }
+
+  .carousel-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+  }
+
+  .slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Subtle bottom gradient for caption clarity */
+  .slide-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3.5rem 1.5rem 1.25rem 1.5rem;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.4) 55%,
+      transparent 100%
+    );
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #334155;
-  }
-
-  .term-dots-group,
-  .term-dots {
-    display: flex;
-    gap: 7px;
-  }
-
-  .term-dots-group span,
-  .tdot {
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    display: inline-block;
-  }
-
-  .dot-red, .tdot-red { background: #ef4444; }
-  .dot-yellow, .tdot-yellow { background: #f59e0b; }
-  .dot-green, .tdot-green { background: #10b981; }
-
-  .term-title-text,
-  .term-title {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: #94a3b8;
-  }
-
-  .term-tag-text,
-  .term-lang {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: #64748b;
-    text-transform: uppercase;
-  }
-
-  .term-body,
-  .terminal-content {
-    padding: 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-  }
-
-  .cmd-row,
-  .term-line {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .prompt-sym,
-  .t-prompt {
-    color: #10b981;
-    font-weight: 700;
-  }
-
-  .cmd-text,
-  .t-cmd {
-    color: #38bdf8;
-    font-weight: 600;
-  }
-
-  .output-panel,
-  .term-output-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    padding: 0.65rem 0.85rem;
-    background: #141e2e;
-    border: 1px solid #1e293b;
-    border-radius: var(--radius-sm);
-  }
-
-  .kv-line,
-  .out-row {
-    display: flex;
-    align-items: baseline;
+    align-items: flex-end;
     gap: 1rem;
-    font-size: 0.8rem;
+    pointer-events: none;
   }
 
-  .kv-k,
-  .out-key {
-    color: #64748b;
-    min-width: 70px;
-    flex-shrink: 0;
+  .slide-caption {
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    max-width: 65%;
   }
 
-  .kv-v,
-  .out-val {
-    color: #cbd5e1;
-  }
-
-  .bold-v,
-  .highlight-val {
-    color: #f8fafc;
-    font-weight: 600;
-  }
-
-  .tags-group,
-  .term-badges-row {
+  /* Indicator Dots at bottom right */
+  .carousel-indicators {
+    position: absolute;
+    bottom: 1.15rem;
+    right: 1.25rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .pill-chip,
-  .t-badge {
-    display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.3rem 0.65rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
+    gap: 6px;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 5px 9px;
+    border-radius: var(--radius-pill);
+    pointer-events: auto;
   }
 
-  .chip-green,
-  .t-badge-green {
-    background: rgba(16, 185, 129, 0.15);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    color: #34d399;
-  }
-
-  .chip-blue,
-  .t-badge-blue {
-    background: rgba(56, 189, 248, 0.15);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    color: #38bdf8;
-  }
-
-  .pulse-chip-dot,
-  .t-pulse {
+  .indicator-dot {
     width: 6px;
     height: 6px;
-    border-radius: 50%;
-    background: #10b981;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.45);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.25s ease;
   }
 
-  .terminal-action-btn,
-  .terminal-join-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    background: #2563eb;
-    color: #ffffff;
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius-sm);
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-decoration: none;
-    transition: background 0.15s ease, transform 0.15s ease;
+  .indicator-dot:hover {
+    background: rgba(255, 255, 255, 0.8);
   }
 
-  .terminal-action-btn:hover,
-  .terminal-join-btn:hover {
-    background: #1d4ed8;
-    transform: translateY(-1px);
-    color: #ffffff;
+  .indicator-dot.is-active {
+    width: 20px;
+    background: #ffffff;
   }
 </style>

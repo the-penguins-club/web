@@ -1,22 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import MeetupGallery from '../components/MeetupGallery.astro';
+import CommunityMetrics from '../components/CommunityMetrics.astro';
 import Activities from '../components/Activities.astro';
 import UpcomingEvents from '../components/UpcomingEvents.astro';
-import MeetupGallery from '../components/MeetupGallery.astro';
+import GetInvolved from '../components/GetInvolved.astro';
 import ProjectsShowcase from '../components/ProjectsShowcase.astro';
 import CommunityDiscussions from '../components/CommunityDiscussions.astro';
 import AwarenessManifesto from '../components/AwarenessManifesto.astro';
 ---
 
 <Layout
-  title="The Penguins Club - Linux & Open Source Community"
-  description="A community initiative running from 2020. Free monthly meetups, hands-on Linux workshops, open source mentoring, and public projects."
+  title="The Penguins Club — Democratizing Linux & Open Source Education"
+  description="The Penguins Club is a charity and non-profit community initiative running from 2020. We host community Linux mirrors, distribute free educational booklets, leaflets & stickers, and deliver valuable practical lessons and monthly workshops."
 >
   <Hero />
-  <Activities />
-  <UpcomingEvents />
   <MeetupGallery />
+  <UpcomingEvents />
+  <CommunityMetrics />
+  <Activities />
+  <GetInvolved />
   <ProjectsShowcase />
   <CommunityDiscussions />
   <AwarenessManifesto />

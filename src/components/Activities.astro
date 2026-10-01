@@ -1,527 +1,274 @@
 ---
-// What We Teach & Core Educational Focus
-// The Penguins Club teaches Linux, open source technologies, security, and digital literacy.
+// What We Run - Core Programs & Educational Tracks
+// Inspired by mlbangladesh.org's "What we run" programs structure
 
-const educationalTracks = [
+const programs = [
   {
-    id: "track-linux",
-    tag: "Core Focus",
-    title: "GNU/Linux & Operating Systems",
-    description: "From desktop installations (Debian, Fedora, Arch, Ubuntu) to headless server administration, shell scripting, package managers, and understanding kernel internals.",
-    highlights: ["Installation Fests & Guidance", "Command Line & Shell Scripting", "Systemd, Services & Storage", "Kernel Concepts & Architecture"],
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`,
-    color: "coral"
+    id: "prog-linux-club",
+    badge: "Ongoing • Year-Round",
+    badgeType: "live",
+    title: "Linux Systems & CLI Club",
+    summary: "Paper reading, live terminal challenges, and monthly hands-on workshops — the habit this community started with in 2020.",
+    details: "From desktop installations (Debian, Arch, Fedora) to headless server administration, shell scripting, package management, and systemd services.",
+    cadence: "Every 3rd Saturday at 26/18 Gulshan Badda Link Road & online",
+    tag: "GNU/Linux & Systems"
   },
   {
-    id: "track-opensource",
-    tag: "Hands-on Skills",
-    title: "Open Source Software & Tools",
-    description: "Mastering the toolchain that powers modern software engineering: Git version control, collaborative code reviews, public repositories, and upstream bug hunting.",
-    highlights: ["Git Workflows & Collaboration", "Writing Open Source Code", "Licensing (GPL, MIT, Apache)", "Packaging & Distribution"],
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><circle cx="12" cy="12" r="2"></circle></svg>`,
-    color: "teal"
+    id: "prog-build-club",
+    badge: "Ongoing • Open Source",
+    badgeType: "live",
+    title: "Open Source Toolchain & Upstream PRs",
+    summary: "Show what you are building with FOSS tools, get code reviews, and learn the collaborative skills required for upstream contributions.",
+    details: "Mastering Git branching workflows, writing tests, reviewing PRs, and contributing to public repositories under copyleft and permissive licenses.",
+    cadence: "Bi-weekly async code review sprints & GitHub discussions",
+    tag: "Toolchain & Git"
   },
   {
-    id: "track-security",
-    tag: "Defense & Privacy",
-    title: "Cybersecurity & Digital Privacy",
-    description: "Teaching safe computing practices, network defense, disk encryption, personal firewall setup, and auditable open-source security tools (e.g. our Awesome-Cybersecurity project).",
-    highlights: ["Server Hardening & SSH Keys", "Firewalls & Packet Filtering", "Self-Hosted Private Services", "Encryption & Privacy Tools"],
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
-    color: "amber"
+    id: "prog-campus-fests",
+    badge: "When Hosted • On Demand",
+    badgeType: "event",
+    title: "Campus Install-Fests & Workshops",
+    summary: "One-day hands-on bootcamps at universities. Free for students. Runs when a university club, department, or partner signs on.",
+    details: "We bring seasoned mentors, live bootable USB drives, printed cheat-sheets, and lab rubrics. You bring the lab room and eager students.",
+    cadence: "University campuses across Bangladesh (Daffodil, HSTU, etc.)",
+    tag: "Campus Outreach"
   },
   {
-    id: "track-meetups",
-    tag: "Monthly Cadence",
-    title: "Monthly Meetups & Study Groups",
-    description: "Consistent monthly gatherings since 2020 where community members deliver technical presentations, demonstrate real setups, share career advice, and network.",
-    highlights: ["In-Person Workshops in Dhaka", "Interactive Live Streams", "Peer Review & Problem Solving", "Free Mentorship"],
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
-    color: "berry"
+    id: "prog-security-privacy",
+    badge: "Specialized Track",
+    badgeType: "track",
+    title: "Cybersecurity & Digital Sovereignty",
+    summary: "Teaching defensive computing, network auditing, server hardening, and self-hosted cloud alternatives.",
+    details: "Configuring firewalls (UFW, nftables), SSH keys, private local LLMs without telemetry, disk encryption, and verifiable security practices.",
+    cadence: "Quarterly deep-dive lab intensives",
+    tag: "Defense & Privacy"
   },
   {
-    id: "track-public-data",
-    tag: "Community Initiatives",
-    title: "Open Data & Community Utilities",
-    description: "Building and maintaining crowdsourced public data projects such as Bangladesh startup directories, blockade awareness trackers, and community bot infrastructure.",
-    highlights: ["Startup & Tech Directories", "Civic Tech Experiments", "Telegram Community Bots", "Open Documentation"],
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
-    color: "coral"
-  },
-  {
-    id: "track-charity-materials",
-    tag: "Charity & Resources",
-    title: "Linux Mirror, Materials & Valuable Lessons",
-    description: "As a charity initiative, we host local Linux mirrors, produce and distribute free educational booklets and leaflets, share stickers at meetups, and provide valuable hands-on lessons.",
-    highlights: ["Local Linux Mirror Hosting", "Educational Content & Guides", "Printed Leaflets & Booklets", "Free Stickers & Valuable Lessons"],
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`,
-    color: "teal"
-  }
-];
-
-const communityUseCases = [
-  {
-    category: "Program Design & Evaluation",
-    title: "Linux Bootcamps & Monthly Workshop Tracks",
-    desc: "Structuring sequential monthly workshop curriculums from command-line literacy to headless server setup. We evaluate attendee skill growth via hands-on lab challenges and post-session peer reviews.",
-    deliverable: "Standardized lab manuals & skill progression rubrics",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`
-  },
-  {
-    category: "AI Policy Templates & Ethics",
-    title: "Local Open-Source AI & Privacy Guidelines",
-    desc: "Establishing community guidelines for using private open-weights models (Ollama, llama.cpp on GNU/Linux). We teach developers and volunteers how to run AI locally without telemetry or commercial data harvesting.",
-    deliverable: "Local LLM deployment playbooks & volunteer ethical AI guidelines",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`
-  },
-  {
-    category: "Data Visualization & Reporting",
-    title: "Civic Tech Maps & 'bd-startups' Dashboards",
-    desc: "Curating Bangladesh's open tech ecosystem through transparent public datasets. Projects like 'bd-startups' and 'internetting' provide visual directories and connectivity status reports for students and engineers.",
-    deliverable: "Open JSON datasets, interactive tech maps & network uptime logs",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`
-  },
-  {
-    category: "Grant Writing & Donor Communications",
-    title: "Hardware Grants & Linux Mirror Sponsorships",
-    desc: "Drafting clear, transparent funding proposals to acquire refurbished hardware for student labs, maintain high-bandwidth Linux mirror servers, and distribute free educational booklets, leaflets, and stickers.",
-    deliverable: "Transparent hardware allocation logs & community donor updates",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>`
-  },
-  {
-    category: "Research & Landscape Analysis",
-    title: "National Cybersecurity & FOSS Landscape Mapping",
-    desc: "Publishing community-driven technical research like our 'Awesome-Cybersecurity-Bangladesh' repository. We benchmark computer defense practices, open-source adoption, and Linux software availability across local universities.",
-    deliverable: "Curated research directories, tooling audits & university benchmarks",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><path d="M11 8v6"></path><path d="M8 11h6"></path></svg>`
+    id: "prog-mirror-charity",
+    badge: "Charity Initiative",
+    badgeType: "charity",
+    title: "Local Linux Mirror & Educational Kits",
+    summary: "Free community infrastructure: high-speed package mirrors, printed booklets, leaflets, and Linux stickers.",
+    details: "Operating community package mirrors for Debian, Arch, and Ubuntu. Printing and handing out physical reference leaflets and booklets at zero cost.",
+    cadence: "24/7 Server Mirror + Event Distribution",
+    tag: "Public Commons"
   }
 ];
 ---
 
-<section id="activities" class="activities-section">
+<section id="programs" class="programs-section">
   <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Educational Curriculum</div>
-      <h2 class="section-title">What We Teach &amp; Build</h2>
-      <p class="section-desc">
-        Since our founding in 2020, our mission has been practical, hands-on learning. We help participants move from consumers of closed software to confident practitioners and contributors in open technology.
-      </p>
+    <div class="programs-header">
+      <div class="header-content">
+        <div class="section-tag">[ CORE PROGRAMS ]</div>
+        <h2 class="section-title">What we run</h2>
+        <p class="section-desc">
+          Clubs meet monthly year-round. Campus workshops, installation fests, and upstream sprints run when a university department or partner signs on.
+        </p>
+      </div>
+
+      <div class="header-action">
+        <a href="#get-involved" class="btn-secondary">
+          Request a Campus Workshop &rarr;
+        </a>
+      </div>
     </div>
 
-    <!-- Bento Grid -->
-    <div class="bento-grid">
-      {educationalTracks.map((track, index) => (
-        <article class={`bento-card glass-card card-${index + 1}`}>
-          <div class="card-top">
-            <div class={`card-icon-wrap icon-${track.color}`} set:html={track.icon} />
-            <span class="card-tag-text">{track.tag}</span>
+    <!-- Programs Grid (Dynamic Layout) -->
+    <div class="programs-grid">
+      {programs.map((prog, idx) => (
+        <article class={`program-card glass-card prog-${idx + 1}`}>
+          <div class="prog-top">
+            <span class={`prog-status-badge status-${prog.badgeType}`}>{prog.badge}</span>
+            <span class="prog-tag">{prog.tag}</span>
           </div>
 
-          <h3 class="card-title">{track.title}</h3>
-          <p class="card-desc">{track.description}</p>
+          <h3 class="prog-title">{prog.title}</h3>
+          <p class="prog-summary">{prog.summary}</p>
+          <p class="prog-details">{prog.details}</p>
 
-          <div class="card-highlights">
-            {track.highlights.map((item) => (
-              <span class="highlight-chip">
-                <span class="chip-dot"></span>
-                {item}
-              </span>
-            ))}
-          </div>
-
-          <div class="card-footer-link">
-            <a href="#gallery" class="learn-more">
-              See related meetup sessions <span class="arrow">&rarr;</span>
+          <div class="prog-footer">
+            <div class="prog-cadence">
+              <span class="cadence-label">SCHEDULE:</span>
+              <span class="cadence-val">{prog.cadence}</span>
+            </div>
+            <a href="#events" class="prog-action-link">
+              <span>View details</span>
+              <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </article>
       ))}
     </div>
-
-    <!-- Community Use Cases Section -->
-    <div id="community-use-cases" class="use-cases-box glass-card">
-      <div class="use-cases-header">
-        <div class="use-cases-badge">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-            <path d="M2 17l10 5 10-5"></path>
-            <path d="M2 12l10 5 10-5"></path>
-          </svg>
-          Community Operational Framework
-        </div>
-        <h3 class="use-cases-title">How Our Community Applies Non-Profit Methodologies</h3>
-        <p class="use-cases-desc">
-          Structured operational use cases driving The Penguins Club initiatives — from technical program evaluations to ethical AI policies, civic datasets, and ecosystem research:
-        </p>
-      </div>
-
-      <div class="use-cases-grid">
-        {communityUseCases.map((uc) => (
-          <div class="use-case-card">
-            <span class="use-case-category-tag">{uc.category}</span>
-            <div class="use-case-top">
-              <span class="use-case-icon" set:html={uc.icon} />
-              <h4 class="use-case-name">{uc.title}</h4>
-            </div>
-            <p class="use-case-text">{uc.desc}</p>
-            <div class="use-case-deliverable">
-              <span class="deliv-badge">Deliverable</span>
-              <span class="deliv-text">{uc.deliverable}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div class="use-cases-footer-row">
-        <div class="use-cases-note">
-          <span class="pulse-chip-dot"></span>
-          <span>100% open-source &amp; community-driven &bull; Zero proprietary lock-in</span>
-        </div>
-        <a
-          href="https://github.com/the-penguins-club"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary use-cases-btn"
-        >
-          Explore Our Public Repositories
-          <span aria-hidden="true">&rarr;</span>
-        </a>
-      </div>
-    </div>
   </div>
 </section>
 
 <style>
-  .activities-section {
-    padding: clamp(4rem, 8vw, 7rem) 0;
+  .programs-section {
+    padding: clamp(3.5rem, 6vw, 5.5rem) 0;
     position: relative;
-    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
   }
 
-  .section-header {
+  .programs-header {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2.75rem;
   }
 
-  /* Bento Grid */
-  .bento-grid {
+  @media (min-width: 860px) {
+    .programs-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-content {
+      max-width: 620px;
+    }
+    .header-content .section-desc {
+      margin-bottom: 0;
+    }
+  }
+
+  /* Programs Grid */
+  .programs-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
   @media (min-width: 768px) {
-    .bento-grid {
+    .programs-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (min-width: 1024px) {
-    .bento-grid {
+  @media (min-width: 1080px) {
+    .programs-grid {
       grid-template-columns: repeat(3, 1fr);
     }
-  }
-
-  .bento-card {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .card-top {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .card-tag-text {
-    font-size: 0.775rem;
-    letter-spacing: 0.03em;
-    color: var(--text-muted);
-    font-weight: 600;
-  }
-
-  .card-icon-wrap {
-    width: 44px;
-    height: 44px;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .icon-coral { background: color-mix(in srgb, var(--accent-coral) 14%, transparent); color: var(--accent-coral); }
-  .icon-teal { background: color-mix(in srgb, var(--accent-teal) 14%, transparent); color: var(--accent-teal); }
-  .icon-amber { background: color-mix(in srgb, var(--accent-amber) 18%, transparent); color: var(--accent-amber); }
-  .icon-berry { background: color-mix(in srgb, var(--accent-berry) 14%, transparent); color: var(--accent-berry); }
-
-  .card-title {
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
-  }
-
-  .card-desc {
-    color: var(--text-secondary);
-    font-size: 0.925rem;
-    line-height: 1.6;
-    margin-bottom: 1.75rem;
-  }
-
-  .card-highlights {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: auto;
-    margin-bottom: 1.5rem;
-  }
-
-  .highlight-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
-    padding: 0.3rem 0.7rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-  }
-
-  .chip-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--text-accent);
-  }
-
-  .card-footer-link {
-    border-top: 1px solid var(--border-subtle);
-    padding-top: 1rem;
-  }
-
-  .learn-more {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--text-accent);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-  }
-
-  .arrow {
-    transition: transform 0.2s ease;
-  }
-
-  .bento-card:hover .arrow {
-    transform: translateX(4px);
-  }
-
-  /* Common Nonprofit Use Cases Box */
-  .use-cases-box {
-    margin-top: 3.5rem;
-    padding: clamp(2rem, 3.5vw, 3rem);
-    background: var(--bg-card);
-    border: 1px solid var(--border-card);
-    border-radius: var(--radius-lg);
-  }
-
-  .use-cases-header {
-    max-width: 780px;
-    margin-bottom: 2.25rem;
-  }
-
-  .use-cases-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.775rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent-coral);
-    background: color-mix(in srgb, var(--accent-coral) 12%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent-coral) 25%, transparent);
-    padding: 0.35rem 0.85rem;
-    border-radius: 9999px;
-    margin-bottom: 1rem;
-  }
-
-  .use-cases-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.85rem;
-    letter-spacing: -0.015em;
-  }
-
-  .use-cases-desc {
-    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
-    color: var(--text-secondary);
-    line-height: 1.65;
-  }
-
-  .library-link {
-    color: var(--text-accent);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    font-weight: 600;
-    transition: color 0.15s ease;
-  }
-
-  .library-link:hover {
-    color: var(--accent-coral);
-  }
-
-  .use-cases-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin-bottom: 2.25rem;
-  }
-
-  @media (min-width: 640px) {
-    .use-cases-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .use-cases-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .use-case-card:nth-child(4) {
-      grid-column: span 1;
-    }
-    .use-case-card:nth-child(5) {
+    .prog-1 {
       grid-column: span 2;
     }
   }
 
-  .use-case-card {
-    background: var(--bg-canvas);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
+  .program-card {
+    padding: 1.75rem;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .use-case-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--border-glow);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .use-case-category-tag {
-    font-size: 0.725rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-accent);
-    margin-bottom: -0.25rem;
-  }
-
-  .use-case-top {
+  .prog-top {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-  }
-
-  .use-case-icon {
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: color-mix(in srgb, var(--text-accent) 12%, transparent);
-    color: var(--text-accent);
-    border-radius: var(--radius-sm);
-    flex-shrink: 0;
-  }
-
-  .use-case-name {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.35;
-  }
-
-  .use-case-text {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    flex-grow: 1;
-  }
-
-  .use-case-deliverable {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    padding-top: 0.75rem;
-    border-top: 1px dashed var(--border-subtle);
-    margin-top: 0.5rem;
-    font-size: 0.775rem;
-    line-height: 1.45;
-  }
-
-  .deliv-badge {
-    font-size: 0.675rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    background: color-mix(in srgb, var(--accent-teal) 15%, transparent);
-    color: var(--text-accent-secondary);
-    padding: 0.15rem 0.45rem;
-    border-radius: 4px;
-    flex-shrink: 0;
-  }
-
-  .deliv-text {
-    color: var(--text-secondary);
-    font-family: var(--font-mono);
-  }
-
-  .use-cases-footer-row {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    align-items: flex-start;
     justify-content: space-between;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-subtle);
+    margin-bottom: 0.35rem;
   }
 
-  @media (min-width: 768px) {
-    .use-cases-footer-row {
-      flex-direction: row;
-      align-items: center;
-    }
+  .prog-status-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-xs);
+    letter-spacing: 0.03em;
   }
 
-  .use-cases-note {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.825rem;
+  .status-live {
+    background: var(--accent-green-subtle);
+    color: var(--accent-green);
+    border: 1px solid color-mix(in srgb, var(--accent-green) 30%, transparent);
+  }
+
+  .status-event {
+    background: var(--accent-amber-subtle);
+    color: var(--accent-amber);
+    border: 1px solid color-mix(in srgb, var(--accent-amber) 30%, transparent);
+  }
+
+  .status-track {
+    background: var(--accent-purple-subtle);
+    color: var(--accent-purple);
+    border: 1px solid color-mix(in srgb, var(--accent-purple) 30%, transparent);
+  }
+
+  .status-charity {
+    background: rgba(2, 132, 199, 0.1);
+    color: var(--accent-primary);
+    border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+  }
+
+  .prog-tag {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
     color: var(--text-muted);
   }
 
-  .use-cases-btn {
+  .prog-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .prog-summary {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .prog-details {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .prog-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: 0.5rem;
+  }
+
+  .prog-cadence {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .cadence-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .cadence-val {
+    font-size: 0.775rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .prog-action-link {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--accent-primary);
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.9rem;
+    gap: 0.35rem;
+    transition: gap 0.15s ease;
+  }
+
+  .prog-action-link:hover {
+    gap: 0.55rem;
   }
 </style>

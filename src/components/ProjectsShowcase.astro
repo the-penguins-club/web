@@ -12,7 +12,6 @@ interface ProjectItem {
   lang: string;
   langColor: string;
   tag: string;
-  isCommunityDirectory?: boolean;
 }
 
 const realProjects: ProjectItem[] = [
@@ -20,56 +19,56 @@ const realProjects: ProjectItem[] = [
     id: "proj-bd-startups",
     name: "bd-startups",
     repoUrl: "https://github.com/the-penguins-club/bd-startups",
-    description: "A curated open directory of tech startups in Bangladesh, inspired by k-startups. Helping local tech innovators gain global visibility and discover collaboration opportunities.",
+    description: "Curated open directory of technology startups in Bangladesh. Helping local tech innovators gain international visibility and collaborative peer connections.",
     stars: 21,
     forks: 6,
-    lang: "Markdown / Docs",
-    langColor: "var(--accent-coral)",
-    tag: "Open Data & Directory"
+    lang: "Markdown",
+    langColor: "#0284c7",
+    tag: "Open Data"
   },
   {
     id: "proj-cybersec",
     name: "Awesome-Cybersecurity-Bangladesh",
     repoUrl: "https://github.com/the-penguins-club/Awesome-Cybersecurity-Bangladesh",
-    description: "Curated collection of outstanding cybersecurity resources, learning labs, security groups, and research initiatives focused on Bangladesh.",
+    description: "Curated collection of cybersecurity learning labs, research initiatives, tooling guides, and defense frameworks tailored for Bangladesh.",
     stars: 6,
     forks: 2,
     lang: "Awesome List",
-    langColor: "var(--accent-teal)",
-    tag: "Security Education"
+    langColor: "#15803d",
+    tag: "Security"
   },
   {
     id: "proj-tuxtalk",
     name: "TuxTalk",
     repoUrl: "https://github.com/the-penguins-club/TuxTalk",
-    description: "Slide decks, talk transcripts, lecture notes, and resources presented at The Penguins Club monthly meetups covering Linux systems, tools, and open source.",
+    description: "Slide decks, talk transcripts, lecture notes, and resources presented at The Penguins Club monthly meetups covering Linux systems and tools.",
     stars: 5,
     forks: 0,
-    lang: "Community Talks",
-    langColor: "var(--accent-amber)",
-    tag: "Meetup Lectures"
+    lang: "Talks & Notes",
+    langColor: "#d97706",
+    tag: "Workshops"
   },
   {
     id: "proj-uradhura",
     name: "uradhura",
     repoUrl: "https://github.com/the-penguins-club/uradhura",
-    description: "A high-performance Telegram bot written in Rust powering community group automations, media delivery, and community utility features.",
+    description: "High-performance Telegram bot written in Rust powering community group automations, resource delivery, and utility services.",
     stars: 5,
     forks: 0,
     lang: "Rust",
-    langColor: "#f97316",
-    tag: "Telegram Automation"
+    langColor: "#ea580c",
+    tag: "Automation"
   },
   {
     id: "proj-tux-career",
     name: "tux-career",
     repoUrl: "https://github.com/the-penguins-club/tux-career",
-    description: "Curated open-source career guidance, Linux skills roadmap, and job references for aspiring systems engineers and developers.",
+    description: "Curated open career guidance, Linux skill rubrics, and engineering references for aspiring systems administrators and developers.",
     stars: 3,
     forks: 2,
     lang: "JavaScript",
-    langColor: "#facc15",
-    tag: "Career Roadmap"
+    langColor: "#ca8a04",
+    tag: "Roadmap"
   },
   {
     id: "proj-internetting",
@@ -79,7 +78,7 @@ const realProjects: ProjectItem[] = [
     stars: 0,
     forks: 1,
     lang: "Astro",
-    langColor: "#ff5d01",
+    langColor: "#dc2626",
     tag: "Digital Literacy"
   }
 ];
@@ -89,18 +88,18 @@ const realProjects: ProjectItem[] = [
   <div class="container">
     <div class="section-header">
       <div class="header-content">
-        <div class="section-tag">Open Source Ecosystem</div>
-        <h2 class="section-title">Open Repositories &amp; Initiatives</h2>
+        <div class="section-tag">[ OPEN SOURCE ECOSYSTEM ]</div>
+        <h2 class="section-title">Public Repositories &amp; Initiatives</h2>
         <p class="section-desc">
-          All our code, guides, and learning resources are published under open source licenses on GitHub. We encourage community members, developers, and students to explore, fork, and contribute.
+          All our code, guides, and learning resources are published under open copyleft licenses on GitHub. Explore, inspect, fork, and submit pull requests.
         </p>
       </div>
 
       <a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer" class="btn-secondary gh-all-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
         </svg>
-        View all 30 repos on GitHub &rarr;
+        <span>View all 30 repos on GitHub &rarr;</span>
       </a>
     </div>
 
@@ -109,7 +108,7 @@ const realProjects: ProjectItem[] = [
         <article class="project-card glass-card">
           <div class="proj-header">
             <div class="proj-title-wrap">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="folder-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="folder-icon">
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
               </svg>
               <h3 class="proj-name">
@@ -131,13 +130,13 @@ const realProjects: ProjectItem[] = [
 
             <div class="proj-stats">
               <span class="stat-item" title="Stars on GitHub">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                 </svg>
                 {proj.stars}
               </span>
               <span class="stat-item" title="Forks">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="18" r="3"></circle>
                   <circle cx="6" cy="6" r="3"></circle>
                   <circle cx="18" cy="6" r="3"></circle>
@@ -150,11 +149,9 @@ const realProjects: ProjectItem[] = [
           </div>
 
           <div class="proj-footer">
-            <a href={proj.repoUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary proj-btn">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-              </svg>
-              View Repository &amp; Code
+            <a href={proj.repoUrl} target="_blank" rel="noopener noreferrer" class="proj-link">
+              <span>View Source &amp; Code</span>
+              <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </article>
@@ -164,8 +161,8 @@ const realProjects: ProjectItem[] = [
     <!-- Community Contribution Box -->
     <div class="contrib-box glass-card">
       <div class="contrib-content">
-        <div class="pill-mini">Open Source Collaboration</div>
-        <h3 class="contrib-title">Want to contribute or start a new project under the club?</h3>
+        <div class="contrib-tag">[ OPEN COLLABORATION ]</div>
+        <h3 class="contrib-title">Want to contribute or start a new repository under the club?</h3>
         <p class="contrib-desc">
           Whether you want to contribute documentation to <code>bd-startups</code>, write a security guide for <code>Awesome-Cybersecurity-Bangladesh</code>, or incubate your own open source tool, our community is open for collaboration.
         </p>
@@ -181,16 +178,16 @@ const realProjects: ProjectItem[] = [
 
 <style>
   .projects-section {
-    padding: clamp(4rem, 8vw, 7rem) 0;
+    padding: clamp(3.5rem, 6vw, 5.5rem) 0;
     position: relative;
-    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
   }
 
   .section-header {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 
   @media (min-width: 860px) {
@@ -215,28 +212,28 @@ const realProjects: ProjectItem[] = [
   .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 680px) {
     .projects-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (min-width: 1080px) {
+  @media (min-width: 1024px) {
     .projects-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
   .project-card {
-    padding: 1.75rem;
+    padding: 1.35rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .proj-header {
@@ -249,48 +246,52 @@ const realProjects: ProjectItem[] = [
   .proj-title-wrap {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.5rem;
   }
 
   .folder-icon {
-    color: var(--text-accent);
+    color: var(--accent-primary);
     flex-shrink: 0;
   }
 
   .proj-name {
     font-family: var(--font-mono);
-    font-size: 1.05rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--text-primary);
   }
 
   .proj-name a:hover {
-    color: var(--text-accent);
+    color: var(--accent-primary);
+    text-decoration: underline;
   }
 
   .proj-stage-badge {
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
     font-weight: 600;
-    color: var(--badge-text);
-    background: var(--badge-bg);
-    border: 1px solid var(--badge-border);
-    padding: 0.2rem 0.55rem;
-    border-radius: 9999px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    padding: 0.15rem 0.4rem;
+    border-radius: var(--radius-xs);
     white-space: nowrap;
   }
 
   .proj-desc {
-    font-size: 0.9rem;
+    font-size: 0.825rem;
     color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: auto;
+    line-height: 1.55;
+    flex: 1;
   }
 
   .proj-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 0.75rem;
+    padding-top: 0.65rem;
     border-top: 1px solid var(--border-subtle);
   }
 
@@ -298,9 +299,6 @@ const realProjects: ProjectItem[] = [
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-secondary);
   }
 
   .lang-dot {
@@ -309,42 +307,52 @@ const realProjects: ProjectItem[] = [
     border-radius: 50%;
   }
 
+  .lang-name {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-muted);
+  }
+
   .proj-stats {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
   }
 
   .stat-item {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
     color: var(--text-muted);
-  }
-
-  .stat-item svg {
-    color: var(--accent-amber);
   }
 
   .proj-footer {
     padding-top: 0.25rem;
   }
 
-  .proj-btn {
-    width: 100%;
-    font-size: 0.825rem;
-    padding: 0.65rem 1rem;
+  .proj-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: gap 0.15s ease;
   }
 
-  /* Contribution Box */
+  .proj-link:hover {
+    gap: 0.5rem;
+  }
+
+  /* Contrib Box */
   .contrib-box {
-    padding: 2.25rem 2.5rem;
+    padding: 2rem 2.25rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-subtle) 100%);
+    background: var(--bg-card);
   }
 
   @media (min-width: 860px) {
@@ -356,40 +364,41 @@ const realProjects: ProjectItem[] = [
     .contrib-content {
       max-width: 680px;
     }
+    .contrib-actions {
+      flex-shrink: 0;
+    }
   }
 
-  .pill-mini {
-    font-size: 0.75rem;
+  .contrib-tag {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
     font-weight: 700;
-    color: var(--text-accent);
-    text-transform: uppercase;
+    color: var(--accent-primary);
     letter-spacing: 0.05em;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.4rem;
   }
 
   .contrib-title {
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    margin-bottom: 0.45rem;
   }
 
   .contrib-desc {
+    font-size: 0.875rem;
     color: var(--text-secondary);
-    font-size: 0.925rem;
-    line-height: 1.6;
+    line-height: 1.55;
   }
 
   .contrib-desc code {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
     background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
     padding: 0.1rem 0.35rem;
-    border-radius: 4px;
-    font-size: 0.85em;
-    color: var(--text-accent);
-  }
-
-  .contrib-actions {
-    white-space: nowrap;
+    border-radius: var(--radius-xs);
   }
 </style>
