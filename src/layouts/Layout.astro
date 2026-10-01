@@ -193,6 +193,13 @@ const {
             <div class="footer-nonprofit-badge">
               Community-Run &bull; Volunteer-Driven &bull; Founded 2020
             </div>
+            <div class="footer-location-tag">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>tuxforge, L-5, Road-1, Mirpur-2, Dhaka</span>
+            </div>
           </div>
 
           <div class="footer-col">
@@ -226,6 +233,13 @@ const {
           <div class="footer-col">
             <h4 class="footer-col-title">Organization &amp; Contact</h4>
             <ul class="footer-links">
+              <li class="footer-address">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-pin-icon">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>tuxforge, L-5, Road-1, Mirpur-2, Dhaka</span>
+              </li>
               <li><a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer">GitHub Organization</a></li>
               <li><a href="mailto:mail@thepenguins.club">mail@thepenguins.club</a></li>
               <li><a href="https://thepenguins.club/">thepenguins.club</a></li>
@@ -534,6 +548,24 @@ const {
         width: fit-content;
       }
 
+      .footer-location-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        background: var(--bg-card);
+        border: 1px solid var(--border-card);
+        padding: 0.4rem 0.85rem;
+        border-radius: var(--radius-sm);
+        width: fit-content;
+      }
+
+      .footer-location-tag svg {
+        color: var(--text-accent);
+        flex-shrink: 0;
+      }
+
       .footer-col-title {
         font-size: 0.8125rem;
         font-weight: 700;
@@ -548,6 +580,22 @@ const {
         display: flex;
         flex-direction: column;
         gap: 0.75rem;
+      }
+
+      .footer-address {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.45;
+        margin-bottom: 0.25rem;
+      }
+
+      .footer-pin-icon {
+        flex-shrink: 0;
+        margin-top: 3px;
+        color: var(--text-accent);
       }
 
       .footer-links a {
