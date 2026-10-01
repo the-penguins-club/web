@@ -296,3 +296,179 @@ code, kbd, pre, samp {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+/* Guaranteed Global Terminal Window Styles */
+.terminal-card {
+  width: 100%;
+  max-width: 480px;
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+  overflow: hidden !important;
+  font-family: var(--font-mono), monospace !important;
+  font-size: 0.85rem !important;
+  line-height: 1.5 !important;
+}
+
+.term-bar {
+  background-color: #1e293b !important;
+  padding: 0.75rem 1.15rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 1px solid #334155 !important;
+}
+
+.term-dots-group {
+  display: flex !important;
+  gap: 7px !important;
+}
+
+.term-dots-group span {
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+
+.term-dots-group .dot-red { background-color: #ef4444 !important; }
+.term-dots-group .dot-yellow { background-color: #f59e0b !important; }
+.term-dots-group .dot-green { background-color: #10b981 !important; }
+
+.term-title-text {
+  font-size: 0.75rem !important;
+  color: #94a3b8 !important;
+}
+
+.term-tag-text {
+  font-size: 0.7rem !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+}
+
+.term-body {
+  padding: 1.4rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.9rem !important;
+}
+
+.cmd-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.prompt-sym {
+  color: #10b981 !important;
+  font-weight: 700 !important;
+}
+
+.cmd-text {
+  color: #38bdf8 !important;
+  font-weight: 600 !important;
+}
+
+.output-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.45rem !important;
+  padding: 0.75rem 0.95rem !important;
+  background-color: #131e30 !important;
+  border: 1px solid #24344d !important;
+  border-radius: 10px !important;
+}
+
+.kv-line {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 0.75rem !important;
+  font-size: 0.8rem !important;
+}
+
+.kv-k {
+  color: #64748b !important;
+  min-width: 65px !important;
+  flex-shrink: 0 !important;
+}
+
+.kv-v {
+  color: #cbd5e1 !important;
+}
+
+.bold-v {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.highlight-v {
+  color: #38bdf8 !important;
+}
+
+.tags-group {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+  margin-top: -0.25rem !important;
+}
+
+.pill-chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  padding: 0.3rem 0.65rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.725rem !important;
+  font-weight: 600 !important;
+}
+
+.chip-green {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  color: #34d399 !important;
+}
+
+.chip-blue {
+  background-color: rgba(56, 189, 248, 0.15) !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  color: #38bdf8 !important;
+}
+
+.chip-amber {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  color: #fbbf24 !important;
+}
+
+.pulse-chip-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background-color: #10b981 !important;
+}
+
+.terminal-action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
+  transition: all 0.2s ease !important;
+  margin-top: 0.35rem !important;
+}
+
+.terminal-action-btn:hover {
+  background-color: #1d4ed8 !important;
+  transform: translateY(-1px) !important;
+  color: #ffffff !important;
+}
