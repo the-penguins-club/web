@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="75%" cy="25%" r="40%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#fde047" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#fde047" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hillGrad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="hillGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="hillGrad3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky & Sun -->
+  <rect width="500" height="500" rx="20" fill="url(#skyGrad)"/>
+  <rect width="500" height="500" rx="20" fill="url(#sunGlow)"/>
+  <circle cx="380" cy="110" r="45" fill="#fef08a"/>
+
+  <!-- Clouds -->
+  <g fill="#ffffff" fill-opacity="0.85">
+    <ellipse cx="120" cy="90" rx="45" ry="22"/>
+    <ellipse cx="150" cy="80" rx="35" ry="25"/>
+    <ellipse cx="90" cy="95" rx="30" ry="18"/>
+
+    <ellipse cx="280" cy="140" rx="40" ry="18"/>
+    <ellipse cx="305" cy="130" rx="30" ry="20"/>
+  </g>
+
+  <!-- Distant Hill 1 -->
+  <path d="M -50 350 Q 150 240 320 310 Q 420 350 550 280 L 550 500 L -50 500 Z" fill="url(#hillGrad1)"/>
+
+  <!-- Mid Hill 2 -->
+  <path d="M -50 400 Q 100 320 280 370 Q 420 410 550 340 L 550 500 L -50 500 Z" fill="url(#hillGrad2)"/>
+
+  <!-- Foreground Lush Hill 3 -->
+  <path d="M -50 440 Q 180 360 380 430 Q 460 460 550 420 L 550 500 L -50 500 Z" fill="url(#hillGrad3)"/>
+
+  <!-- Banyan Tree Silhouettes -->
+  <path d="M 80 420 C 75 370 70 340 50 300 C 65 310 80 320 90 300 C 95 320 115 320 120 300 C 130 330 110 370 100 420 Z" fill="#064e3b"/>
+  <ellipse cx="85" cy="270" rx="65" ry="45" fill="#047857"/>
+  <ellipse cx="115" cy="255" rx="50" ry="38" fill="#10b981"/>
+  <ellipse cx="60" cy="265" rx="45" ry="32" fill="#059669"/>
+
+  <!-- Tux Penguin in Grass Touching Ground -->
+  <g transform="translate(240, 310)">
+    <!-- Shadow -->
+    <ellipse cx="40" cy="115" rx="35" ry="10" fill="#022c22" fill-opacity="0.3"/>
+    
+    <!-- Body -->
+    <ellipse cx="40" cy="65" rx="30" ry="42" fill="#0f172a"/>
+    <!-- White Belly -->
+    <ellipse cx="40" cy="72" rx="20" ry="30" fill="#ffffff"/>
+    
+    <!-- Wings / Flippers (one resting on grass) -->
+    <path d="M 12 55 Q 0 75 8 95 Q 18 80 18 65 Z" fill="#0f172a"/>
+    <path d="M 68 55 Q 82 72 80 92 Q 65 80 62 65 Z" fill="#0f172a"/>
+
+    <!-- Eyes -->
+    <circle cx="32" cy="40" r="5" fill="#ffffff"/>
+    <circle cx="48" cy="40" r="5" fill="#ffffff"/>
+    <circle cx="33" cy="40" r="2.5" fill="#0f172a"/>
+    <circle cx="49" cy="40" r="2.5" fill="#0f172a"/>
+
+    <!-- Yellow Beak -->
+    <path d="M 33 46 Q 40 54 47 46 Q 40 43 33 46 Z" fill="#f59e0b"/>
+
+    <!-- Feet Touching Grass -->
+    <ellipse cx="25" cy="106" rx="10" ry="5" fill="#f59e0b"/>
+    <ellipse cx="55" cy="106" rx="10" ry="5" fill="#f59e0b"/>
+
+    <!-- Flower in Grass next to Tux -->
+    <circle cx="85" cy="110" r="4" fill="#fbbf24"/>
+    <circle cx="85" cy="104" r="3" fill="#f43f5e"/>
+    <circle cx="90" cy="109" r="3" fill="#f43f5e"/>
+    <circle cx="85" cy="116" r="3" fill="#f43f5e"/>
+    <circle cx="80" cy="111" r="3" fill="#f43f5e"/>
+  </g>
+
+  <!-- Grass Blades in Foreground -->
+  <path d="M 210 440 L 215 410 L 220 440" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 230 445 L 238 415 L 244 445" stroke="#6ee7b7" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M 320 445 L 328 418 L 334 445" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 350 450 L 358 422 L 366 450" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Badge in corner: TOUCH GRASS -->
+  <g transform="translate(24, 24)">
+    <rect width="130" height="30" rx="15" fill="#064e3b" fill-opacity="0.85" stroke="#34d399" stroke-width="1.5"/>
+    <text x="65" y="20" fill="#ecfdf5" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" text-anchor="middle" letter-spacing="1">🌿 UNPLUGGED</text>
+  </g>
+</svg>

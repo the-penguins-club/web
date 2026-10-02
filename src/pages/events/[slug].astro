@@ -1,0 +1,1828 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { events, type CommunityEvent } from '../../data/events';
+
+export function getStaticPaths() {
+  return events.map((event) => ({
+    params: { slug: event.slug },
+    props: { event }
+  }));
+}
+
+interface Props {
+  event: CommunityEvent;
+}
+
+const { event } = Astro.props;
+const otherEvents = events.filter((e) => e.slug !== event.slug);
+---
+
+<Layout
+  title={`${event.title} — The Penguins Club`}
+  description={event.description}
+>
+  <div class={`event-detail-page ${event.isSuper ? 'is-super-page' : ''} theme-${event.theme}`}>
+    <!-- Top Breadcrumbs & Back Navigation -->
+    <div class="event-nav-banner">
+      <div class="container">
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <a href="/#events" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to All Meetups</span>
+          </a>
+          <span class="crumb-separator">/</span>
+          <span class="crumb-current">{event.title}</span>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="event-hero-section">
+      <div class="container">
+        <div class="hero-header-content">
+          <!-- Super / Track Tag Pill -->
+          <div class="hero-badges-row">
+            {event.isSuper && (
+              <span class="super-event-badge">
+                <span class="pulse-dot"></span>
+                <span>{event.superBadge || 'SUPER EVENT 🌿'}</span>
+              </span>
+            )}
+            {event.theme === 'hacktoberfest' && (
+              <span class="hacktoberfest-badge">
+                <span>🎃 HACKTOBERFEST 2026 SPECIAL</span>
+              </span>
+            )}
+            <span class="track-tag-pill">{event.trackTag}</span>
+            <span class="venue-type-pill venue-{event.venueType}">
+              {event.venueType === 'outdoor' && '🌿 Open-Air Park'}
+              {event.venueType === 'hybrid' && '🌐 In-Person + Stream'}
+              {event.venueType === 'in-person' && '🏢 In-Person Lab'}
+              {event.venueType === 'virtual' && '💻 Virtual Meetup'}
+            </span>
+          </div>
+
+          <h1 class="event-hero-title">{event.title}</h1>
+          <p class="event-hero-summary">{event.description}</p>
+
+          <!-- Key Meta Strip -->
+          <div class="event-meta-strip">
+            <div class="meta-item">
+              <div class="meta-icon-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+              </div>
+              <div class="meta-text-wrap">
+                <span class="meta-label">Date &amp; Time</span>
+                <span class="meta-val">{event.timeString}</span>
+              </div>
+            </div>
+
+            <div class="meta-item">
+              <div class="meta-icon-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="meta-text-wrap">
+                <span class="meta-label">Location</span>
+                <span class="meta-val">{event.location}</span>
+              </div>
+            </div>
+
+            <div class="meta-item">
+              <div class="meta-icon-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <div class="meta-text-wrap">
+                <span class="meta-label">Admission</span>
+                <span class="meta-val highlight-free">100% Free &bull; Open to All</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Countdown Timer Banner -->
+          <div class="event-countdown-banner" data-start-iso={event.startDateIso} data-end-iso={event.endDateIso}>
+            <div class="countdown-header-line">
+              <div class="countdown-badge-title">
+                <span class="countdown-pulse-ring"></span>
+                <span class="countdown-title-text">COUNTDOWN TO GATHERING</span>
+              </div>
+              <span class="countdown-timezone-tag">BST (UTC+6) &bull; Live Real-Time Ticker</span>
+            </div>
+
+            <div class="countdown-timer-display" data-countdown-container>
+              <div class="countdown-time-block">
+                <span class="time-num" data-unit="days">--</span>
+                <span class="time-label">DAYS</span>
+              </div>
+              <span class="time-colon">:</span>
+              <div class="countdown-time-block">
+                <span class="time-num" data-unit="hours">--</span>
+                <span class="time-label">HOURS</span>
+              </div>
+              <span class="time-colon">:</span>
+              <div class="countdown-time-block">
+                <span class="time-num" data-unit="minutes">--</span>
+                <span class="time-label">MINUTES</span>
+              </div>
+              <span class="time-colon">:</span>
+              <div class="countdown-time-block">
+                <span class="time-num" data-unit="seconds">--</span>
+                <span class="time-label">SECONDS</span>
+              </div>
+            </div>
+
+            <div class="countdown-live-notice" style="display: none;">
+              <span class="live-beacon"></span>
+              <span>EVENT IS LIVE NOW &bull; JOIN TELEGRAM STREAM OR ON-SITE!</span>
+            </div>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="hero-actions-row">
+            <a
+              href={event.registrationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary hero-rsvp-btn"
+            >
+              <span>Attend via Telegram</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+
+            <button
+              type="button"
+              class="btn-secondary hero-cal-btn btn-cal-action"
+              data-cal-title={event.calTitle}
+              data-cal-desc={event.description}
+              data-cal-loc={event.calLocation}
+              data-cal-start={event.calStart}
+              data-cal-end={event.calEnd}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Add to Calendar (.ics)</span>
+            </button>
+
+            <button
+              type="button"
+              class="btn-secondary hero-share-btn"
+              id="share-event-btn"
+              title="Copy event link"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              <span id="share-btn-text">Share Event</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Banner Visual Card -->
+        <div class="event-banner-showcase">
+          <div class="banner-frame">
+            <img
+              src={event.image}
+              alt={event.title}
+              class="banner-graphic-img"
+            />
+            <div class="banner-date-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>{event.dateBadge}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content & Sidebar Grid -->
+    <section class="event-main-content">
+      <div class="container">
+        <div class="content-layout-grid">
+          <!-- Left / Main Stream -->
+          <div class="main-stream">
+            <!-- Event Overview Section -->
+            <article class="content-card overview-card">
+              <div class="card-header-row">
+                <span class="card-icon-pill">📖</span>
+                <h2 class="card-section-title">About This Event</h2>
+              </div>
+              <div class="overview-body prose">
+                {event.fullOverview.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+            </article>
+
+            <!-- Highlights Section -->
+            <article class="content-card highlights-card">
+              <div class="card-header-row">
+                <span class="card-icon-pill">✨</span>
+                <h2 class="card-section-title">Key Highlights &amp; Activities</h2>
+              </div>
+              <ul class="highlights-grid">
+                {event.highlights.map((item) => (
+                  <li class="highlight-item-card">
+                    <span class="highlight-bullet">&bull;</span>
+                    <p class="highlight-text">{item}</p>
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <!-- Schedule / Agenda Timeline -->
+            <article class="content-card agenda-card">
+              <div class="card-header-row">
+                <span class="card-icon-pill">⏱️</span>
+                <div>
+                  <h2 class="card-section-title">Event Schedule &amp; Agenda</h2>
+                  <p class="card-section-desc">Timeline and sessions for the day (BST Dhaka Time)</p>
+                </div>
+              </div>
+              <div class="agenda-timeline">
+                {event.agenda.map((slot, index) => (
+                  <div class="timeline-slot">
+                    <div class="slot-marker-col">
+                      <div class="slot-marker-dot"></div>
+                      {index < event.agenda.length - 1 && <div class="slot-marker-line"></div>}
+                    </div>
+                    <div class="slot-content">
+                      <div class="slot-time-badge">{slot.time}</div>
+                      <h3 class="slot-title">{slot.title}</h3>
+                      {slot.speaker && (
+                        <div class="slot-speaker-pill">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                          </svg>
+                          <span>{slot.speaker}</span>
+                        </div>
+                      )}
+                      {slot.description && (
+                        <p class="slot-desc">{slot.description}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <!-- Prerequisites & What to Bring Dual Grid -->
+            <div class="dual-info-grid">
+              <article class="content-card sub-card">
+                <div class="card-header-row">
+                  <span class="card-icon-pill">🧠</span>
+                  <h2 class="card-section-title">Prerequisites</h2>
+                </div>
+                <ul class="checklist-items">
+                  {event.prerequisites.map((req) => (
+                    <li>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>{req}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+
+              <article class="content-card sub-card">
+                <div class="card-header-row">
+                  <span class="card-icon-pill">🎒</span>
+                  <h2 class="card-section-title">What to Bring</h2>
+                </div>
+                <ul class="checklist-items">
+                  {event.whatToBring.map((item) => (
+                    <li>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+
+            <!-- Speakers & Mentors -->
+            {event.speakers && event.speakers.length > 0 && (
+              <article class="content-card speakers-card">
+                <div class="card-header-row">
+                  <span class="card-icon-pill">👥</span>
+                  <h2 class="card-section-title">Facilitators &amp; Hosts</h2>
+                </div>
+                <div class="speakers-list-grid">
+                  {event.speakers.map((spk) => (
+                    <div class="speaker-profile-card">
+                      <div class="speaker-avatar-wrap">
+                        <img src={spk.avatar || '/favicon.svg'} alt={spk.name} class="speaker-img" />
+                      </div>
+                      <div class="speaker-details">
+                        <h3 class="speaker-name">{spk.name}</h3>
+                        <div class="speaker-role">{spk.role}</div>
+                        {spk.bio && <p class="speaker-bio">{spk.bio}</p>}
+                        {spk.github && (
+                          <a
+                            href={`https://github.com/${spk.github}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="speaker-gh-link"
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                            </svg>
+                            <span>github.com/{spk.github}</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            )}
+
+            <!-- FAQ Section -->
+            {event.faqs && event.faqs.length > 0 && (
+              <article class="content-card faq-card">
+                <div class="card-header-row">
+                  <span class="card-icon-pill">❓</span>
+                  <h2 class="card-section-title">Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-list">
+                  {event.faqs.map((faq) => (
+                    <details class="faq-accordion-item">
+                      <summary class="faq-question">
+                        <span>{faq.question}</span>
+                        <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </summary>
+                      <div class="faq-answer">
+                        <p>{faq.answer}</p>
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </article>
+            )}
+          </div>
+
+          <!-- Right / Sticky Sidebar -->
+          <aside class="sidebar-stream">
+            <!-- Fast Info Card -->
+            <div class="sticky-sidebar-card">
+              <h3 class="sidebar-card-title">Event Summary</h3>
+
+              <div class="sidebar-info-block">
+                <div class="sidebar-info-row">
+                  <span class="sidebar-info-label">Date</span>
+                  <span class="sidebar-info-val">{event.dateBadge}</span>
+                </div>
+                <div class="sidebar-info-row">
+                  <span class="sidebar-info-label">Timing</span>
+                  <span class="sidebar-info-val">{event.timeString}</span>
+                </div>
+                <div class="sidebar-info-row">
+                  <span class="sidebar-info-label">Venue</span>
+                  <span class="sidebar-info-val">{event.venueName}</span>
+                </div>
+                <div class="sidebar-info-row address-row">
+                  <span class="sidebar-info-label">Address</span>
+                  <span class="sidebar-info-val">{event.venueAddress}</span>
+                </div>
+                {event.capacity && (
+                  <div class="sidebar-info-row">
+                    <span class="sidebar-info-label">Capacity</span>
+                    <span class="sidebar-info-val">{event.capacity}</span>
+                  </div>
+                )}
+                <div class="sidebar-info-row">
+                  <span class="sidebar-info-label">Fee</span>
+                  <span class="sidebar-info-val free-badge">Free / 0 BDT</span>
+                </div>
+              </div>
+
+              <!-- Sidebar Countdown Box -->
+              <div class="sidebar-timer-badge" data-start-iso={event.startDateIso} data-end-iso={event.endDateIso}>
+                <div class="sidebar-timer-top">
+                  <span class="sidebar-timer-pulse"></span>
+                  <span class="sidebar-timer-heading">STARTS IN</span>
+                </div>
+                <div class="sidebar-timer-clock" data-sidebar-countdown>
+                  Calculating...
+                </div>
+              </div>
+
+              <!-- Sidebar Action Buttons -->
+              <div class="sidebar-actions">
+                <a
+                  href={event.registrationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-primary sidebar-rsvp-btn"
+                >
+                  Join Telegram &amp; RSVP &rarr;
+                </a>
+
+                <button
+                  type="button"
+                  class="btn-secondary sidebar-cal-btn btn-cal-action"
+                  data-cal-title={event.calTitle}
+                  data-cal-desc={event.description}
+                  data-cal-loc={event.calLocation}
+                  data-cal-start={event.calStart}
+                  data-cal-end={event.calEnd}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Download .ics Calendar</span>
+                </button>
+              </div>
+
+              <div class="sidebar-guarantee-note">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Zero spam, zero registration fees. 100% community-driven educational initiative.</span>
+              </div>
+            </div>
+
+            <!-- Other Events Sidebar Widget -->
+            {otherEvents.length > 0 && (
+              <div class="other-events-widget">
+                <h3 class="other-events-heading">Other Upcoming Events</h3>
+                <div class="other-events-list">
+                  {otherEvents.map((oe) => (
+                    <a href={`/events/${oe.slug}`} class="other-event-item">
+                      <div class="other-event-thumb">
+                        <img src={oe.image} alt={oe.title} loading="lazy" />
+                      </div>
+                      <div class="other-event-meta">
+                        {oe.isSuper && <span class="other-super-pill">SUPER 🌿</span>}
+                        {oe.theme === 'hacktoberfest' && <span class="other-hack-pill">HACKTOBERFEST</span>}
+                        <h4 class="other-event-title">{oe.title}</h4>
+                        <span class="other-event-date">{oe.dateBadge}</span>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </aside>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<!-- Client Script for Calendar .ics generation & URL Sharing -->
+<script>
+  function initEventPageInteractions() {
+    // Calendar Download Buttons
+    const calButtons = document.querySelectorAll<HTMLButtonElement>('.btn-cal-action');
+    calButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const title = btn.getAttribute('data-cal-title') || 'The Penguins Club Meetup';
+        const desc = btn.getAttribute('data-cal-desc') || 'Community Linux Workshop';
+        const loc = btn.getAttribute('data-cal-loc') || 'Dhaka, Bangladesh';
+        const start = btn.getAttribute('data-cal-start') || '20261017T090000Z';
+        const end = btn.getAttribute('data-cal-end') || '20261017T120000Z';
+
+        const icsContent = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//The Penguins Club//Meetups//EN',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH',
+          'BEGIN:VEVENT',
+          `UID:${Date.now()}@thepenguins.club`,
+          `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
+          `DTSTART:${start}`,
+          `DTEND:${end}`,
+          `SUMMARY:${title}`,
+          `DESCRIPTION:${desc.replace(/\n/g, '\\n')}`,
+          `LOCATION:${loc}`,
+          'STATUS:CONFIRMED',
+          'END:VEVENT',
+          'END:VCALENDAR'
+        ].join('\r\n');
+
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.ics`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    });
+
+    // Share Button
+    const shareBtn = document.getElementById('share-event-btn');
+    const shareText = document.getElementById('share-btn-text');
+    if (shareBtn && shareText) {
+      shareBtn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard) {
+            await navigator.clipboard.writeText(window.location.href);
+            const original = shareText.textContent;
+            shareText.textContent = 'Link Copied!';
+            shareBtn.style.borderColor = 'var(--accent-green)';
+            setTimeout(() => {
+              shareText.textContent = original;
+              shareBtn.style.borderColor = '';
+            }, 2500);
+          }
+        } catch {
+          // fallback
+        }
+      });
+    }
+
+    // Live Countdown Timer
+    function updateCountdowns() {
+      const now = Date.now();
+      const elements = document.querySelectorAll<HTMLElement>('[data-start-iso]');
+      elements.forEach((el) => {
+        const startStr = el.getAttribute('data-start-iso');
+        const endStr = el.getAttribute('data-end-iso');
+        if (!startStr) return;
+
+        const startTime = new Date(startStr).getTime();
+        const endTime = endStr ? new Date(endStr).getTime() : startTime + 4 * 3600 * 1000;
+        const diff = startTime - now;
+
+        const daysEl = el.querySelector<HTMLElement>('[data-unit="days"]');
+        const hoursEl = el.querySelector<HTMLElement>('[data-unit="hours"]');
+        const minsEl = el.querySelector<HTMLElement>('[data-unit="minutes"]');
+        const secsEl = el.querySelector<HTMLElement>('[data-unit="seconds"]');
+        const clockBox = el.querySelector<HTMLElement>('[data-countdown-container]');
+        const liveNotice = el.querySelector<HTMLElement>('.countdown-live-notice');
+        const sidebarTimer = el.querySelector<HTMLElement>('[data-sidebar-countdown]');
+
+        if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+
+          if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+          if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+          if (minsEl) minsEl.textContent = String(minutes).padStart(2, '0');
+          if (secsEl) secsEl.textContent = String(seconds).padStart(2, '0');
+
+          if (clockBox) clockBox.style.display = 'flex';
+          if (liveNotice) liveNotice.style.display = 'none';
+
+          if (sidebarTimer) {
+            sidebarTimer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+          }
+        } else if (now >= startTime && now <= endTime) {
+          if (clockBox) clockBox.style.display = 'none';
+          if (liveNotice) liveNotice.style.display = 'flex';
+          if (sidebarTimer) sidebarTimer.textContent = '🔴 Happening Now!';
+        } else {
+          if (clockBox) clockBox.style.display = 'none';
+          if (liveNotice) {
+            liveNotice.style.display = 'flex';
+            liveNotice.textContent = 'Event Concluded';
+          }
+          if (sidebarTimer) sidebarTimer.textContent = 'Event Concluded';
+        }
+      });
+    }
+
+    updateCountdowns();
+    setInterval(updateCountdowns, 1000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initEventPageInteractions);
+  } else {
+    initEventPageInteractions();
+  }
+</script>
+
+<style>
+  .event-detail-page {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding-bottom: 5rem;
+  }
+
+  /* Distinct Styling for Touch Grass Super Event */
+  .is-super-page {
+    background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 50%), var(--bg-canvas);
+  }
+
+  .theme-grass .super-event-badge {
+    background: linear-gradient(135deg, #059669, #10b981);
+    color: #ffffff;
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
+  }
+
+  .theme-hacktoberfest .hacktoberfest-badge {
+    background: linear-gradient(135deg, #ea580c, #9333ea);
+    color: #ffffff;
+    box-shadow: 0 0 16px rgba(234, 88, 12, 0.35);
+  }
+
+  /* Breadcrumb Navigation */
+  .event-nav-banner {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-subtle);
+  }
+
+  .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--accent-primary);
+    font-weight: 600;
+    transition: color 0.15s ease, transform 0.15s ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent-primary-hover);
+    transform: translateX(-2px);
+  }
+
+  .crumb-separator {
+    color: var(--text-muted);
+  }
+
+  .crumb-current {
+    color: var(--text-muted);
+    max-width: 380px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Hero Section */
+  .event-hero-section {
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+  }
+
+  .hero-badges-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .super-event-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.05em;
+  }
+
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ffffff;
+    animation: pulseGlow 1.8s infinite;
+  }
+
+  @keyframes pulseGlow {
+    0% { opacity: 0.4; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.3); }
+    100% { opacity: 0.4; transform: scale(0.9); }
+  }
+
+  .hacktoberfest-badge {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.05em;
+  }
+
+  .track-tag-pill {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .venue-type-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .event-hero-title {
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1.15rem;
+    max-width: 900px;
+  }
+
+  .event-hero-summary {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 820px;
+    margin-bottom: 2rem;
+  }
+
+  /* Key Meta Strip */
+  .event-meta-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-xs);
+  }
+
+  @media (min-width: 640px) {
+    .event-meta-strip {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 992px) {
+    .event-meta-strip {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .meta-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-primary);
+    flex-shrink: 0;
+  }
+
+  .theme-grass .meta-icon-box {
+    color: var(--accent-green);
+  }
+
+  .meta-text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .meta-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .meta-val {
+    font-size: 0.925rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
+
+  .highlight-free {
+    color: var(--accent-green);
+  }
+
+  /* Live Countdown Banner */
+  .event-countdown-banner {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-xs);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .theme-grass .event-countdown-banner {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.06) 0%, rgba(5, 150, 105, 0.02) 100%), var(--bg-card);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.12);
+  }
+
+  .theme-hacktoberfest .event-countdown-banner {
+    border-color: rgba(234, 88, 12, 0.35);
+    background: linear-gradient(180deg, rgba(234, 88, 12, 0.06) 0%, rgba(147, 51, 234, 0.03) 100%), var(--bg-card);
+    box-shadow: 0 4px 20px rgba(234, 88, 12, 0.1);
+  }
+
+  .countdown-header-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.75rem;
+  }
+
+  .countdown-badge-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .countdown-pulse-ring {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+    animation: ringPulse 2s infinite;
+  }
+
+  .theme-grass .countdown-pulse-ring {
+    background: var(--accent-green);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+
+  .theme-hacktoberfest .countdown-pulse-ring {
+    background: #ea580c;
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.7);
+  }
+
+  @keyframes ringPulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    }
+  }
+
+  .countdown-title-text {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: 0.06em;
+  }
+
+  .countdown-timezone-tag {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .countdown-timer-display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(0.45rem, 1.8vw, 1.25rem);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+  }
+
+  .countdown-time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-subtle) 100%);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1.15rem;
+    min-width: clamp(68px, 12vw, 92px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .countdown-time-block::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  }
+
+  [data-theme="dark"] .countdown-time-block::after {
+    background: rgba(0, 0, 0, 0.45);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .time-num {
+    font-family: var(--font-mono);
+    font-size: clamp(2rem, 3.4vw, 2.75rem);
+    font-weight: 800;
+    color: var(--accent-primary);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 18px rgba(37, 99, 235, 0.25);
+  }
+
+  .theme-grass .time-num {
+    color: #10b981;
+    text-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+  }
+
+  .theme-hacktoberfest .time-num {
+    color: #ea580c;
+    text-shadow: 0 0 18px rgba(234, 88, 12, 0.4);
+  }
+
+  .time-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-top: 0.4rem;
+    background: var(--bg-card);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .time-colon {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    padding-bottom: 1.25rem;
+    opacity: 0.5;
+    user-select: none;
+    animation: colonBlink 2s infinite;
+  }
+
+  .theme-grass .time-colon {
+    color: #10b981;
+  }
+
+  .theme-hacktoberfest .time-colon {
+    color: #ea580c;
+  }
+
+  @keyframes colonBlink {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.25; }
+  }
+
+  .countdown-live-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 1rem 1.25rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: var(--radius-md);
+    color: #ef4444;
+    font-weight: 700;
+    font-size: 0.95rem;
+    font-family: var(--font-mono);
+  }
+
+  .live-beacon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ef4444;
+    animation: pulseGlow 1s infinite;
+  }
+
+  /* Sidebar Timer Widget */
+  .sidebar-timer-badge {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .theme-grass .sidebar-timer-badge {
+    border-color: rgba(16, 185, 129, 0.35);
+    background: rgba(16, 185, 129, 0.05);
+  }
+
+  .theme-hacktoberfest .sidebar-timer-badge {
+    border-color: rgba(234, 88, 12, 0.35);
+    background: rgba(234, 88, 12, 0.05);
+  }
+
+  .sidebar-timer-top {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .sidebar-timer-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+  }
+
+  .theme-grass .sidebar-timer-pulse {
+    background: var(--accent-green);
+  }
+
+  .theme-hacktoberfest .sidebar-timer-pulse {
+    background: #ea580c;
+  }
+
+  .sidebar-timer-heading {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .sidebar-timer-clock {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .theme-grass .sidebar-timer-clock {
+    color: #10b981;
+  }
+
+  .theme-hacktoberfest .sidebar-timer-clock {
+    color: #ea580c;
+  }
+
+  /* Hero Actions */
+  .hero-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-rsvp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+  }
+
+  .theme-grass .hero-rsvp-btn {
+    background-color: #059669;
+    border-color: #059669;
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+  }
+
+  .theme-grass .hero-rsvp-btn:hover {
+    background-color: #047857;
+    border-color: #047857;
+  }
+
+  .hero-cal-btn,
+  .hero-share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.8rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    color: var(--text-primary);
+    border-radius: var(--radius-pill);
+    transition: all 0.15s ease;
+  }
+
+  .hero-cal-btn:hover,
+  .hero-share-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-card-hover);
+  }
+
+  /* Banner Visual Showcase */
+  .event-banner-showcase {
+    margin-top: 1rem;
+  }
+
+  .banner-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 480px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: #0f172a;
+    border: 1px solid var(--border-card);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .banner-graphic-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .banner-date-tag {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.825rem;
+    font-weight: 600;
+    padding: 0.45rem 0.95rem;
+    border-radius: var(--radius-pill);
+  }
+
+  /* Content Layout Grid */
+  .event-main-content {
+    padding: 3rem 0;
+  }
+
+  .content-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 992px) {
+    .content-layout-grid {
+      grid-template-columns: 2fr 1fr;
+      align-items: start;
+    }
+  }
+
+  /* Main Stream Cards */
+  .main-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .content-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .card-header-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-icon-pill {
+    font-size: 1.25rem;
+  }
+
+  .card-section-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .card-section-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  /* Overview Body */
+  .overview-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    font-size: 1.025rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  /* Highlights Grid */
+  .highlights-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .highlights-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .highlight-item-card {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .highlight-bullet {
+    color: var(--accent-primary);
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-top: 0.2rem;
+  }
+
+  .theme-grass .highlight-bullet {
+    color: var(--accent-green);
+  }
+
+  .highlight-text {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.55;
+  }
+
+  /* Agenda Timeline */
+  .agenda-timeline {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+  }
+
+  .timeline-slot {
+    display: flex;
+    gap: 1.25rem;
+    position: relative;
+  }
+
+  .slot-marker-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20px;
+    flex-shrink: 0;
+  }
+
+  .slot-marker-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    border: 3px solid var(--bg-card);
+    box-shadow: 0 0 0 2px var(--border-card);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .theme-grass .slot-marker-dot {
+    background: var(--accent-green);
+  }
+
+  .slot-marker-line {
+    width: 2px;
+    background: var(--border-card);
+    flex: 1;
+    margin: 4px 0;
+  }
+
+  .slot-content {
+    flex: 1;
+    padding-bottom: 2rem;
+  }
+
+  .slot-time-badge {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    background: rgba(37, 99, 235, 0.08);
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.4rem;
+  }
+
+  .theme-grass .slot-time-badge {
+    color: var(--accent-green);
+    background: rgba(16, 185, 129, 0.1);
+  }
+
+  .slot-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.35;
+    margin-bottom: 0.35rem;
+  }
+
+  .slot-speaker-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.45rem;
+  }
+
+  .slot-desc {
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  /* Dual Grid for Prerequisites & What to Bring */
+  .dual-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .dual-info-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .checklist-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .checklist-items li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .checklist-items li svg {
+    color: var(--accent-green);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* Speakers Cards */
+  .speakers-list-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .speaker-profile-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+  }
+
+  .speaker-avatar-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 6px;
+  }
+
+  .speaker-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .speaker-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .speaker-role {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin-top: 0.15rem;
+  }
+
+  .theme-grass .speaker-role {
+    color: var(--accent-green);
+  }
+
+  .speaker-bio {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 0.45rem;
+  }
+
+  .speaker-gh-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+  }
+
+  .speaker-gh-link:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+  }
+
+  /* FAQ Accordion */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .faq-accordion-item {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+  }
+
+  .faq-accordion-item[open] {
+    border-color: var(--border-card-hover);
+  }
+
+  .faq-question {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-chevron {
+    transition: transform 0.2s ease;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .faq-accordion-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Sidebar Stream */
+  .sidebar-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .sticky-sidebar-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 5.5rem;
+  }
+
+  .sidebar-card-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.015em;
+  }
+
+  .sidebar-info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.875rem;
+    border-bottom: 1px dashed var(--border-subtle);
+    padding-bottom: 0.65rem;
+    gap: 0.75rem;
+  }
+
+  .sidebar-info-row.address-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .sidebar-info-label {
+    color: var(--text-muted);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .sidebar-info-val {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .address-row .sidebar-info-val {
+    text-align: left;
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .free-badge {
+    color: var(--accent-green);
+    background: rgba(16, 185, 129, 0.1);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-xs);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .sidebar-rsvp-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  }
+
+  .theme-grass .sidebar-rsvp-btn {
+    background-color: #059669;
+    border-color: #059669;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);
+  }
+
+  .sidebar-cal-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-pill);
+    color: var(--text-primary);
+    transition: all 0.15s ease;
+  }
+
+  .sidebar-cal-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-card-hover);
+  }
+
+  .sidebar-guarantee-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.775rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .sidebar-guarantee-note svg {
+    color: var(--accent-green);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Other Events Widget */
+  .other-events-widget {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-xs);
+  }
+
+  .other-events-heading {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.15rem;
+  }
+
+  .other-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .other-event-item {
+    display: flex;
+    gap: 0.85rem;
+    align-items: center;
+    padding: 0.65rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-subtle);
+    border: 1px solid transparent;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .other-event-item:hover {
+    border-color: var(--border-card-hover);
+    transform: translateY(-2px);
+  }
+
+  .other-event-thumb {
+    width: 64px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: #0f172a;
+    flex-shrink: 0;
+  }
+
+  .other-event-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .other-event-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .other-super-pill {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #059669;
+    font-family: var(--font-mono);
+  }
+
+  .other-hack-pill {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #ea580c;
+    font-family: var(--font-mono);
+  }
+
+  .other-event-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .other-event-date {
+    font-size: 0.725rem;
+    color: var(--text-muted);
+  }
+</style>

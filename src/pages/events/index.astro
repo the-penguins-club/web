@@ -1,0 +1,562 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { events } from '../../data/events';
+---
+
+<Layout
+  title="Community Events & Meetups Schedule — The Penguins Club"
+  description="Discover free community Linux meetups, open source contribution sprints, outdoor unconferences, and hands-on workshops in Bangladesh."
+>
+  <div class="events-index-page">
+    <!-- Header -->
+    <header class="events-index-hero">
+      <div class="container">
+        <div class="events-hero-badge">
+          <span class="badge-dot"></span>
+          <span>EST. 2020 &bull; 100% FREE COMMUNITY EVENTS</span>
+        </div>
+        <h1 class="events-index-title">Upcoming Meetups &amp; Sprints</h1>
+        <p class="events-index-subtitle">
+          Join free, hands-on Linux workshops, global contribution hackathons, and our signature outdoor unconferences. Open to everyone.
+        </p>
+
+        <!-- Category Filter Pills -->
+        <div class="filter-pills-row" id="events-filter-bar">
+          <button type="button" class="filter-btn active" data-filter="all">All Events ({events.length})</button>
+          <button type="button" class="filter-btn" data-filter="super">Super Events 🌿</button>
+          <button type="button" class="filter-btn" data-filter="hacktoberfest">Hacktoberfest 🎃</button>
+          <button type="button" class="filter-btn" data-filter="hybrid">Hybrid &amp; Labs</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Events Grid -->
+    <section class="events-grid-section">
+      <div class="container">
+        <div class="events-directory-grid" id="events-grid">
+          {events.map((evt) => (
+            <article
+              class={`event-directory-card ${evt.isSuper ? 'is-super-card' : ''} theme-${evt.theme}`}
+              data-type={evt.venueType}
+              data-super={evt.isSuper ? 'true' : 'false'}
+              data-theme={evt.theme}
+            >
+              <!-- Card Image Banner -->
+              <a href={`/events/${evt.slug}`} class="card-banner-link" aria-label={`View details for ${evt.title}`}>
+                <div class="card-banner-wrap">
+                  <img src={evt.image} alt={evt.title} class="card-banner-img" loading="lazy" />
+                  
+                  {evt.isSuper && (
+                    <div class="super-ribbon-tag">
+                      <span>{evt.superBadge || 'SUPER EVENT 🌿'}</span>
+                    </div>
+                  )}
+
+                  {evt.theme === 'hacktoberfest' && (
+                    <div class="hacktoberfest-ribbon-tag">
+                      <span>🎃 SPECIAL SPRINT</span>
+                    </div>
+                  )}
+
+                  <div class="card-date-badge">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>{evt.dateBadge}</span>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Card Body -->
+              <div class="card-body">
+                <div class="card-meta-top-row">
+                  <div class="card-track-tag">{evt.trackTag}</div>
+                  <div class="card-countdown-ticker" data-start-iso={evt.startDateIso} data-end-iso={evt.endDateIso}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span data-card-countdown>Calculating...</span>
+                  </div>
+                </div>
+
+                <h2 class="card-title">
+                  <a href={`/events/${evt.slug}`}>{evt.title}</a>
+                </h2>
+
+                <div class="card-location-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span>{evt.location}</span>
+                </div>
+
+                <p class="card-description">{evt.description}</p>
+
+                <!-- Actions -->
+                <div class="card-actions-row">
+                  <a href={`/events/${evt.slug}`} class="btn-primary card-view-btn">
+                    <span>View Event Page</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+
+                  <a
+                    href={evt.registrationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-telegram-link"
+                    title="Attend via Telegram"
+                  >
+                    <span>RSVP Telegram</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script>
+  function initFilterButtons() {
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.event-directory-card');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach((card) => {
+          if (filter === 'all') {
+            card.style.display = 'flex';
+          } else if (filter === 'super') {
+            card.style.display = card.getAttribute('data-super') === 'true' ? 'flex' : 'none';
+          } else if (filter === 'hacktoberfest') {
+            card.style.display = card.getAttribute('data-theme') === 'hacktoberfest' ? 'flex' : 'none';
+          } else if (filter === 'hybrid') {
+            const venue = card.getAttribute('data-type');
+            card.style.display = (venue === 'hybrid' || venue === 'in-person') ? 'flex' : 'none';
+          }
+        });
+      });
+    });
+  }
+
+  function initCountdowns() {
+    const tickers = document.querySelectorAll<HTMLElement>('.card-countdown-ticker[data-start-iso]');
+    function tick() {
+      const now = Date.now();
+      tickers.forEach((ticker) => {
+        const startStr = ticker.getAttribute('data-start-iso');
+        const endStr = ticker.getAttribute('data-end-iso');
+        if (!startStr) return;
+        const start = new Date(startStr).getTime();
+        const end = endStr ? new Date(endStr).getTime() : start + 4 * 3600 * 1000;
+        const diff = start - now;
+        const label = ticker.querySelector<HTMLElement>('[data-card-countdown]');
+        if (!label) return;
+
+        if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+          if (days > 0) {
+            label.textContent = `Starts in ${days}d ${hours}h`;
+          } else {
+            label.textContent = `Starts in ${hours}h ${minutes}m ${seconds}s`;
+          }
+        } else if (now >= start && now <= end) {
+          label.textContent = '🔴 Happening Now!';
+        } else {
+          label.textContent = 'Concluded';
+        }
+      });
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  function initAll() {
+    initFilterButtons();
+    initCountdowns();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+</script>
+
+<style>
+  .events-index-page {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding-bottom: 6rem;
+  }
+
+  .events-index-hero {
+    padding: clamp(3.5rem, 6vw, 5rem) 0 2.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-subtle);
+    text-align: center;
+  }
+
+  .events-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-bottom: 1.25rem;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+  }
+
+  .events-index-title {
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  .events-index-subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin: 0 auto 2.25rem;
+    line-height: 1.6;
+  }
+
+  /* Filters */
+  .filter-pills-row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+  }
+
+  .filter-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    padding: 0.55rem 1.15rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--border-card-hover);
+    color: var(--text-primary);
+  }
+
+  .filter-btn.active {
+    background: var(--text-primary);
+    color: var(--text-inverse);
+    border-color: var(--text-primary);
+  }
+
+  /* Grid */
+  .events-grid-section {
+    padding: 3.5rem 0;
+  }
+
+  .events-directory-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .events-directory-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .events-directory-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Cards */
+  .event-directory-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-xs);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .event-directory-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-card-hover);
+  }
+
+  .is-super-card {
+    border-color: rgba(16, 185, 129, 0.4);
+    box-shadow: 0 4px 18px rgba(16, 185, 129, 0.12);
+  }
+
+  .card-banner-link {
+    display: block;
+    position: relative;
+  }
+
+  .card-banner-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0f172a;
+    overflow: hidden;
+  }
+
+  .card-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .event-directory-card:hover .card-banner-img {
+    transform: scale(1.03);
+  }
+
+  .super-ribbon-tag {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    background: linear-gradient(135deg, #059669, #10b981);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.4);
+  }
+
+  .hacktoberfest-ribbon-tag {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    background: linear-gradient(135deg, #ea580c, #9333ea);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.4);
+  }
+
+  .card-date-badge {
+    position: absolute;
+    top: 0.85rem;
+    left: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #0f172a;
+    font-size: 0.725rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-date-badge svg {
+    color: var(--accent-primary);
+  }
+
+  .card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.65rem;
+  }
+
+  .card-meta-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .card-track-tag {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .is-super-card .card-track-tag {
+    color: var(--accent-green);
+  }
+
+  .theme-hacktoberfest .card-track-tag {
+    color: #ea580c;
+  }
+
+  /* Card Countdown Ticker */
+  .card-countdown-ticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  .is-super-card .card-countdown-ticker {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .theme-hacktoberfest .card-countdown-ticker {
+    color: #ea580c;
+    background: rgba(234, 88, 12, 0.1);
+    border-color: rgba(234, 88, 12, 0.3);
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+  }
+
+  .card-title a {
+    color: var(--text-primary);
+    transition: color 0.15s ease;
+  }
+
+  .card-title a:hover {
+    color: var(--accent-primary);
+  }
+
+  .card-location-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .card-location-row svg {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .card-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .card-actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    padding-top: 1.25rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .card-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1.15rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: var(--radius-pill);
+    flex: 1;
+    justify-content: center;
+  }
+
+  .is-super-card .card-view-btn {
+    background-color: #059669;
+    border-color: #059669;
+  }
+
+  .is-super-card .card-view-btn:hover {
+    background-color: #047857;
+  }
+
+  .card-telegram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 0.5rem;
+    transition: color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .card-telegram-link:hover {
+    color: var(--accent-primary);
+    text-decoration: underline;
+  }
+</style>
