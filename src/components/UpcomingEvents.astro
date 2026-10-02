@@ -4,7 +4,9 @@
 // Features a prominent horizontal Featured Card (Touch Grass) + central dashed timeline with alternating left/right event cards
 // High-precision live countdown timers with glowing digital tiles.
 
-import { events } from '../data/events';
+import { getDynamicEvents } from '../data/events';
+
+const events = await getDynamicEvents();
 
 // Featured Super Event at top
 const featuredEvent = events.find((e) => e.isSuper) || events[0];

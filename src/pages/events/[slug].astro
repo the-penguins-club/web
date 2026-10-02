@@ -1,10 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { events, type CommunityEvent } from '../../data/events';
+import { getDynamicEvents, type CommunityEvent } from '../../data/events';
 import { generateGoogleCalendarUrl } from '../../utils/ics';
 
-export function getStaticPaths() {
-  return events.map((event) => ({
+export async function getStaticPaths() {
+  const allEvents = await getDynamicEvents();
+  return allEvents.map((event) => ({
     params: { slug: event.slug },
     props: { event }
   }));
@@ -15,7 +16,8 @@ interface Props {
 }
 
 const { event } = Astro.props;
-const otherEvents = events.filter((e) => e.slug !== event.slug);
+const allEvents = await getDynamicEvents();
+const otherEvents = allEvents.filter((e) => e.slug !== event.slug);
 const googleCalUrl = generateGoogleCalendarUrl(event);
 const dynamicIcsUrl = `/events/${event.slug}.ics`;
 ---

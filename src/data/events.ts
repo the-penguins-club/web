@@ -555,3 +555,8 @@ export function getEventBySlug(slug: string): CommunityEvent | undefined {
 export function getAllEvents(): CommunityEvent[] {
   return events;
 }
+
+export async function getDynamicEvents(): Promise<CommunityEvent[]> {
+  const { fetchEventsFromGitHub } = await import('../utils/github-events');
+  return fetchEventsFromGitHub();
+}

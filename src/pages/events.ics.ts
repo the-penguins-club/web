@@ -1,9 +1,10 @@
 import type { APIRoute } from 'astro';
-import { events } from '../data/events';
+import { getDynamicEvents } from '../data/events';
 import { generateAllEventsIcs } from '../utils/ics';
 
 export const GET: APIRoute = async () => {
-  const icsBody = generateAllEventsIcs(events);
+  const allEvents = await getDynamicEvents();
+  const icsBody = generateAllEventsIcs(allEvents);
 
   return new Response(icsBody, {
     status: 200,

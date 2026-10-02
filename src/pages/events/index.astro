@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { events } from '../../data/events';
+import { getDynamicEvents } from '../../data/events';
+
+const events = await getDynamicEvents();
 ---
 
 <Layout

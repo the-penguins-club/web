@@ -1,9 +1,10 @@
 import type { APIRoute } from 'astro';
-import { events, type CommunityEvent } from '../../data/events';
+import { getDynamicEvents, type CommunityEvent } from '../../data/events';
 import { generateSingleEventIcs } from '../../utils/ics';
 
-export function getStaticPaths() {
-  return events.map((event) => ({
+export async function getStaticPaths() {
+  const allEvents = await getDynamicEvents();
+  return allEvents.map((event) => ({
     params: { slug: event.slug },
     props: { event }
   }));
