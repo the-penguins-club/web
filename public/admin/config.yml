@@ -1,0 +1,26 @@
+backend:
+  name: github
+  repo: The-Penguins-Club/web
+  branch: main
+
+publish_mode: editorial_workflow
+
+media_folder: public/images/blog
+public_folder: /images/blog
+
+collections:
+  - name: blog
+    label: Blog posts
+    folder: src/content/blog
+    extension: md
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+      - { name: author, label: Author, widget: string, default: The Penguins Club }
+      - { name: summary, label: Summary, widget: text, hint: Shown on the blog list and in link previews }
+      - { name: cover, label: Cover image, widget: image, required: false }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - { name: draft, label: Draft, widget: boolean, default: false }
+      - { name: body, label: Body, widget: markdown }

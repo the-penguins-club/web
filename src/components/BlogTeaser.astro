@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', (p) => !p.data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+{posts.length > 0 && (
+  <section class="teaser" id="blog" aria-labelledby="blog-teaser-title">
+    <div class="container">
+      <div class="teaser-head">
+        <h2 id="blog-teaser-title" class="section-title">From the blog</h2>
+        <a href="/blog" class="all">All posts</a>
+      </div>
+      <ul class="teaser-list">
+        {posts.map((p) => (
+          <li>
+            <a href={`/blog/${p.id}`} class="card">
+              {p.data.cover && <img src={p.data.cover} alt="" loading="lazy" />}
+              <p class="meta">{fmt(p.data.date)}</p>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.summary}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .teaser { padding: clamp(3.5rem, 6vw, 5rem) 0; border-bottom: 1px solid var(--border-subtle); }
+  .teaser-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+  .teaser-head .section-title { margin: 0; }
+  .all { color: var(--accent-primary); font-weight: 600; }
+  .teaser-list { list-style: none; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { display: block; height: 100%; padding: 1.25rem; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); }
+  .card:hover { border-color: var(--accent-primary); }
+  .card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 0.9rem; }
+  .meta { font-size: 0.875rem; color: var(--text-muted); }
+  h3 { font-family: var(--font-display); font-size: 1.25rem; margin: 0.25rem 0 0.4rem; }
+  .card p:last-child { color: var(--text-secondary); }
+</style>

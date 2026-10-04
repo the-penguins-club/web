@@ -16,7 +16,7 @@ const participationWays = [
     title: "Speak or demo a tool",
     description: "Teach the tool or workflow you wish someone had shown you. Whether you built a Rust CLI, configured a home server, or mastered Vim, our meetup stage is open to you.",
     actionText: "Offer a Session",
-    actionUrl: "mailto:mail@thepenguins.club?subject=Proposing%20a%20Talk%20at%20TPC",
+    actionUrl: "mailto:uthsob@thepenguins.club?subject=Proposing%20a%20Talk%20at%20TPC",
     note: "First-time speakers welcomed & mentored"
   },
   {
@@ -32,7 +32,7 @@ const participationWays = [
     title: "Support mirrors & hardware",
     description: "Fund high-bandwidth Linux mirror servers, provide refurbished laptops for student labs, or support printing free booklets and stickers — never a paywall.",
     actionText: "Support The Initiative",
-    actionUrl: "mailto:mail@thepenguins.club?subject=Supporting%20TPC%20Logistics",
+    actionUrl: "mailto:uthsob@thepenguins.club?subject=Supporting%20TPC%20Logistics",
     note: "100% transparent non-profit allocation"
   }
 ];
@@ -60,7 +60,6 @@ const participationWays = [
       {participationWays.map((item) => (
         <article class="involved-card glass-card">
           <div class="card-head">
-            <span class="card-badge">{item.tag}</span>
             <span class="card-note">{item.note}</span>
           </div>
 
@@ -80,7 +79,6 @@ const participationWays = [
     <!-- Partner / Sponsor Banner (like mlbangladesh's "Put your brand in rooms that are already building") -->
     <div class="partner-callout glass-card">
       <div class="partner-text">
-        <div class="partner-tag">[ PARTNERS &amp; SUPPORTERS ]</div>
         <h3 class="partner-title">Support rooms that are already hacking &amp; building</h3>
         <p class="partner-desc">
           Supporters help cover physical meetup spaces, high-bandwidth mirror servers, travel to universities across Bangladesh, and printing free booklets &amp; stickers — never a registration fee. You get direct connection to passionate systems engineers, student builders, and a community that remembers who made the workshops possible.
@@ -88,7 +86,7 @@ const participationWays = [
       </div>
 
       <div class="partner-actions">
-        <a href="mailto:mail@thepenguins.club?subject=Partnership%20Inquiry%20with%20The%20Penguins%20Club" class="btn-secondary">
+        <a href="mailto:uthsob@thepenguins.club?subject=Partnership%20Inquiry%20with%20The%20Penguins%20Club" class="btn-secondary">
           Talk Collaboration / Support &rarr;
         </a>
       </div>
@@ -155,7 +153,7 @@ const participationWays = [
   }
 
   .card-badge {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: 0.675rem;
     font-weight: 700;
     color: var(--accent-primary);
@@ -163,7 +161,7 @@ const participationWays = [
   }
 
   .card-note {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: 0.675rem;
     color: var(--text-muted);
   }
@@ -226,7 +224,7 @@ const participationWays = [
   }
 
   .partner-tag {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: 0.7rem;
     font-weight: 700;
     color: var(--accent-primary);
