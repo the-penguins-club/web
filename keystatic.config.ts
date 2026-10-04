@@ -13,10 +13,14 @@ export default config({
         date: fields.date({ label: 'Date', validation: { isRequired: true } }),
         author: fields.text({ label: 'Author', defaultValue: 'The Penguins Club' }),
         summary: fields.text({ label: 'Summary', multiline: true, validation: { isRequired: true } }),
-        cover: fields.text({ label: 'Cover image path' }),
+        cover: fields.image({ label: 'Cover image', directory: 'public/images/blog', publicPath: '/images/blog/' }),
         tags: fields.array(fields.text({ label: 'Tag' }), { label: 'Tags', itemLabel: p => p.value }),
         draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
-        content: fields.mdx({ label: 'Content', extension: 'md' })
+        content: fields.mdx({
+          label: 'Content',
+          extension: 'md',
+          options: { image: { directory: 'public/images/blog', publicPath: '/images/blog/' } }
+        })
       }
     })
   }
