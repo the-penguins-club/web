@@ -1,0 +1,105 @@
+---
+const orgs = [
+  { name: "Field Nation", url: "https://fieldnation.com/", logo: "/images/orgs/fieldnation.png" },
+  { name: "Murena", url: "https://murena.com/", logo: "/images/orgs/murena.png" },
+  { name: "Zachai", url: "https://zachai.co/", logo: "/images/orgs/zachai.png" },
+  { name: "Zagle", url: "https://zagle.ai/", logo: "/images/orgs/zagle.png", wordmark: true },
+  { name: "Welldev", url: "https://www.welldev.io/", logo: "/images/orgs/welldev.png" },
+  { name: "Cocoon", url: "https://cocoon.agency/", logo: "/images/orgs/cocoon.png" },
+  { name: "SNBD Host", url: "https://snbdhost.com/", logo: "/images/orgs/snbdhost.webp" }
+];
+---
+
+<section class="people-section" aria-labelledby="people-title">
+  <div class="container">
+    <h2 id="people-title" class="people-title">Our community members work at</h2>
+  </div>
+
+  <div class="marquee" aria-label="Companies our community members work at">
+    {[0, 1].map((copy) => (
+      <ul class="marquee-track" aria-hidden={copy === 1 ? "true" : undefined}>
+        {/* repeated so one copy is always wider than the viewport */}
+        {[...orgs, ...orgs].map((o) => (
+          <li>
+            <a href={o.url} target="_blank" rel="noopener noreferrer" tabindex={copy === 1 ? -1 : undefined} class:list={["org", { wordmark: o.wordmark }]} aria-label={o.name}>
+              {o.wordmark ? (
+                <img src={o.logo} alt="" height="44" loading="lazy" />
+              ) : (
+                <>
+                  <span class="org-logo"><img src={o.logo} alt="" width="32" height="32" loading="lazy" /></span>
+                  <span class="org-name">{o.name}</span>
+                </>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    ))}
+  </div>
+</section>
+
+<style>
+  .people-section {
+    padding: 3rem 0 3.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-subtle);
+  }
+  .people-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 1.75rem;
+  }
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 1rem;
+    padding-right: 1rem;
+    list-style: none;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .org {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 1.4rem 0.7rem 0.8rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-md);
+    white-space: nowrap;
+  }
+  /* Zagle's wordmark ships with its own dark-green background */
+  .org.wordmark { padding: 0; overflow: hidden; }
+  .org.wordmark img { height: 52px; width: auto; display: block; }
+  .org:hover { border-color: var(--accent-primary); }
+  /* logos are dark-on-transparent, so they sit on a light tile in both themes */
+  .org-logo {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border-radius: var(--radius-sm);
+  }
+  .org-logo img { width: 32px; height: 32px; object-fit: contain; }
+  .org-name {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  @keyframes marquee { to { transform: translateX(-100%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+    .marquee-track { animation: none; }
+    .marquee-track[aria-hidden] { display: none; }
+  }
+</style>

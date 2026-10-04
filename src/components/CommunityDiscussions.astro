@@ -63,7 +63,6 @@ const communityChannels: ChannelItem[] = [
 <section id="community" class="community-section">
   <div class="container">
     <div class="section-header">
-      <div class="section-tag">[ COMMUNITY HUBS ]</div>
       <h2 class="section-title">Connect with The Penguins Club</h2>
       <p class="section-desc">
         Our community operates primarily on Telegram, where we coordinate monthly meetups, answer Linux and open-source questions, and share project updates. Everyone is welcome.
@@ -138,20 +137,18 @@ const communityChannels: ChannelItem[] = [
     <!-- Non-Profit Contact Box -->
     <div class="contact-card glass-card">
       <div class="contact-info">
-        <div class="contact-tag">[ COMMUNITY OUTREACH &bull; LAB COORDINATION ]</div>
-        <h3 class="contact-title">Need to reach the organizers directly?</h3>
+                <h3 class="contact-title">Need to reach the organizers directly?</h3>
         <p class="contact-desc">
           If you are an academic institution, community space, volunteer speaker, or open-source foundation interested in collaborating with The Penguins Club, send us an email or visit our physical lab.
         </p>
       </div>
 
       <div class="contact-actions">
-        <a href="mailto:mail@thepenguins.club" class="btn-secondary email-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-          </svg>
-          mail@thepenguins.club
+        <a href="mailto:uthsob@thepenguins.club" class="btn-secondary email-btn">
+          Collaborate: uthsob@thepenguins.club
+        </a>
+        <a href="mailto:admin@thepenguins.club" class="btn-secondary email-btn">
+          Support: admin@thepenguins.club
         </a>
       </div>
     </div>
@@ -409,6 +406,7 @@ const communityChannels: ChannelItem[] = [
     line-height: 1.55;
   }
 
+  .contact-actions { display: flex; flex-direction: column; gap: 0.6rem; }
   .email-btn {
     white-space: nowrap;
     font-size: 0.85rem;

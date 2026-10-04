@@ -1,35 +1,35 @@
 /* Design System for The Penguins Club - Linux & Open Source Community */
 :root,
 [data-theme="light"] {
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Color Scheme - Clean, high-contrast, modern non-profit (mlbangladesh style) */
   color-scheme: light;
-  --bg-canvas: #ffffff;
-  --bg-subtle: #f8fafc;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f8fafc;
-  --bg-elevated: #f1f5f9;
-  --bg-terminal: #0b0f17;
-  --bg-hero-glow: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
+  --bg-canvas: #fbfaf6;
+  --bg-subtle: #f3f1ea;
+  --bg-card: #fffefb;
+  --bg-card-hover: #f8f6ef;
+  --bg-elevated: #ece9df;
+  --bg-terminal: #14201b;
+  --bg-hero-glow: none;
 
   /* Borders: Hairline, crisp, structural */
-  --border-subtle: #f1f5f9;
-  --border-card: #e2e8f0;
-  --border-card-hover: #cbd5e1;
-  --border-focus: #2563eb;
+  --border-subtle: #e9e6db;
+  --border-card: #dcd8ca;
+  --border-card-hover: #b9b4a2;
+  --border-focus: #0e6b52;
 
   /* Text hierarchy */
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-muted: #6b7280;
+  --text-primary: #1a2420;
+  --text-secondary: #47524c;
+  --text-muted: #66706a;
   --text-inverse: #ffffff;
 
   /* Purposeful Accents */
-  --accent-primary: #2563eb;
-  --accent-primary-hover: #1d4ed8;
-  --accent-amber: #d97706;
+  --accent-primary: #0e6b52;
+  --accent-primary-hover: #0a5642;
+  --accent-amber: #c77d0a;
   --accent-amber-subtle: rgba(217, 119, 6, 0.1);
   --accent-green: #15803d;
   --accent-green-subtle: rgba(21, 128, 61, 0.1);
@@ -41,52 +41,52 @@
   --text-accent-secondary: var(--accent-green);
   --accent-coral: var(--accent-primary);
   --accent-teal: #0d9488;
-  --border-glow: rgba(37, 99, 235, 0.15);
-  --font-display: var(--font-sans);
+  --border-glow: rgba(14, 107, 82, 0.18);
+  --font-display: 'Bricolage Grotesque', var(--font-sans);
 
   /* Badges & Tags */
-  --badge-bg: #f3f4f6;
-  --badge-border: #e5e7eb;
-  --badge-text: #1f2937;
+  --badge-bg: #efece2;
+  --badge-border: #dcd8ca;
+  --badge-text: #2a332e;
 
   /* Elevation */
   --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.04);
   --shadow-sm: 0 2px 4px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04);
-  --shadow-md: 0 6px 16px -2px rgb(0 0 0 / 0.07), 0 2px 6px -2px rgb(0 0 0 / 0.04);
-  --shadow-lg: 0 16px 32px -4px rgb(0 0 0 / 0.09);
+  --shadow-md:  0 2px 0 rgb(26 36 32 / 0.06);
+  --shadow-lg:  0 3px 0 rgb(26 36 32 / 0.08);
 
   /* Structural Radii */
   --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 22px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-pill: 9999px;
 }
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg-canvas: #090d16;
-  --bg-subtle: #0f1422;
-  --bg-card: #131a29;
-  --bg-card-hover: #172133;
-  --bg-elevated: #1e293b;
-  --bg-terminal: #070a10;
-  --bg-hero-glow: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.1) 0%, transparent 60%);
+  --bg-canvas: #101612;
+  --bg-subtle: #151c17;
+  --bg-card: #19211c;
+  --bg-card-hover: #1e2822;
+  --bg-elevated: #26312a;
+  --bg-terminal: #0b100d;
+  --bg-hero-glow: none;
 
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-card: rgba(255, 255, 255, 0.14);
   --border-card-hover: rgba(255, 255, 255, 0.28);
-  --border-focus: #38bdf8;
+  --border-focus: #6fd3a8;
 
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-inverse: #090d16;
+  --text-primary: #f1f3ec;
+  --text-secondary: #c4cbc2;
+  --text-muted: #98a299;
+  --text-inverse: #101612;
 
-  --accent-primary: #38bdf8;
-  --accent-primary-hover: #0ea5e9;
-  --accent-amber: #f59e0b;
+  --accent-primary: #6fd3a8;
+  --accent-primary-hover: #8be0bb;
+  --accent-amber: #f0b23e;
   --accent-amber-subtle: rgba(245, 158, 11, 0.15);
   --accent-green: #22c55e;
   --accent-green-subtle: rgba(34, 197, 94, 0.15);
@@ -98,8 +98,8 @@
   --text-accent-secondary: var(--accent-green);
   --accent-coral: var(--accent-primary);
   --accent-teal: #14b8a6;
-  --border-glow: rgba(56, 189, 248, 0.25);
-  --font-display: var(--font-sans);
+  --border-glow: rgba(111, 211, 168, 0.25);
+  --font-display: 'Bricolage Grotesque', var(--font-sans);
 
   --badge-bg: rgba(255, 255, 255, 0.06);
   --badge-border: rgba(255, 255, 255, 0.14);
@@ -134,7 +134,7 @@ body {
   position: relative;
   background-color: var(--bg-canvas);
   transition: background-color 0.2s ease, color 0.2s ease;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  
 }
 
 a {
@@ -177,19 +177,18 @@ code, kbd, pre, samp {
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
   color: var(--accent-primary);
   margin-bottom: 0.65rem;
 }
 
 .section-title {
   font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
 }
@@ -350,3 +349,11 @@ code, kbd, pre, samp {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+h1, h2, h3 { font-family: var(--font-display); }
+:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .btn-pill-primary { color: var(--text-inverse) !important; }
+.btn-pill-primary { box-shadow: none; }
+.btn-pill-primary:hover { box-shadow: none; transform: none; }
+.btn-pill-secondary:hover { transform: none; }
