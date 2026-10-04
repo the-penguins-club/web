@@ -1,0 +1,72 @@
+---
+// Cover for a blog post: the author's image, or generated art seeded by the title
+// (same title -> same cover, so no image file is needed).
+interface Props { title: string; cover?: string; label?: string; class?: string }
+const { title, cover, label, class: className = '' } = Astro.props;
+
+let h = 5381;
+for (const c of title) h = ((h << 5) + h + c.charCodeAt(0)) >>> 0;
+const tone = ['mint', 'lime', 'coral', 'sky', 'lavender'][h % 5];
+const shape = (h >> 3) % 4;
+const dx = (h >> 6) % 60;
+const dy = (h >> 9) % 40;
+---
+
+<div class={`cover ${className}`}>
+  {cover ? (
+    <img src={cover} alt="" loading="lazy" />
+  ) : (
+    <div class={`gen tone-${tone}`} aria-hidden="true">
+      <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice">
+        {shape === 0 && (<>
+          <circle cx={90 + dx} cy={70 + dy} r="70" fill="var(--art-soft)" />
+          <circle cx={190 + dx / 2} cy={110} r="52" fill="var(--art)" opacity="0.9" />
+          <circle cx={250} cy={40 + dy / 2} r="26" fill="none" stroke="var(--art)" stroke-width="6" />
+        </>)}
+        {shape === 1 && (<>
+          <pattern id={`d${h}`} width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.2" fill="var(--art)" /></pattern>
+          <rect width="320" height="180" fill={`url(#d${h})`} opacity="0.55" />
+          <circle cx={260 - dx} cy={170} r={90 + dy} fill="var(--art)" />
+          <circle cx={260 - dx} cy={170} r={50 + dy / 2} fill="var(--art-soft)" />
+        </>)}
+        {shape === 2 && (<>
+          <g stroke="var(--art)" stroke-width="7" stroke-linecap="round" opacity="0.75">
+            {[0, 1, 2, 3, 4, 5, 6].map((i) => <line x1={-20 + i * 55 + dx} y1="200" x2={80 + i * 55 + dx} y2="-20" />)}
+          </g>
+          <circle cx={70 + dx} cy={60 + dy} r="40" fill="var(--art-soft)" stroke="var(--art)" stroke-width="6" />
+        </>)}
+        {shape === 3 && (<>
+          {[130, 100, 70, 40].map((r, i) => <circle cx={240 - dx / 2} cy={150 - dy / 2} r={r} fill={i % 2 ? 'var(--art-soft)' : 'none'} stroke="var(--art)" stroke-width="6" />)}
+          <rect x={30 + dx / 3} y={30 + dy / 2} width="44" height="44" rx="10" fill="var(--art)" transform={`rotate(${dy} 52 52)`} />
+        </>)}
+      </svg>
+      {label && <span class="label">{label}</span>}
+    </div>
+  )}
+</div>
+
+<style>
+  .cover { position: relative; overflow: hidden; border-radius: var(--radius-lg); aspect-ratio: 16 / 9; background: var(--bg-subtle); }
+  .cover img, .gen, .gen svg { width: 100%; height: 100%; display: block; }
+  .cover img { object-fit: cover; }
+
+  .gen { --bg: #d1fae5; --art: #0a7a5a; --art-soft: rgba(255, 255, 255, 0.6); position: relative; background: var(--bg); }
+  .tone-mint     { --bg: #d1fae5; --art: #0a7a5a; }
+  .tone-lime     { --bg: #e3f98a; --art: #3f5a0b; }
+  .tone-coral    { --bg: #ffc2ad; --art: #b4472a; }
+  .tone-sky      { --bg: #cfe6ff; --art: #1d5fa8; }
+  .tone-lavender { --bg: #e3dcfb; --art: #5b3fc4; }
+
+  :global([data-theme="dark"]) .tone-mint     { --bg: #12372b; --art: #34d399; --art-soft: rgba(52, 211, 153, 0.18); }
+  :global([data-theme="dark"]) .tone-lime     { --bg: #2c3410; --art: #d4f55a; --art-soft: rgba(212, 245, 90, 0.16); }
+  :global([data-theme="dark"]) .tone-coral    { --bg: #3a2420; --art: #f0a088; --art-soft: rgba(240, 160, 136, 0.18); }
+  :global([data-theme="dark"]) .tone-sky      { --bg: #15304f; --art: #7bb8f5; --art-soft: rgba(123, 184, 245, 0.18); }
+  :global([data-theme="dark"]) .tone-lavender { --bg: #2a2547; --art: #a78bfa; --art-soft: rgba(167, 139, 250, 0.18); }
+
+  .label {
+    position: absolute; left: 0.9rem; bottom: 0.8rem;
+    font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.2rem 0.65rem; border-radius: var(--radius-pill);
+    background: var(--bg); color: var(--art); box-shadow: inset 0 0 0 1px var(--art);
+  }
+</style>

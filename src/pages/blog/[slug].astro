@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PostCover from '../../components/PostCover.astro';
 import { getCollection, render } from 'astro:content';
+import { fmtDate, readingTime } from '../../utils/blog';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', (p) => !p.data.draft);
@@ -14,23 +16,33 @@ const { title, date, author, summary, cover, tags } = post.data;
 
 <Layout title={`${title} — The Penguins Club`} description={summary}>
   <article class="post container">
-    <a href="/blog" class="back">All posts</a>
+    <a href="/blog" class="back">&larr; All posts</a>
     <h1>{title}</h1>
-    <p class="meta">
-      {date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })} by {author}
-      {tags.length > 0 && <span> &middot; {tags.join(', ')}</span>}
-    </p>
-    {cover && <img src={cover} alt="" class="cover" />}
+    <p class="meta">{fmtDate(date)} · {author} · {readingTime(post.body)}</p>
+    {tags.length > 0 && <ul class="tags">{tags.map((t) => <li>{t}</li>)}</ul>}
+    <PostCover title={title} cover={cover} label={tags[0] ?? 'blog'} class="hero" />
     <div class="prose"><Content /></div>
+
+    <aside class="cta">
+      <h2>Have something to share?</h2>
+      <p>Anyone can publish here. Clone the repo, add a Markdown file, and open a pull request.</p>
+      <a href="/blog/welcome-to-the-penguins-club-blog#want-to-write-something">How to write a post &rarr;</a>
+    </aside>
   </article>
 </Layout>
 
 <style>
-  .post { max-width: 720px; padding-block: 3.5rem 5rem; }
+  .post { max-width: 760px; padding-block: 3.5rem 5rem; }
   .back { color: var(--accent-primary); font-weight: 600; font-size: 0.9375rem; }
-  h1 { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.12; letter-spacing: -0.02em; margin: 1rem 0 0.5rem; }
-  .meta { color: var(--text-muted); margin-bottom: 2rem; }
-  .cover { width: 100%; border-radius: var(--radius-md); margin-bottom: 2rem; }
+  h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 5vw, 3.25rem); line-height: 1.1; letter-spacing: -0.03em; margin: 1.25rem 0 0.75rem; }
+  .meta { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 1rem; }
+  .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
+  .tags li { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.7rem; border-radius: var(--radius-pill); background: var(--accent-green-subtle); color: var(--accent-primary); }
+  .post :global(.hero) { border-radius: var(--radius-xl); margin-bottom: 2.5rem; }
+  .cta { margin-top: 3.5rem; padding: 1.75rem; border-radius: var(--radius-xl); background: var(--bg-subtle); border: 1px solid var(--border-card); }
+  .cta h2 { font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.4rem; }
+  .cta p { color: var(--text-secondary); margin-bottom: 0.75rem; }
+  .cta a { color: var(--accent-primary); font-weight: 600; }
   .prose { font-size: 1.0625rem; line-height: 1.75; color: var(--text-secondary); }
   .prose :global(h2) { font-family: var(--font-display); color: var(--text-primary); font-size: 1.6rem; margin: 2.25rem 0 0.75rem; }
   .prose :global(h3) { font-family: var(--font-display); color: var(--text-primary); font-size: 1.2rem; margin: 1.75rem 0 0.5rem; }
@@ -38,7 +50,8 @@ const { title, date, author, summary, cover, tags } = post.data;
   .prose :global(ul), .prose :global(ol) { padding-left: 1.4rem; }
   .prose :global(a) { color: var(--accent-primary); text-decoration: underline; text-underline-offset: 3px; }
   .prose :global(img) { max-width: 100%; border-radius: var(--radius-md); }
-  .prose :global(blockquote) { border-left: 3px solid var(--accent-amber); padding-left: 1rem; color: var(--text-primary); }
+  .prose :global(h2[id]) { scroll-margin-top: 6rem; }
+  .prose :global(blockquote) { border-left: 3px solid var(--accent-primary); padding-left: 1rem; color: var(--text-primary); }
   .prose :global(code) { background: var(--bg-elevated); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.9em; }
   .prose :global(pre) { padding: 1rem; border-radius: var(--radius-md); overflow-x: auto; }
   .prose :global(pre code) { background: none; padding: 0; }

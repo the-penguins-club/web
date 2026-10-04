@@ -102,74 +102,38 @@ const realProjects: ProjectItem[] = [
       </a>
     </div>
 
-    <div class="projects-grid">
-      {realProjects.map((proj) => (
-        <article class="project-card glass-card">
-          <div class="proj-header">
-            <div class="proj-title-wrap">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="folder-icon">
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-              </svg>
-              <h3 class="proj-name">
-                <a href={proj.repoUrl} target="_blank" rel="noopener noreferrer">
-                  {proj.name}
-                </a>
-              </h3>
-            </div>
-            <span class="proj-stage-badge">{proj.tag}</span>
-          </div>
-
-          <p class="proj-desc">{proj.description}</p>
-
-          <div class="proj-meta">
-            <div class="lang-indicator">
-              <span class="lang-dot" style={`background-color: ${proj.langColor}`}></span>
-              <span class="lang-name">{proj.lang}</span>
-            </div>
-
-            <div class="proj-stats">
-              <span class="stat-item" title="Stars on GitHub">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-                {proj.stars}
-              </span>
-              <span class="stat-item" title="Forks">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="18" r="3"></circle>
-                  <circle cx="6" cy="6" r="3"></circle>
-                  <circle cx="18" cy="6" r="3"></circle>
-                  <path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"></path>
-                  <path d="M12 12v3"></path>
-                </svg>
-                {proj.forks}
-              </span>
-            </div>
-          </div>
-
-          <div class="proj-footer">
-            <a href={proj.repoUrl} target="_blank" rel="noopener noreferrer" class="proj-link">
-              <span>View Source &amp; Code</span>
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </article>
-      ))}
-    </div>
-
-    <!-- Community Contribution Box -->
-    <div class="contrib-box glass-card">
-      <div class="contrib-content">
-        <div class="contrib-tag">[ OPEN COLLABORATION ]</div>
-        <h3 class="contrib-title">Want to contribute or start a new repository under the club?</h3>
-        <p class="contrib-desc">
-          Whether you want to contribute documentation to <code>bd-startups</code>, write a security guide for <code>Awesome-Cybersecurity-Bangladesh</code>, or incubate your own open source tool, our community is open for collaboration.
-        </p>
+    <div class="term" role="group" aria-label="Public repositories listing">
+      <div class="term-bar" aria-hidden="true">
+        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+        <span class="term-title">~/the-penguins-club — zsh</span>
       </div>
-      <div class="contrib-actions">
-        <a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer" class="btn-primary">
-          Explore on GitHub &rarr;
-        </a>
+
+      <div class="term-body">
+        <p class="line"><span class="prompt">$</span> gh repo list the-penguins-club --sort stars</p>
+
+        <ul class="repos">
+          {realProjects.map((proj) => (
+            <li>
+              <a href={proj.repoUrl} target="_blank" rel="noopener noreferrer" class="repo">
+                <span class="caret" aria-hidden="true">&gt;</span>
+                <span class="repo-name">{proj.name}<span class="repo-tag">[{proj.tag.toLowerCase()}]</span></span>
+                <span class="repo-desc">{proj.description}</span>
+                <span class="repo-lang">
+                  <span class="lang-dot" style={`background-color: ${proj.langColor}`}></span>{proj.lang}
+                </span>
+                <span class="repo-stats">★ {proj.stars}&nbsp;&nbsp;⑂ {proj.forks}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <p class="line comment"># Want to contribute or start a new repository under the club?</p>
+        <p class="line comment"># Add docs to <code>bd-startups</code>, write a security guide for <code>Awesome-Cybersecurity-Bangladesh</code>, or incubate your own tool.</p>
+        <p class="line">
+          <span class="prompt">$</span>
+          <a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer" class="open-link">open github.com/the-penguins-club</a>
+          <span class="cursor" aria-hidden="true"></span>
+        </p>
       </div>
     </div>
   </div>
@@ -178,226 +142,106 @@ const realProjects: ProjectItem[] = [
 <style>
   .projects-section {
     padding: clamp(3.5rem, 6vw, 5.5rem) 0;
-    position: relative;
     border-bottom: 1px solid var(--border-subtle);
   }
 
-  .section-header {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
+  .section-header { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
 
   @media (min-width: 860px) {
-    .section-header {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-    .header-content {
-      max-width: 620px;
-    }
-    .header-content .section-desc {
-      margin-bottom: 0;
-    }
+    .section-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+    .header-content { max-width: 620px; }
+    .header-content .section-desc { margin-bottom: 0; }
   }
 
-  .gh-all-btn {
-    white-space: nowrap;
-    align-self: flex-start;
+  .gh-all-btn { white-space: nowrap; align-self: flex-start; }
+
+  /* Terminal window: dark in both themes */
+  .term {
+    border-radius: var(--radius-xl);
+    background: #0b110e;
+    color: #c8d3cd;
+    font-family: var(--font-mono);
+    box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    overflow: hidden;
   }
 
-  .projects-grid {
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.25rem;
+    background: #141d18;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot-r { background: #ff6b5e; }
+  .dot-y { background: #f5b84a; }
+  .dot-g { background: #34d399; }
+  .term-title { margin-left: 0.75rem; font-size: 0.72rem; color: #8b9791; }
+
+  .term-body { padding: clamp(1.25rem, 3vw, 2rem); }
+
+  .line { font-size: 0.85rem; line-height: 1.7; }
+  .line + .line { margin-top: 0.15rem; }
+  .prompt { color: #34d399; margin-right: 0.5rem; }
+  .comment { color: #6f7c75; }
+  .comment code { color: #a8b5ae; }
+
+  .repos { list-style: none; margin: 1.25rem 0 1.75rem; }
+
+  .repo {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin-bottom: 2.5rem;
+    grid-template-columns: 1.25rem minmax(0, 17rem) minmax(0, 1fr) 8.5rem 5.5rem;
+    grid-template-areas: "caret name desc lang stats";
+    align-items: baseline;
+    column-gap: 1.25rem;
+    padding: 0.8rem 0.75rem;
+    margin-inline: -0.75rem;
+    border-radius: var(--radius-md);
+    font-size: 0.82rem;
+    transition: background-color 0.15s ease;
   }
 
-  @media (min-width: 680px) {
-    .projects-grid {
-      grid-template-columns: repeat(2, 1fr);
+  .repo:hover, .repo:focus-visible { background: rgba(52, 211, 153, 0.09); outline: none; }
+  .repo:focus-visible { box-shadow: inset 0 0 0 2px #34d399; }
+
+  .caret { grid-area: caret; color: transparent; }
+  .repo:hover .caret, .repo:focus-visible .caret { color: #d4f55a; }
+
+  .repo-name { grid-area: name; color: #d4f55a; font-weight: 700; overflow-wrap: anywhere; }
+  .repo-tag { display: block; color: #6f7c75; font-weight: 400; font-size: 0.72rem; margin-top: 0.15rem; }
+  .repo-desc { grid-area: desc; color: #9aa7a0; line-height: 1.5; font-family: var(--font-sans); font-size: 0.85rem; }
+  .repo-lang { grid-area: lang; display: inline-flex; align-items: center; gap: 0.45rem; color: #c8d3cd; white-space: nowrap; }
+  .repo-stats { grid-area: stats; color: #8b9791; white-space: nowrap; text-align: right; }
+  .lang-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+
+  @media (max-width: 899px) {
+    .repo {
+      grid-template-columns: 1.25rem 1fr auto;
+      grid-template-areas: "caret name stats" ". desc desc" ". lang lang";
+      row-gap: 0.35rem;
     }
   }
 
-  @media (min-width: 1024px) {
-    .projects-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  .open-link { color: #d4f55a; border-bottom: 1px dashed rgba(212, 245, 90, 0.5); transition: border-color 0.15s ease; }
+  .open-link:hover { border-bottom-style: solid; border-color: #d4f55a; }
+  .open-link:focus-visible { outline: 2px solid #d4f55a; outline-offset: 3px; }
+
+  .cursor {
+    display: inline-block;
+    width: 0.55rem;
+    height: 1.05em;
+    margin-left: 0.4rem;
+    vertical-align: text-bottom;
+    background: #34d399;
+    animation: blink 1.1s steps(1) infinite;
   }
 
-  .project-card {
-    padding: 1.35rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-  }
+  @keyframes blink { 50% { opacity: 0; } }
 
-  .proj-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-
-  .proj-title-wrap {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .folder-icon {
-    color: var(--accent-primary);
-    flex-shrink: 0;
-  }
-
-  .proj-name {
-    font-family: var(--font-mono);
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--text-primary);
-  }
-
-  .proj-name a:hover {
-    color: var(--accent-primary);
-    text-decoration: underline;
-  }
-
-  .proj-stage-badge {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
-    padding: 0.15rem 0.4rem;
-    border-radius: var(--radius-xs);
-    white-space: nowrap;
-  }
-
-  .proj-desc {
-    font-size: 0.825rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    flex: 1;
-  }
-
-  .proj-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 0.65rem;
-    border-top: 1px solid var(--border-subtle);
-  }
-
-  .lang-indicator {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .lang-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  }
-
-  .lang-name {
-    font-family: var(--font-mono);
-    font-size: 0.725rem;
-    color: var(--text-muted);
-  }
-
-  .proj-stats {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .stat-item {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-family: var(--font-mono);
-    font-size: 0.725rem;
-    color: var(--text-muted);
-  }
-
-  .proj-footer {
-    padding-top: 0.25rem;
-  }
-
-  .proj-link {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--accent-primary);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    transition: gap 0.15s ease;
-  }
-
-  .proj-link:hover {
-    gap: 0.5rem;
-  }
-
-  /* Contrib Box */
-  .contrib-box {
-    padding: 2rem 2.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    background: var(--bg-card);
-  }
-
-  @media (min-width: 860px) {
-    .contrib-box {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .contrib-content {
-      max-width: 680px;
-    }
-    .contrib-actions {
-      flex-shrink: 0;
-    }
-  }
-
-  .contrib-tag {
-    font-family: var(--font-mono);
-    font-size: 0.725rem;
-    font-weight: 700;
-    color: var(--accent-primary);
-    letter-spacing: 0.05em;
-    margin-bottom: 0.4rem;
-  }
-
-  .contrib-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    color: var(--text-primary);
-    line-height: 1.3;
-    margin-bottom: 0.45rem;
-  }
-
-  .contrib-desc {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-  }
-
-  .contrib-desc code {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
-    padding: 0.1rem 0.35rem;
-    border-radius: var(--radius-xs);
+  @media (prefers-reduced-motion: reduce) {
+    .cursor { animation: none; }
+    .repo, .open-link { transition: none; }
   }
 </style>
