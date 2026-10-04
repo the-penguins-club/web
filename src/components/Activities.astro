@@ -1,10 +1,12 @@
 ---
 // What We Run - Core Programs & Educational Tracks
-// Inspired by mlbangladesh.org's "What we run" programs structure
+// Tinted bento grid, one illustration per program
 
 const programs = [
   {
     id: "prog-linux-club",
+    tone: "emerald",
+    art: "terminal",
     badge: "Ongoing • Year-Round",
     badgeType: "live",
     title: "Linux Systems & CLI Club",
@@ -15,6 +17,8 @@ const programs = [
   },
   {
     id: "prog-build-club",
+    tone: "lime",
+    art: "branch",
     badge: "Ongoing • Open Source",
     badgeType: "live",
     title: "Open Source Toolchain & Upstream PRs",
@@ -25,6 +29,8 @@ const programs = [
   },
   {
     id: "prog-campus-fests",
+    tone: "ink",
+    art: "campus",
     badge: "When Hosted • On Demand",
     badgeType: "event",
     title: "Campus Install-Fests & Workshops",
@@ -35,6 +41,8 @@ const programs = [
   },
   {
     id: "prog-security-privacy",
+    tone: "coral",
+    art: "shield",
     badge: "Specialized Track",
     badgeType: "track",
     title: "Cybersecurity & Digital Sovereignty",
@@ -45,6 +53,8 @@ const programs = [
   },
   {
     id: "prog-mirror-charity",
+    tone: "sky",
+    art: "server",
     badge: "Charity Initiative",
     badgeType: "charity",
     title: "Local Linux Mirror & Educational Kits",
@@ -54,6 +64,13 @@ const programs = [
     tag: "Public Commons"
   }
 ];
+const art = {
+  terminal: `<rect x="8" y="14" width="104" height="76" rx="9" fill="var(--art-soft)" stroke="var(--art)" stroke-width="3"/><path d="M8 32h104" stroke="var(--art)" stroke-width="3"/><circle cx="20" cy="23" r="3" fill="var(--art)"/><circle cx="31" cy="23" r="3" fill="var(--art)"/><path d="M26 50l14 10-14 10" fill="none" stroke="var(--art)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 72h26" stroke="var(--art)" stroke-width="5" stroke-linecap="round"/><rect x="82" y="66" width="10" height="14" fill="var(--art)"/>`,
+  branch: `<path d="M30 20v80M30 44c0 26 56 4 56 36" fill="none" stroke="var(--art)" stroke-width="5" stroke-linecap="round"/><circle cx="30" cy="20" r="10" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4"/><circle cx="30" cy="100" r="10" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4"/><circle cx="86" cy="80" r="10" fill="var(--art)" stroke="var(--art)" stroke-width="4"/><path d="M86 22l8 8-8 8" fill="none" stroke="var(--art)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="72" cy="30" r="3" fill="var(--art)"/>`,
+  campus: `<path d="M10 52L60 24l50 28z" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4" stroke-linejoin="round"/><path d="M22 58v32M44 58v32M76 58v32M98 58v32" stroke="var(--art)" stroke-width="6" stroke-linecap="round"/><path d="M12 98h96" stroke="var(--art)" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="42" r="5" fill="var(--art)"/>`,
+  shield: `<path d="M60 12l40 14v30c0 24-17 40-40 50-23-10-40-26-40-50V26z" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4" stroke-linejoin="round"/><rect x="44" y="52" width="32" height="26" rx="5" fill="var(--art)"/><path d="M50 52v-8a10 10 0 0120 0v8" fill="none" stroke="var(--art)" stroke-width="5" stroke-linecap="round"/><circle cx="60" cy="65" r="4" fill="var(--art-soft)"/>`,
+  server: `<rect x="14" y="14" width="92" height="28" rx="7" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4"/><rect x="14" y="50" width="92" height="28" rx="7" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4"/><rect x="14" y="86" width="92" height="22" rx="7" fill="var(--art)" stroke="var(--art)" stroke-width="4"/><circle cx="30" cy="28" r="4" fill="var(--art)"/><circle cx="30" cy="64" r="4" fill="var(--art)"/><path d="M52 28h38M52 64h38" stroke="var(--art)" stroke-width="4" stroke-linecap="round"/>`
+};
 ---
 
 <section id="programs" class="programs-section">
@@ -73,28 +90,25 @@ const programs = [
       </div>
     </div>
 
-    <!-- Programs Grid (Dynamic Layout) -->
-    <div class="programs-grid">
+    <div class="bento">
       {programs.map((prog, idx) => (
-        <article class={`program-card glass-card prog-${idx + 1}`}>
-          <div class="prog-top">
-            <span class={`prog-status-badge status-${prog.badgeType}`}>{prog.badge}</span>
-            <span class="prog-tag">{prog.tag}</span>
+        <article class={`tile tone-${prog.tone} tile-${idx + 1}`}>
+          <svg class="tile-art" viewBox="0 0 120 120" aria-hidden="true" set:html={art[prog.art]} />
+
+          <div class="tile-body">
+            <div class="tile-top">
+              <span class="tile-badge">{prog.badge}</span>
+              <span class="tile-tag">{prog.tag}</span>
+            </div>
+
+            <h3 class="tile-title">{prog.title}</h3>
+            <p class="tile-summary">{prog.summary}</p>
+            <p class="tile-details">{prog.details}</p>
           </div>
 
-          <h3 class="prog-title">{prog.title}</h3>
-          <p class="prog-summary">{prog.summary}</p>
-          <p class="prog-details">{prog.details}</p>
-
-          <div class="prog-footer">
-            <div class="prog-cadence">
-              <span class="cadence-label">SCHEDULE:</span>
-              <span class="cadence-val">{prog.cadence}</span>
-            </div>
-            <a href="#events" class="prog-action-link">
-              <span>View details</span>
-              <span aria-hidden="true">&rarr;</span>
-            </a>
+          <div class="tile-foot">
+            <span class="tile-cadence"><b>Schedule</b>{prog.cadence}</span>
+            <a href="#events" class="tile-link" aria-label={`View details: ${prog.title}`}>&rarr;</a>
           </div>
         </article>
       ))}
@@ -105,7 +119,6 @@ const programs = [
 <style>
   .programs-section {
     padding: clamp(3.5rem, 6vw, 5.5rem) 0;
-    position: relative;
     border-bottom: 1px solid var(--border-subtle);
   }
 
@@ -117,157 +130,142 @@ const programs = [
   }
 
   @media (min-width: 860px) {
-    .programs-header {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-    .header-content {
-      max-width: 620px;
-    }
-    .header-content .section-desc {
-      margin-bottom: 0;
-    }
+    .programs-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+    .header-content { max-width: 620px; }
+    .header-content .section-desc { margin-bottom: 0; }
   }
 
-  /* Programs Grid */
-  .programs-grid {
+  /* Bento grid: 6 columns on desktop, 2 on tablet, 1 on mobile */
+  .bento {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
-  @media (min-width: 768px) {
-    .programs-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @media (min-width: 700px) {
+    .bento { grid-template-columns: repeat(2, 1fr); }
+    .tile-1 { grid-column: span 2; }
   }
 
   @media (min-width: 1080px) {
-    .programs-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .prog-1 {
-      grid-column: span 2;
-    }
+    .bento { grid-template-columns: repeat(6, 1fr); }
+    .tile-1 { grid-column: span 4; }
+    .tile-2 { grid-column: span 2; }
+    .tile-3, .tile-4, .tile-5 { grid-column: span 2; }
   }
 
-  .program-card {
-    padding: 1.75rem;
+  /* Each tile sets its own palette; dark mode swaps to deep tints */
+  .tile {
+    --bg: var(--accent-green-subtle);
+    --fg: #0f1a16;
+    --art: #0f1a16;
+    --art-soft: rgba(255, 255, 255, 0.55);
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
+    padding: 1.75rem;
+    min-height: 20rem;
+    border-radius: var(--radius-xl);
+    background: var(--bg);
+    color: var(--fg);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .prog-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.35rem;
+  .tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+  .tone-emerald { --bg: #0a7a5a; --fg: #ffffff; --art: #ffffff; --art-soft: rgba(255, 255, 255, 0.16); }
+  .tone-lime    { --bg: #e3f98a; --art: #3f5a0b; }
+  .tone-ink     { --bg: #0f1a16; --fg: #f1f5f3; --art: #34d399; --art-soft: rgba(52, 211, 153, 0.18); }
+  .tone-coral   { --bg: #ff9d80; --art: #7a2410; --art-soft: rgba(255, 255, 255, 0.4); }
+  .tone-sky     { --bg: #cfe6ff; --art: #1d5fa8; }
+
+  :global([data-theme="dark"]) .tone-emerald { --bg: #0e5e47; }
+  :global([data-theme="dark"]) .tone-lime    { --bg: #2c3410; --fg: #f1f8d0; --art: #d4f55a; --art-soft: rgba(212, 245, 90, 0.14); }
+  :global([data-theme="dark"]) .tone-ink     { --bg: #1b2320; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12); }
+  :global([data-theme="dark"]) .tone-coral   { --bg: #8a3a24; --fg: #fff1ec; --art: #ffd0c0; --art-soft: rgba(255, 255, 255, 0.12); }
+  :global([data-theme="dark"]) .tone-sky     { --bg: #15304f; --fg: #e4f0ff; --art: #7bb8f5; --art-soft: rgba(123, 184, 245, 0.15); }
+
+  .tile-art {
+    position: absolute;
+    right: -0.5rem;
+    top: 3.25rem;
+    width: 7.5rem;
+    height: 7.5rem;
+    opacity: 0.95;
+    pointer-events: none;
   }
 
-  .prog-status-badge {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 0.2rem 0.5rem;
-    border-radius: var(--radius-xs);
-    letter-spacing: 0.03em;
-  }
+  .tile-1 .tile-art { width: 11rem; height: 11rem; right: 2rem; top: 50%; translate: 0 -50%; }
 
-  .status-live {
-    background: var(--accent-green-subtle);
-    color: var(--accent-green);
-    border: 1px solid color-mix(in srgb, var(--accent-green) 30%, transparent);
-  }
+  .tile-body { display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
 
-  .status-event {
-    background: var(--accent-amber-subtle);
-    color: var(--accent-amber);
-    border: 1px solid color-mix(in srgb, var(--accent-amber) 30%, transparent);
-  }
+  .tile-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.5rem; }
 
-  .status-track {
-    background: var(--accent-purple-subtle);
-    color: var(--accent-purple);
-    border: 1px solid color-mix(in srgb, var(--accent-purple) 30%, transparent);
-  }
-
-  .status-charity {
-    background: rgba(2, 132, 199, 0.1);
-    color: var(--accent-primary);
-    border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
-  }
-
-  .prog-tag {
+  .tile-badge {
     font-family: var(--font-mono);
     font-size: 0.675rem;
-    color: var(--text-muted);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--fg) 12%, transparent);
   }
 
-  .prog-title {
-    font-size: 1.25rem;
+  .tile-tag { font-family: var(--font-mono); font-size: 0.65rem; opacity: 0.65; text-align: right; }
+
+  .tile-title {
+    font-size: clamp(1.3rem, 2vw, 1.65rem);
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: var(--text-primary);
-    line-height: 1.3;
+    line-height: 1.2;
+    max-width: 18ch;
+    margin-top: 5.5rem;
   }
 
-  .prog-summary {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    line-height: 1.5;
-  }
+  .tile-1 .tile-title { margin-top: 0.5rem; max-width: 22ch; }
 
-  .prog-details {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    flex: 1;
-  }
+  .tile-summary { font-size: 0.9rem; font-weight: 500; line-height: 1.5; max-width: 34ch; }
+  .tile-1 .tile-summary { max-width: 44ch; }
+  .tile-details { font-size: 0.825rem; line-height: 1.55; opacity: 0.75; max-width: 40ch; }
+  .tile-1 .tile-details { max-width: 48ch; }
 
-  .prog-footer {
+  .tile-foot {
     display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--border-subtle);
-    margin-top: 0.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent);
   }
 
-  .prog-cadence {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
+  .tile-cadence { font-family: var(--font-mono); font-size: 0.72rem; line-height: 1.4; display: flex; flex-direction: column; gap: 0.2rem; }
+  .tile-cadence b { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
+
+  .tile-link {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-pill);
+    background: var(--fg);
+    color: var(--bg);
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
   }
 
-  .cadence-label {
-    font-family: var(--font-mono);
-    font-size: 0.625rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
+  .tile-link:hover { transform: translateX(3px); }
+  .tile-link:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+
+  @media (max-width: 699px) {
+    .tile-art, .tile-1 .tile-art { width: 6rem; height: 6rem; top: 3.5rem; right: 0.5rem; translate: none; }
+    .tile-title, .tile-1 .tile-title { margin-top: 4.5rem; }
   }
 
-  .cadence-val {
-    font-size: 0.775rem;
-    font-family: var(--font-mono);
-    color: var(--text-secondary);
-    line-height: 1.4;
-  }
-
-  .prog-action-link {
-    font-size: 0.825rem;
-    font-weight: 600;
-    color: var(--accent-primary);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    transition: gap 0.15s ease;
-  }
-
-  .prog-action-link:hover {
-    gap: 0.55rem;
+  @media (prefers-reduced-motion: reduce) {
+    .tile, .tile-link { transition: none; }
+    .tile:hover { transform: none; }
   }
 </style>

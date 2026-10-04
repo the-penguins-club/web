@@ -1,10 +1,12 @@
 ---
 // Get Involved / Take Part Component
-// Modeled directly on mlbangladesh.org's "Take part" & "Partners" sections
+// Tinted illustration cards + dark partner banner
 
 const participationWays = [
   {
     tag: "HOST ON CAMPUS",
+    tone: "mint",
+    art: "campus",
     title: "Host a campus workshop",
     description: "Bring a Linux install-fest or workshop to your university. You bring the lab room and students; we bring the bootable USBs, printed booklets, stickers, and experienced mentors.",
     actionText: "Request a Campus Stop",
@@ -13,6 +15,8 @@ const participationWays = [
   },
   {
     tag: "SPEAK OR DEMO",
+    tone: "lavender",
+    art: "mic",
     title: "Speak or demo a tool",
     description: "Teach the tool or workflow you wish someone had shown you. Whether you built a Rust CLI, configured a home server, or mastered Vim, our meetup stage is open to you.",
     actionText: "Offer a Session",
@@ -21,6 +25,8 @@ const participationWays = [
   },
   {
     tag: "CONTRIBUTE CODE",
+    tone: "lime",
+    art: "pr",
     title: "Contribute to open repositories",
     description: "Submit pull requests to bd-startups, Awesome-Cybersecurity, or uradhura. Help translate documentation, fix issues, and improve community infrastructure.",
     actionText: "Explore GitHub Repos",
@@ -29,6 +35,8 @@ const participationWays = [
   },
   {
     tag: "SUPPORT LOGISTICS",
+    tone: "blush",
+    art: "heart",
     title: "Support mirrors & hardware",
     description: "Fund high-bandwidth Linux mirror servers, provide refurbished laptops for student labs, or support printing free booklets and stickers — never a paywall.",
     actionText: "Support The Initiative",
@@ -36,6 +44,12 @@ const participationWays = [
     note: "100% transparent non-profit allocation"
   }
 ];
+const art = {
+  campus: `<path d="M10 52L60 24l50 28z" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4" stroke-linejoin="round"/><path d="M22 58v32M44 58v32M76 58v32M98 58v32" stroke="var(--art)" stroke-width="6" stroke-linecap="round"/><path d="M12 98h96" stroke="var(--art)" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="42" r="5" fill="var(--art)"/>`,
+  mic: `<rect x="44" y="12" width="32" height="54" rx="16" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4"/><path d="M30 54c0 20 13 32 30 32s30-12 30-32M60 86v20M44 106h32" fill="none" stroke="var(--art)" stroke-width="5" stroke-linecap="round"/><path d="M52 30h16M52 42h16" stroke="var(--art)" stroke-width="4" stroke-linecap="round"/>`,
+  pr: `<circle cx="30" cy="22" r="10" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4"/><circle cx="30" cy="98" r="10" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4"/><circle cx="90" cy="98" r="10" fill="var(--art)" stroke="var(--art)" stroke-width="4"/><path d="M30 32v56M90 88V44a14 14 0 00-14-14H62" fill="none" stroke="var(--art)" stroke-width="5" stroke-linecap="round"/><path d="M70 20l-10 10 10 10" fill="none" stroke="var(--art)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  heart: `<path d="M60 102S14 74 14 42c0-14 11-24 24-24 9 0 17 5 22 13 5-8 13-13 22-13 13 0 24 10 24 24 0 32-46 60-46 60z" fill="var(--art-soft)" stroke="var(--art)" stroke-width="4" stroke-linejoin="round"/><path d="M38 44h14l6-10 8 20 6-10h10" fill="none" stroke="var(--art)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`
+};
 ---
 
 <section id="get-involved" class="involved-section">
@@ -50,34 +64,37 @@ const participationWays = [
 
       <div class="header-action">
         <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary">
-          Join Telegram Community &rarr;
+          Join Telegram &rarr;
+        </a>
+        <a href="https://discord.gg/BRPWt6fXRH" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          Join Discord &rarr;
         </a>
       </div>
     </div>
 
-    <!-- 4 Ways Grid -->
     <div class="involved-grid">
-      {participationWays.map((item) => (
-        <article class="involved-card glass-card">
-          <div class="card-head">
-            <span class="card-note">{item.note}</span>
+      {participationWays.map((item, idx) => (
+        <article class={`way tone-${item.tone}`}>
+          <div class="way-art">
+            <span class="way-num" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
+            <svg viewBox="0 0 120 120" aria-hidden="true" set:html={art[item.art]} />
           </div>
 
-          <h3 class="card-title">{item.title}</h3>
-          <p class="card-desc">{item.description}</p>
-
-          <div class="card-action">
-            <a href={item.actionUrl} target="_blank" rel="noopener noreferrer" class="involved-link">
-              <span>{item.actionText}</span>
-              <span aria-hidden="true">&rarr;</span>
-            </a>
+          <div class="way-body">
+            <span class="way-note">{item.note}</span>
+            <h3 class="way-title">{item.title}</h3>
+            <p class="way-desc">{item.description}</p>
           </div>
+
+          <a href={item.actionUrl} target="_blank" rel="noopener noreferrer" class="way-link">
+            <span>{item.actionText}</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
         </article>
       ))}
     </div>
 
-    <!-- Partner / Sponsor Banner (like mlbangladesh's "Put your brand in rooms that are already building") -->
-    <div class="partner-callout glass-card">
+    <div class="partner-callout">
       <div class="partner-text">
         <h3 class="partner-title">Support rooms that are already hacking &amp; building</h3>
         <p class="partner-desc">
@@ -85,11 +102,9 @@ const participationWays = [
         </p>
       </div>
 
-      <div class="partner-actions">
-        <a href="mailto:uthsob@thepenguins.club?subject=Partnership%20Inquiry%20with%20The%20Penguins%20Club" class="btn-secondary">
-          Talk Collaboration / Support &rarr;
-        </a>
-      </div>
+      <a href="mailto:uthsob@thepenguins.club?subject=Partnership%20Inquiry%20with%20The%20Penguins%20Club" class="partner-btn">
+        Talk Collaboration / Support &rarr;
+      </a>
     </div>
   </div>
 </section>
@@ -97,151 +112,129 @@ const participationWays = [
 <style>
   .involved-section {
     padding: clamp(3.5rem, 6vw, 5.5rem) 0;
-    position: relative;
     border-bottom: 1px solid var(--border-subtle);
     background: var(--bg-subtle);
   }
 
-  .involved-header {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2.75rem;
-  }
+  .involved-header { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.75rem; }
+  .header-action { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
   @media (min-width: 860px) {
-    .involved-header {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-    .header-content {
-      max-width: 640px;
-    }
-    .header-content .section-desc {
-      margin-bottom: 0;
-    }
+    .involved-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+    .header-content { max-width: 640px; }
+    .header-content .section-desc { margin-bottom: 0; }
   }
 
-  /* 4 Ways Grid */
   .involved-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
   }
 
-  @media (min-width: 680px) {
-    .involved-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
+  @media (min-width: 640px) { .involved-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1080px) { .involved-grid { grid-template-columns: repeat(4, 1fr); } }
 
-  .involved-card {
-    padding: 1.75rem;
+  .way {
+    --bg: var(--bg-subtle);
+    --art: var(--accent-primary);
+    --art-soft: var(--accent-green-subtle);
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1.25rem;
+    padding: 0.75rem 0.75rem 1.5rem;
+    border-radius: var(--radius-xl);
     background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .card-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.25rem;
+  .way:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+  .way-art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 10rem;
+    border-radius: calc(var(--radius-xl) - 6px);
+    background: var(--bg);
   }
 
-  .card-badge {
-    font-family: var(--font-sans);
-    font-size: 0.675rem;
+  .way-art svg { width: 6.5rem; height: 6.5rem; }
+
+  .way-num {
+    position: absolute;
+    top: 0.9rem;
+    left: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--accent-primary);
-    letter-spacing: 0.05em;
+    color: var(--art);
   }
 
-  .card-note {
-    font-family: var(--font-sans);
-    font-size: 0.675rem;
-    color: var(--text-muted);
-  }
+  .way-body { display: flex; flex-direction: column; gap: 0.6rem; padding: 0 0.75rem; flex: 1; }
 
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: -0.015em;
-    color: var(--text-primary);
-  }
+  .way-note { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); }
 
-  .card-desc {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    flex: 1;
-  }
+  .way-title { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25; color: var(--text-primary); }
 
-  .card-action {
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-subtle);
-    margin-top: 0.5rem;
-  }
+  .way-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.55; }
 
-  .involved-link {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent-primary);
+  .way-link {
+    margin: 0 0.75rem;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    transition: gap 0.15s ease;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-card);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
 
-  .involved-link:hover {
-    gap: 0.55rem;
-  }
+  .way-link:hover { background: var(--text-primary); color: var(--bg-card); border-color: var(--text-primary); }
 
-  /* Partner Banner */
+  /* Partner banner */
   .partner-callout {
-    padding: 2.25rem 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 1.75rem;
-    background: var(--bg-card);
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    border-radius: var(--radius-xl);
+    background-color: #0f1a16;
+    background-image: radial-gradient(rgba(52, 211, 153, 0.18) 1px, transparent 1px);
+    background-size: 18px 18px;
+    color: #f1f5f3;
   }
 
   @media (min-width: 860px) {
-    .partner-callout {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .partner-text {
-      max-width: 680px;
-    }
-    .partner-actions {
-      flex-shrink: 0;
-    }
+    .partner-callout { flex-direction: row; align-items: center; justify-content: space-between; gap: 3rem; }
+    .partner-text { max-width: 680px; }
   }
 
-  .partner-tag {
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
+  .partner-title { font-size: clamp(1.35rem, 2.4vw, 1.75rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+  .partner-desc { font-size: 0.875rem; line-height: 1.65; color: #c0cac5; }
+
+  .partner-btn {
+    flex: none;
+    align-self: flex-start;
+    padding: 0.85rem 1.4rem;
+    border-radius: var(--radius-pill);
+    background: var(--accent-lime);
+    color: #0f1a16;
+    font-size: 0.9rem;
     font-weight: 700;
-    color: var(--accent-primary);
-    margin-bottom: 0.4rem;
+    transition: transform 0.15s ease;
   }
 
-  .partner-title {
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
+  .partner-btn:hover { transform: translateX(3px); }
+  .partner-btn:focus-visible { outline: 2px solid var(--accent-lime); outline-offset: 3px; }
 
-  .partner-desc {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
+  @media (prefers-reduced-motion: reduce) {
+    .way, .partner-btn { transition: none; }
+    .way:hover, .partner-btn:hover { transform: none; }
   }
 </style>
