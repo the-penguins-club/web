@@ -2092,4 +2092,13 @@ const dynamicIcsUrl = `/events/${event.slug}.ics`;
   .other-event-card:hover .other-card-cta {
     color: var(--accent-primary-hover);
   }
+
+  /* Phones: four countdown tiles must fit the card width */
+  @media (max-width: 560px) {
+    .countdown-timer-display { gap: 0.3rem; overflow-x: visible; }
+    .countdown-time-block { flex: 1 1 0; min-width: 0; padding: 0.65rem 0.25rem; }
+    .time-num { font-size: 1.55rem; }
+    .time-label { font-size: 0.55rem; letter-spacing: 0; }
+    .time-colon { display: none; }
+  }
 </style>

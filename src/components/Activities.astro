@@ -201,13 +201,14 @@ const art = {
 
   .tile-body { display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
 
-  .tile-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.5rem; }
+  .tile-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 0.75rem; margin-bottom: 0.5rem; }
 
   .tile-badge {
     font-family: var(--font-mono);
     font-size: 0.675rem;
     font-weight: 700;
     letter-spacing: 0.03em;
+    white-space: nowrap;
     padding: 0.25rem 0.7rem;
     border-radius: var(--radius-pill);
     background: color-mix(in srgb, var(--fg) 12%, transparent);
@@ -261,7 +262,7 @@ const art = {
 
   @media (max-width: 699px) {
     .tile-art, .tile-1 .tile-art { width: 6rem; height: 6rem; top: 4rem; right: 1.25rem; translate: none; }
-    .tile-title { margin-top: 6rem; }
+    .tile-title, .tile-1 .tile-title { margin-top: 6rem; max-width: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -566,6 +566,7 @@ const events = await getDynamicEvents();
 
   .card-actions-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 0.85rem;
@@ -582,8 +583,9 @@ const events = await getDynamicEvents();
     font-size: 0.85rem;
     font-weight: 600;
     border-radius: var(--radius-pill);
-    flex: 1;
+    flex: 1 1 11rem;
     justify-content: center;
+    white-space: nowrap;
   }
 
   .is-super-card .card-view-btn {
@@ -637,5 +639,11 @@ const events = await getDynamicEvents();
     color: var(--accent-primary);
     border-color: var(--border-card-hover);
     background: var(--bg-card);
+  }
+
+  /* Phones: keep the ribbon clear of the date chip over the image */
+  @media (max-width: 520px) {
+    .super-ribbon-tag, .hacktoberfest-ribbon-tag { top: auto; bottom: 0.85rem; }
+    .card-extra-links { margin-left: auto; }
   }
 </style>
