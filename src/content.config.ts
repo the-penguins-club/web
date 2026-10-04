@@ -2,7 +2,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-// Posts live in src/content/blog/*.md and are edited through /admin (Sveltia CMS) or by hand.
+// Posts live in src/content/blog/*.md and are edited through the local Keystatic admin (`astro dev`, /keystatic) or by hand.
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({

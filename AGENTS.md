@@ -27,7 +27,7 @@ Build with `npm run build` (output in `dist/`). Type-check with `npx astro check
   - The parser matches issue-form section headings by substring (e.g. "event title", "start date & time"), so renaming a heading in the issue template can silently break fields. Issue sections may be YAML lists or markdown tables (agenda, speakers) or Q:/A: pairs (FAQs).
   - Because this runs at build time (`getStaticPaths` in `src/pages/events/[slug].astro`, `events/index.astro`), new GitHub issues only appear after a rebuild/redeploy.
 - **iCalendar**: `src/utils/ics.ts` generates RFC 5545 text and Google Calendar URLs. Served by `src/pages/events.ics.ts` (all-events subscription feed) and `src/pages/events/[slug].ics.ts` (per event). Event URLs in the ICS are hardcoded to `https://thepenguins.club`.
-- **Blog**: Markdown posts in `src/content/blog/` (schema in `src/content.config.ts`), rendered by `src/pages/blog/`. Editable through Sveltia CMS at `/admin` (`public/admin/config.yml`), which opens a pull request per post (editorial workflow); merging it to `main` triggers the Pages deploy.
+- **Blog**: Markdown posts in `src/content/blog/` (schema in `src/content.config.ts`), rendered by `src/pages/blog/`. Edited locally through Keystatic at `/keystatic` while `astro dev` runs (no auth, `keystatic.config.ts`, local storage; the integration is only loaded in dev, so it never ships). Commit and push to `main` to deploy.
 - Meetup photos go in `public/images/meetups/` (see the README there); components fall back to bundled SVGs if a photo is missing.
 
 ## Documentation
