@@ -130,7 +130,7 @@ const summaryRows = [
         <section class="block" id="about">
           <h2 class="block-title">What this is</h2>
           <p class="lede">
-            This is a small bug bounty programme and we run it ourselves. No platform sits in
+            This is a small bug bounty program and we run it ourselves. No platform sits in
             between. You email us, a volunteer reads it, and we sort it out from there.
           </p>
           <p>
@@ -140,16 +140,16 @@ const summaryRows = [
             ones we keep, and a person will write back to you.
           </p>
           <p>
-            We've had this open since <strong>{launched}</strong>, so about {age} now. Scope and
-            rewards have shifted {revisions} times along the way, and the
-            {' '}<a href="#changelog">changelog</a> has all of it.
+            We opened this program on {facts.launchedOccasion ? `${facts.launchedOccasion}, ` : ''}
+            <strong>{launched}</strong>. Scope and rewards have shifted {revisions} times since
+            then, and the <a href="#changelog">changelog</a> has all of it.
           </p>
         </section>
 
         <section class="block" id="scope">
           <h2 class="block-title">What is in scope</h2>
           <p>
-            {capitalise(assetCount)} things. Anything outside this list falls outside the programme,
+            {capitalise(assetCount)} things. Anything outside this list falls outside the program,
             though we'd still like to know about it.
           </p>
 

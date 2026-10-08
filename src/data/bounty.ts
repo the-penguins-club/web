@@ -6,7 +6,7 @@
 // Everything inside `facts`, `changelog`, and `thanks` describes real-world
 // history that only the club can confirm. The values below are placeholders
 // chosen to make the page render; they are NOT a record of anything that
-// happened. Publishing them as-is would misstate the programme's history.
+// happened. Publishing them as-is would misstate the program's history.
 //
 // Specifically: `facts.launchedIso`, `facts.reportsResolved`, every `changelog`
 // entry, and every `thanks` entry need real values. The payout total and
@@ -15,8 +15,14 @@
 // ───────────────────────────────────────────────────────────────────────────
 
 export const facts = {
-  /** Programme start date. Drives the "running since" line and the age badge. */
+  /** Program start date. Drives the launch line, the age badge and the changelog floor. */
   launchedIso: '2024-09-21',
+  /**
+   * What the launch date was, if it was anything. Kept beside the date so the
+   * two cannot drift: change launchedIso to a day that is not Software Freedom
+   * Day and this has to change with it, or be emptied.
+   */
+  launchedOccasion: 'Software Freedom Day',
   /** Last substantive edit to these rules. */
   updatedIso: '2026-09-12',
 
@@ -265,7 +271,7 @@ export const changelog: ChangelogEntry[] = [
   {
     dateIso: '2024-09-21',
     version: '1.0',
-    summary: 'Programme opened on Software Freedom Day with the mirror and this website in scope, funded from the community fund.',
+    summary: 'Program opened on Software Freedom Day with the mirror and this website in scope, funded from the community fund.',
   },
 ];
 
@@ -356,7 +362,7 @@ export function fmtBdt(n: number): string {
   return `৳${n.toLocaleString('en-US')}`;
 }
 
-/** Whole months the programme has been running, as of the build. */
+/** Whole months the program has been running, as of the build. */
 export function monthsRunning(fromIso: string, now = new Date()): number {
   const start = new Date(`${fromIso}T00:00:00Z`);
   let months =
