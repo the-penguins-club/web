@@ -1,8 +1,8 @@
 /* Design System for The Penguins Club - Linux & Open Source Community */
 :root,
 [data-theme="light"] {
-  --font-sans: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: 'Fira Sans', 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Fira Code', 'Noto Sans Bengali', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Color Scheme - Clean neutral surfaces, emerald accent */
   color-scheme: light;
@@ -45,7 +45,7 @@
   --accent-coral: var(--accent-primary);
   --accent-teal: #0d9488;
   --border-glow: rgba(10, 122, 90, 0.18);
-  --font-display: 'Bricolage Grotesque', var(--font-sans);
+  --font-display: 'Candal', 'Noto Sans Bengali', var(--font-sans);
 
   /* Badges & Tags */
   --badge-bg: #eef3f1;
@@ -105,7 +105,7 @@
   --accent-coral: var(--accent-primary);
   --accent-teal: #14b8a6;
   --border-glow: rgba(52, 211, 153, 0.25);
-  --font-display: 'Bricolage Grotesque', var(--font-sans);
+  --font-display: 'Candal', 'Noto Sans Bengali', var(--font-sans);
 
   --badge-bg: rgba(255, 255, 255, 0.06);
   --badge-border: rgba(255, 255, 255, 0.14);
@@ -357,6 +357,8 @@ code, kbd, pre, samp {
 }
 
 h1, h2, h3 { font-family: var(--font-display); }
+/* Candal ships a single weight; this stops the browser faux-bolding it. */
+html { font-synthesis-weight: none; }
 :focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
 [data-theme="dark"] .btn-primary,
 [data-theme="dark"] .btn-pill-primary { color: var(--text-inverse) !important; }

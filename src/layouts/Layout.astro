@@ -40,10 +40,20 @@ const {
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
 
-    <!-- Google Fonts: Inter & JetBrains Mono (Precision Engineering Typography) -->
+    <!--
+      Type: every family here is libre (SIL OFL), which is the point for a club
+      that teaches software freedom. Fira Sans and Fira Code come out of Mozilla.
+      Candal is a heavy, slightly condensed humanist with flared terminals; it
+      ships a single weight, which is why font-synthesis-weight is off in
+      global.css - the headings ask for 700/800 and the browser would otherwise
+      smear a fake bold rather than draw the real outline. Noto Sans Bengali
+      backs up the body and mono stacks so the Taka sign stops falling through
+      to a system font. Weights requested match what the CSS actually uses,
+      including mono at 600/700, which was previously faux-bolded.
+    -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700;800&family=Candal&family=Fira+Code:wght@400..700&family=Noto+Sans+Bengali:wght@400..700&display=swap" rel="stylesheet" />
 
     <!-- Early Theme Detection script (prevents FOUC) -->
     <script is:inline>
