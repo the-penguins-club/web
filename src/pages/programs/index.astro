@@ -1,0 +1,274 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { programs, art, programHref } from '../../data/programs';
+import { facts, fmtDate } from '../../data/bounty';
+
+const ongoing = programs.filter((p) => p.badgeType === 'live' || p.badgeType === 'open');
+const seasonal = programs.filter((p) => p.badgeType === 'event' || p.badgeType === 'track');
+const commons = programs.filter((p) => p.badgeType === 'charity');
+
+const groups = [
+  {
+    id: 'ongoing',
+    title: 'Running all year',
+    desc: 'These never stop. Turn up any month and one of them is happening.',
+    items: ongoing,
+  },
+  {
+    id: 'seasonal',
+    title: 'Seasonal & on request',
+    desc: 'These run when a university signs on, a season opens, or enough people ask.',
+    items: seasonal,
+  },
+  {
+    id: 'commons',
+    title: 'Public commons',
+    desc: 'Infrastructure and material we maintain for everyone, free, with no account required.',
+    items: commons,
+  },
+];
+---
+
+<Layout
+  title="Programs — The Penguins Club"
+  description="Every track The Penguins Club runs: the Linux systems club, upstream contribution sprints, campus install-fests, the security track, our paid bug bounty program, mentorship pairings, and the public commons we maintain."
+>
+  <main class="programs-page">
+    <header class="hero">
+      <div class="container">
+        <p class="eyebrow">PROGRAMS</p>
+        <h1 class="hero-title">Everything we run</h1>
+        <p class="hero-sub">
+          Nine tracks, one community. Some meet monthly, some run when a university invites us, and
+          a couple simply sit there being useful. All of them are free to join — and one of them
+          pays you.
+        </p>
+
+        <div class="hero-pointer">
+          <div class="pointer-text">
+            <span class="pointer-tag">PAID &bull; OPEN SINCE {fmtDate(facts.launchedIso).toUpperCase()}</span>
+            <h2>The bug bounty program</h2>
+            <p>
+              Break our mirror, our bot, or this site, tell us privately, and get paid from the
+              community fund. Published rules, published rewards, published response times.
+            </p>
+          </div>
+          <a href="/programs/bounties" class="btn-primary">Read the rules &rarr;</a>
+        </div>
+      </div>
+    </header>
+
+    {groups.map((group) => (
+      <section class="group" id={group.id}>
+        <div class="container">
+          <div class="group-head">
+            <h2 class="section-title">{group.title}</h2>
+            <p class="section-desc">{group.desc}</p>
+          </div>
+
+          <ul class="program-grid">
+            {group.items.map((p) => (
+              <li class={`card tone-${p.tone}`}>
+                <div class="card-top">
+                  <span class="card-badge">{p.badge}</span>
+                  <svg class="card-art" viewBox="0 0 120 120" aria-hidden="true" set:html={art[p.art]} />
+                </div>
+
+                <div class="card-body">
+                  <h3 class="card-title">{p.title}</h3>
+                  <p class="card-summary">{p.summary}</p>
+                  <p class="card-details">{p.details}</p>
+                </div>
+
+                <div class="card-foot">
+                  <span class="card-cadence"><b>Schedule</b>{p.cadence}</span>
+                  {p.hasPage ? (
+                    <a href={programHref(p)} class="card-link" aria-label={`Read about ${p.title}`}>
+                      Details &rarr;
+                    </a>
+                  ) : (
+                    <span class="card-tag">{p.tag}</span>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))}
+
+    <section class="closing">
+      <div class="container">
+        <h2>Want one of these on your campus?</h2>
+        <p>
+          Install-fests, workshops, and speaker slots are free for universities. You bring the room
+          and the students; we bring everything else.
+        </p>
+        <div class="closing-actions">
+          <a href="/#get-involved" class="btn-primary">Get involved &rarr;</a>
+          <a href="/events" class="btn-secondary">See upcoming meetups</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .programs-page { padding-bottom: 4rem; }
+
+  .hero {
+    padding: clamp(2.75rem, 5vw, 4.5rem) 0 clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-subtle);
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent-primary);
+    margin-bottom: 0.75rem;
+  }
+  .hero-title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.9rem;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 62ch;
+  }
+
+  .hero-pointer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-card);
+    background: var(--bg-card);
+  }
+  @media (min-width: 820px) {
+    .hero-pointer { flex-direction: row; align-items: center; justify-content: space-between; gap: 2rem; }
+    .hero-pointer .btn-primary { flex: none; }
+  }
+  .pointer-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent-primary);
+    margin-bottom: 0.5rem;
+  }
+  .pointer-text h2 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.4rem; }
+  .pointer-text p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; max-width: 60ch; }
+
+  .group { padding: clamp(2.5rem, 5vw, 3.75rem) 0; border-bottom: 1px solid var(--border-subtle); }
+  .group-head { margin-bottom: 2rem; }
+  .group-head .section-desc { margin-bottom: 0; }
+
+  .program-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    --bg: var(--bg-card);
+    --fg: var(--text-primary);
+    --art: var(--accent-primary);
+    --art-soft: var(--accent-green-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-xl);
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--border-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+  .tone-emerald  { --bg: #0a7a5a; --fg: #ffffff; --art: #ffffff; --art-soft: rgba(255,255,255,0.16); border-color: transparent; }
+  .tone-lime     { --bg: #e3f98a; --fg: #27340a; --art: #3f5a0b; --art-soft: rgba(255,255,255,0.5); border-color: transparent; }
+  .tone-ink      { --bg: #0f1a16; --fg: #f1f5f3; --art: #34d399; --art-soft: rgba(52,211,153,0.18); border-color: transparent; }
+  .tone-coral    { --bg: #ff9d80; --fg: #4a1608; --art: #7a2410; --art-soft: rgba(255,255,255,0.4); border-color: transparent; }
+  .tone-sky      { --bg: #cfe6ff; --fg: #0d2742; --art: #1d5fa8; --art-soft: rgba(255,255,255,0.5); border-color: transparent; }
+  .tone-sand     { --bg: #f4e3c1; --fg: #4a3410; --art: #8a5c12; --art-soft: rgba(255,255,255,0.5); border-color: transparent; }
+  .tone-lavender { --bg: #ddd6fe; --fg: #2e2060; --art: #5b3fc4; --art-soft: rgba(255,255,255,0.5); border-color: transparent; }
+
+  :global([data-theme='dark']) .tone-emerald  { --bg: #0e5e47; }
+  :global([data-theme='dark']) .tone-lime     { --bg: #2c3410; --fg: #f1f8d0; --art: #d4f55a; --art-soft: rgba(212,245,90,0.14); }
+  :global([data-theme='dark']) .tone-ink      { --bg: #1b2320; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); }
+  :global([data-theme='dark']) .tone-coral    { --bg: #8a3a24; --fg: #fff1ec; --art: #ffd0c0; --art-soft: rgba(255,255,255,0.12); }
+  :global([data-theme='dark']) .tone-sky      { --bg: #15304f; --fg: #e4f0ff; --art: #7bb8f5; --art-soft: rgba(123,184,245,0.15); }
+  :global([data-theme='dark']) .tone-sand     { --bg: #4a3a18; --fg: #fbeed3; --art: #e8c57a; --art-soft: rgba(232,197,122,0.14); }
+  :global([data-theme='dark']) .tone-lavender { --bg: #302a5c; --fg: #ece8ff; --art: #b9a9f7; --art-soft: rgba(185,169,247,0.15); }
+
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+  .card-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--fg) 12%, transparent);
+  }
+  .card-art { flex: none; width: 3.75rem; height: 3.75rem; opacity: 0.95; margin-top: -0.35rem; }
+
+  .card-body { display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
+  .card-title { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25; }
+  .card-summary { font-size: 0.88rem; font-weight: 500; line-height: 1.55; }
+  .card-details { font-size: 0.8rem; line-height: 1.55; opacity: 0.75; }
+
+  .card-foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent);
+  }
+  .card-cadence { font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.4; display: flex; flex-direction: column; gap: 0.2rem; }
+  .card-cadence b { font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
+  .card-tag { font-family: var(--font-mono); font-size: 0.62rem; opacity: 0.6; text-align: right; white-space: nowrap; }
+  .card-link {
+    flex: none;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-pill);
+    background: var(--fg);
+    color: var(--bg);
+    white-space: nowrap;
+    transition: transform 0.2s ease;
+  }
+  .card-link:hover { transform: translateX(2px); }
+  .card-link:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+
+  .closing { padding: clamp(2.75rem, 5vw, 4rem) 0 0; }
+  .closing h2 {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+  .closing p { color: var(--text-secondary); line-height: 1.65; max-width: 58ch; margin-bottom: 1.5rem; }
+  .closing-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card, .card-link { transition: none; }
+    .card:hover { transform: none; }
+  }
+</style>
