@@ -67,7 +67,7 @@ export const events: CommunityEvent[] = [
     venueAddress: 'Moulana Bhashani Rd, Ramna, Dhaka 1000, Bangladesh',
     venueType: 'outdoor',
     image: '/images/meetups/meetup-touch-grass.svg',
-    description: 'An unplugged, open-air super gathering! Step away from backlit screens, power down the daemons, and touch actual grass with fellow Linux and FOSS enthusiasts. Featuring solar-powered LoRa mesh radios, an open-air GPG key-signing party, an offline Kiwix knowledge mirror, acoustic lightning talks, frisbee, and lawn snacks.',
+    description: 'A day outdoors with no screens. Power down the daemons, step away from the backlit rectangle, and touch some actual grass with other Linux and FOSS people. Featuring solar-powered LoRa mesh radios, an open-air GPG key-signing party, an offline Kiwix knowledge mirror, acoustic lightning talks, frisbee, and lawn snacks.',
     fullOverview: [
       'In a world dominated by endless CI/CD runs, flickering terminal windows, and hyper-connected screens, we often forget the raw physical reality beneath our feet. "Touch Grass" is The Penguins Club\'s signature super unconference: a deliberate return to nature, fresh oxygen, and unplugged peer-to-peer connection.',
       'Leave your AC server rooms behind. Bring a picnic blanket, your portable solar packs, your favorite offline hardware projects, and your physical presence. We will gather under the historic trees of Ramna Park for an afternoon of peer-to-peer mesh networking, Web-of-Trust cryptographic signing, community tea, and real-world conversations with people who cherish software freedom.',
@@ -104,7 +104,7 @@ export const events: CommunityEvent[] = [
         time: '15:30 - 16:15',
         title: 'Sunlight GPG Web-of-Trust Key-Signing Party',
         speaker: 'Cryptography Group',
-        description: 'The classic FOSS tradition conducted in open air. Confirm IDs, exchange fingerprints, and build resilient cryptographic trust.'
+        description: 'The classic FOSS tradition, held outdoors. Confirm IDs, exchange fingerprints, and sign each other into the web of trust.'
       },
       {
         time: '16:15 - 17:15',
@@ -116,7 +116,7 @@ export const events: CommunityEvent[] = [
         time: '17:15 - 18:00',
         title: 'Chai, Lawn Picnic & Sunset Frisbee Hack',
         speaker: 'Everyone',
-        description: 'Enjoy snacks and tea while mingling, catching up on projects, and closing out an unforgettable afternoon outdoors.'
+        description: 'Snacks and tea, catching up on what people are building, and a slow end to the afternoon.'
       }
     ],
     prerequisites: [
@@ -134,7 +134,7 @@ export const events: CommunityEvent[] = [
       {
         name: 'The Penguins Club Collective',
         role: 'Community Stewards & FOSS Advocates',
-        bio: 'Organizers and volunteers nurturing local open-source infrastructure and offline tech culture in Bangladesh since 2020.',
+        bio: 'Organisers and volunteers keeping local open-source infrastructure and offline tech culture going in Bangladesh since 2020.',
         avatar: '/favicon.svg',
         github: 'the-penguins-club'
       },
@@ -148,7 +148,7 @@ export const events: CommunityEvent[] = [
     faqs: [
       {
         question: 'Why "Touch Grass"? Is this a joke?',
-        answer: 'It embraces the beloved internet meme with complete sincerity! Engineers and tech enthusiasts spend an unhealthy amount of time indoors glued to terminals. Stepping outside into nature with a community of friends turns a meme into a transformative, revitalizing gathering.'
+        answer: 'It\'s the meme, taken completely seriously. Most of us spend far too much of the week indoors staring at a terminal. Going outside with people who understand why that\'s funny turns the joke into an afternoon worth having.'
       },
       {
         question: 'What if it rains?',
@@ -188,11 +188,11 @@ export const events: CommunityEvent[] = [
     venueAddress: '26/18 Gulshan Badda Link Road, Dhaka 1212, Bangladesh',
     venueType: 'hybrid',
     image: '/images/meetups/meetup-hacktoberfest.svg',
-    description: 'Celebrate the world\'s largest open source festival with The Penguins Club! Join a high-energy, full-day sprint where mentors help you find beginner-friendly issues, master Git branching and conventional commits, submit meaningful Pull Requests to Linux and FOSS projects, and earn exclusive stickers, badges, and booklets.',
+    description: 'A full day of contributing, with mentors on hand. They\'ll help you find a first issue you can actually finish, get your head around Git branching and conventional commits, and open pull requests on real Linux and FOSS projects. Stickers, badges and booklets for everyone who turns up.',
     fullOverview: [
-      'October is Hacktoberfest — the month-long worldwide celebration of open-source software! Every year, hundreds of thousands of developers contribute to open codebases, documentation, and translation projects.',
-      'The Penguins Club is hosting a dedicated, hands-on Contribution Marathon in Dhaka with full virtual streaming. Our goal: zero spam PRs, 100% genuine value. We believe your first open-source pull request should be an empowering milestone, not an intimidating hurdle.',
-      'Whether you are fixing a typo in markdown manuals, writing tests in Python or Go, improving accessibility in web apps, or translating Linux documentation into Bengali, our experienced maintainers will pair with you from fork to merged commit.'
+      'October is Hacktoberfest, the month-long worldwide celebration of open-source software. Every year hundreds of thousands of people contribute to open codebases, documentation, and translation projects.',
+      'The Penguins Club is hosting a dedicated, hands-on Contribution Marathon in Dhaka with full virtual streaming. Our one rule: no spam pull requests. Your first pull request should be a good day, and for most people it isn\'t, usually because nobody was sitting next to them.',
+      'Whether you\'re fixing a typo in a markdown manual, writing tests in Python or Go, improving accessibility in a web app, or translating Linux documentation into Bengali, a maintainer will sit with you from fork to merged commit.'
     ],
     highlights: [
       '🚀 Zero to Merged PR: Complete walkthrough of forking, branching, rebase workflows, and clean commit etiquette.',
@@ -225,7 +225,7 @@ export const events: CommunityEvent[] = [
         time: '13:30 - 16:30',
         title: 'The Great Contribution Sprint (Pair Programming & Coffee)',
         speaker: 'All Attendees & Mentors',
-        description: 'Three hours of intense, collaborative coding, doc writing, translation, and live code reviews with mentors.'
+        description: 'Three hours of coding, doc writing, translation, and live review with mentors.'
       },
       {
         time: '16:30 - 17:30',
@@ -300,7 +300,7 @@ export const events: CommunityEvent[] = [
     venueAddress: '26/18 Gulshan Badda Link Road, Dhaka 1212, Bangladesh',
     venueType: 'hybrid',
     image: '/images/meetups/meetup-linux-intro.svg',
-    description: 'Hands-on lab walking through terminal navigation, automation pipelines with bash, systemd services, and Linux kernel fundamentals. Master process management, I/O redirection, and building resilient shell utilities.',
+    description: 'Hands-on lab walking through terminal navigation, automation pipelines with bash, systemd services, and Linux kernel fundamentals. Covers process management, I/O redirection, and writing shell utilities that fail loudly instead of silently.',
     fullOverview: [
       'The Linux terminal is not merely a tool for launching commands — it is an extraordinarily expressive programming environment built on decades of UNIX philosophy.',
       'In this practical, hands-on workshop, we demystify what happens underneath the hood when you type a command. From file descriptors and POSIX signals to systemd unit management and `/proc` virtual filesystem inspection, attendees will gain confidence in diagnosing system bottlenecks and automating complex tasks.',
@@ -308,7 +308,7 @@ export const events: CommunityEvent[] = [
     ],
     highlights: [
       '⚡ Mastering POSIX shell scripting, error trapping (`set -euo pipefail`), and argument parsing.',
-      '🔍 Deep dive into `/proc`, `/sys`, and process lifecycle inspection using `strace` and `lsof`.',
+      '🔍 A look through `/proc`, `/sys`, and the process lifecycle using `strace` and `lsof`.',
       '⚙️ Creating, enabling, and managing custom background systemd service units.',
       '🛡️ UNIX permissions, POSIX ACLs, and practical security hygiene for multi-user servers.',
       '📖 Free printed Penguin Terminal Pocket Booklets for all classroom participants.'
@@ -322,7 +322,7 @@ export const events: CommunityEvent[] = [
       },
       {
         time: '15:30 - 16:30',
-        title: 'Robust Bash Automation: Writing Scripts That Don\'t Fail Silently',
+        title: 'Bash Automation: Writing Scripts That Don\'t Fail Silently',
         speaker: 'DevOps & Systems Team',
         description: 'Variable expansion, conditionals, signals, traps, and defensive scripting patterns.'
       },
@@ -390,7 +390,7 @@ export const events: CommunityEvent[] = [
     venueAddress: 'Campus Computer Lab Space, Dhaka, Bangladesh',
     venueType: 'hybrid',
     image: '/images/meetups/meetup-git-foss.svg',
-    description: 'Hands-on guidance through cloning repositories, fixing good first issues, writing tests, and opening upstream pull requests. Learn how to communicate effectively with maintainers and write clean atomic commits.',
+    description: 'Hands-on guidance through cloning repositories, fixing good first issues, writing tests, and opening upstream pull requests. Also how to talk to maintainers, and how to keep commits small and self-contained.',
     fullOverview: [
       'Contributing to open source software can seem intimidating from the outside. How do you find a repository? What is an atomic commit? How do you rebase without losing work? How do maintainers review pull requests?',
       'This meetup demystifies the entire workflow. Attendees will follow a practical case study, making changes on a real open source repository, writing clean documentation and tests, and creating a pull request that maintainers love to merge.',
@@ -399,7 +399,7 @@ export const events: CommunityEvent[] = [
     highlights: [
       '🌿 Understanding Git internals: Trees, blobs, commits, and refs under `.git/`.',
       '🔀 Mastering git rebase -i, cherry-pick, bisect, and resolving tricky merge conflicts.',
-      '✍️ Crafting meaningful commit messages using the Conventional Commits specification.',
+      '✍️ Writing commit messages a reviewer can read, using the Conventional Commits spec.',
       '🎯 Navigating GitHub, GitLab, and mailing-list patch workflows (git-send-email).',
       '🌟 Reviewing real upstream issues from community projects.'
     ],
@@ -440,7 +440,7 @@ export const events: CommunityEvent[] = [
       {
         name: 'The Penguins Club Git Mentors',
         role: 'Open Source Maintainers',
-        bio: 'Seasoned contributors helping students make their first 10 pull requests.',
+        bio: 'Contributors who help students through their first ten pull requests.',
         avatar: '/favicon.svg',
         github: 'the-penguins-club'
       }
@@ -475,11 +475,11 @@ export const events: CommunityEvent[] = [
     venueAddress: '26/18 Gulshan Badda Link Road, Dhaka 1212, Bangladesh',
     venueType: 'hybrid',
     image: '/images/meetups/meetup-self-hosting.svg',
-    description: 'Learn how to take control of personal data by hosting your own open-source services on refurbished hardware or inexpensive home servers. Discover Docker, Podman, Nextcloud, Pi-hole, and Tailscale private overlays.',
+    description: 'Host your own services on refurbished hardware or a cheap home server, and keep your data somewhere you can see it. Covers Docker, Podman, Nextcloud, Pi-hole, and Tailscale overlays.',
     fullOverview: [
       'Every day, our digital lives are entrusted to proprietary cloud monopolies that collect personal telemetry, lock user data into walled gardens, and subject files to algorithmic surveillance.',
       'Self-hosting is the antidote. With modern open-source software and inexpensive consumer hardware — or even an old repurposed laptop or Raspberry Pi — you can easily run your own cloud storage, password manager, ad-blocking DNS, and home automation.',
-      'In this workshop, we provide a step-by-step roadmap to building your own resilient home lab without spending a fortune, ensuring high uptime, secure backups, and seamless encrypted access from anywhere in the world.'
+      'In this workshop, we walk through building a home lab without spending a fortune, covering uptime, backups, and encrypted access from anywhere in the world.'
     ],
     highlights: [
       '🏠 Building a low-power home server using second-hand laptops or thin clients.',
@@ -493,7 +493,7 @@ export const events: CommunityEvent[] = [
         time: '15:00 - 15:45',
         title: 'Digital Sovereignty: Why Self-Host in 2026?',
         speaker: 'Privacy & Freedom SIG',
-        description: 'Threat modeling, cloud dependence, and the empowerment of owning your data.'
+        description: 'Threat modelling, how much we lean on the cloud, and what changes when the data is yours.'
       },
       {
         time: '15:45 - 16:45',
@@ -525,7 +525,7 @@ export const events: CommunityEvent[] = [
       {
         name: 'The Penguins Club Homelab SIG',
         role: 'Self-Hosting & Privacy Advocates',
-        bio: 'Passionate builders running decentralized servers, mirror nodes, and private cloud infrastructure.',
+        bio: 'Builders running decentralised servers, mirror nodes, and private cloud infrastructure.',
         avatar: '/favicon.svg',
         github: 'the-penguins-club'
       }

@@ -1,23 +1,28 @@
 ---
 // Community Metrics Component
 // Inspired by mlbangladesh.org's "What the community has done since..."
+
+// Derived so the headline figure doesn't quietly go stale each January.
+const FOUNDED_YEAR = 2020;
+const yearsRunning = new Date().getFullYear() - FOUNDED_YEAR;
 ---
 
 <section class="metrics-section">
   <div class="container">
     <div class="metrics-header">
-      <h2 class="section-title">What the community has built since 2020</h2>
+      <h2 class="section-title">What the community has built since {FOUNDED_YEAR}</h2>
       <p class="section-desc">
-        The Penguins Club measures success not by vanity metrics or sponsorship fees, but by genuine community longevity, software shipped, and students empowered with free computing literacy.
+        Here's what {yearsRunning} years of monthly meetups adds up to. No sponsors, no
+        registration fees, and every organiser a volunteer.
       </p>
     </div>
 
     <!-- Big Number Metric Cards -->
     <div class="metrics-grid">
       <div class="metric-card glass-card">
-        <span class="metric-number">4+</span>
+        <span class="metric-number">{yearsRunning}+</span>
         <span class="metric-label">Years Running</span>
-        <span class="metric-detail">Monthly meetups kept continuously since 2020</span>
+        <span class="metric-detail">Monthly meetups kept going since {FOUNDED_YEAR}</span>
       </div>
 
       <div class="metric-card glass-card">
