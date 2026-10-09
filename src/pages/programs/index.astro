@@ -68,7 +68,7 @@ const groups = [
 
           <ul class="program-grid">
             {group.items.map((p) => (
-              <li class={`card tone-${p.tone}`}>
+              <li class={`card tone-${p.tone}`} id={p.slug}>
                 <div class="card-top">
                   <span class="card-badge">{p.badge}</span>
                   <svg class="card-art" viewBox="0 0 120 120" aria-hidden="true" set:html={art[p.art]} />

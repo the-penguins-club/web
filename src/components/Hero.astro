@@ -58,7 +58,7 @@ const heroSlides = [
           rel="noopener noreferrer"
           class="btn-pill-primary"
         >
-          Join
+          Join on Telegram
         </a>
         <a href="#programs" class="hero-text-link">
           See our programs
@@ -68,11 +68,11 @@ const heroSlides = [
       <!-- Metadata Line (separated by slashes, exactly as in Screenshot 1) -->
       <div class="hero-meta-row">
         <span>Non-Profit Charity Network</span>
-        <span class="meta-slash">/</span>
+        <span class="meta-slash" aria-hidden="true">/</span>
         <span>Run entirely by volunteers</span>
-        <span class="meta-slash">/</span>
+        <span class="meta-slash" aria-hidden="true">/</span>
         <span>Free for every student</span>
-        <span class="meta-slash">/</span>
+        <span class="meta-slash" aria-hidden="true">/</span>
         <span>26/18 Gulshan Badda Link Road</span>
       </div>
     </div>
@@ -106,14 +106,15 @@ const heroSlides = [
         </div>
 
         <!-- Carousel Indicators (Pill + Dots at bottom center) -->
-        <div class="carousel-indicators" role="tablist" aria-label="Slide dots">
+        <div class="carousel-indicators">
           {
             heroSlides.map((_, index) => (
               <button
+                type="button"
                 class={`indicator-dot ${index === 0 ? "is-active" : ""}`}
                 data-target={index}
                 aria-label={`Go to slide ${index + 1}`}
-                role="tab"
+                aria-current={index === 0 ? "true" : undefined}
               />
             ))
           }
@@ -123,7 +124,7 @@ const heroSlides = [
   </div>
 </section>
 
-<!-- Client script for smooth auto-rotation and interactive dots -->
+<!-- Client script for the slide dots (no autoplay: slides change only when asked) -->
 <script>
   function initHeroCarousel() {
     const carousel = document.getElementById("hero-carousel");
@@ -134,40 +135,22 @@ const heroSlides = [
     if (!slides.length) return;
 
     let currentIndex = 0;
-    let timer: number | undefined;
 
     function goToSlide(index: number) {
       slides[currentIndex]?.classList.remove("is-active");
       dots[currentIndex]?.classList.remove("is-active");
+      dots[currentIndex]?.removeAttribute("aria-current");
 
       currentIndex = (index + slides.length) % slides.length;
 
       slides[currentIndex]?.classList.add("is-active");
       dots[currentIndex]?.classList.add("is-active");
-    }
-
-    function startAutoPlay() {
-      stopAutoPlay();
-      timer = window.setInterval(() => {
-        goToSlide(currentIndex + 1);
-      }, 5000);
-    }
-
-    function stopAutoPlay() {
-      if (timer) clearInterval(timer);
+      dots[currentIndex]?.setAttribute("aria-current", "true");
     }
 
     dots.forEach((dot, idx) => {
-      dot.addEventListener("click", () => {
-        goToSlide(idx);
-        startAutoPlay();
-      });
+      dot.addEventListener("click", () => goToSlide(idx));
     });
-
-    carousel.addEventListener("mouseenter", stopAutoPlay);
-    carousel.addEventListener("mouseleave", startAutoPlay);
-
-    startAutoPlay();
   }
 
   // Initialize on load and Astro page transitions
@@ -348,33 +331,45 @@ const heroSlides = [
     right: 1.25rem;
     display: flex;
     align-items: center;
-    gap: 6px;
     z-index: 5;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    padding: 5px 9px;
+    padding: 0 4px;
     border-radius: var(--radius-pill);
     pointer-events: auto;
   }
 
+  /* 24px hit area; the visible dot is drawn by ::before */
   .indicator-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: var(--radius-pill);
-    background: rgba(255, 255, 255, 0.45);
+    display: grid;
+    place-items: center;
+    min-width: 24px;
+    height: 24px;
     border: none;
     cursor: pointer;
     padding: 0;
-    transition: all 0.25s ease;
   }
 
-  .indicator-dot:hover {
-    background: rgba(255, 255, 255, 0.8);
+  .indicator-dot::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.65);
+    transition: width 0.25s ease, background-color 0.25s ease;
+  }
+
+  .indicator-dot:hover::before {
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .indicator-dot.is-active::before {
+    width: 20px;
+    background: #ffffff;
   }
 
   .indicator-dot.is-active {
-    width: 20px;
-    background: #ffffff;
+    min-width: 32px;
   }
 </style>

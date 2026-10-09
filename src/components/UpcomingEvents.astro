@@ -188,7 +188,7 @@ const day = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'n
 
   /* Event colours: one tint per event theme */
   .tone-mint, .tone-coral, .tone-sky, .tone-lavender, .tone-lime { --tint: #d1fae5; --ink: #0a7a5a; }
-  .tone-coral    { --tint: #ffd9cb; --ink: #b4472a; }
+  .tone-coral    { --tint: #ffd9cb; --ink: #a33f22; }
   .tone-sky      { --tint: #d6e9ff; --ink: #1d5fa8; }
   .tone-lavender { --tint: #e6e0fb; --ink: #5b3fc4; }
   .tone-lime     { --tint: #eaf9a8; --ink: #3f5a0b; }
@@ -234,7 +234,8 @@ const day = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'n
 
   /* Countdown */
   .countdown { display: inline-flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-  .label { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+  .label { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+  .featured .label { color: var(--text-secondary); }
   .clock { display: flex; align-items: baseline; gap: 0.6rem; font-variant-numeric: tabular-nums; }
   .clock span { display: inline-flex; align-items: baseline; gap: 0.15rem; }
   .clock b { font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--text-primary); }
