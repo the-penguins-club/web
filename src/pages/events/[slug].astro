@@ -70,13 +70,24 @@ const jsonLd = {
   }),
   url: new URL(Astro.url.pathname, Astro.site).href
 };
+
+// The event's FAQ, for AI answer engines that extract Q&A directly
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: event.faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer }
+  }))
+};
 ---
 
 <Layout
   title={pageTitle}
   description={metaDescription}
   image={shareImage}
-  jsonLd={jsonLd}
+  jsonLd={event.faqs.length ? [jsonLd, faqLd] : jsonLd}
 >
   <div class={`event-detail-page ${event.isSuper ? 'is-super-page' : ''} theme-${event.theme}`}>
     <!-- Top Breadcrumbs & Back Navigation -->
