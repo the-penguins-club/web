@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import { getDynamicEvents, type CommunityEvent } from '../../data/events';
 import { generateGoogleCalendarUrl } from '../../utils/ics';
+import { organization } from '../../data/organization';
+import { existsSync } from 'node:fs';
 
 export async function getStaticPaths() {
   const allEvents = await getDynamicEvents();
@@ -20,11 +22,61 @@ const allEvents = await getDynamicEvents();
 const otherEvents = allEvents.filter((e) => e.slug !== event.slug);
 const googleCalUrl = generateGoogleCalendarUrl(event);
 const dynamicIcsUrl = `/events/${event.slug}.ics`;
+
+// Search results show ~60 title characters and ~155 description characters.
+// Long titles drop the brand suffix (og:site_name still carries it); descriptions cut at a word.
+const pageTitle = event.title.length > 45 ? event.title : `${event.title} — The Penguins Club`;
+const metaDescription =
+  event.description.length <= 155
+    ? event.description
+    : event.description.slice(0, 154).replace(/\s+\S*$/, '').replace(/[,;:.\s]+$/, '') + '…';
+
+// Share card rendered per event in public/images/og/events; GitHub-issue events without one use the default card
+const shareImage = /\.(png|jpe?g)$/i.test(event.image)
+  ? event.image
+  : existsSync(`public/images/og/events/${event.slug}.png`)
+    ? `/images/og/events/${event.slug}.png`
+    : undefined;
+
+const place = { '@type': 'Place', name: event.venueName, address: event.venueAddress };
+const online = { '@type': 'VirtualLocation', url: event.registrationUrl };
+const isFree = /free/i.test(event.cost);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: event.title,
+  description: event.description,
+  startDate: event.startDateIso,
+  endDate: event.endDateIso,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode:
+    event.venueType === 'virtual'
+      ? 'https://schema.org/OnlineEventAttendanceMode'
+      : event.venueType === 'hybrid'
+        ? 'https://schema.org/MixedEventAttendanceMode'
+        : 'https://schema.org/OfflineEventAttendanceMode',
+  location: event.venueType === 'virtual' ? online : event.venueType === 'hybrid' ? [place, online] : place,
+  image: [new URL(shareImage ?? '/images/og/default.png', Astro.site).href],
+  organizer: organization,
+  isAccessibleForFree: isFree,
+  ...(isFree && {
+    offers: {
+      '@type': 'Offer',
+      price: 0,
+      priceCurrency: 'BDT',
+      availability: 'https://schema.org/InStock',
+      url: event.registrationUrl
+    }
+  }),
+  url: new URL(Astro.url.pathname, Astro.site).href
+};
 ---
 
 <Layout
-  title={`${event.title} — The Penguins Club`}
-  description={event.description}
+  title={pageTitle}
+  description={metaDescription}
+  image={shareImage}
+  jsonLd={jsonLd}
 >
   <div class={`event-detail-page ${event.isSuper ? 'is-super-page' : ''} theme-${event.theme}`}>
     <!-- Top Breadcrumbs & Back Navigation -->
