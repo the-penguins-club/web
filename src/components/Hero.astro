@@ -33,6 +33,14 @@ const heroSlides = [
     alt: "Hands-on terminal session running Arch Linux and systemd services"
   }
 ];
+
+// Key facts under the CTAs; icons are Feather-style strokes drawn in currentColor
+const heroFacts = [
+  { text: "Non-Profit Charity Network", icon: '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>' },
+  { text: "Run entirely by volunteers", icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
+  { text: "Free for every student", icon: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>' },
+  { text: "26/18 Gulshan Badda Link Road", icon: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>' }
+];
 ---
 
 <section class="hero-section">
@@ -60,21 +68,20 @@ const heroSlides = [
         >
           Join on Telegram
         </a>
-        <a href="#programs" class="hero-text-link">
+        <a href="#programs" class="btn-pill-secondary hero-muted-btn">
           See our programs
         </a>
       </div>
 
-      <!-- Metadata Line (separated by slashes, exactly as in Screenshot 1) -->
-      <div class="hero-meta-row">
-        <span>Non-Profit Charity Network</span>
-        <span class="meta-slash" aria-hidden="true">/</span>
-        <span>Run entirely by volunteers</span>
-        <span class="meta-slash" aria-hidden="true">/</span>
-        <span>Free for every student</span>
-        <span class="meta-slash" aria-hidden="true">/</span>
-        <span>26/18 Gulshan Badda Link Road</span>
-      </div>
+      <!-- Key facts: a two-column list, so nothing dangles when it wraps -->
+      <ul class="hero-meta-row">
+        {heroFacts.map((fact) => (
+          <li>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={fact.icon} />
+            <span>{fact.text}</span>
+          </li>
+        ))}
+      </ul>
     </div>
 
     <!-- Right Column: Community Photo Carousel (Screenshot 1 style) -->
@@ -107,6 +114,7 @@ const heroSlides = [
 
         <!-- Carousel Indicators (Pill + Dots at bottom center) -->
         <div class="carousel-indicators">
+          <button type="button" class="slide-toggle" data-motion-toggle aria-controls="hero-carousel">Pause slides</button>
           {
             heroSlides.map((_, index) => (
               <button
@@ -124,7 +132,9 @@ const heroSlides = [
   </div>
 </section>
 
-<!-- Client script for the slide dots (no autoplay: slides change only when asked) -->
+<!-- Client script for the slide dots and autoplay.
+     Autoplay holds while hovered or focused, stops via the Pause button (WCAG 2.2.2),
+     and never starts when the reader prefers reduced motion. -->
 <script>
   function initHeroCarousel() {
     const carousel = document.getElementById("hero-carousel");
@@ -151,6 +161,13 @@ const heroSlides = [
     dots.forEach((dot, idx) => {
       dot.addEventListener("click", () => goToSlide(idx));
     });
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    window.setInterval(() => {
+      const held = carousel.matches(":hover, :focus-within") || carousel.classList.contains("is-paused");
+      if (!held) goToSlide(currentIndex + 1);
+    }, 5000);
   }
 
   // Initialize on load and Astro page transitions
@@ -163,8 +180,8 @@ const heroSlides = [
 
 <style>
   .hero-section {
-    padding-top: clamp(3rem, 6vw, 5.5rem);
-    padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
+    padding-top: clamp(2rem, 3.5vw, 3rem);
+    padding-bottom: clamp(2.5rem, 3.5vw, 3rem);
     position: relative;
     border-bottom: 1px solid var(--border-subtle);
     background-color: var(--bg-canvas);
@@ -179,8 +196,16 @@ const heroSlides = [
 
   @media (min-width: 992px) {
     .hero-container {
-      grid-template-columns: 1.05fr 1fr;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
       gap: 3.5rem;
+      /* Photo spans the full height of the copy: top at the headline, bottom at the facts */
+      align-items: stretch;
+    }
+
+    .hero-carousel-card {
+      max-width: none;
+      aspect-ratio: auto;
+      min-height: 22rem;
     }
   }
 
@@ -192,19 +217,19 @@ const heroSlides = [
   }
 
   .hero-title {
-    font-size: clamp(2.2rem, 3.8vw, 3.15rem);
+    font-size: clamp(2rem, 3.2vw, 2.6rem);
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.02em;
     color: var(--text-primary);
-    margin-bottom: 1.35rem;
+    margin-bottom: 1rem;
   }
 
   .hero-description {
     font-size: clamp(1rem, 1.25vw, 1.15rem);
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   /* Actions Row */
@@ -213,38 +238,49 @@ const heroSlides = [
     flex-wrap: wrap;
     align-items: center;
     gap: 1.25rem;
-    margin-bottom: 2.75rem;
+    margin-bottom: 1.75rem;
   }
 
-  .hero-text-link {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    display: inline-flex;
-    align-items: center;
-    transition: color 0.15s ease;
+  /* Two pills don't fit side by side on phones; stack them at equal width */
+  @media (max-width: 479px) {
+    .hero-cta-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
   }
 
-  .hero-text-link:hover {
-    color: var(--accent-primary);
-    text-decoration: underline;
+  .hero-muted-btn {
+    background: var(--bg-elevated);
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .hero-muted-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-card-hover);
   }
 
   /* Metadata Line with slashes (Screenshot 1) */
   .hero-meta-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem 0.65rem;
-    font-size: 0.85rem;
-    color: var(--text-muted);
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
     line-height: 1.5;
   }
 
-  .meta-slash {
-    color: var(--border-card-hover);
-    font-weight: 300;
-    user-select: none;
+  .hero-meta-row li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .hero-meta-row svg {
+    flex: none;
+    color: var(--accent-primary);
   }
 
   /* Right Column: Hero Photo Carousel Card */
@@ -295,33 +331,26 @@ const heroSlides = [
     display: block;
   }
 
-  /* Subtle bottom gradient for caption clarity */
+  /* Caption as a pill in the top-right corner, matching the controls pill below */
   .slide-overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 3.5rem 1.5rem 1.25rem 1.5rem;
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.85) 0%,
-      rgba(0, 0, 0, 0.4) 55%,
-      transparent 100%
-    );
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 1rem;
+    top: 1rem;
+    right: 1rem;
+    max-width: calc(100% - 2rem);
+    padding: 0.35rem 0.85rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: var(--radius-pill);
     pointer-events: none;
   }
 
   .slide-caption {
     color: #ffffff;
-    font-size: 0.85rem;
+    font-size: 0.8125rem;
     font-weight: 500;
+    line-height: 1.4;
     letter-spacing: -0.01em;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-    max-width: 65%;
   }
 
   /* Indicator Dots at bottom right */
@@ -338,6 +367,27 @@ const heroSlides = [
     padding: 0 4px;
     border-radius: var(--radius-pill);
     pointer-events: auto;
+  }
+
+  .slide-toggle {
+    min-height: 24px;
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .slide-toggle:hover {
+    text-decoration: underline;
+  }
+
+  .slide-toggle:focus-visible,
+  .indicator-dot:focus-visible {
+    outline-color: #ffffff;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide-toggle { display: none; }
   }
 
   /* 24px hit area; the visible dot is drawn by ::before */

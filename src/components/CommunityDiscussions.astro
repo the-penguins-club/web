@@ -81,16 +81,19 @@ const communityChannels: ChannelItem[] = [
         <p class="spotlight-desc">
           This is where our day-to-day community coordinates. Connect with students, sysadmins, software engineers, and FOSS advocates. Ask Linux troubleshooting questions, get guidance installing a distro, and receive monthly meetup alerts.
         </p>
-        <div class="spotlight-features">
-          <span class="feature-item">Monthly meetup dates &amp; stream links</span>
-          <span class="feature-item">Friendly Linux troubleshooting</span>
-          <span class="feature-item">Open source collaboration</span>
-        </div>
       </div>
 
       <div class="spotlight-right">
+        <ul class="spotlight-features">
+          {['Monthly meetup dates & stream links', 'Friendly Linux troubleshooting', 'Open source collaboration'].map((f) => (
+            <li class="feature-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>{f}</span>
+            </li>
+          ))}
+        </ul>
         <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary tg-large-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="22" y1="2" x2="11" y2="13"></line>
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
           </svg>
@@ -180,21 +183,22 @@ const communityChannels: ChannelItem[] = [
     background: var(--bg-card);
   }
 
+  /* Right panel carries the checklist + CTA, so it matches the weight of the copy on the left */
+  .spotlight-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    background: var(--bg-subtle);
+    border-radius: var(--radius-md);
+  }
+
   @media (min-width: 900px) {
     .telegram-spotlight {
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
       align-items: center;
-      justify-content: space-between;
-    }
-    .spotlight-left {
-      max-width: 620px;
-    }
-    .spotlight-right {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.65rem;
-      min-width: 250px;
+      gap: 3rem;
     }
   }
 
@@ -223,24 +227,26 @@ const communityChannels: ChannelItem[] = [
     font-size: 0.9rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 1.25rem;
   }
 
   .spotlight-features {
-    display: flex;
-    flex-wrap: wrap;
+    list-style: none;
+    display: grid;
     gap: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .feature-item {
-    font-family: var(--font-mono);
-    font-size: 0.725rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
-    padding: 0.25rem 0.6rem;
-    border-radius: var(--radius-xs);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+  }
+
+  .feature-item svg {
+    flex: none;
+    color: var(--accent-primary);
   }
 
   .tg-large-btn {
@@ -250,6 +256,7 @@ const communityChannels: ChannelItem[] = [
   }
 
   .tg-handle-hint {
+    text-align: center;
     font-size: 0.75rem;
     color: var(--text-muted);
     font-family: var(--font-mono);

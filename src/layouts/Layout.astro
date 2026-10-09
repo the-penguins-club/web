@@ -261,30 +261,19 @@ const {
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="footer-logo">
-              <span class="footer-tux-icon">🐧</span>
+              <span class="footer-tux-icon" aria-hidden="true">🐧</span>
               <span class="footer-brand-title">The Penguins Club</span>
             </div>
             <p class="footer-motto">
               A volunteer-run charity, going since 2020. We teach GNU/Linux, run community package mirrors, print booklets and stickers to give away, and never charge for a lesson.
             </p>
-            <div class="footer-tag-wrap">
-              <span class="footer-pill-tag">Charity Initiative &bull; Est. 2020 &bull; 100% Free</span>
-            </div>
-            <div class="footer-location-tag">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              <span>26/18 Gulshan Badda Link Road, Dhaka 1212, Bangladesh</span>
-            </div>
           </div>
 
           <div class="footer-col">
             <h4 class="footer-col-title">Education &amp; Workshops</h4>
             <ul class="footer-links">
               <li><a href="/programs">All Programs</a></li>
-              <li><a href="/programs#ongoing">GNU/Linux Systems</a></li>
-              <li><a href="/programs#ongoing">Open Source Toolchain</a></li>
+              <li><a href="/programs#ongoing">Clubs &amp; Workshops</a></li>
               <li><a href="/programs#commons">Linux Mirror &amp; Booklets</a></li>
               <li><a href="/programs/bounties">Bug Bounty Program</a></li>
               <li><a href="/#events">Monthly Meetup Schedule</a></li>
@@ -302,33 +291,42 @@ const {
                   <span class="status-live-tag">Active</span>
                 </a>
               </li>
-              <li><a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer">GitHub Organization</a></li>
-              <li><span class="dimmed-link">Matrix Space <small>(Coming soon)</small></span></li>
               <li>
                 <a href="https://discord.gg/BRPWt6fXRH" target="_blank" rel="noopener noreferrer" class="active-channel-link">
                   <span>Discord Server</span>
                   <span class="status-live-tag">Active</span>
                 </a>
               </li>
+              <li><a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer">GitHub Organization</a></li>
+              <li><span class="dimmed-link">Matrix Space <small>(Coming soon)</small></span></li>
               <li><span class="dimmed-link">Discourse Forum <small>(Coming soon)</small></span></li>
             </ul>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-col-title">Organization</h4>
+            <h4 class="footer-col-title">Contact</h4>
             <ul class="footer-links">
               <li class="footer-address">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-pin-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-pin-icon" aria-hidden="true">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
                 <span>26/18 Gulshan Badda Link Road, Dhaka 1212, Bangladesh</span>
               </li>
-              <li><a href="mailto:admin@thepenguins.club">admin@thepenguins.club</a> (support)</li>
-              <li><a href="mailto:uthsob@thepenguins.club">uthsob@thepenguins.club</a> (collaboration)</li>
-              <li><a href="https://thepenguins.club/">thepenguins.club</a></li>
-              <li><a href="/#manifesto">Open Source Principles</a></li>
-              <li><a href="https://github.com/the-penguins-club/bd-startups" target="_blank" rel="noopener noreferrer">bd-startups Project</a></li>
+              <li class="footer-contact">
+                <span class="footer-contact-label">Support</span>
+                <a href="mailto:admin@thepenguins.club" class="footer-email">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-pin-icon" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
+                  <span>admin@thepenguins.club</span>
+                </a>
+              </li>
+              <li class="footer-contact">
+                <span class="footer-contact-label">Collaboration</span>
+                <a href="mailto:uthsob@thepenguins.club" class="footer-email">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-pin-icon" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
+                  <span>uthsob@thepenguins.club</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -502,6 +500,18 @@ const {
         color: var(--text-muted);
         font-family: var(--font-mono);
         letter-spacing: -0.01em;
+      }
+
+      /*
+        On phones the tagline wraps to a second line under the name, which
+        makes the brand taller than the icon buttons beside it and the header
+        reads lopsided. It adds nothing there either: the hero heading right
+        below already says "Linux and open source" and "since 2020".
+      */
+      @media (max-width: 679px) {
+        .brand-badge {
+          display: none;
+        }
       }
 
       .site-nav {
@@ -803,9 +813,25 @@ const {
         margin-bottom: 3rem;
       }
 
-      @media (min-width: 768px) {
+      /* Tablet: brand across the top, then the three link columns */
+      @media (min-width: 600px) {
         .footer-grid {
-          grid-template-columns: 2fr 1fr 1fr 1fr;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .footer-brand {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (min-width: 960px) {
+        .footer-grid {
+          grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+          gap: 3rem;
+        }
+
+        .footer-brand {
+          grid-column: auto;
         }
       }
 
@@ -835,37 +861,6 @@ const {
         max-width: 380px;
       }
 
-      .footer-pill-tag {
-        font-family: var(--font-mono);
-        font-size: 0.725rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        background: var(--bg-card);
-        border: 1px solid var(--border-card);
-        padding: 0.25rem 0.6rem;
-        border-radius: var(--radius-xs);
-        display: inline-block;
-      }
-
-      .footer-location-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.775rem;
-        font-family: var(--font-mono);
-        color: var(--text-secondary);
-        background: var(--bg-card);
-        border: 1px solid var(--border-card);
-        padding: 0.35rem 0.65rem;
-        border-radius: var(--radius-xs);
-        width: fit-content;
-      }
-
-      .footer-location-tag svg {
-        color: var(--accent-primary);
-        flex-shrink: 0;
-      }
-
       .footer-col-title {
         font-family: var(--font-mono);
         font-size: 0.75rem;
@@ -887,15 +882,32 @@ const {
         display: flex;
         align-items: flex-start;
         gap: 0.5rem;
-        font-size: 0.825rem;
-        font-family: var(--font-mono);
+        font-size: 0.85rem;
         color: var(--text-secondary);
-        line-height: 1.45;
+        line-height: 1.5;
+      }
+
+      /* Icon sits on the email's line; the label above is indented to the text edge (13px icon + 0.5rem gap) */
+      .footer-contact-label {
+        display: block;
+        padding-inline-start: calc(13px + 0.5rem);
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .footer-links a.footer-email {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-email .footer-pin-icon {
+        margin-top: 0;
       }
 
       .footer-pin-icon {
         flex-shrink: 0;
-        margin-top: 2px;
+        margin-top: 4px;
         color: var(--accent-primary);
       }
 
@@ -916,6 +928,11 @@ const {
         gap: 0.5rem;
         font-weight: 600;
         color: var(--text-primary) !important;
+      }
+
+      /* Shared name width so both "Active" badges line up vertically */
+      .active-channel-link > span:first-child {
+        min-width: 6.25rem;
       }
 
       .status-live-tag {
@@ -949,7 +966,7 @@ const {
         color: var(--text-muted);
       }
 
-      @media (min-width: 640px) {
+      @media (min-width: 960px) {
         .footer-bottom {
           flex-direction: row;
           justify-content: space-between;

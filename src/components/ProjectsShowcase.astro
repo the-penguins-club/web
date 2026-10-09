@@ -125,10 +125,12 @@ const realProjects: ProjectItem[] = [
       ))}
     </ul>
 
-    <p class="more">
-      Want to contribute or start a new repository under the club? Add docs to <code>bd-startups</code>, write a security guide for <code>Awesome-Cybersecurity-Bangladesh</code>, or incubate your own tool.
-      <a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer">Explore on GitHub &rarr;</a>
-    </p>
+    <div class="more">
+      <p>
+        Want to contribute or start a new repository under the club? Add docs to <code>bd-startups</code>, write a security guide for <code>Awesome-Cybersecurity-Bangladesh</code>, or incubate your own tool.
+      </p>
+      <a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer" class="btn-primary more-btn">Explore on GitHub &rarr;</a>
+    </div>
   </div>
 </section>
 
@@ -222,10 +224,11 @@ const realProjects: ProjectItem[] = [
   .arrow { margin-left: 0.25rem; font-size: 1.1rem; line-height: 1; transition: transform 0.15s ease, color 0.15s ease; }
   .card:hover .arrow { color: var(--accent-primary); transform: translate(2px, -2px); }
 
-  .more { margin-top: 2rem; font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); max-width: 70ch; }
-  .more code { font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg-elevated); padding: 0.1rem 0.4rem; border-radius: var(--radius-xs); }
-  .more a { display: block; margin-top: 0.5rem; color: var(--accent-primary); font-weight: 600; }
-  .more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  /* Contribute prompt: copy on the left, the action on the right */
+  .more { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; padding: 1.25rem 1.5rem; background: var(--bg-subtle); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+  .more p { flex: 1 1 32rem; max-width: 70ch; font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); }
+  .more code { font-family: var(--font-mono); font-size: 0.8rem; white-space: nowrap; background: var(--bg-elevated); padding: 0.1rem 0.4rem; border-radius: var(--radius-xs); }
+  .more-btn { flex: none; padding: 0.8rem 1.5rem; font-size: 0.9375rem; }
 
   @media (prefers-reduced-motion: reduce) {
     .card, .arrow { transition: none; }
