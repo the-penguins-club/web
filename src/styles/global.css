@@ -128,9 +128,14 @@ html {
   font-family: var(--font-sans);
   background-color: var(--bg-canvas);
   color: var(--text-primary);
-  scroll-behavior: smooth;
+  /* Matches the sticky header height in Layout.astro, so anchors land below it. */
+  scroll-padding-top: 4.25rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 body {
@@ -289,7 +294,7 @@ code, kbd, pre, samp {
   border-radius: var(--radius-pill);
   border: 1px solid transparent;
   box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .btn-pill-primary:hover {
@@ -317,7 +322,7 @@ code, kbd, pre, samp {
   border-radius: var(--radius-pill);
   border: 1px solid var(--border-card);
   box-shadow: var(--shadow-xs);
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 
 .btn-pill-secondary:hover {
@@ -338,6 +343,30 @@ code, kbd, pre, samp {
   background-color: var(--accent-green);
   display: inline-block;
   flex-shrink: 0;
+}
+
+/* Pause control for auto-scrolling strips; wired up in Layout.astro */
+.motion-toggle {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-pill);
+}
+
+.motion-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--border-card-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-toggle { display: none; }
 }
 
 /* Custom modern scrollbar */

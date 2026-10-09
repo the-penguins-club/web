@@ -4,12 +4,28 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  /** Share image, root-relative; must be PNG or JPG (social sites ignore SVG) */
+  image?: string;
+  type?: 'website' | 'article';
+  /** schema.org object(s), rendered as JSON-LD */
+  jsonLd?: object | object[];
+  /** Keep out of search results (and skip the canonical), e.g. the 404 page */
+  noindex?: boolean;
 }
 
 const {
   title = "The Penguins Club - Linux & Open Source Community",
-  description = "A community initiative running from 2020. Free monthly meetups, hands-on Linux workshops, open source mentoring, and public projects."
+  description = "A community initiative running from 2020. Free monthly meetups, hands-on Linux workshops, open source mentoring, and public projects.",
+  image = "/images/og/default.png",
+  type = "website",
+  jsonLd,
+  noindex = false
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+// "<" escaped so a string containing </script> can't end the tag early
+const jsonLdText = jsonLd && JSON.stringify(jsonLd).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -25,20 +41,29 @@ const {
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonicalUrl} />}
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://thepenguins.club/" />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="The Penguins Club" />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
+    <!-- Twitter / X reads name=, not property= -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    {jsonLdText && <script type="application/ld+json" set:html={jsonLdText} />}
 
     <!--
       Type: every family here is libre (SIL OFL), which is the point for a club
@@ -106,7 +131,6 @@ const {
               type="button"
               class="nav-dropdown-trigger"
               aria-expanded="false"
-              aria-haspopup="true"
             >
               <span>Explore</span>
               <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -114,33 +138,33 @@ const {
               </svg>
             </button>
 
-            <div class="nav-dropdown-menu" role="menu">
-              <a href="/#gallery" class="dropdown-item" role="menuitem">
-                <span class="dropdown-item-icon">📸</span>
+            <div class="nav-dropdown-menu">
+              <a href="/#gallery" class="dropdown-item">
+                <span class="dropdown-item-icon" aria-hidden="true">📸</span>
                 <div class="dropdown-item-text">
                   <span class="dropdown-item-title">Meetup Gallery</span>
                   <span class="dropdown-item-desc">Photos from campus floors &amp; labs</span>
                 </div>
               </a>
 
-              <a href="/#projects" class="dropdown-item" role="menuitem">
-                <span class="dropdown-item-icon">📦</span>
+              <a href="/#projects" class="dropdown-item">
+                <span class="dropdown-item-icon" aria-hidden="true">📦</span>
                 <div class="dropdown-item-text">
                   <span class="dropdown-item-title">Public Repositories</span>
                   <span class="dropdown-item-desc">Open source tools &amp; guides on GitHub</span>
                 </div>
               </a>
 
-              <a href="/#community" class="dropdown-item" role="menuitem">
-                <span class="dropdown-item-icon">💬</span>
+              <a href="/#community" class="dropdown-item">
+                <span class="dropdown-item-icon" aria-hidden="true">💬</span>
                 <div class="dropdown-item-text">
                   <span class="dropdown-item-title">Community Channels</span>
                   <span class="dropdown-item-desc">Telegram, Matrix &amp; discussion hubs</span>
                 </div>
               </a>
 
-              <a href="/#manifesto" class="dropdown-item" role="menuitem">
-                <span class="dropdown-item-icon">📜</span>
+              <a href="/#manifesto" class="dropdown-item">
+                <span class="dropdown-item-icon" aria-hidden="true">📜</span>
                 <div class="dropdown-item-text">
                   <span class="dropdown-item-title">The Four Freedoms</span>
                   <span class="dropdown-item-desc">FSF open source charter &amp; pledge</span>
@@ -164,7 +188,7 @@ const {
               <line x1="22" y1="2" x2="11" y2="13"></line>
               <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
             </svg>
-            <span>Telegram</span>
+            <span>Join on Telegram</span>
           </a>
 
           <!-- GitHub link -->
@@ -200,7 +224,7 @@ const {
           </button>
 
           <!-- Mobile Hamburger -->
-          <button id="mobile-nav-toggle" class="mobile-toggle icon-button" aria-label="Toggle navigation menu">
+          <button id="mobile-nav-toggle" class="mobile-toggle icon-button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="3" y1="12" x2="21" y2="12"></line>
               <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -218,7 +242,7 @@ const {
       <div id="mobile-menu" class="mobile-menu">
         <div class="container">
           <div class="mobile-nav-section">
-            <span class="mobile-section-heading">MAIN</span>
+            <span class="mobile-section-heading">Main</span>
             <a href="/programs" class="mobile-nav-link">Core Programs</a>
             <a href="/#events" class="mobile-nav-link">Upcoming Meetups</a>
             <a href="/blog" class="mobile-nav-link">Blog</a>
@@ -226,7 +250,7 @@ const {
           </div>
 
           <div class="mobile-nav-section">
-            <span class="mobile-section-heading">EXPLORE &amp; COMMUNITY</span>
+            <span class="mobile-section-heading">Explore &amp; community</span>
             <a href="/#gallery" class="mobile-nav-link">
               <span>Meetup Gallery</span>
               <span class="mobile-link-badge">Photos</span>
@@ -244,7 +268,7 @@ const {
 
           <div class="mobile-menu-footer">
             <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;">
-              Join Telegram Community &rarr;
+              Join on Telegram &rarr;
             </a>
           </div>
         </div>
@@ -262,30 +286,19 @@ const {
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="footer-logo">
-              <span class="footer-tux-icon">🐧</span>
+              <span class="footer-tux-icon" aria-hidden="true">🐧</span>
               <span class="footer-brand-title">The Penguins Club</span>
             </div>
             <p class="footer-motto">
               A volunteer-run charity, going since 2020. We teach GNU/Linux, run community package mirrors, print booklets and stickers to give away, and never charge for a lesson.
             </p>
-            <div class="footer-tag-wrap">
-              <span class="footer-pill-tag">Charity Initiative &bull; Est. 2020 &bull; 100% Free</span>
-            </div>
-            <div class="footer-location-tag">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              <span>26/18 Gulshan Badda Link Road, Dhaka 1212, Bangladesh</span>
-            </div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-col-title">Education &amp; Workshops</h4>
+            <h2 class="footer-col-title">Education &amp; Workshops</h2>
             <ul class="footer-links">
               <li><a href="/programs">All Programs</a></li>
-              <li><a href="/programs#ongoing">GNU/Linux Systems</a></li>
-              <li><a href="/programs#ongoing">Open Source Toolchain</a></li>
+              <li><a href="/programs#ongoing">Clubs &amp; Workshops</a></li>
               <li><a href="/programs#commons">Linux Mirror &amp; Booklets</a></li>
               <li><a href="/programs/bounties">Bug Bounty Program</a></li>
               <li><a href="/#events">Monthly Meetup Schedule</a></li>
@@ -295,41 +308,50 @@ const {
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-col-title">Channels</h4>
+            <h2 class="footer-col-title">Channels</h2>
             <ul class="footer-links">
               <li>
                 <a href="https://t.me/penguinsclubnetwork" target="_blank" rel="noopener noreferrer" class="active-channel-link">
                   <span>Telegram Hub</span>
-                  <span class="status-live-tag">ACTIVE</span>
+                  <span class="status-live-tag">Active</span>
                 </a>
               </li>
-              <li><a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer">GitHub Organization</a></li>
-              <li><span class="dimmed-link">Matrix Space <small>(Coming Soon)</small></span></li>
               <li>
                 <a href="https://discord.gg/BRPWt6fXRH" target="_blank" rel="noopener noreferrer" class="active-channel-link">
                   <span>Discord Server</span>
-                  <span class="status-live-tag">ACTIVE</span>
+                  <span class="status-live-tag">Active</span>
                 </a>
               </li>
-              <li><span class="dimmed-link">Discourse Forum <small>(Coming Soon)</small></span></li>
+              <li><a href="https://github.com/the-penguins-club" target="_blank" rel="noopener noreferrer">GitHub Organization</a></li>
+              <li><span class="dimmed-link">Matrix Space <small>(Coming soon)</small></span></li>
+              <li><span class="dimmed-link">Discourse Forum <small>(Coming soon)</small></span></li>
             </ul>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-col-title">Organization</h4>
+            <h2 class="footer-col-title">Contact</h2>
             <ul class="footer-links">
               <li class="footer-address">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-pin-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-pin-icon" aria-hidden="true">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
                 <span>26/18 Gulshan Badda Link Road, Dhaka 1212, Bangladesh</span>
               </li>
-              <li><a href="mailto:admin@thepenguins.club">admin@thepenguins.club</a> (support)</li>
-              <li><a href="mailto:uthsob@thepenguins.club">uthsob@thepenguins.club</a> (collaboration)</li>
-              <li><a href="https://thepenguins.club/">thepenguins.club</a></li>
-              <li><a href="/#manifesto">Open Source Principles</a></li>
-              <li><a href="https://github.com/the-penguins-club/bd-startups" target="_blank" rel="noopener noreferrer">bd-startups Project</a></li>
+              <li class="footer-contact">
+                <span class="footer-contact-label">Support</span>
+                <a href="mailto:admin@thepenguins.club" class="footer-email">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-pin-icon" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
+                  <span>admin@thepenguins.club</span>
+                </a>
+              </li>
+              <li class="footer-contact">
+                <span class="footer-contact-label">Collaboration</span>
+                <a href="mailto:uthsob@thepenguins.club" class="footer-email">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-pin-icon" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
+                  <span>uthsob@thepenguins.club</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -363,24 +385,40 @@ const {
       const closeIcon = mobileNavToggle?.querySelector('.close-icon') as HTMLElement | null;
 
       if (mobileNavToggle && mobileMenu) {
-        mobileNavToggle.addEventListener('click', () => {
-          const isOpen = mobileMenu.classList.toggle('is-open');
+        const setMobileMenu = (isOpen: boolean) => {
+          mobileMenu.classList.toggle('is-open', isOpen);
+          mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
           if (menuIcon && closeIcon) {
             menuIcon.style.display = isOpen ? 'none' : 'block';
             closeIcon.style.display = isOpen ? 'block' : 'none';
           }
+        };
+
+        mobileNavToggle.addEventListener('click', () => {
+          setMobileMenu(!mobileMenu.classList.contains('is-open'));
         });
 
         mobileMenu.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.remove('is-open');
-            if (menuIcon && closeIcon) {
-              menuIcon.style.display = 'block';
-              closeIcon.style.display = 'none';
-            }
-          });
+          link.addEventListener('click', () => setMobileMenu(false));
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+            setMobileMenu(false);
+            mobileNavToggle.focus();
+          }
         });
       }
+
+      // Pause buttons for auto-scrolling strips: toggles .is-paused on the aria-controls target
+      document.querySelectorAll<HTMLButtonElement>('[data-motion-toggle]').forEach(btn => {
+        const target = document.getElementById(btn.getAttribute('aria-controls') || '');
+        btn.addEventListener('click', () => {
+          const paused = !target?.classList.contains('is-paused');
+          target?.classList.toggle('is-paused', paused);
+          btn.textContent = (btn.textContent || '').replace(/^(Pause|Play)/, paused ? 'Play' : 'Pause');
+        });
+      });
 
       // Dropdown interaction (click/touch + Escape key)
       const dropdown = document.getElementById('nav-dropdown-explore');
@@ -487,6 +525,18 @@ const {
         color: var(--text-muted);
         font-family: var(--font-mono);
         letter-spacing: -0.01em;
+      }
+
+      /*
+        On phones the tagline wraps to a second line under the name, which
+        makes the brand taller than the icon buttons beside it and the header
+        reads lopsided. It adds nothing there either: the hero heading right
+        below already says "Linux and open source" and "since 2020".
+      */
+      @media (max-width: 679px) {
+        .brand-badge {
+          display: none;
+        }
       }
 
       .site-nav {
@@ -719,6 +769,10 @@ const {
 
       .mobile-menu.is-open {
         display: block;
+        /* The header is sticky, so a taller menu would never scroll into view. */
+        max-height: calc(100dvh - 4.25rem);
+        overflow-y: auto;
+        overscroll-behavior: contain;
       }
 
       .mobile-nav-section {
@@ -728,9 +782,10 @@ const {
       .mobile-section-heading {
         display: block;
         font-family: var(--font-mono);
-        font-size: 0.675rem;
+        font-size: 0.75rem;
         font-weight: 700;
         letter-spacing: 0.08em;
+        text-transform: uppercase;
         color: var(--text-muted);
         margin-bottom: 0.45rem;
       }
@@ -752,7 +807,7 @@ const {
 
       .mobile-link-badge {
         font-family: var(--font-mono);
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         font-weight: 600;
         color: var(--accent-primary);
         background: var(--bg-subtle);
@@ -783,9 +838,25 @@ const {
         margin-bottom: 3rem;
       }
 
-      @media (min-width: 768px) {
+      /* Tablet: brand across the top, then the three link columns */
+      @media (min-width: 600px) {
         .footer-grid {
-          grid-template-columns: 2fr 1fr 1fr 1fr;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .footer-brand {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (min-width: 960px) {
+        .footer-grid {
+          grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+          gap: 3rem;
+        }
+
+        .footer-brand {
+          grid-column: auto;
         }
       }
 
@@ -815,37 +886,6 @@ const {
         max-width: 380px;
       }
 
-      .footer-pill-tag {
-        font-family: var(--font-mono);
-        font-size: 0.725rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        background: var(--bg-card);
-        border: 1px solid var(--border-card);
-        padding: 0.25rem 0.6rem;
-        border-radius: var(--radius-xs);
-        display: inline-block;
-      }
-
-      .footer-location-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.775rem;
-        font-family: var(--font-mono);
-        color: var(--text-secondary);
-        background: var(--bg-card);
-        border: 1px solid var(--border-card);
-        padding: 0.35rem 0.65rem;
-        border-radius: var(--radius-xs);
-        width: fit-content;
-      }
-
-      .footer-location-tag svg {
-        color: var(--accent-primary);
-        flex-shrink: 0;
-      }
-
       .footer-col-title {
         font-family: var(--font-mono);
         font-size: 0.75rem;
@@ -867,15 +907,32 @@ const {
         display: flex;
         align-items: flex-start;
         gap: 0.5rem;
-        font-size: 0.825rem;
-        font-family: var(--font-mono);
+        font-size: 0.85rem;
         color: var(--text-secondary);
-        line-height: 1.45;
+        line-height: 1.5;
+      }
+
+      /* Icon sits on the email's line; the label above is indented to the text edge (13px icon + 0.5rem gap) */
+      .footer-contact-label {
+        display: block;
+        padding-inline-start: calc(13px + 0.5rem);
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .footer-links a.footer-email {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-email .footer-pin-icon {
+        margin-top: 0;
       }
 
       .footer-pin-icon {
         flex-shrink: 0;
-        margin-top: 2px;
+        margin-top: 4px;
         color: var(--accent-primary);
       }
 
@@ -898,11 +955,17 @@ const {
         color: var(--text-primary) !important;
       }
 
+      /* Shared name width so both "Active" badges line up vertically */
+      .active-channel-link > span:first-child {
+        min-width: 6.25rem;
+      }
+
       .status-live-tag {
         font-family: var(--font-mono);
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         font-weight: 700;
-        background: var(--accent-green-subtle);
+        text-transform: uppercase;
+        background: var(--bg-card);
         color: var(--accent-green);
         border: 1px solid color-mix(in srgb, var(--accent-green) 30%, transparent);
         padding: 0.1rem 0.4rem;
@@ -928,7 +991,7 @@ const {
         color: var(--text-muted);
       }
 
-      @media (min-width: 640px) {
+      @media (min-width: 960px) {
         .footer-bottom {
           flex-direction: row;
           justify-content: space-between;

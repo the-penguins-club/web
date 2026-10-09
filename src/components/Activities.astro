@@ -21,7 +21,7 @@ import { featuredPrograms, art } from '../data/programs';
           All programs &rarr;
         </a>
         <a href="#get-involved" class="btn-secondary">
-          Request a Campus Workshop &rarr;
+          Request a campus workshop &rarr;
         </a>
       </div>
     </div>
@@ -44,7 +44,7 @@ import { featuredPrograms, art } from '../data/programs';
 
           <div class="tile-foot">
             <span class="tile-cadence"><b>Schedule</b>{prog.cadence}</span>
-            <a href="#events" class="tile-link" aria-label={`View details: ${prog.title}`}>&rarr;</a>
+            <a href={`/programs#${prog.slug}`} class="tile-link" aria-label={`View details: ${prog.title}`}>&rarr;</a>
           </div>
         </article>
       ))}
@@ -152,7 +152,7 @@ import { featuredPrograms, art } from '../data/programs';
     background: color-mix(in srgb, var(--fg) 12%, transparent);
   }
 
-  .tile-tag { font-family: var(--font-mono); font-size: 0.65rem; opacity: 0.65; text-align: right; }
+  .tile-tag { font-family: var(--font-mono); font-size: 0.75rem; text-align: right; }
 
   .tile-title {
     font-size: clamp(1.3rem, 2vw, 1.65rem);
@@ -167,7 +167,7 @@ import { featuredPrograms, art } from '../data/programs';
 
   .tile-summary { font-size: 0.9rem; font-weight: 500; line-height: 1.5; max-width: 34ch; }
   .tile-1 .tile-summary { max-width: 44ch; }
-  .tile-details { font-size: 0.825rem; line-height: 1.55; opacity: 0.75; max-width: 40ch; }
+  .tile-details { font-size: 0.825rem; line-height: 1.55; max-width: 40ch; }
   .tile-1 .tile-details { max-width: 48ch; }
 
   .tile-foot {
@@ -180,7 +180,7 @@ import { featuredPrograms, art } from '../data/programs';
   }
 
   .tile-cadence { font-family: var(--font-mono); font-size: 0.72rem; line-height: 1.4; display: flex; flex-direction: column; gap: 0.2rem; }
-  .tile-cadence b { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
+  .tile-cadence b { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
 
   .tile-link {
     flex: none;

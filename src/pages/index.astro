@@ -11,11 +11,24 @@ import GetInvolved from '../components/GetInvolved.astro';
 import ProjectsShowcase from '../components/ProjectsShowcase.astro';
 import CommunityDiscussions from '../components/CommunityDiscussions.astro';
 import AwarenessManifesto from '../components/AwarenessManifesto.astro';
+import { organization } from '../data/organization';
+
+const jsonLd = [
+  { '@context': 'https://schema.org', ...organization },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'The Penguins Club',
+    url: 'https://thepenguins.club/',
+    publisher: { '@id': organization['@id'] }
+  }
+];
 ---
 
 <Layout
   title="The Penguins Club — Free Linux & Open Source Workshops in Bangladesh"
   description="A volunteer-run Linux and open source charity in Bangladesh, going since 2020. Free monthly workshops, local package mirrors, and printed booklets we give away."
+  jsonLd={jsonLd}
 >
   <Hero />
   <MeetupGallery />

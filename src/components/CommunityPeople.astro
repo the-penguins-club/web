@@ -13,10 +13,13 @@ const orgs = [
 
 <section class="people-section" aria-labelledby="people-title">
   <div class="container">
-    <h2 id="people-title" class="people-title">Our community members work at</h2>
+    <div class="people-head">
+      <h2 id="people-title" class="people-title">Our community members work at</h2>
+      <button type="button" class="motion-toggle" data-motion-toggle aria-controls="people-strip">Pause logos</button>
+    </div>
   </div>
 
-  <div class="marquee" aria-label="Companies our community members work at">
+  <div class="marquee" id="people-strip" role="region" aria-label="Companies our community members work at">
     {[0, 1].map((copy) => (
       <ul class="marquee-track" aria-hidden={copy === 1 ? "true" : undefined}>
         {/* repeated so one copy is always wider than the viewport */}
@@ -45,11 +48,18 @@ const orgs = [
     border-bottom: 1px solid var(--border-subtle);
     background: var(--bg-subtle);
   }
+  .people-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    margin-bottom: 1.75rem;
+  }
   .people-title {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 1.75rem;
   }
   .marquee {
     display: flex;
@@ -66,7 +76,9 @@ const orgs = [
     list-style: none;
     animation: marquee 40s linear infinite;
   }
-  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track,
+  .marquee.is-paused .marquee-track { animation-play-state: paused; }
   .org {
     display: flex;
     align-items: center;

@@ -49,12 +49,12 @@ const day = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'n
 
         <div class="countdown featured-countdown" data-countdown-box data-start-iso={featuredEvent.startDateIso} data-end-iso={featuredEvent.endDateIso}>
           <span class="label">Starts in</span>
-          <div class="clock clock-lg" data-clock-row>
-              <span><b data-u="d">--</b><small>d</small></span>
-              <span><b data-u="h">--</b><small>h</small></span>
-              <span><b data-u="m">--</b><small>m</small></span>
-              <span><b data-u="s">--</b><small>s</small></span>
-            </div>
+          <div class="clock" data-clock-row>
+            <span><b data-u="d">--</b><small>d</small></span>
+            <span><b data-u="h">--</b><small>h</small></span>
+            <span><b data-u="m">--</b><small>m</small></span>
+            <span><b data-u="s">--</b><small>s</small></span>
+          </div>
           <div class="timer-live-state" style="display:none;"></div>
         </div>
 
@@ -97,7 +97,7 @@ const day = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'n
             </div>
             <div class="actions actions-sm">
               <a href={`/events/${evt.slug}`} class="act-primary">Details &rarr;</a>
-              <a href={`/events/${evt.slug}.ics`} download={`${evt.slug}.ics`} class="act-ghost" title="Download .ics">.ics</a>
+              <a href={`/events/${evt.slug}.ics`} download={`${evt.slug}.ics`} class="act-ghost" title="Download .ics"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><span>Add to calendar</span></a>
               <a href={evt.registrationUrl} target="_blank" rel="noopener noreferrer" class="act-ghost" title="Attend via Telegram">Telegram</a>
             </div>
           </div>
@@ -188,7 +188,7 @@ const day = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'n
 
   /* Event colours: one tint per event theme */
   .tone-mint, .tone-coral, .tone-sky, .tone-lavender, .tone-lime { --tint: #d1fae5; --ink: #0a7a5a; }
-  .tone-coral    { --tint: #ffd9cb; --ink: #b4472a; }
+  .tone-coral    { --tint: #ffd9cb; --ink: #a33f22; }
   .tone-sky      { --tint: #d6e9ff; --ink: #1d5fa8; }
   .tone-lavender { --tint: #e6e0fb; --ink: #5b3fc4; }
   .tone-lime     { --tint: #eaf9a8; --ink: #3f5a0b; }
@@ -209,48 +209,45 @@ const day = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'n
     background: var(--tint);
   }
 
-  @media (min-width: 900px) { .featured { grid-template-columns: 5fr 7fr; gap: 2.5rem; align-items: center; } }
+  @media (min-width: 900px) { .featured { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; } }
 
-  .featured-img { display: block; border-radius: calc(var(--radius-xl) - 6px); overflow: hidden; aspect-ratio: 8 / 5; background: var(--bg-card); }
+  /* Concentric with the card: --radius-xl minus the card's 0.75rem padding */
+  .featured-img { display: block; border-radius: calc(var(--radius-xl) - 0.75rem); overflow: hidden; aspect-ratio: 8 / 5; background: var(--bg-card); }
   .featured-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-  .featured-img:hover img { transform: scale(1.04); }
   .featured-img:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 
-  .featured-body { display: grid; gap: 1rem; padding: 0.5rem 1rem 1.25rem; justify-items: start; }
-  @media (min-width: 900px) { .featured-body { padding: 1.25rem 1.5rem 1.25rem 0; } }
+  .featured-body { display: grid; gap: 0.85rem; padding: 0.5rem 1rem 1.25rem; justify-items: start; }
+  @media (min-width: 900px) { .featured-body { padding: 1rem 1.5rem 1rem 0; } }
 
   .eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink); }
   .beacon { width: 8px; height: 8px; border-radius: 50%; background: var(--ink); animation: pulse 1.8s ease-in-out infinite; }
   @keyframes pulse { 50% { opacity: 0.3; } }
 
-  .featured-title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.35rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.25; color: var(--text-primary); }
-  .featured-title a:hover { color: var(--ink); }
-  .featured-desc { font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); max-width: 58ch; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .featured-title { font-family: var(--font-display); font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; color: var(--text-primary); text-wrap: balance; }
+  .featured-desc { font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); max-width: 58ch; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
   .meta { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.85rem; color: var(--text-secondary); }
   .meta li { display: inline-flex; align-items: center; gap: 0.4rem; }
-  .meta svg { color: var(--ink); flex: none; }
+  /* 2.4 at 15px renders a 1.5px line, matching 400-weight text */
+  .meta svg { color: var(--ink); flex: none; stroke-width: 2.4; }
   .meta-sm { font-size: 0.78rem; color: var(--text-muted); }
 
   /* Countdown */
   .countdown { display: inline-flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-  .label { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+  .label { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+  .featured .label { color: var(--text-secondary); }
   .clock { display: flex; align-items: baseline; gap: 0.6rem; font-variant-numeric: tabular-nums; }
   .clock span { display: inline-flex; align-items: baseline; gap: 0.15rem; }
   .clock b { font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--text-primary); }
-  .clock small { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
+  .clock small { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
 
-  .clock-lg { gap: 0.5rem; }
-  .clock-lg span { flex-direction: column; align-items: center; gap: 0.1rem; min-width: 3.6rem; padding: 0.55rem 0.4rem; border-radius: var(--radius-md); background: var(--bg-card); }
-  .clock-lg b { font-size: 1.6rem; line-height: 1; }
+  .featured-countdown .clock b { font-size: 1.5rem; }
 
   .timer-live-state { font-size: 0.85rem; font-weight: 700; color: var(--ink); }
 
   .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
-  .act-primary { padding: 0.6rem 1.1rem; border-radius: var(--radius-pill); background: var(--text-primary); color: var(--bg-card); font-size: 0.85rem; font-weight: 700; transition: transform 0.15s ease; }
-  .act-primary:hover { transform: translateX(2px); }
-  .act-ghost { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1rem; border-radius: var(--radius-pill); border: 1px solid var(--border-card-hover); color: var(--text-primary); font-size: 0.82rem; font-weight: 600; transition: background-color 0.15s ease; }
-  .act-ghost:hover { background: var(--bg-card); }
+  .act-primary { padding: 0.6rem 1.1rem; border-radius: var(--radius-pill); background: var(--text-primary); color: var(--bg-card); font-size: 0.85rem; font-weight: 700; transition: translate 0.15s ease-out, scale 0.15s ease-out; }
+  .act-ghost { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1rem; border-radius: var(--radius-pill); border: 1px solid var(--border-card-hover); color: var(--text-primary); font-size: 0.82rem; font-weight: 600; transition: background-color 0.15s ease, scale 0.15s ease-out; }
   .actions-sm .act-primary { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
   .actions-sm .act-ghost { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
   .act-primary:focus-visible, .act-ghost:focus-visible, .featured-title a:focus-visible, .row-title a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
@@ -262,22 +259,33 @@ const day = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'n
   .row-side { grid-column: 1 / -1; display: grid; gap: 0.75rem; }
 
   @media (min-width: 960px) {
-    .row { grid-template-columns: auto minmax(0, 1fr) auto; gap: 2rem; align-items: center; padding: 1.75rem 0.5rem; }
+    /* Top-aligned: date tile, title and countdown share the first line even when a title wraps */
+    .row { grid-template-columns: auto minmax(0, 1fr) auto; gap: 2rem; align-items: start; padding: 1.75rem 0.5rem; }
     .row-side { grid-column: auto; justify-items: end; }
     .row-side .countdown { justify-content: flex-end; }
   }
 
   .date { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 4.25rem; aspect-ratio: 1; border-radius: var(--radius-lg); background: var(--tint); color: var(--ink); line-height: 1; }
-  .date-month { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .date-month { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
   .date-day { font-family: var(--font-display); font-size: 1.75rem; font-weight: 800; margin-top: 0.25rem; }
 
   .row-title { font-family: var(--font-display); font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.25; color: var(--text-primary); }
-  .row-title a:hover { color: var(--ink); }
   .row-desc { margin: 0.35rem 0 0.6rem; font-size: 0.88rem; line-height: 1.55; color: var(--text-secondary); max-width: 62ch; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* Hover only where a real pointer can hover; on touch :hover sticks after a tap */
+  @media (hover: hover) {
+    .featured-img:hover img { transform: scale(1.04); }
+    .featured-title a:hover, .row-title a:hover { color: var(--ink); }
+    .act-primary:hover { translate: 2px 0; }
+    .act-ghost:hover { background: var(--bg-card); }
+  }
+
+  .act-primary:active, .act-ghost:active { scale: 0.96; }
 
   @media (prefers-reduced-motion: reduce) {
     .beacon { animation: none; }
     .featured-img img, .act-primary { transition: none; }
-    .featured-img:hover img, .act-primary:hover { transform: none; }
+    .featured-img:hover img { transform: none; }
+    .act-primary:hover, .act-primary:active, .act-ghost:active { translate: none; scale: none; }
   }
 </style>

@@ -10,7 +10,7 @@ const rowOnePhotos = [
     title: "SentinelOps & eBPF Architecture Talk"
   },
   {
-    image: "/images/meetups/software-freedom.png",
+    image: "/images/meetups/software-freedom.avif",
     alt: "Software Freedom Day members meetup in Dhaka",
     title: "Software Freedom Day Gathering"
   },
@@ -20,7 +20,7 @@ const rowOnePhotos = [
     title: "Arch Linux & Terminal Workstation"
   },
   {
-    image: "/images/meetups/meetup-workshop-daffodil.png",
+    image: "/images/meetups/meetup-workshop-daffodil.avif",
     alt: "Campus Workshop at Daffodil International University",
     title: "DIU Campus Workshop & Panel"
   },
@@ -30,12 +30,12 @@ const rowOnePhotos = [
     title: "Open Hardware & IoT Clock Lab"
   },
   {
-    image: "/images/meetups/software-freedom-day.png",
+    image: "/images/meetups/software-freedom-day.avif",
     alt: "Open Systems Roundtable with laptops in Dhaka",
     title: "Open Systems Roundtable"
   },
   {
-    image: "/images/meetups/meetup-tuxforge.png",
+    image: "/images/meetups/meetup-tuxforge.avif",
     alt: "Community hangout and Linux Demos at Tuxforge Lab",
     title: "Tuxforge Lab Demos & Stickers"
   }
@@ -53,7 +53,7 @@ const rowTwoPhotos = [
     title: "Systemd Services & Kernel Debugging"
   },
   {
-    image: "/images/meetups/meetup-tuxforge.png",
+    image: "/images/meetups/meetup-tuxforge.avif",
     alt: "Stickers, Tux penguins, and open source materials",
     title: "Linux Stickers & Handouts"
   },
@@ -68,12 +68,12 @@ const rowTwoPhotos = [
     title: "Embedded Linux & BLE Telemetry"
   },
   {
-    image: "/images/meetups/meetup-workshop-daffodil.png",
+    image: "/images/meetups/meetup-workshop-daffodil.avif",
     alt: "Auditorium workshop and Linux installation fest",
     title: "University Install-Fest"
   },
   {
-    image: "/images/meetups/software-freedom.png",
+    image: "/images/meetups/software-freedom.avif",
     alt: "Dhaka open-source volunteer engineers group photo",
     title: "Annual Community Gathering"
   }
@@ -93,18 +93,21 @@ const partners = [
     <!-- Header (Screenshot 2: FROM CAMPUS FLOORS / Real rooms. Real builds.) -->
     <div class="floors-header">
       <div class="header-titles">
-        <span class="floors-eyebrow">FROM CAMPUS FLOORS</span>
+        <span class="floors-eyebrow">From campus floors</span>
         <h2 class="floors-title">Real rooms. Real builds.</h2>
       </div>
 
-      <a href="#events" class="floors-action-link">
-        See meetups <span aria-hidden="true">&rarr;</span>
-      </a>
+      <div class="floors-actions">
+        <button type="button" class="motion-toggle" data-motion-toggle aria-controls="gallery-strip">Pause photos</button>
+        <a href="#events" class="floors-action-link">
+          See meetups <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
     </div>
   </div>
 
   <!-- 2 Scrolling Photo Rows (Full width edge-to-edge reel) -->
-  <div class="marquee-wrapper" aria-label="Campus photo strip">
+  <div class="marquee-wrapper" id="gallery-strip" role="region" aria-label="Campus photo strip">
     <!-- Row 1 -->
     <div class="marquee-track track-left">
       <div class="marquee-content">
@@ -215,6 +218,14 @@ const partners = [
     line-height: 1.2;
   }
 
+  .floors-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem 1rem;
+  }
+
   .floors-action-link {
     font-size: 0.95rem;
     font-weight: 500;
@@ -261,8 +272,16 @@ const partners = [
     animation: scrollRight 48s linear infinite;
   }
 
-  .marquee-track:hover {
+  .marquee-track:hover,
+  .marquee-wrapper.is-paused .marquee-track {
     animation-play-state: paused;
+  }
+
+  /* Same fallback as CommunityPeople: a still, swipeable strip */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-wrapper { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+    .marquee-track { animation: none; }
+    .marquee-content[aria-hidden] { display: none; }
   }
 
   .marquee-content {

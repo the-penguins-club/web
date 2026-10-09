@@ -30,10 +30,10 @@ const groups = [
 ---
 
 <Layout
-  title="Programs — The Penguins Club"
-  description="Every track The Penguins Club runs: the Linux systems club, upstream contribution sprints, campus install-fests, the security track, our paid bug bounty program, mentorship pairings, and the public commons we maintain."
+  title="Free Linux & Open Source Programs in Dhaka — The Penguins Club"
+  description="Free Linux clubs, upstream contribution sprints, campus install-fests, a security track, mentorship and a paid bug bounty, run by volunteers in Dhaka."
 >
-  <main class="programs-page">
+  <div class="programs-page">
     <header class="hero">
       <div class="container">
         <p class="eyebrow">PROGRAMS</p>
@@ -68,7 +68,7 @@ const groups = [
 
           <ul class="program-grid">
             {group.items.map((p) => (
-              <li class={`card tone-${p.tone}`}>
+              <li class={`card tone-${p.tone}`} id={p.slug}>
                 <div class="card-top">
                   <span class="card-badge">{p.badge}</span>
                   <svg class="card-art" viewBox="0 0 120 120" aria-hidden="true" set:html={art[p.art]} />
@@ -110,7 +110,7 @@ const groups = [
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
