@@ -10,8 +10,8 @@ export const organization = {
   logo: `${SITE}/favicon.svg`,
   image: `${SITE}/images/og/default.png`,
   description:
-    'A volunteer-run Linux and open source charity in Bangladesh, going since 2020. Free monthly workshops, local package mirrors, and printed booklets we give away.',
-  foundingDate: '2020',
+    'A volunteer-run Linux and open source charity in Bangladesh, going since 2024. Free monthly workshops, local package mirrors, and printed booklets we give away.',
+  foundingDate: '2024',
   email: 'admin@thepenguins.club',
   address: {
     '@type': 'PostalAddress',

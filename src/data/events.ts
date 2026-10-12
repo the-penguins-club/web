@@ -134,7 +134,7 @@ export const events: CommunityEvent[] = [
       {
         name: 'The Penguins Club Collective',
         role: 'Community Stewards & FOSS Advocates',
-        bio: 'Organisers and volunteers keeping local open-source infrastructure and offline tech culture going in Bangladesh since 2020.',
+        bio: 'Organisers and volunteers keeping local open-source infrastructure and offline tech culture going in Bangladesh since 2024.',
         avatar: '/favicon.svg',
         github: 'the-penguins-club'
       },

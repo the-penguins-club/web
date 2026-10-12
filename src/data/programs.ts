@@ -46,7 +46,7 @@ export const programs: Program[] = [
     badgeType: 'live',
     title: 'Linux Systems & CLI Club',
     summary:
-      'Paper reading, live terminal challenges, and monthly hands-on workshops — the habit this community started with in 2020.',
+      'Paper reading, live terminal challenges, and monthly hands-on workshops — the habit this community started with in 2024.',
     details:
       'From desktop installations (Debian, Arch, Fedora) to headless server administration, shell scripting, package management, and systemd services.',
     cadence: 'Every 3rd Saturday at 26/18 Gulshan Badda Link Road & online',
