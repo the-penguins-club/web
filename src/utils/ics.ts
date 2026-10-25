@@ -105,6 +105,8 @@ export function generateAllEventsIcs(eventsList: CommunityEvent[]): string {
     'X-WR-CALNAME:The Penguins Club Community Calendar',
     'X-WR-CALDESC:Official calendar feed of free Linux meetups, workshops, and gatherings in Bangladesh',
     'X-WR-TIMEZONE:Asia/Dhaka',
+    'REFRESH-INTERVAL;VALUE=DURATION:PT6H',
+    'X-PUBLISHED-TTL:PT6H',
     ...eventsList.flatMap((event) =>
       vevent(event, `${event.description}\n\nMore info: https://thepenguins.club/events/${event.slug}`, {
         text: 'Reminder: The Penguins Club Gathering today!',

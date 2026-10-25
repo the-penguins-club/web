@@ -10,7 +10,6 @@ export const GET: APIRoute = async () => {
     status: 200,
     headers: {
       'Content-Type': 'text/calendar; charset=utf-8',
-      'Content-Disposition': 'attachment; filename="the-penguins-club-events.ics"',
       'Cache-Control': 'public, max-age=3600, s-maxage=86400'
     }
   });

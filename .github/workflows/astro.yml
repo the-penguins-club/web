@@ -9,6 +9,10 @@ on:
   push:
     branches: ["main"]
 
+  # Rebuild every 6 hours so new GitHub event issues reach the site and the calendar feed
+  schedule:
+    - cron: "0 */6 * * *"
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
