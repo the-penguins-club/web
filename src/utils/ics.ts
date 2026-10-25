@@ -21,33 +21,41 @@ export function formatIcsTimestamp(dateInput?: string | Date): string {
 }
 
 /**
- * Generates an RFC 5545 compliant iCalendar string for a single community event
+ * Folds a content line to 75 octets per RFC 5545 section 3.1 (continuations start with a space)
  */
-export function generateSingleEventIcs(event: CommunityEvent): string {
-  const dtstamp = formatIcsTimestamp();
-  const summary = escapeIcsText(event.title);
-  const location = escapeIcsText(`${event.venueName}, ${event.venueAddress}`);
-  const descriptionText = `${event.description}\n\nSchedule:\n${event.agenda.map((a) => `${a.time}: ${a.title}`).join('\n')}\n\nMore details: https://thepenguins.club/events/${event.slug}`;
-  const description = escapeIcsText(descriptionText);
-  const eventUrl = `https://thepenguins.club/events/${event.slug}`;
+export function foldIcsLine(line: string): string {
+  const out: string[] = [];
+  let cur = '';
+  let bytes = 0;
+  for (const ch of line) {
+    const n = new TextEncoder().encode(ch).length;
+    // continuation lines carry a leading space, so they hold 74 octets
+    if (bytes + n > (out.length ? 74 : 75)) {
+      out.push(cur);
+      cur = '';
+      bytes = 0;
+    }
+    cur += ch;
+    bytes += n;
+  }
+  out.push(cur);
+  return out.join('\r\n ');
+}
 
-  const lines = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//The Penguins Club//Meetups and Events//EN',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    `X-WR-CALNAME:${escapeIcsText(event.title)}`,
-    'X-WR-TIMEZONE:Asia/Dhaka',
+const joinIcs = (lines: string[]) => lines.map(foldIcsLine).join('\r\n') + '\r\n';
+
+function vevent(event: CommunityEvent, descriptionText: string, alarm: { text: string; trigger: string }): string[] {
+  return [
     'BEGIN:VEVENT',
+    // ponytail: UID keeps the original "-2026" suffix so existing subscribers don't get duplicates
     `UID:${event.slug}-2026@thepenguins.club`,
-    `DTSTAMP:${dtstamp}`,
+    `DTSTAMP:${formatIcsTimestamp()}`,
     `DTSTART:${event.calStart}`,
     `DTEND:${event.calEnd}`,
-    `SUMMARY:${summary}`,
-    `DESCRIPTION:${description}`,
-    `LOCATION:${location}`,
-    `URL:${eventUrl}`,
+    `SUMMARY:${escapeIcsText(event.title)}`,
+    `DESCRIPTION:${escapeIcsText(descriptionText)}`,
+    `LOCATION:${escapeIcsText(`${event.venueName}, ${event.venueAddress}`)}`,
+    `URL:https://thepenguins.club/events/${event.slug}`,
     'STATUS:CONFIRMED',
     'SEQUENCE:0',
     'ORGANIZER;CN="The Penguins Club":mailto:uthsob@thepenguins.club',
@@ -55,54 +63,40 @@ export function generateSingleEventIcs(event: CommunityEvent): string {
     'TRANSP:OPAQUE',
     'BEGIN:VALARM',
     'ACTION:DISPLAY',
-    'DESCRIPTION:Reminder: The Penguins Club Meetup starts in 1 hour',
-    'TRIGGER:-PT1H',
+    `DESCRIPTION:${alarm.text}`,
+    `TRIGGER:${alarm.trigger}`,
     'END:VALARM',
-    'END:VEVENT',
-    'END:VCALENDAR'
+    'END:VEVENT'
   ];
+}
 
-  return lines.join('\r\n') + '\r\n';
+/**
+ * Generates an RFC 5545 compliant iCalendar string for a single community event
+ */
+export function generateSingleEventIcs(event: CommunityEvent): string {
+  const schedule = event.agenda.length
+    ? `\n\nSchedule:\n${event.agenda.map((a) => `${a.time}: ${a.title}`).join('\n')}`
+    : '';
+  const description = `${event.description}${schedule}\n\nMore details: https://thepenguins.club/events/${event.slug}`;
+
+  return joinIcs([
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//The Penguins Club//Meetups and Events//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    `X-WR-CALNAME:${escapeIcsText(event.title)}`,
+    'X-WR-TIMEZONE:Asia/Dhaka',
+    ...vevent(event, description, { text: 'Reminder: The Penguins Club Meetup starts in 1 hour', trigger: '-PT1H' }),
+    'END:VCALENDAR'
+  ]);
 }
 
 /**
  * Generates an RFC 5545 compliant multi-event subscription iCalendar feed
  */
 export function generateAllEventsIcs(eventsList: CommunityEvent[]): string {
-  const dtstamp = formatIcsTimestamp();
-
-  const vevents = eventsList.map((event) => {
-    const summary = escapeIcsText(event.title);
-    const location = escapeIcsText(`${event.venueName}, ${event.venueAddress}`);
-    const descriptionText = `${event.description}\n\nMore info: https://thepenguins.club/events/${event.slug}`;
-    const description = escapeIcsText(descriptionText);
-    const eventUrl = `https://thepenguins.club/events/${event.slug}`;
-
-    return [
-      'BEGIN:VEVENT',
-      `UID:${event.slug}-2026@thepenguins.club`,
-      `DTSTAMP:${dtstamp}`,
-      `DTSTART:${event.calStart}`,
-      `DTEND:${event.calEnd}`,
-      `SUMMARY:${summary}`,
-      `DESCRIPTION:${description}`,
-      `LOCATION:${location}`,
-      `URL:${eventUrl}`,
-      'STATUS:CONFIRMED',
-      'SEQUENCE:0',
-      'ORGANIZER;CN="The Penguins Club":mailto:uthsob@thepenguins.club',
-      'CATEGORIES:COMMUNITY,LINUX,OPEN SOURCE,EDUCATION',
-      'TRANSP:OPAQUE',
-      'BEGIN:VALARM',
-      'ACTION:DISPLAY',
-      'DESCRIPTION:Reminder: The Penguins Club Gathering today!',
-      'TRIGGER:-PT2H',
-      'END:VALARM',
-      'END:VEVENT'
-    ].join('\r\n');
-  });
-
-  const lines = [
+  return joinIcs([
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
     'PRODID:-//The Penguins Club//Community Events Subscription//EN',
@@ -111,11 +105,14 @@ export function generateAllEventsIcs(eventsList: CommunityEvent[]): string {
     'X-WR-CALNAME:The Penguins Club Community Calendar',
     'X-WR-CALDESC:Official calendar feed of free Linux meetups, workshops, and gatherings in Bangladesh',
     'X-WR-TIMEZONE:Asia/Dhaka',
-    ...vevents,
+    ...eventsList.flatMap((event) =>
+      vevent(event, `${event.description}\n\nMore info: https://thepenguins.club/events/${event.slug}`, {
+        text: 'Reminder: The Penguins Club Gathering today!',
+        trigger: '-PT2H'
+      })
+    ),
     'END:VCALENDAR'
-  ];
-
-  return lines.join('\r\n') + '\r\n';
+  ]);
 }
 
 /**
