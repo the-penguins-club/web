@@ -34,10 +34,14 @@ const jsonLd = {
   image={cover && /\.(png|jpe?g)$/i.test(cover) ? cover : undefined}
   jsonLd={jsonLd}
 >
+  <Fragment slot="head">
+    <meta property="article:published_time" content={date.toISOString()} />
+    <meta property="article:author" content={author} />
+  </Fragment>
   <article class="post container">
     <a href="/blog" class="back">&larr; All posts</a>
     <h1>{title}</h1>
-    <p class="meta">{fmtDate(date)} · {author} · {readingTime(post.body)}</p>
+    <p class="meta"><time datetime={date.toISOString()}>{fmtDate(date)}</time> · {author} · {readingTime(post.body)}</p>
     {tags.length > 0 && <ul class="tags">{tags.map((t) => <li>{t}</li>)}</ul>}
     <PostCover title={title} cover={cover} label={tags[0] ?? 'blog'} class="hero" />
     <div class="prose"><Content /></div>
