@@ -8,7 +8,7 @@ export const organization = {
   name: 'The Penguins Club',
   url: `${SITE}/`,
   logo: `${SITE}/favicon.svg`,
-  image: `${SITE}/images/og/default.png`,
+  image: `${SITE}/images/og/default.png?v=2026-11`,
   description:
     'A volunteer-run Linux and open source charity in Bangladesh, going since 2017. Free monthly workshops, local package mirrors, and printed booklets we give away.',
   foundingDate: '2017',
